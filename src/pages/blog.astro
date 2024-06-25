@@ -1,19 +1,15 @@
 ---
-import Header from "../components/Header.astro";
+import Base from "../layouts/Base.astro";
+const allPosts = await Astro.glob("./posts/*.md");
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Blog</title>
-  </head>
-  <body>
-    <Header />
-    <h1>All my blog posts would live here</h1>
-    <a href="/">Home</a>
-    <a href="/posts/hello-world">Hello, World!</a>
-    <a href="/posts/why-now">Why now?</a>
-  </body>
-</html>
+<Base title="Blog">
+  <h2>Blogs go here</h2>
+  {
+    allPosts.map((post) => (
+      <li>
+        <a href={post.url}>{post.frontmatter.title}</a>
+      </li>
+    ))
+  }
+</Base>

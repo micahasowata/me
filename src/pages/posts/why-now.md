@@ -1,5 +1,5 @@
 ---
-title: "Hello World"
+title: "Why now"
 pubDate: 25-06-24
 description: "Hello to the world"
 author: "Micah Asowata"

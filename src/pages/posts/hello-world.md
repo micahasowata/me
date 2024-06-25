@@ -1,4 +1,5 @@
 ---
+layout: "../../layouts/Posts.astro"
 title: "Hello World"
 pubDate: 25-06-24
 description: "Hello to the world"
@@ -8,10 +9,6 @@ image:
   alt: "The Astro logo on a dark background with a pink glow."
 tags: ["astro", "blogging", "learning in public"]
 ---
-
-# Hello World
-
-Published on: June 25, 2024
 
 Isn't it cool
 
