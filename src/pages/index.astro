@@ -1,4 +1,6 @@
 ---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
 const skills = ["Running", "Coding"];
 ---
 
@@ -11,10 +13,10 @@ const skills = ["Running", "Coding"];
     <title>Micah Asowata</title>
   </head>
   <body>
+    <Navbar />
     <h1>Micah Asowata</h1>
     <p>builder building buildings</p>
     <p>{skills}</p>
-    <a href="/about/">Learn more about me</a>
-    <a href="/blog/">Blog</a>
+    <Footer />
   </body>
 </html>
