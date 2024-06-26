@@ -1,22 +1,7 @@
 ---
-import Footer from "../components/Footer.astro";
-import Navbar from "../components/Navbar.astro";
-const skills = ["Running", "Coding"];
+import Base from "../layouts/Base.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Micah Asowata</title>
-  </head>
-  <body>
-    <Navbar />
-    <h1>Micah Asowata</h1>
-    <p>builder building buildings</p>
-    <p>{skills}</p>
-    <Footer />
-  </body>
-</html>
+<Base title="Micah Asowata">
+  <h1>I am Micah</h1>
+</Base>
