@@ -1,10 +1,12 @@
 ---
 import { getCollection } from "astro:content";
+import Tags from "../../components/Tags.astro";
 import Base from "../../layouts/Base.astro";
 const posts = await getCollection("posts");
 ---
 
 <Base title="Posts live here">
+  <Tags />
   <ul>
     {
       posts.map((post) => (
