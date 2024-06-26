@@ -48,6 +48,6 @@
       localStorage.setItem("theme", isDark ? "dark" : "light");
     };
     const themeBtn = document.getElementById("themeToggle");
-    themeBtn.addEventListener("click", handleToggle);
+    themeBtn !== null && themeBtn.addEventListener("click", handleToggle);
   });
 </script>
