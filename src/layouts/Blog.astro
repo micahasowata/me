@@ -22,5 +22,7 @@ const { post } = Astro.props;
     width={50}
     height={50}
   />
-  <slot />
+  <article class="prose lg:prose-xl">
+    <slot />
+  </article>
 </Base>
