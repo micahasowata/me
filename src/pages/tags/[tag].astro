@@ -1,33 +1,42 @@
 ---
+import type {
+  GetStaticPaths,
+  InferGetStaticParamsType,
+  InferGetStaticPropsType,
+} from "astro";
+import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-export async function getStaticPaths() {
-  const allPosts = await Astro.glob("../posts/*.md");
-  const uniqueTags = [
-    ...new Set(allPosts.map((post) => post.frontmatter.tags).flat()),
-  ];
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.frontmatter.tags.includes(tag)
+
+export const getStaticPaths = (async () => {
+  const allPosts = await getCollection("posts");
+  const allTags = allPosts.map((posts) => posts.data.tags).flat() as string[];
+  const allUniqueTags = [...new Set(allTags)];
+
+  return allUniqueTags.map((tag) => {
+    const allPostsForTag = allPosts.filter((post) =>
+      post.data.tags.includes(tag)
     );
 
     return {
       params: { tag },
-      props: { posts: filteredPosts },
+      props: { posts: allPostsForTag },
     };
   });
-}
+}) satisfies GetStaticPaths;
 
-const { tag } = Astro.params;
-const { posts } = Astro.props;
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { tag } = Astro.params as Params;
+const { posts } = Astro.props as Props;
 ---
 
-<Base title={tag}>
-  <p>{tag}</p>
+<Base title={`All posts for "${tag}"`}>
   <ul>
     {
       posts.map((post) => (
         <li>
-          <a href={post.url}>{post.frontmatter.title}</a>
+          <a href={`/posts/${post.slug}`}>{post.data.title}</a>
         </li>
       ))
     }
