@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts");
+
+const allTags = allPosts.map((post) => post.data.tags).flat() as string[];
+const allUniqueTags = [...new Set(allTags)];
+---
+
+<ul>
+  {
+    allUniqueTags.map((tag) => (
+      <li>
+        <a href={`/tags/${tag}`}>{tag}</a>
+      </li>
+    ))
+  }
+</ul>

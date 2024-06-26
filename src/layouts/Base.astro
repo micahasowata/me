@@ -1,6 +1,6 @@
 ---
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
+import { ViewTransitions } from "astro:transitions";
+import Theme from "../components/Theme.astro";
 interface Props {
   title: string;
 }
@@ -9,15 +9,31 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
-  <body>
-    <Header />
-    <slot />
-    <Footer />
+  <body class="bg-gray-500 dark:bg-white">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts">Posts</a></li>
+          <li><a href="/projects">Projects</a></li>
+          <li>
+            <Theme />
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main transition:animate="fade">
+      <slot />
+    </main>
+    <footer>
+      <p>Built by Micah</p>
+    </footer>
   </body>
 </html>
