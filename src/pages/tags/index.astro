@@ -4,7 +4,7 @@ import Base from "../../layouts/Base.astro";
 
 const allPosts = await getCollection("posts");
 
-const allTags = allPosts.map((post) => post.data.tags).flat();
+const allTags = allPosts.map((post) => post.data.tags).flat() as string[];
 const allUniqueTags = [...new Set(allTags)];
 ---
 
