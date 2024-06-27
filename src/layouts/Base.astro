@@ -18,12 +18,12 @@ const footerDate = new Date().getFullYear();
     <title>{title}</title>
   </head>
   <body
-    class="font-mono grid place-content-center dark:bg-gray-600 dark:text-white"
+    class="font-mono grid place-content-center dark:bg-gradient-to-b dark:to-stone-600 dark:from-black dark:text-white py-5"
   >
     <header>
-      <nav>
-        <ul class="grid grid-cols-3 gap-4 py-3">
-          <div>
+      <nav class="grid grid-cols-12">
+        <ul class="grid col-start-2 col-end-12">
+          <div class="grid col-start-2 col-end-2 place-content-center">
             <Image
               src={logo}
               alt="personal logo featuring a lowercase m and a lowercase a and a square all white on a black background"
@@ -31,22 +31,26 @@ const footerDate = new Date().getFullYear();
               height={30}
             />
           </div>
-          <div class="grid place-content-center grid-cols-3">
-            <li><a href="/">Home</a></li>
-            <li><a href="/posts">Posts</a></li>
-            <li><a href="/projects">Projects</a></li>
+          <div class="grid col-start-4 col-end-10">
+            <div class="flex flex-row space-x-2 place-content-center">
+              <li><a href="/">Home</a></li>
+              <li><a href="/posts">Posts</a></li>
+              <li><a href="/projects">Projects</a></li>
+            </div>
           </div>
-          <div class="grid place-content-center">
+          <div class="grid col-start-12 col-end-12 place-content-center">
             <Theme />
           </div>
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="grid grid-cols-12 place-content-center">
       <slot />
     </main>
-    <footer class="grid place-content-center">
-      <a href="https://github.com/micahasowata"
+    <footer class="grid grid-cols-12 place-content-center pt-5">
+      <a
+        href="https://github.com/micahasowata"
+        class="grid col-start-2 col-end-12 place-content-center py-3"
         >{`Built by me ${footerDate}.`}</a
       >
     </footer>
