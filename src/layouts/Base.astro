@@ -1,11 +1,14 @@
 ---
+import { Image } from "astro:assets";
 import { ViewTransitions } from "astro:transitions";
+import logo from "../assets/logo.svg";
 import Theme from "../components/Theme.astro";
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
+const footerDate = new Date().getFullYear();
 ---
 
 <!doctype html>
@@ -16,24 +19,38 @@ const { title } = Astro.props;
     <title>{title}</title>
     <ViewTransitions />
   </head>
-  <body class="bg-gray-500 dark:bg-white">
+  <body
+    class="font-mono grid place-content-center dark:bg-gray-600 dark:text-white"
+  >
     <header>
       <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/posts">Posts</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li>
+        <ul class="grid grid-cols-3 gap-4 py-3">
+          <div>
+            <Image
+              src={logo}
+              alt="personal logo featuring a lowercase m and a lowercase a and a square all white on a black background"
+              width={30}
+              height={30}
+            />
+          </div>
+          <div class="grid place-content-center grid-cols-3">
+            <li><a href="/">Home</a></li>
+            <li><a href="/posts">Posts</a></li>
+            <li><a href="/projects">Projects</a></li>
+          </div>
+          <div class="grid place-content-center">
             <Theme />
-          </li>
+          </div>
         </ul>
       </nav>
     </header>
     <main transition:animate="fade">
       <slot />
     </main>
-    <footer>
-      <p>Built by Micah</p>
+    <footer class="grid place-content-center">
+      <a href="https://github.com/micahasowata"
+        >{`Built by me ${footerDate}.`}</a
+      >
     </footer>
   </body>
 </html>
