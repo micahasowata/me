@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import { ViewTransitions } from "astro:transitions";
 import logo from "../assets/logo.svg";
 import Theme from "../components/Theme.astro";
 interface Props {
@@ -17,7 +16,6 @@ const footerDate = new Date().getFullYear();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-    <ViewTransitions />
   </head>
   <body
     class="font-mono grid place-content-center dark:bg-gray-600 dark:text-white"
@@ -44,7 +42,7 @@ const footerDate = new Date().getFullYear();
         </ul>
       </nav>
     </header>
-    <main transition:animate="fade">
+    <main>
       <slot />
     </main>
     <footer class="grid place-content-center">
