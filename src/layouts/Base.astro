@@ -32,7 +32,9 @@ const footerDate = new Date().getFullYear();
             />
           </div>
           <div class="grid col-start-4 col-end-10">
-            <div class="flex flex-row space-x-2 place-content-center">
+            <div
+              class="flex flex-row space-x-2 place-content-center md:space-x-5"
+            >
               <li><a href="/">Home</a></li>
               <li><a href="/posts">Posts</a></li>
               <li><a href="/projects">Projects</a></li>
@@ -44,7 +46,7 @@ const footerDate = new Date().getFullYear();
         </ul>
       </nav>
     </header>
-    <main class="grid grid-cols-12 place-content-center">
+    <main class="grid grid-cols-12">
       <slot />
     </main>
     <footer class="grid grid-cols-12 place-content-center pt-5">
