@@ -6,6 +6,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   integrations: [mdx(), tailwind()],
   image: {
-    domains: ["githubusercontent.com"]
+    domains: ["githubusercontent.com", "utfs.io"]
   }
 });
