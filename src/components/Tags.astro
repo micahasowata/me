@@ -4,15 +4,28 @@ import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
 
 const allTags = allPosts.map((post) => post.data.tags).flat() as string[];
-const allUniqueTags = [...new Set(allTags)];
+const tags = [...new Set(allTags)];
+
+interface Props {
+  style: string;
+}
+
+const { style } = Astro.props;
 ---
 
-<ul>
-  {
-    allUniqueTags.map((tag) => (
-      <li>
-        <a href={`/tags/${tag}`}>{tag}</a>
-      </li>
-    ))
-  }
-</ul>
+<div>
+  <ul class={style}>
+    {
+      tags.map((tag) => (
+        <li>
+          <a
+            href={`/tags/${tag}`}
+            class="border-2 border-black rounded-md p-1 dark:border-white hover:animate-pulse"
+          >
+            {tag}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
