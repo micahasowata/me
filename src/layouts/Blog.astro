@@ -14,7 +14,15 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<Base title={post.data.title}>
+<Base
+  title={post.data.title}
+  description={post.data.intro}
+  img={{
+    src: post.data.cover.src,
+    alt: post.data.cover.alt,
+  }}
+  type="article"
+>
   <section
     class="grid col-start-2 col-end-12 prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md pt-5"
   >

@@ -16,7 +16,16 @@ const { project } = Astro.props;
 const { Content, headings } = await project.render();
 ---
 
-<Base title={project.data.name}>
+<Base
+  title={project.data.name}
+  description={project.data.description}
+  img={{
+    src: project.data.cover.src,
+    alt: project.data.cover.alt,
+  }}
+  ,
+  type="article"
+>
   <section class="grid col-start-2 col-end-12">
     <ul>
       {

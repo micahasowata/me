@@ -8,13 +8,21 @@ const posts = await getCollection("posts");
 const numOfPosts = posts.length;
 ---
 
-<Base title="All Posts">
+<Base
+  title="All Posts"
+  description="All of Micah Asowata's Posts"
+  img={{
+    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
+    alt: "Logo for Micah Asowata's website",
+  }}
+  type="website"
+>
   <section class="grid col-start-2 col-end-12 pt-5">
     {numOfPosts > 3 && <Tags style="flex space-x-3 flex-wrap py-6" />}
     <ul>
       {
         posts.map((post) => (
-          <li class="grid hover:shadow-sm hover:shadow-black p-2 rounded-md">
+          <li class="grid hover:animate-pulse">
             <div>
               <a href={`/posts/${post.slug}`}>
                 <Image

@@ -31,7 +31,15 @@ const { tag } = Astro.params as Params;
 const { posts } = Astro.props as Props;
 ---
 
-<Base title={`All posts for "${tag}"`}>
+<Base
+  title={`All posts for "${tag}"`}
+  description=`All posts of Micah Asowata's posts with tag: "${tag}"`
+  img={{
+    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
+    alt: "Logo for Micah Asowata's website",
+  }}
+  type="website"
+>
   <ul>
     {
       posts.map((post) => (
