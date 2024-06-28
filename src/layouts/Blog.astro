@@ -15,14 +15,18 @@ const { post } = Astro.props;
 ---
 
 <Base title={post.data.title}>
-  <h1>{post.data.title}</h1>
-  <Image
-    src={post.data.image}
-    alt="hopefully it works"
-    width={50}
-    height={50}
-  />
-  <article class="prose lg:prose-xl">
-    <slot />
-  </article>
+  <section
+    class="grid col-start-2 col-end-12 prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md pt-5"
+  >
+    <h1>{post.data.title}</h1>
+    <Image
+      src={post.data.cover.src}
+      alt={post.data.cover.alt}
+      width={50}
+      height={50}
+    />
+    <article>
+      <slot />
+    </article>
+  </section>
 </Base>

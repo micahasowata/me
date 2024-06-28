@@ -1,19 +1,49 @@
 ---
+import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Tags from "../../components/Tags.astro";
+import { formatDate } from "../../date/date";
 import Base from "../../layouts/Base.astro";
 const posts = await getCollection("posts");
+const numOfPosts = posts.length;
 ---
 
-<Base title="Posts live here">
-  <Tags />
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/posts/${post.slug}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+<Base title="All Posts">
+  <section class="grid col-start-2 col-end-12 pt-5">
+    {numOfPosts > 3 && <Tags style="flex space-x-3 flex-wrap py-6" />}
+    <ul>
+      {
+        posts.map((post) => (
+          <li class="grid hover:shadow-sm hover:shadow-black p-2 rounded-md">
+            <div>
+              <a href={`/posts/${post.slug}`}>
+                <Image
+                  src={post.data.cover.src}
+                  alt={post.data.cover.alt}
+                  width={100}
+                  height={100}
+                  class={"w-96 rounded-md"}
+                />
+                <div class="pt-4">
+                  <h2 class="font-bold text-2xl">{post.data.title}</h2>
+                  <p>{formatDate(post.data.pubDate)}</p>
+                  <p>{post.data.intro}</p>
+                </div>
+              </a>
+            </div>
+            <div class="flex space-x-3 flex-wrap py-6">
+              {post.data.tags.map((tag) => (
+                <a
+                  href={`/tags/${tag}`}
+                  class="border-2 border-black rounded-md p-1 dark:border-white hover:animate-pulse"
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Base>
