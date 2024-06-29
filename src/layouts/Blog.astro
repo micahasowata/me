@@ -23,8 +23,8 @@ const { post } = Astro.props;
   }}
   type="article"
 >
-  <section
-    class="grid col-start-2 col-end-12 prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md pt-5"
+  <article
+    class="prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md"
   >
     <h1>{post.data.title}</h1>
     <Image
@@ -36,5 +36,5 @@ const { post } = Astro.props;
     <article>
       <slot />
     </article>
-  </section>
+  </article>
 </Base>

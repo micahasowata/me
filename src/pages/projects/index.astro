@@ -15,21 +15,20 @@ const projects = await getCollection("projects");
   }}
   type="website"
 >
-  <section class="grid col-start-2 col-end-12 pt-5">
+  <section>
     <ul>
       {
         projects.map((project) => (
-          <li class="grid hover:animate-pulse">
+          <li>
             <a href={`/projects/${project.slug}`}>
               <Image
                 src={project.data.cover.src}
                 alt={project.data.cover.alt}
                 width={100}
                 height={100}
-                class={"w-96 rounded-md"}
               />
-              <div class="pt-4">
-                <h2 class="font-bold text-2xl">{project.data.name}</h2>
+              <div>
+                <h2>{project.data.name}</h2>
                 <p>{project.data.description}</p>
               </div>
             </a>
