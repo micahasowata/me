@@ -1,20 +1,12 @@
 ---
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import Base from "../../layouts/Base.astro";
+import Pages from "../../layouts/Pages.astro";
 
 const projects = await getCollection("projects");
 ---
 
-<Base
-  title="All my Projects"
-  description="All of Micah Asowata's Projects"
-  img={{
-    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
-    alt: "Logo for Micah Asowata's website",
-  }}
-  type="website"
->
+<Pages title="All my Projects" description="All of Micah Asowata's Projects">
   <section>
     <ul>
       {
@@ -51,4 +43,4 @@ const projects = await getCollection("projects");
       }
     </ul>
   </section>
-</Base>
+</Pages>

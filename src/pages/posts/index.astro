@@ -3,19 +3,11 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Tags from "../../components/Tags.astro";
 import { formatDate } from "../../date/date";
-import Base from "../../layouts/Base.astro";
+import Pages from "../../layouts/Pages.astro";
 const posts = await getCollection("posts");
 ---
 
-<Base
-  title="All Posts"
-  description="All of Micah Asowata's Posts"
-  img={{
-    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
-    alt: "Logo for Micah Asowata's website",
-  }}
-  type="website"
->
+<Pages title="All Posts" description="All of Micah Asowata's Posts">
   <section>
     <Tags />
     <ul>
@@ -47,4 +39,4 @@ const posts = await getCollection("posts");
       }
     </ul>
   </section>
-</Base>
+</Pages>

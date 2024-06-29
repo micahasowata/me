@@ -5,7 +5,7 @@ import type {
   InferGetStaticPropsType,
 } from "astro";
 import { getCollection } from "astro:content";
-import Base from "../../layouts/Base.astro";
+import Pages from "../../layouts/Pages.astro";
 
 export const getStaticPaths = (async () => {
   const allPosts = await getCollection("posts");
@@ -31,14 +31,9 @@ const { tag } = Astro.params as Params;
 const { posts } = Astro.props as Props;
 ---
 
-<Base
+<Pages
   title={`All posts for "${tag}"`}
   description=`All posts of Micah Asowata's posts with tag: "${tag}"`
-  img={{
-    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
-    alt: "Logo for Micah Asowata's website",
-  }}
-  type="website"
 >
   <ul>
     {
@@ -49,4 +44,4 @@ const { posts } = Astro.props as Props;
       ))
     }
   </ul>
-</Base>
+</Pages>

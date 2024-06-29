@@ -1,6 +1,7 @@
 ---
+import Image from "astro/components/Image.astro";
 import { getCollection } from "astro:content";
-import Blog from "../../layouts/Blog.astro";
+import Base from "../../layouts/Base.astro";
 export async function getStaticPaths() {
   const posts = await getCollection("posts");
   return posts.map((post) => ({
@@ -13,6 +14,23 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Blog post={post}>
-  <Content />
-</Blog>
+<Base
+  title={post.data.title}
+  description={post.data.intro}
+  img={{
+    src: post.data.cover.src,
+    alt: post.data.cover.alt,
+  }}
+  type="article"
+>
+  <article>
+    <h1>{post.data.title}</h1>
+    <Image
+      src={post.data.cover.src}
+      alt={post.data.cover.alt}
+      width={50}
+      height={50}
+    />
+    <Content />
+  </article>
+</Base>
