@@ -3,7 +3,9 @@ export default {
 	content: ['./src/**/*.astro'],
 	darkMode: 'class',
 	theme: {
-		extend: {},
+		extend: {
+			
+		},
 	},
   plugins: [
     require('@tailwindcss/typography'),

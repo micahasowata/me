@@ -42,7 +42,10 @@ const { title, img, type, description } = Astro.props;
     <header>
       <nav>
         <ul>
-          <a href="/">
+          <a
+            href="/"
+            oncontextmenu="javascript:alert('success!');return false;"
+          >
             <Image
               src={logo}
               alt="personal logo featuring a lowercase m and a lowercase a and a square all white on a black background"
@@ -52,9 +55,10 @@ const { title, img, type, description } = Astro.props;
           </a>
           <div>
             <div>
-              <li><a href="/">Home</a></li>
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/projects">Projects</a></li>
+              <li><a href="/">🏠 Home</a></li>
+              <li><a href="/posts">📜 Posts</a></li>
+              <li><a href="/projects">🚧 Projects</a></li>
+              <li><a href="/tools">🛠️ Tools</a></li>
             </div>
           </div>
           <div>

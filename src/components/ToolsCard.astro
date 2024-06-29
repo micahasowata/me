@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+}
+
+const { title, description, link } = Astro.props;
+---
+
+<div class="prose dark:prose-invert">
+  <h3>{title}</h3>
+  <p>
+    {description}
+  </p>
+  <a href={link}>Learn more</a>
+</div>

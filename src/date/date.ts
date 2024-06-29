@@ -1,5 +1,4 @@
 export const formatDate = (date: Date) => {
-  const localeDate = date.toLocaleDateString();
   const months = [
     "January",
     "February",
@@ -15,9 +14,15 @@ export const formatDate = (date: Date) => {
     "December",
   ];
 
-  const [day, month, year] = localeDate.split("/").map(Number);
+  const month = date.getMonth();
+  let monthName = months[month];
 
-  const monthName = month !== undefined && months[month - 1];
+  if (monthName === undefined) {
+    monthName = `Month ${month}`;
+  }
+
+  const day = date.getDate();
+  const year = date.getFullYear();
 
   return `${monthName} ${day}, ${year}`;
 };
