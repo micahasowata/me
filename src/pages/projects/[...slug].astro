@@ -23,40 +23,22 @@ const { Content, headings } = await project.render();
     src: project.data.cover.src,
     alt: project.data.cover.alt,
   }}
-  ,
   type="article"
 >
-  <section class="grid col-start-2 col-end-12">
+  <section>
     <ul>
       {
-        headings.map((heading) => {
-          const h2 = "pl-2";
-          const h3 = "pl-4";
-          let style = "";
-          switch (heading.depth) {
-            case 2:
-              style = h2;
-              break;
-            case 3:
-              style = h3;
-              break;
-            default:
-              break;
-          }
-          return (
-            <li>
-              <a href={`#${heading.slug}`} class={style}>
-                {heading.text}
-              </a>
-            </li>
-          );
-        })
+        headings.map((heading) => (
+          <li>
+            <a href={`#${heading.slug}`}>{heading.text}</a>
+          </li>
+        ))
       }
     </ul>
   </section>
 
   <article
-    class="grid col-start-2 col-end-12 prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md pt-5"
+    class="prose prose-neutral md:prose-lg lg:prose-xl dark:prose-invert prose-img:rounded-md"
   >
     <p class="lead">{project.data.description}</p>
     <Content />

@@ -1,0 +1,22 @@
+---
+import v0 from "../assets/v0.svg";
+import Base from "./Base.astro";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Base
+  title={`${title} | Micah Asowata`}
+  description="Micah Asowata is a software engineer with a focus on building excellent products for the web."
+  img={{
+    src: v0,
+    alt: "Logo for Micah Asowata's website",
+  }}
+  ,
+  type="website"
+>
+  <slot />
+</Base>

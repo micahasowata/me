@@ -1,11 +1,13 @@
 ---
+import "@fontsource-variable/sora";
+import "@fontsource/luckiest-guy";
 import { Image } from "astro:assets";
-import logo from "../assets/logo.svg";
+import v0 from "../assets/v0.svg";
 import Theme from "../components/Theme.astro";
 interface Props {
   title: string;
   img: {
-    src: string;
+    src: ImageMetadata;
     alt: string;
   };
   type: "website" | "article";
@@ -23,7 +25,7 @@ const { title, img, type, description } = Astro.props;
 
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
-    <meta property="og:image" content={img.src} />
+    <meta property="og:image" content={img.src.src} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Micah Asowata" />
     <meta property="og:site" content="https://www.micahasowata.com" />
@@ -33,50 +35,41 @@ const { title, img, type, description } = Astro.props;
     <meta property="twitter:url" content="https://www.micahasowata.com" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={img.src} />
+    <meta property="twitter:image" content={img.src.src} />
     <meta name="twitter:image:alt" content={img.alt} />
 
     <title>{title}</title>
   </head>
-  <body
-    class="font-mono grid place-content-center dark:bg-gradient-to-b dark:to-stone-600 dark:from-black dark:text-white py-5"
-  >
+  <body class="font-sora dark:bg-neutral-600 dark:text-white">
     <header>
-      <nav class="grid grid-cols-12">
-        <ul class="grid col-start-2 col-end-12">
-          <a href="/" class="grid col-start-2 col-end-2 place-content-center">
+      <nav>
+        <div class="grid grid-cols-3 place-content-center">
+          <a href="/" oncontextmenu="javascript:">
             <Image
-              src={logo}
-              alt="personal logo featuring a lowercase m and a lowercase a and a square all white on a black background"
-              width={30}
-              height={30}
+              src={v0}
+              alt="a full stop closely followed by the letters m and a"
+              width={1}
+              height={1}
+              class={"w-12"}
             />
           </a>
-          <div class="grid col-start-4 col-end-10">
-            <div
-              class="flex flex-row space-x-2 place-content-center md:space-x-5"
-            >
-              <li><a href="/">Home</a></li>
-              <li><a href="/posts">Posts</a></li>
-              <li><a href="/projects">Projects</a></li>
-            </div>
+          <div class="flex flex-row space-x-2 place-content-center">
+            <a href="/tools">Tools</a>
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
           </div>
-          <div class="grid col-start-12 col-end-12 place-content-center">
+          <div class="grid place-content-center">
             <Theme />
           </div>
-        </ul>
+        </div>
       </nav>
     </header>
-    <main class="grid grid-cols-12">
+    <main class="grid place-content-center">
       <slot />
     </main>
-    <footer class="grid place-content-center pt-5">
-      <div class="grid grid-cols-3 gap-2">
-        <a
-          href="https://x.com/micahasowata"
-          target="_blank"
-          class="flex place-content-center"
-        >
+    <footer>
+      <div>
+        <a href="https://x.com/micahasowata" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -89,12 +82,8 @@ const { title, img, type, description } = Astro.props;
             ></path></svg
           >
         </a>
-        <p class="flex place-content-center">Built by Micah Asowata.</p>
-        <a
-          href="https://github.com/micahasowata"
-          target="_blank"
-          class="flex place-content-center"
-        >
+        <p>Built by Micah Asowata.</p>
+        <a href="https://github.com/micahasowata" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"

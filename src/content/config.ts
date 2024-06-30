@@ -14,22 +14,6 @@ const posts = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  type: "content",
-  schema: z.object({
-    name: z.string(),
-    description: z.string(),
-    languages: z.array(z.string()),
-    url: z.string(),
-    status: z.string(),
-    cover: z.object({
-      src: z.string(),
-      alt: z.string(),
-    }),
-  }),
-});
-
 export const collections = {
   posts,
-  projects,
 };

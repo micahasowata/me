@@ -1,55 +1,19 @@
 ---
-import { Image } from "astro:assets";
-import { getCollection } from "astro:content";
-import Base from "../../layouts/Base.astro";
-
-const projects = await getCollection("projects");
+import ProjectsCard from "../../components/ProjectsCard.astro";
+import Pages from "../../layouts/Pages.astro";
 ---
 
-<Base
-  title="All my Projects"
-  description="All of Micah Asowata's Projects"
-  img={{
-    src: "https://utfs.io/f/8ffd5ba1-3388-49e4-a6b5-a07d28398385-1zbfv.png",
-    alt: "Logo for Micah Asowata's website",
-  }}
-  type="website"
->
-  <section class="grid col-start-2 col-end-12 pt-5">
+<Pages title="All my Projects" description="All of Micah Asowata's Projects">
+  <section>
     <ul>
-      {
-        projects.map((project) => (
-          <li class="grid hover:animate-pulse">
-            <a href={`/projects/${project.slug}`}>
-              <Image
-                src={project.data.cover.src}
-                alt={project.data.cover.alt}
-                width={100}
-                height={100}
-                class={"w-96 rounded-md"}
-              />
-              <div class="pt-4">
-                <h2 class="font-bold text-2xl">{project.data.name}</h2>
-                <p>{project.data.description}</p>
-              </div>
-            </a>
-            <div>
-              <a href={`${project.data.url}`} target="_blank">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="32"
-                  height="32"
-                  fill="#000000"
-                  viewBox="0 0 256 256"
-                  class="dark:fill-white"
-                >
-                  <path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z" />
-                </svg>
-              </a>
-            </div>
-          </li>
-        ))
-      }
+      <li>
+        <ProjectsCard
+          name="jason"
+          src="https://avatars.githubusercontent.com/u/93443076?v=4"
+          description="convinience wrapper for JSON"
+          alt="logo for jason"
+        />
+      </li>
     </ul>
   </section>
-</Base>
+</Pages>
