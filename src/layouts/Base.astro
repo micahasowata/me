@@ -7,7 +7,7 @@ import Theme from "../components/Theme.astro";
 interface Props {
   title: string;
   img: {
-    src: ImageMetadata;
+    src: string;
     alt: string;
   };
   type: "website" | "article";
@@ -25,7 +25,7 @@ const { title, img, type, description } = Astro.props;
 
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
-    <meta property="og:image" content={img.src.src} />
+    <meta property="og:image" content={img.src} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Micah Asowata" />
     <meta property="og:site" content="https://www.micahasowata.com" />
@@ -35,7 +35,7 @@ const { title, img, type, description } = Astro.props;
     <meta property="twitter:url" content="https://www.micahasowata.com" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={img.src.src} />
+    <meta property="twitter:image" content={img.src} />
     <meta name="twitter:image:alt" content={img.alt} />
 
     <title>{title}</title>

@@ -33,10 +33,7 @@ const { tag } = Astro.params as Params;
 const { posts } = Astro.props as Props;
 ---
 
-<Pages
-  title={`All posts for "${tag}"`}
-  description=`All posts of Micah Asowata's posts with tag: "${tag}"`
->
+<Pages title={`All posts for "${tag}"`}>
   <ul>
     {
       posts.map((post) => (
