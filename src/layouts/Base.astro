@@ -1,11 +1,13 @@
 ---
+import "@fontsource-variable/sora";
+import "@fontsource/luckiest-guy";
 import { Image } from "astro:assets";
-import logo from "../assets/logo.svg";
+import v0 from "../assets/v0.svg";
 import Theme from "../components/Theme.astro";
 interface Props {
   title: string;
   img: {
-    src: string;
+    src: ImageMetadata;
     alt: string;
   };
   type: "website" | "article";
@@ -23,7 +25,7 @@ const { title, img, type, description } = Astro.props;
 
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
-    <meta property="og:image" content={img.src} />
+    <meta property="og:image" content={img.src.src} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Micah Asowata" />
     <meta property="og:site" content="https://www.micahasowata.com" />
@@ -33,38 +35,36 @@ const { title, img, type, description } = Astro.props;
     <meta property="twitter:url" content="https://www.micahasowata.com" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={img.src} />
+    <meta property="twitter:image" content={img.src.src} />
     <meta name="twitter:image:alt" content={img.alt} />
 
     <title>{title}</title>
   </head>
-  <body class="font-mono dark:bg-black dark:text-white">
+  <body class="font-sora dark:bg-neutral-600 dark:text-white">
     <header>
       <nav>
-        <ul>
-          <a href="/">
+        <div class="grid grid-cols-3 place-content-center">
+          <a href="/" oncontextmenu="javascript:">
             <Image
-              src={logo}
-              alt="personal logo featuring a lowercase m and a lowercase a and a square all white on a black background"
-              width={30}
-              height={30}
+              src={v0}
+              alt="a full stop closely followed by the letters m and a"
+              width={1}
+              height={1}
+              class={"w-12"}
             />
           </a>
-          <div>
-            <div>
-              <li><a href="/">🏠 Home</a></li>
-              <li><a href="/projects">🚧 Projects</a></li>
-              <li><a href="/tools">🛠️ Tools</a></li>
-              <li><a href="/posts">📜 Posts</a></li>
-            </div>
+          <div class="flex flex-row space-x-2 place-content-center">
+            <a href="/tools">Tools</a>
+            <a href="/projects">Projects</a>
+            <a href="/posts">Posts</a>
           </div>
-          <div>
+          <div class="grid place-content-center">
             <Theme />
           </div>
-        </ul>
+        </div>
       </nav>
     </header>
-    <main>
+    <main class="grid place-content-center">
       <slot />
     </main>
     <footer>
