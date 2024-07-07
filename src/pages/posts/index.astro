@@ -10,7 +10,7 @@ const posts = await getCollection("posts");
 <Pages title="Posts">
   <section>
     <Tags />
-    <ul>
+    <ul class="flex flex-col space-y-5">
       {
         posts.map((post) => (
           <li>
