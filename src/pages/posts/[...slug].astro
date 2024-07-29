@@ -1,14 +1,13 @@
 ---
-import Image from "astro/components/Image.astro";
 import { getCollection } from "astro:content";
 import { formatDate } from "../../date/date";
 import Base from "../../layouts/Base.astro";
 export async function getStaticPaths() {
-  const posts = await getCollection("posts");
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+    const posts = await getCollection("posts");
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
@@ -16,26 +15,19 @@ const { Content } = await post.render();
 ---
 
 <Base
-  title={post.data.title}
-  description={post.data.intro}
-  img={{
-    src: post.data.cover.src,
-    alt: post.data.cover.alt,
-  }}
-  type="article"
+    title={post.data.title}
+    description={post.data.intro}
+    img={{
+        src: post.data.cover.src,
+        alt: post.data.cover.alt,
+    }}
+    type="article"
 >
-  <article
-    class="mx-auto prose prose-neutral md:prose-lg dark:prose-invert prose-img:rounded-md"
-  >
-    <h1>{post.data.title}</h1>
-    <p>{formatDate(post.data.pubDate)}</p>
-    <Image
-      src={post.data.cover.src}
-      alt={post.data.cover.alt}
-      width={1}
-      height={1}
-      class={"w-2/3"}
-    />
-    <Content />
-  </article>
+    <article
+        class="mx-auto prose prose-neutral md:prose-lg dark:prose-invert prose-img:rounded-md"
+    >
+        <h1>{post.data.title}</h1>
+        <p>{formatDate(post.data.pubDate)}</p>
+        <Content />
+    </article>
 </Base>

@@ -1,42 +1,28 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import Tags from "../../components/Tags.astro";
 import { formatDate } from "../../date/date";
 import Pages from "../../layouts/Pages.astro";
 const posts = await getCollection("posts");
 ---
 
 <Pages title="Posts">
-  <section>
-    <Tags />
-    <ul class="flex flex-col space-y-5">
-      {
-        posts.map((post) => (
-          <li>
-            <div>
-              <a href={`/posts/${post.slug}`}>
-                <Image
-                  src={post.data.cover.src}
-                  alt={post.data.cover.alt}
-                  width={100}
-                  height={100}
-                />
-                <div>
-                  <h2>{post.data.title}</h2>
-                  <p>{formatDate(post.data.pubDate)}</p>
-                  <p>{post.data.intro}</p>
-                </div>
-              </a>
-            </div>
-            <div>
-              {post.data.tags.map((tag) => (
-                <a href={`/tags/${tag}`}>{tag}</a>
-              ))}
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+    <section>
+        <ul class="flex flex-col space-y-5">
+            {
+                posts.map((post) => (
+                    <li>
+                        <a href={`/posts/${post.slug}`}>
+                            <p>{formatDate(post.data.pubDate)}</p>
+                            <h2>{post.data.title}</h2>
+                        </a>
+                        <div>
+                            {post.data.tags.map((tag) => (
+                                <a href={`/tags/${tag}`}>{tag}</a>
+                            ))}
+                        </div>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
 </Pages>
