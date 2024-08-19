@@ -1,17 +1,22 @@
 ---
 import "@fontsource-variable/sora";
-import "@fontsource/luckiest-guy";
-import { Image } from "astro:assets";
-import v0 from "../assets/v0.svg";
-import Theme from "../components/Theme.astro";
+import { ThemeSwitch } from "astro-color-scheme";
+import Sun from '@astropub/icons/Sun'
+import Moon from '@astropub/icons/Moon'
+import Home from '@astropub/icons/Home'
+import Backpack from '@astropub/icons/Backpack'
+import Quote from '@astropub/icons/Quote'
+import GH from '@astropub/icons/GitHubLogo'
+import Twitter from '@astropub/icons/TwitterLogo'
+
 interface Props {
-  title: string;
-  img: {
-    src: string;
-    alt: string;
-  };
-  type: "website" | "article";
-  description: string;
+	title: string;
+	img: {
+		src: string;
+		alt: string;
+	};
+	type: "website" | "article";
+	description: string;
 }
 
 const { title, img, type, description } = Astro.props;
@@ -28,11 +33,11 @@ const { title, img, type, description } = Astro.props;
     <meta property="og:image" content={img.src} />
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content="Micah Asowata" />
-    <meta property="og:site" content="https://www.micahasowata.com" />
-    <meta property="og:url" content="https://www.micahasowata.com" />
+    <meta property="og:site" content="https://micahasowata.com" />
+    <meta property="og:url" content="https://micahasowata.com" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.micahasowata.com" />
+    <meta property="twitter:url" content="https://micahasowata.com" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={img.src} />
@@ -40,63 +45,32 @@ const { title, img, type, description } = Astro.props;
 
     <title>{title}</title>
   </head>
-  <body class="font-sora dark:bg-neutral-600 dark:text-white">
+  <body class="font-sora">
     <header>
       <nav>
-        <div class="grid grid-cols-3 place-content-center">
-          <a href="/" oncontextmenu="javascript:">
-            <Image
-              src={v0}
-              alt="a full stop closely followed by the letters m and a"
-              width={1}
-              height={1}
-              class={"w-12"}
-            />
-          </a>
-          <div class="flex flex-row space-x-2 place-content-center">
-            <a href="/tools">Tools</a>
-            <a href="/projects">Projects</a>
-            <a href="/posts">Posts</a>
-          </div>
-          <div class="grid place-content-center">
-            <Theme />
-          </div>
-        </div>
-      </nav>
+      <ul class="grid grid-cols-3">
+      <li class="grid place-content-center"><a href="/"><Home class:list={"w-7"} /></a></li>
+      <div class="grid grid-cols-2">
+           <li class="grid place-content-center"><a href="/projects"><Backpack class:list={"w-7"} title="Projects"/></a></li>
+      <li class="grid place-content-center"><a href="/posts"><Quote class:list={"w-7"} title="Posts"/></a></li>
+      </div>
+        <li class="grid place-content-center"><ThemeSwitch strategy="button">
+        <button class="mt-4">
+        <Sun class:list={"w-7 hidden dark:block dark:fill-white"} title="Light"/>
+        <Moon class:list={"w-7 dark:hidden"} title="Dark"/>
+            </button>
+      </ThemeSwitch></li>
+      </ul>
+              </nav>
     </header>
-    <main class="grid place-content-center">
-      <slot />
+    <main class="md:mt-14">
+          <slot />
     </main>
     <footer>
-      <div>
-        <a href="https://x.com/micahasowata" target="_blank">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="#000000"
-            viewBox="0 0 256 256"
-            class="dark:fill-white"
-            ><path
-              d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.57,48h29L193.43,208Z"
-            ></path></svg
-          >
-        </a>
-        <p>Built by Micah Asowata.</p>
-        <a href="https://github.com/micahasowata" target="_blank">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            fill="#000000"
-            viewBox="0 0 256 256"
-            class="dark:fill-white"
-            ><path
-              d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24A40,40,0,0,0,8,136a8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.83a43.81,43.81,0,0,1,.79-33.58,43.88,43.88,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.87,43.87,0,0,1,32.32-20.06A43.81,43.81,0,0,1,192,73.83a8.09,8.09,0,0,0,1,7.65A41.72,41.72,0,0,1,200,104Z"
-            ></path></svg
-          >
-        </a>
-      </div>
-    </footer>
+    <ul class="grid grid-cols-3 mt-7">
+    <li class="grid place-content-center"><a href="https://github.com/micahasowata"><GH class:list={"w-7"} title="Github"/></a></li>
+    <li class="grid place-content-center"><p>Built by Micah Asowata.</p></li>
+    <li class="grid place-content-center"><a href="https://x.com/micahasowata"><Twitter class:list={"w-7"} title="Posts"/></a></li>
+    </ul>
   </body>
 </html>

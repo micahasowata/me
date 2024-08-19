@@ -1,19 +1,20 @@
 ---
-import ProjectsCard from "../../components/ProjectsCard.astro";
 import Pages from "../../layouts/Pages.astro";
 ---
 
 <Pages title="Projects">
-  <section>
+  <article class="px-7 md:mx-auto min-h-screen prose prose-stone dark:prose-invert">
+<p class="font-bold">/projects</p>
+  <p>
+  I have spent a considerable amount of time working on different kinds of projects because I do not want to be efficient in just one domain.
+  </p>
     <ul>
       <li>
-        <ProjectsCard
-          name="jason"
-          src="https://avatars.githubusercontent.com/u/93443076?v=4"
-          description="convinience wrapper for JSON"
-          alt="logo for jason"
-        />
-      </li>
+<a href="https://github.com/micahasowata/jason" target="_blank">jason</a> (library)
+           </li>
+           <li>
+           <a href="https://github.com/micahasowata/rego" target="_blank">rego</a> (cli)
+           </li>
     </ul>
-  </section>
+  </artrticle>
 </Pages>
