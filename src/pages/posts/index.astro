@@ -2,27 +2,24 @@
 import { getCollection } from "astro:content";
 import { formatDate } from "../../date/date";
 import Pages from "../../layouts/Pages.astro";
-const posts = await getCollection("posts");
+let posts = await getCollection("posts");
+posts = posts.sort((a,b) => b.data.published.getTime() - a.data.published.getTime())
 ---
 
 <Pages title="Posts">
-    <section>
-        <ul class="flex flex-col space-y-5">
+    <article  class="px-7 md:mx-auto min-h-screen prose prose-stone dark:prose-invert">
+    <p class="font-bold">/posts</p>
+    <p>I write in public when I feel I have something worthwhile to share. These posts are records of some of those times.</p>
+        <ul>
             {
                 posts.map((post) => (
-                    <li>
+                    <li class="tracking-wide">
                         <a href={`/posts/${post.slug}`}>
-                            <p>{formatDate(post.data.pubDate)}</p>
-                            <h2>{post.data.title}</h2>
-                        </a>
-                        <div>
-                            {post.data.tags.map((tag) => (
-                                <a href={`/tags/${tag}`}>{tag}</a>
-                            ))}
-                        </div>
-                    </li>
+                            {post.data.title}
+                        </a> - ({formatDate(post.data.published)})
+                                          </li>
                 ))
             }
         </ul>
-    </section>
+    </article>
 </Pages>
