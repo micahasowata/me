@@ -6,7 +6,6 @@ export default {
 	theme: {
 		extend: {
 			fontFamily: {
-        		lucky: ['Luckiest Guy', ...defaultTheme.fontFamily.sans],
 				sora: ['Sora Variable', ...defaultTheme.fontFamily.sans],
       		},
 		},

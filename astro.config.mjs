@@ -7,5 +7,8 @@ export default defineConfig({
   integrations: [mdx(), tailwind()],
   image: {
     domains: ["githubusercontent.com", "utfs.io"]
+  },
+  build: {
+    format: "file"
   }
 });
