@@ -1,21 +1,21 @@
 ---
-title: "Replacing VSCode"
+title: "Replacing VS Code"
 published: 2024-07-29
-summary: "For a while I have been having issues running VSCode simply because of how much memory it consumes and I have been searching for alternatives. The search is over. This post is about the search and the result."
+summary: "For a while I have been having issues running VS Code simply because of how much memory it consumes and I have been searching for alternatives. The search is over. This post is about the search and the result."
 ---
-VSCode is heavy and slow. If you are using it on an high end PC you would not notice its slowness. If you are using it, with Chrome as the other opened application you would not realize how much of a memory hog it is.
+VS Code is heavy and slow. If you are using it on an high end PC you would not notice its slowness. If you are using it, with Chrome as the other opened application you would not realize how much of a memory hog it is.
 
 I don't fit into any of the above scenarios.
 
 I work on a [Dell Latitude E5430](https://www.amazon.com/Dell-Latitude-E5430-Professional-Refurbishedd/dp/B06XNP29BR). I run Ubuntu instead of Windows, not only for its development advantages but also for its memory management.
 
-I also have at least four applications on every good working day: Editor (usually VSCode), Docker, Postman and Chrome. So my PC's memory is almost nearly completely consumed at the start of each work day and I have become accustomed to hearing the fan whirl while I work. It provides background noise though and that is great.
+I also have at least four applications on every good working day: Editor (usually VS Code), Docker, Postman and Chrome. So my PC's memory is almost nearly completely consumed at the start of each work day and I have become accustomed to hearing the fan whirl while I work. It provides background noise though and that is great.
 
 You've probably gottent the whole picture at this point. I have a tight memory constraint and I can actually feel the memory chipping away with every application I open so when there is a less memory intensive alternative to a tool in my workflow, I immediately want to try it out.
 
 And that is the story of my editor.
 
-## Finding a VSCode replacement
+## Finding a VS Code replacement
 Since late last year I have been hearing a lot about Neovim, which is a flavor of Vim. It runs on the terminal and it is fast. Those are the pros. Then there are the cons:
 
 1. You have to know Vim to use Neovim. It runs on the terminal and it does not give a lot of buttons for you to click, so you have to familiarize yourself with keybindings before you can start using it. The great news though is that there are a lot of resources with which you can learn the basic keybindings.
@@ -31,9 +31,9 @@ Remember when I said that Vim runs on the terminal, well it is not recommended t
 
 Time to learn how to configure Neovim.
 
-On January 1 of this year, I spent nine hours crafting out a Vim config. I was lost. I did not understand a lot of the things I was doing. The longer I worked on that config the more I appreciated the builders of VSCode. I remember installing plugins (the Vim equivalent of VSCode extensions) and asking myself whether I would remember the keybindings for activating them.
+On January 1 of this year, I spent nine hours crafting out a Vim config. I was lost. I did not understand a lot of the things I was doing. The longer I worked on that config the more I appreciated the builders of VS Code. I remember installing plugins (the Vim equivalent of VS Code extensions) and asking myself whether I would remember the keybindings for activating them.
 
-By the end of the day though, I felt fulfilled. I was finally having a shot at replacing VSCode with a lighter alternative.
+By the end of the day though, I felt fulfilled. I was finally having a shot at replacing VS Code with a lighter alternative.
 
 ### How did Vim go?
 
@@ -47,23 +47,23 @@ LazyVim solved all my problems in on swipe. It was a Vim miracle. It felt like y
 
 At this point in the story you are probably expecting me to say: I have a Vimmer ever since.
 
-Sorry to disappoint you. I left Vim. I got tired of the editor. It was unfamiliar, I didn't have time to learn it. All I wanted to do was return to Go in the safety of VSCode regardless of how my PC would fare. So I went back.
+Sorry to disappoint you. I left Vim. I got tired of the editor. It was unfamiliar, I didn't have time to learn it. All I wanted to do was return to Go in the safety of VS Code regardless of how my PC would fare. So I went back.
 
 These are my [configs](https://github.com/micahasowata/configs) for both vim and wezterm.
 
 ### From V to Zed.
 
-I was okay with VSCode till [this post from Zed's blog](https://zed.dev/blog/zed-on-linux). Finally another editor. This time it ticked both the boxes of memory management (it is written with Rust instead of Electron) and it had nothing to do with Vim (unlike Helix) so I was eager to try it out.
+I was okay with VS Code till [this post from Zed's blog](https://zed.dev/blog/zed-on-linux). Finally another editor. This time it ticked both the boxes of memory management (it is written with Rust instead of Electron) and it had nothing to do with Vim (unlike Helix) so I was eager to try it out.
 
 And I wasn't disappointed.
 
 I have never felt an editor so fast and usable out of the box before. It provided a lot of language support, even for Go, without becoming a memory hog.
 
-I did not need to learn new keybindings to start using it. It came with VSCode keybindings, which I have gotten used to, already set up.
+I did not need to learn new keybindings to start using it. It came with VS Code keybindings, which I have gotten used to, already set up.
 
-Needless to say, I have been using Zed ever since then. I have only opened VSCode once and I closed it almost immediately.
+Needless to say, I have been using Zed ever since then. I have only opened VS Code once and I closed it almost immediately.
 
-Zed has not been a bed of roses. It is under very active development so I did not and still do not expect to completely match the VSCode experience band for band but there are some things that I wish Zed had:
+Zed has not been a bed of roses. It is under very active development so I did not and still do not expect to completely match the VS Code experience band for band but there are some things that I wish Zed had:
 
 1. A terminal that scrolls: I currently open an instance of Wezterm on the side to handle any command line activity. I'm not complaining but I wish it was better.
 2. Project wide search: The current search bar works on a file level so you can't find matches on a project level and I wish I could. It would make things go smoother
