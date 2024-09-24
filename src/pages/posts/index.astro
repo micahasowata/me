@@ -3,7 +3,12 @@ import { getCollection } from "astro:content";
 import { formatDate } from "../../date/date";
 import Pages from "../../layouts/Pages.astro";
 let posts = await getCollection("posts");
-posts = posts.sort((a,b) => b.data.published.getTime() - a.data.published.getTime())
+posts = posts.sort((a, b) => {
+  if (b.data.published.getTime() === a.data.published.getTime()) {
+    return b.data.title.toLowerCase().localeCompare(a.data.title.toLowerCase());
+  }
+  return b.data.published.getTime() - a.data.published.getTime();
+})
 ---
 
 <Pages title="Posts">
