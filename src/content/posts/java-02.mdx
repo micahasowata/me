@@ -1,0 +1,79 @@
+---
+title: "Learning Java - 02"
+published: 2024-09-25
+summary: "Jottings from the 2nd chapter of Core Java for the Impatient."
+---
+
+This is all about Object Oriented Programming.
+
+- A *Class* is a blueprint for an object. It determines the state and behavior of an object.
+
+- An *object* is an instance of a class.
+
+- A method is a mutator if it changes the state of an object directly
+
+- A method is an accessor if it doesn't change the state of the object on which it was called.
+
+- Most objects provide accessor methods to prevent race conditions. Those accessor methods usually return a new instance of the invoking object
+
+- Variables don't object data. They hold references to objects.
+
+- A `null` variable means the variable is not referencing any objects. Calling any methods on a `null` reference results in an error
+
+- Instance variables hold the state of an object. They are usually private
+
+- In Java all parameters are passed by value which means the reference is copied rather than actually handed over.
+  ```java
+    public double increaseByTwo(double x) {
+        return x += 2.0;
+    }
+    ...
+    var y = 5.0;
+
+    var z = increaseByTwo(y);
+
+    /*
+        y remains 5.0
+
+        z is 7.0
+    */
+  ```
+- Constructors have the same name as the class and they don't have a return type
+
+- When there are different versions of a method (same name, different parameters) then it is *overloaded*
+
+- All instance variables are automatically initialized to their zero values.
+
+- When a class has no constructors a default constructor with no arguments is provided. It sets all instance variables to their zero values
+
+- A record is a type of class that mostly generated functionality it is useful for times when we want to store data that wouldn't change frequently
+
+- There are three types of record constructors: canonical (the provided constructor), custom (custom built), compact (uses argument from the canonical method but defines the body.)
+
+- A static variable is maintain at the class level. No object has access to it. Which means every instance of a class shares that static variable
+
+- A static method does on require an instance of the class to be created to work. It does not work on an object. It is provided by the class for the rest of the world
+
+- static methods cannot access instance variables but they can access static variables.
+
+- A factory method is like a constructor. It can return an object of the class that provides or a subtype. it is usually a static method.
+
+- A package is group of related java files.
+
+- a package name is usually its  directory tree with dots instead of / (com.google.guava lives in com/google/guava)
+
+- the generated class file must be in the subdirectory that the package is named after. it is enforced by the compiler
+
+- jar is used to group packages for distribution. it is quite complicated.
+
+- A source file can contain at most one `public` class whose name must match the name of the file.
+
+- Import classes using the `import` statement.
+
+- Import all classes of a package using the `*`
+
+- Import all the static methods of class using `import static`
+
+- There are inner classes. Which are classes that have access to the state of their parent class. They are best used for helper methods.
+
+- There are doc comments.
