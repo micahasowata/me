@@ -4,30 +4,84 @@ published: 2024-09-25
 summary: "Jottings from the 2nd chapter of Core Java for the Impatient."
 ---
 
-This is all about Object Oriented Programming.
+This is an intro object oriented programming, the way of Java.
 
-- A *Class* is a blueprint for an object. It determines the state and behavior of an object.
-
-- An *object* is an instance of a class.
-
-- A method is a mutator if it changes the state of an object directly
-
-- A method is an accessor if it doesn't change the state of the object on which it was called.
-
-- Most objects provide accessor methods to prevent race conditions. Those accessor methods usually return a new instance of the invoking object
-
-- Variables don't object data. They hold references to objects.
-
-- A `null` variable means the variable is not referencing any objects. Calling any methods on a `null` reference results in an error
-
-- Instance variables hold the state of an object. They are usually private
-
-- In Java all parameters are passed by value which means the reference is copied rather than actually handed over.
+## Classes
+- A `class` is a blueprint for an object. It determines the state and behavior of an object.
   ```java
-    public double increaseByTwo(double x) {
-        return x += 2.0;
+    public class Car {
+
     }
-    ...
+  ```
+
+- Classes must be located in a file that shares the same name
+  ```java
+    // Athlete.java
+
+    public class Athlete {
+
+    }
+  ```
+
+- There are inner classes
+
+## Objects
+- An `object` is an instance of a class.
+  ```java
+    var runner = new Athlete();
+  ```
+
+### State and Behavior
+- Methods handle the behaviour of an object i.e what an object can do.
+
+- `accessor` methods allows the object to carry out task without modifying the state of the invoking object.
+  ```java
+    //...Athlete
+
+    public Athlete compete() {
+        var a = new Athlete()
+        a.isCompeting = true;
+        return a
+    }
+  ```
+
+- `accessor` methods are safer for concurrent access as they just return a new object with the neccessary parts altered.
+
+- `mutator` methods change the state of the invoking object.
+  ```java
+    //...Athlete
+
+    public void addRecord() {
+        this.records += 1; // this refers to the current object.
+    }
+  ```
+
+- When there are more than one method with the same name but different parameter lists, the method is regarded as overloaded. e.g `System.out.println` method.
+
+- Instance variables hold the state of an object. They are `private` meaning only methods in that class can access them.
+  ```java
+    //...Athlete
+    private int records = 0;
+  ```
+
+## References
+- Variables hold references to an object
+  ```java
+    var toyota = new Car();
+    var lexus = toyota;
+
+    // There are two valid references to a car object.
+  ```
+
+- `null` means a variable is not referencing any object. Don't call any methods on a `null` object.
+
+## Pass by Value
+- All parameters are passed by value which means that everywhere a value is needed a copy of that value is given.
+  ```java
+    public void increaseByTwo(double val) {
+        return val += 2;
+    }
+
     var y = 5.0;
 
     var z = increaseByTwo(y);
@@ -38,42 +92,102 @@ This is all about Object Oriented Programming.
         z is 7.0
     */
   ```
-- Constructors have the same name as the class and they don't have a return type
 
-- When there are different versions of a method (same name, different parameters) then it is *overloaded*
+## Constructors
+- Constructors are "methods" used to create a new instance of a class.
+  ```java
+  var volvo = new Car(); // Car() is the default constructor.
+  ```
 
-- All instance variables are automatically initialized to their zero values.
+- Constructors can also be overloaded.
+  ```java
+    //...Athlete
+    public Athlete(String sport) {
+        this.sport = sport;
+        this.name = "";
+    }
 
-- When a class has no constructors a default constructor with no arguments is provided. It sets all instance variables to their zero values
+    public Athlete(String name) {
+        this.name = name;
+        this.sport = "";
+    }
+  ```
+  ```java
+    public void addRecord() {
+        this.records += 1;
+    }
+  ```
 
-- A record is a type of class that mostly generated functionality it is useful for times when we want to store data that wouldn't change frequently
+- Once a class has a custom constructor, it loses its default constructor
 
-- There are three types of record constructors: canonical (the provided constructor), custom (custom built), compact (uses argument from the canonical method but defines the body.)
+## Records
+- A record is a special type of class that is less verbose to setup and manage.
 
-- A static variable is maintain at the class level. No object has access to it. Which means every instance of a class shares that static variable
+- There are three types of record constructors: *canonical*, *custom* and *compact*.
+  ```java
+  // Point.java
+        ----- // canonical constructor
+        |
+  record Point(double x, double y) {
+    public Point { --|
+        x *= 2;      |--- // compact constructor
+        y *= 3;      |
+    }              --|
 
-- A static method does on require an instance of the class to be created to work. It does not work on an object. It is provided by the class for the rest of the world
+    public Point() { -|
+        x = 0;        |--- // custom constructor
+        y = 0;        |
+    }                -|
+  }
+  ```
 
-- static methods cannot access instance variables but they can access static variables.
+- A *compact* constructor simply acts as the body of the *custom* constructor.
 
-- A factory method is like a constructor. It can return an object of the class that provides or a subtype. it is usually a static method.
+## Modifiers
+- `public` means a variable/method is available to any class that calls it.
 
-- A package is group of related java files.
+- `private` means a variable/method is available to just the class that created it.
 
-- a package name is usually its  directory tree with dots instead of / (com.google.guava lives in com/google/guava)
+- `static` variables belong to the class and are shared by all objects of that class e.g `System.out`
 
-- the generated class file must be in the subdirectory that the package is named after. it is enforced by the compiler
+- `static` methods don't need an object to be invoked. e.g `Math.pow`
 
-- jar is used to group packages for distribution. it is quite complicated.
+- `static` methods cannot access instance variables of the class they belong to but they can access its static variables.
 
-- A source file can contain at most one `public` class whose name must match the name of the file.
+- A factory method is a static method that creates a new instance of a class.
 
-- Import classes using the `import` statement.
+## Packaging rules
+- A `package` is a group of related java files. Its name must unique and must be declared as the first line of any class that are contained in it.
+  ```java
+    //Athlete.java
+
+    package com.facebook;
+  ```
+
+- A package name may conform to the directory tree of the `.java` files that it groups but it must be the directory of the `.class` files that belong to it.
+  ```
+  /*
+    Athlete.java may be in sports/personnel/Athlete.java
+    Athlete.class MUST be in com/facebook/Athlete.class
+  */
+  ```
+
+- `jar` is used to group packages for distribution
+
+- A source file can have multiple classes but only one, whose name is the same as the file's, can be `public`
+
+## Imports
+- To import a class from another package
+  ```java
+    import java.util.Random;
+  ```
 
 - Import all classes of a package using the `*`
+  ```java
+  import java.util.*;
+  ```
 
 - Import all the static methods of class using `import static`
-
-- There are inner classes. Which are classes that have access to the state of their parent class. They are best used for helper methods.
-
-- There are doc comments.
+  ```java
+    import static java.lang.Math;
+  ```
