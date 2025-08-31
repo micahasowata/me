@@ -1,0 +1,30 @@
+body {
+    display: grid;
+    place-content: center;
+    font-family:
+        "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    background-color: #070c14;
+    color: #edeef0;
+}
+
+h1 {
+    font-family: "Courier New", Courier, monospace;
+}
+
+section {
+    padding-top: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: #edeef0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+li {
+    padding-bottom: 1rem;
+}
