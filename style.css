@@ -20,27 +20,16 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     --color-red-700: oklch(50.5% 0.213 27.518);
-    --color-amber-950: oklch(27.9% 0.077 45.635);
-    --color-stone-400: oklch(70.9% 0.01 56.259);
     --spacing: 0.25rem;
     --container-2xl: 42rem;
-    --container-3xl: 48rem;
-    --text-sm: 0.875rem;
-    --text-sm--line-height: calc(1.25/0.875);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75/1.125);
     --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.75/1.25);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2/1.5);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5/2.25);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
-    --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
   }
@@ -867,6 +856,9 @@
   .w-2xl {
     width: var(--container-2xl);
   }
+  .p-20 {
+    padding: calc(var(--spacing) * 20);
+  }
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
@@ -901,11 +893,6 @@
   }
   .underline-offset-2 {
     text-underline-offset: 2px;
-  }
-  @media (min-width: 64rem) {
-    .lg\:p-20 {
-      padding: calc(var(--spacing) * 20);
-    }
   }
 }
 @property --tw-font-weight {
