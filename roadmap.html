@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My roadmap</title>
+        <style>
+            :root {
+                --base: #1e1e2e;
+                --mantle: #181825;
+                --text: #cdd6f4;
+                --sub: #a6adc8;
+                --surface: #313244;
+                --border: #45475a;
+                --mauve: #cba6f7;
+                --green: #a6e3a1;
+                --peach: #fab387;
+                --yellow: #f9e2af;
+                --red: #f38ba8;
+                --blue: #89b4fa;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                background: var(--base);
+                color: var(--text);
+                font-family: system-ui, sans-serif;
+                line-height: 1.55;
+                max-width: 760px;
+                margin: 0 auto;
+                padding: 40px 20px 80px;
+            }
+            h1 {
+                font-size: 26px;
+                margin-bottom: 4px;
+            }
+            .lede {
+                color: var(--sub);
+                margin-top: 0;
+                max-width: 600px;
+            }
+            h2 {
+                font-size: 18px;
+                color: var(--mauve);
+                margin: 44px 0 12px;
+            }
+            details {
+                background: var(--mantle);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                margin-bottom: 10px;
+                padding: 0;
+            }
+            summary {
+                cursor: pointer;
+                padding: 12px 16px;
+                font-weight: 600;
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+            }
+            summary .wk {
+                color: var(--sub);
+                font-weight: 400;
+                font-size: 13px;
+                white-space: nowrap;
+            }
+            details[open] summary {
+                border-bottom: 1px solid var(--border);
+            }
+            .body {
+                padding: 12px 16px 16px;
+            }
+            .body p {
+                margin: 0 0 8px;
+                font-size: 14px;
+                color: var(--sub);
+            }
+            .body b {
+                color: var(--text);
+            }
+            .tag-dm {
+                color: var(--yellow);
+            }
+            .tag-cpp {
+                color: var(--peach);
+            }
+            .tag-pr {
+                color: var(--blue);
+            }
+            .tag-nc {
+                color: var(--green);
+            }
+            .beyond p {
+                font-size: 14px;
+                color: var(--sub);
+                margin: 0 0 10px;
+            }
+            .beyond b {
+                color: var(--text);
+            }
+            .lang {
+                color: var(--mauve);
+                font-weight: 600;
+            }
+            footer {
+                margin-top: 50px;
+                color: var(--sub);
+                font-size: 12px;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>32-Week Roadmap</h1>
+        <p class="lede">
+            Algorithms, C++, and discrete math — discrete math readings now
+            follow Epp (5th ed.); Lewis &amp; Zax kept only where Epp has no
+            match.
+        </p>
+
+        <h2>The Build</h2>
+
+        <details open>
+            <summary>
+                Phase 0 — The Launchpad <span class="wk">Weeks 1–2</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 1 Speaking
+                    Mathematically; Ch 4 Elementary Number Theory &amp; Proof
+                    Methods; Ch 5.1–5.4 Sequences &amp; Induction (incl.
+                    Strong); Ch 6 Set Theory
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 1 Basics; Ch 2 User-Defined
+                    Types; Ch 3 Modularity
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> Prime Tester with Proof;
+                    Summation Calculator
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> none yet — math &amp; C++
+                    warm-up
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 1 — Algorithm Analysis <span class="wk">Weeks 3–4</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 11.1–11.2
+                    Analysis of Algorithm Efficiency (Order Notation); Ch 5.2
+                    Sequences &amp; Summation Notation
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 4 Classes; Ch 5 Essential
+                    Operations
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> Big-O Visualizer; Recursion
+                    vs Iteration Benchmark
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Contains Duplicate, Valid
+                    Anagram, Two Sum
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 2 — Elementary Data Structures
+                <span class="wk">Weeks 5–7</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 6 Set Theory
+                    (revisit); Ch 9.1–9.7 Counting &amp; Probability (Subsets,
+                    Permutations, Combinations)
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 6 Templates; Ch 11 Containers
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> DIY Vector; Stack-Based RPN
+                    Calculator; Word Frequency Counter
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Reverse Linked List, Merge
+                    Two Sorted Lists, Linked List Cycle, Remove Nth Node, Valid
+                    Parentheses, Min Stack, Evaluate RPN, Contains Duplicate II
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 3 — Sorting &amp; Design Paradigms
+                <span class="wk">Weeks 8–10</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 5.2 Summation
+                    Notation; Ch 5.6–5.8 Recursively Defined Sequences &amp;
+                    Solving Recurrence Relations
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 12 Algorithms (std::sort,
+                    lambdas); Ch 14 Random Numbers
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> Sorting Showdown; Dutch
+                    National Flag; Binary Search on Custom Data
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Merge Intervals, Sort
+                    Colors, Kth Largest Element, Find First/Last Position,
+                    Search Insert Position, Merge Sorted Array
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 4 — Trees, Heaps &amp; Advanced Structures
+                <span class="wk">Weeks 11–14</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math:</b> Epp Ch 10 Graphs &amp;
+                    Trees; Lewis &amp; Zax Ch 18 Coloring
+                    <em>(no Epp equivalent, kept)</em>
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 7 Concepts &amp; Generic
+                    Programming; Ch 13 Utilities (unique_ptr, span)
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> DIY Binary Search Tree;
+                    Autocomplete with a Trie; Priority Queue Task Scheduler
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Invert/Max Depth/Validate
+                    BST, Level Order Traversal, LCA of BST, Max Path Sum,
+                    Construct from Preorder/Inorder, Serialize/Deserialize, Find
+                    Median from Stream, Top K Frequent, Kth Largest in Stream,
+                    Last Stone Weight, Implement Trie, Word Search II
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 5 — Graph Algorithms <span class="wk">Weeks 15–18</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 8 Relations
+                    (Digraphs); Ch 10 Graphs &amp; Trees (revisit — directed
+                    graphs, connectivity); Ch 9.8 Probability Axioms &amp;
+                    Expected Value
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 15 Concurrency (optional); Ch
+                    13 std::optional
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> Graph Builder &amp;
+                    Traversal; Shortest Path in a Maze; Kevin Bacon Game
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Number of Islands, Clone
+                    Graph, Pacific Atlantic, Surrounded Regions, Course Schedule
+                    I/II, Network Delay Time, Cheapest Flights K Stops, Path
+                    with Min Effort, Connected Components, Graph Valid Tree,
+                    Redundant Connection, Word Ladder, Alien Dictionary
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 6 — Strings &amp; External Memory
+                <span class="wk">Weeks 19–21</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 7.4
+                    Cardinality (Countable/Uncountable Sets); Ch 12 Regular
+                    Expressions &amp; Finite-State Automata
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 9 Strings &amp; Regex; Ch 10
+                    Input/Output
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> Large Dictionary
+                    Autocomplete; Boyer–Moore String Search; Closest-Pair
+                    Visualizer
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Longest Substring w/o
+                    Repeats, Longest Repeating Char Replacement, Min Window
+                    Substring, Group Anagrams, Sliding Window Maximum, Longest
+                    Substring K Distinct, Design Autocomplete System
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 7 — Limits of Algorithmic Power
+                <span class="wk">Weeks 22–25</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math:</b> Epp Ch 2 Logic of
+                    Compound Statements (Normal Forms 2.1, Circuits 2.4–2.5);
+                    Epp Ch 4.6–4.8 Modular Arithmetic, Division Algorithm, GCD;
+                    Lewis &amp; Zax Ch 31 Public Key Cryptography
+                    <em>(no Epp equivalent, kept)</em>
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 14 Numerics; Ch 16 History
+                    &amp; Compatibility
+                </p>
+                <p>
+                    <b class="tag-pr">Projects:</b> N-Queens Solver; Knapsack
+                    (Greedy/DP/Branch-and-Bound); RSA Key Generator; TSP
+                    Approximation
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Subsets I/II, Combination
+                    Sum I/II, Permutations, N-Queens, Sudoku Solver, Climbing
+                    Stairs, House Robber I/II, Decode Ways, Coin Change I/II,
+                    Longest Palindromic Substring, Edit Distance, Unique Paths,
+                    Min Path Sum, LCS, Word Break I/II, Max Product Subarray,
+                    Best Time to Buy/Sell Stock
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 8 — Appendices &amp; Integration
+                <span class="wk">Weeks 26–27</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 5.2 Summation
+                    Notation (revisit); Ch 5.6–5.8 Recurrence Relations
+                    (revisit)
+                </p>
+                <p>
+                    <b class="tag-cpp">C++:</b> Ch 11 Containers, Ch 5 Essential
+                    Operations (revisit)
+                </p>
+                <p><b class="tag-pr">Projects:</b> Recurrence Solver</p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> Median of Two Sorted Arrays,
+                    Merge k Sorted Lists, Trapping Rain Water (review)
+                </p>
+            </div>
+        </details>
+
+        <details>
+            <summary>
+                Phase 9 — The Macro-Project <span class="wk">Weeks 28–32</span>
+            </summary>
+            <div class="body">
+                <p>
+                    <b class="tag-pr">Choose one:</b> Real-Time Route Planner ·
+                    Full-Text Search Engine · Network Packet Routing Simulator ·
+                    Cryptography Toolkit
+                </p>
+                <p>
+                    <b class="tag-nc">Neetcode:</b> 1–2 problems/day alongside
+                    the capstone — Hards you skipped, review Mediums, 30-min
+                    interview conditions
+                </p>
+            </div>
+        </details>
+
+        <h2>Beyond the Roadmap</h2>
+        <div class="beyond">
+            <p>
+                <b>Compiler —</b> <span class="lang">OCaml</span>, via
+                <i>Real World OCaml</i>. ADTs and pattern matching fit ASTs and
+                type checkers cleanly; build it in OCaml, not just after reading
+                about it.
+            </p>
+            <p>
+                <b>Distributed KV store —</b> <span class="lang">Rust</span>,
+                via <i>The Rust Book</i>. Ownership formalizes the RAII
+                discipline from Phases 2 &amp; 4. Pair with a from-scratch Raft
+                implementation for consensus.
+            </p>
+            <p>
+                <b>Full-stack / microservices —</b>
+                <span class="lang">Go</span> for the backend via
+                <i>Let's Go</i> and <i>Let's Go Further</i> (Alex Edwards) —
+                routing, database layer, auth, deployment — and
+                <span class="lang">JS</span> for the frontend via
+                <i>Eloquent JavaScript</i>. Containers, service discovery, and
+                message queues remain open past a single Go service.
+            </p>
+        </div>
+
+        <footer>clean the repo. commit often.</footer>
+    </body>
+</html>
