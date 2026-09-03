@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Whiplash - Micah Asowata.</title>
+        <title>My roadmap.</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
             href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
@@ -2472,9 +2472,11 @@
                     microservices?
                 </h2>
                 <p>
-                    The roadmap builds the substrate. Each of these is a
-                    separate discipline sitting on top of it — here's honestly
-                    what transfers and what doesn't.
+                    The roadmap builds the substrate. Each step swaps in a new
+                    language on purpose — OCaml for the compiler, Rust for the
+                    store, JS for the frontend — because each gap is best closed
+                    in the language built for it, not by forcing everything back
+                    into C++.
                 </p>
             </div>
 
@@ -2518,10 +2520,14 @@
                         </ul>
                     </div>
                     <div class="gcard-note">
-                        <b>Next step:</b> Crafting Interpreters, or the Dragon
-                        Book if you want the deep end. You'll walk in with
-                        better recursion and tree instincts than most people
-                        starting cold.
+                        <b>Resource:</b> <em>Real World OCaml</em>, read before
+                        you write a line of the compiler. OCaml's algebraic data
+                        types and pattern matching are close to a perfect fit
+                        for ASTs and type checkers — a genuinely stronger
+                        substrate for this than C++. Build the compiler
+                        <em>in</em> OCaml, not just after reading about it. Your
+                        recursion-heavy phases (4, 5, 7) already prime the
+                        functional instincts this needs.
                     </div>
                 </div>
 
@@ -2541,6 +2547,10 @@
                             <li>
                                 File I/O reps → write-ahead logging groundwork
                             </li>
+                            <li>
+                                C++ ownership/RAII discipline (Phase 2, 4) →
+                                maps almost directly onto Rust's ownership model
+                            </li>
                         </ul>
                     </div>
                     <div class="transfer-col">
@@ -2558,20 +2568,29 @@
                             <li>
                                 Failure detection, log-structured storage design
                             </li>
+                            <li>
+                                Rust itself — ownership, borrowing, lifetimes as
+                                the compiler enforces them
+                            </li>
                         </ul>
                     </div>
                     <div class="gcard-note">
-                        <b>Next step:</b> Designing Data-Intensive Applications,
-                        plus a from-scratch Raft implementation. Your
-                        C++/data-structure fluency speeds up the build — it
-                        doesn't explain why Raft works.
+                        <b>Resource:</b> <em>The Rust Book</em>, then build the
+                        store in Rust rather than C++. Manual RAII discipline is
+                        exactly what Rust's borrow checker formalizes, so this
+                        reads more like a stricter dialect of what you already
+                        know than a new paradigm. Pair with a from-scratch Raft
+                        implementation — the book won't teach you consensus,
+                        only the language to build it safely in.
                     </div>
                 </div>
 
                 <div class="gcard">
                     <div class="gcard-head">
                         <h3>Full-stack, microservices</h3>
-                        <span class="verdict gap">biggest gap</span>
+                        <span class="verdict partial"
+                            >two languages, one gap</span
+                        >
                     </div>
                     <div class="transfer-col">
                         <p class="tc-label yes">Transfers directly</p>
@@ -2583,23 +2602,36 @@
                         </ul>
                     </div>
                     <div class="transfer-col">
-                        <p class="tc-label no">Still missing</p>
+                        <p class="tc-label no">
+                            Closed by the resources below, not by this roadmap
+                        </p>
                         <ul>
-                            <li>HTTP/REST or gRPC, a web framework</li>
-                            <li>Frontend, however minimal</li>
+                            <li>HTTP/REST, a web framework — Let's Go</li>
+                            <li>Frontend fundamentals — Eloquent JS</li>
+                            <li>
+                                Real database layer, migrations — Let's Go
+                                Further
+                            </li>
+                            <li>
+                                Auth, middleware, deployment — Let's Go Further
+                            </li>
                             <li>
                                 Containerization, service discovery, message
-                                queues
+                                queues — still open, microservices proper is a
+                                further step past a single Go service
                             </li>
-                            <li>Real databases — schemas, migrations</li>
-                            <li>Auth, observability, logging</li>
                         </ul>
                     </div>
                     <div class="gcard-note">
-                        <b>Next step:</b> being excellent at algorithms doesn't
-                        teach you how services talk to each other or how a
-                        deployable system is structured. Treat this as its own
-                        8–12 week track.
+                        <b>Resources:</b> <em>Eloquent JavaScript</em> for the
+                        frontend half — real JS fundamentals rather than
+                        framework-cargo-culting. <em>Let's Go</em> and
+                        <em>Let's Go Further</em> (Alex Edwards) for the backend
+                        half — a real Go HTTP service built from scratch:
+                        routing, middleware, a real database layer, auth,
+                        deployment. Between the two, this card's whole "still
+                        missing" list gets covered on purpose, in languages
+                        suited to each half rather than forced through C++.
                     </div>
                 </div>
             </div>
@@ -2614,24 +2646,30 @@
                 </div>
                 <div class="order-arrow">→</div>
                 <div class="order-step">
-                    <p class="osn">02</p>
+                    <p class="osn">02 · OCaml</p>
                     <p class="ost">Compiler</p>
-                    <p class="osd">Hardest reward on your algo fundamentals</p>
-                </div>
-                <div class="order-arrow">→</div>
-                <div class="order-step">
-                    <p class="osn">03</p>
-                    <p class="ost">Distributed KV store</p>
                     <p class="osd">
-                        Data structures + one new discipline: distributed
-                        systems
+                        Real World OCaml, built in OCaml — ADTs and pattern
+                        matching fit ASTs cleanly
                     </p>
                 </div>
                 <div class="order-arrow">→</div>
                 <div class="order-step">
-                    <p class="osn">04</p>
+                    <p class="osn">03 · Rust</p>
+                    <p class="ost">Distributed KV store</p>
+                    <p class="osd">
+                        The Rust Book — ownership formalizes the RAII discipline
+                        you already have
+                    </p>
+                </div>
+                <div class="order-arrow">→</div>
+                <div class="order-step">
+                    <p class="osn">04 · Go + JS</p>
                     <p class="ost">Full-stack / microservices</p>
-                    <p class="osd">Least connected — run it as its own track</p>
+                    <p class="osd">
+                        Let's Go / Let's Go Further for the backend, Eloquent JS
+                        for the frontend
+                    </p>
                 </div>
             </div>
         </div>
