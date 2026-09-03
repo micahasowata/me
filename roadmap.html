@@ -1,417 +1,746 @@
-<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>My roadmap</title>
+        <title>Roadmap</title>
         <style>
-            :root {
-                --base: #1e1e2e;
-                --mantle: #181825;
-                --text: #cdd6f4;
-                --sub: #a6adc8;
-                --surface: #313244;
-                --border: #45475a;
-                --mauve: #cba6f7;
-                --green: #a6e3a1;
-                --peach: #fab387;
-                --yellow: #f9e2af;
-                --red: #f38ba8;
-                --blue: #89b4fa;
-            }
-            * {
-                box-sizing: border-box;
-            }
             body {
-                background: var(--base);
-                color: var(--text);
-                font-family: system-ui, sans-serif;
-                line-height: 1.55;
-                max-width: 760px;
-                margin: 0 auto;
-                padding: 40px 20px 80px;
+                background-color: #292c3c;
+                color: #f4dbd6;
+
+                main {
+                    max-width: 50vw;
+                    font-family:
+                        "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+                        sans-serif;
+                }
             }
+
             h1 {
-                font-size: 26px;
-                margin-bottom: 4px;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 3rem;
             }
-            .lede {
-                color: var(--sub);
-                margin-top: 0;
-                max-width: 600px;
+
+            p {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             }
-            h2 {
-                font-size: 18px;
-                color: var(--mauve);
-                margin: 44px 0 12px;
-            }
-            details {
-                background: var(--mantle);
-                border: 1px solid var(--border);
-                border-radius: 8px;
-                margin-bottom: 10px;
-                padding: 0;
-            }
-            summary {
-                cursor: pointer;
-                padding: 12px 16px;
-                font-weight: 600;
-                display: flex;
-                justify-content: space-between;
-                gap: 12px;
-            }
-            summary .wk {
-                color: var(--sub);
-                font-weight: 400;
-                font-size: 13px;
-                white-space: nowrap;
-            }
-            details[open] summary {
-                border-bottom: 1px solid var(--border);
-            }
-            .body {
-                padding: 12px 16px 16px;
-            }
-            .body p {
-                margin: 0 0 8px;
-                font-size: 14px;
-                color: var(--sub);
-            }
-            .body b {
-                color: var(--text);
-            }
-            .tag-dm {
-                color: var(--yellow);
-            }
-            .tag-cpp {
-                color: var(--peach);
-            }
-            .tag-pr {
-                color: var(--blue);
-            }
-            .tag-nc {
-                color: var(--green);
-            }
-            .beyond p {
-                font-size: 14px;
-                color: var(--sub);
-                margin: 0 0 10px;
-            }
-            .beyond b {
-                color: var(--text);
-            }
-            .lang {
-                color: var(--mauve);
-                font-weight: 600;
-            }
-            footer {
-                margin-top: 50px;
-                color: var(--sub);
-                font-size: 12px;
-                text-align: center;
+
+            a {
+                color: #8bd5ca;
+                text-decoration: none;
+
+                &:hover {
+                    color: #b7bdf8;
+                }
             }
         </style>
     </head>
     <body>
-        <h1>32-Week Roadmap</h1>
-        <p class="lede">
-            Algorithms, C++, and discrete math — discrete math readings now
-            follow Epp (5th ed.); Lewis &amp; Zax kept only where Epp has no
-            match.
-        </p>
-
-        <h2>The Build</h2>
-
-        <details open>
-            <summary>
-                Phase 0 — The Launchpad <span class="wk">Weeks 1–2</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 1 Speaking
-                    Mathematically; Ch 4 Elementary Number Theory &amp; Proof
-                    Methods; Ch 5.1–5.4 Sequences &amp; Induction (incl.
-                    Strong); Ch 6 Set Theory
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 1 Basics; Ch 2 User-Defined
-                    Types; Ch 3 Modularity
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> Prime Tester with Proof;
-                    Summation Calculator
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> none yet — math &amp; C++
+        <main>
+            <h1 id="foundations-roadmap">Foundations Roadmap</h1>
+            <h2 id="algorithms-c-ppp3-discrete-math-epp-and-neetcode">
+                Algorithms, C++ (PPP3), Discrete Math (Epp), and Neetcode
+            </h2>
+            <p>
+                No fixed calendar. The sequence matters, the clock doesn&#39;t —
+                depth over schedule.
+            </p>
+            <p>
+                <strong>A note on the C++ track:</strong> reading leads with
+                <strong>PPP3</strong> (Stroustrup&#39;s
+                <em>Programming: Principles and Practice</em>, 3rd ed.) —
+                it&#39;s built as a real introduction to programming, not just
+                C++ syntax, and covers the early foundational material in more
+                depth than <em>Tour of C++</em> does. PPP3 is about half the
+                size of PPP2 because concurrency, numerics, and some
+                advanced-template material were pushed to free web-only chapters
+                rather than the printed book. Where that leaves a gap — generic
+                programming/concepts, concurrency, numerics —
+                <em>Tour of C++</em> stays in as a secondary reference, flagged
+                where it appears.
+            </p>
+            <hr />
+            <h2 id="phase-0-the-launchpad">PHASE 0: THE LAUNCHPAD</h2>
+            <h3 id="building-the-foundation">Building the Foundation</h3>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 2.1–2.3 The Logic of
+                    Compound Statements; Ch 3.1–3.3 The Logic of Quantified
+                    Statements; Ch 4.1–4.4 Elementary Number Theory and Methods
+                    of Proof; Ch 5.1–5.3 Sequences, Mathematical Induction, and
+                    Recursion
+                </li>
+                <li>
+                    <em>Algorithms Syllabus:</em> none yet — pure math and C++
                     warm-up
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 1 — Algorithm Analysis <span class="wk">Weeks 3–4</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 11.1–11.2
-                    Analysis of Algorithm Efficiency (Order Notation); Ch 5.2
-                    Sequences &amp; Summation Notation
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 4 Classes; Ch 5 Essential
-                    Operations
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> Big-O Visualizer; Recursion
-                    vs Iteration Benchmark
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Contains Duplicate, Valid
-                    Anagram, Two Sum
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 2 — Elementary Data Structures
-                <span class="wk">Weeks 5–7</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 6 Set Theory
-                    (revisit); Ch 9.1–9.7 Counting &amp; Probability (Subsets,
-                    Permutations, Combinations)
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 6 Templates; Ch 11 Containers
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> DIY Vector; Stack-Based RPN
-                    Calculator; Word Frequency Counter
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Reverse Linked List, Merge
-                    Two Sorted Lists, Linked List Cycle, Remove Nth Node, Valid
-                    Parentheses, Min Stack, Evaluate RPN, Contains Duplicate II
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 3 — Sorting &amp; Design Paradigms
-                <span class="wk">Weeks 8–10</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 5.2 Summation
-                    Notation; Ch 5.6–5.8 Recursively Defined Sequences &amp;
-                    Solving Recurrence Relations
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 12 Algorithms (std::sort,
-                    lambdas); Ch 14 Random Numbers
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> Sorting Showdown; Dutch
-                    National Flag; Binary Search on Custom Data
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Merge Intervals, Sort
-                    Colors, Kth Largest Element, Find First/Last Position,
-                    Search Insert Position, Merge Sorted Array
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 4 — Trees, Heaps &amp; Advanced Structures
-                <span class="wk">Weeks 11–14</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math:</b> Epp Ch 10 Graphs &amp;
-                    Trees; Lewis &amp; Zax Ch 18 Coloring
-                    <em>(no Epp equivalent, kept)</em>
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 7 Concepts &amp; Generic
-                    Programming; Ch 13 Utilities (unique_ptr, span)
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> DIY Binary Search Tree;
-                    Autocomplete with a Trie; Priority Queue Task Scheduler
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Invert/Max Depth/Validate
-                    BST, Level Order Traversal, LCA of BST, Max Path Sum,
-                    Construct from Preorder/Inorder, Serialize/Deserialize, Find
-                    Median from Stream, Top K Frequent, Kth Largest in Stream,
-                    Last Stone Weight, Implement Trie, Word Search II
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 5 — Graph Algorithms <span class="wk">Weeks 15–18</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 8 Relations
-                    (Digraphs); Ch 10 Graphs &amp; Trees (revisit — directed
-                    graphs, connectivity); Ch 9.8 Probability Axioms &amp;
-                    Expected Value
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 15 Concurrency (optional); Ch
-                    13 std::optional
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> Graph Builder &amp;
-                    Traversal; Shortest Path in a Maze; Kevin Bacon Game
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Number of Islands, Clone
-                    Graph, Pacific Atlantic, Surrounded Regions, Course Schedule
-                    I/II, Network Delay Time, Cheapest Flights K Stops, Path
-                    with Min Effort, Connected Components, Graph Valid Tree,
-                    Redundant Connection, Word Ladder, Alien Dictionary
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 6 — Strings &amp; External Memory
-                <span class="wk">Weeks 19–21</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 7.4
-                    Cardinality (Countable/Uncountable Sets); Ch 12 Regular
-                    Expressions &amp; Finite-State Automata
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 9 Strings &amp; Regex; Ch 10
-                    Input/Output
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> Large Dictionary
-                    Autocomplete; Boyer–Moore String Search; Closest-Pair
-                    Visualizer
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Longest Substring w/o
-                    Repeats, Longest Repeating Char Replacement, Min Window
-                    Substring, Group Anagrams, Sliding Window Maximum, Longest
-                    Substring K Distinct, Design Autocomplete System
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 7 — Limits of Algorithmic Power
-                <span class="wk">Weeks 22–25</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math:</b> Epp Ch 2 Logic of
-                    Compound Statements (Normal Forms 2.1, Circuits 2.4–2.5);
-                    Epp Ch 4.6–4.8 Modular Arithmetic, Division Algorithm, GCD;
-                    Lewis &amp; Zax Ch 31 Public Key Cryptography
-                    <em>(no Epp equivalent, kept)</em>
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 14 Numerics; Ch 16 History
-                    &amp; Compatibility
-                </p>
-                <p>
-                    <b class="tag-pr">Projects:</b> N-Queens Solver; Knapsack
-                    (Greedy/DP/Branch-and-Bound); RSA Key Generator; TSP
-                    Approximation
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Subsets I/II, Combination
-                    Sum I/II, Permutations, N-Queens, Sudoku Solver, Climbing
-                    Stairs, House Robber I/II, Decode Ways, Coin Change I/II,
-                    Longest Palindromic Substring, Edit Distance, Unique Paths,
-                    Min Path Sum, LCS, Word Break I/II, Max Product Subarray,
-                    Best Time to Buy/Sell Stock
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 8 — Appendices &amp; Integration
-                <span class="wk">Weeks 26–27</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-dm">Discrete Math (Epp):</b> Ch 5.2 Summation
-                    Notation (revisit); Ch 5.6–5.8 Recurrence Relations
-                    (revisit)
-                </p>
-                <p>
-                    <b class="tag-cpp">C++:</b> Ch 11 Containers, Ch 5 Essential
-                    Operations (revisit)
-                </p>
-                <p><b class="tag-pr">Projects:</b> Recurrence Solver</p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> Median of Two Sorted Arrays,
-                    Merge k Sorted Lists, Trapping Rain Water (review)
-                </p>
-            </div>
-        </details>
-
-        <details>
-            <summary>
-                Phase 9 — The Macro-Project <span class="wk">Weeks 28–32</span>
-            </summary>
-            <div class="body">
-                <p>
-                    <b class="tag-pr">Choose one:</b> Real-Time Route Planner ·
-                    Full-Text Search Engine · Network Packet Routing Simulator ·
-                    Cryptography Toolkit
-                </p>
-                <p>
-                    <b class="tag-nc">Neetcode:</b> 1–2 problems/day alongside
-                    the capstone — Hards you skipped, review Mediums, 30-min
-                    interview conditions
-                </p>
-            </div>
-        </details>
-
-        <h2>Beyond the Roadmap</h2>
-        <div class="beyond">
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 1 Hello, World!; Ch 2 Objects,
+                    Types, and Values; Ch 3 Computation; Ch 4 Errors!
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>Prime Number Tester with Proof</strong> — checks if
+                    a number is prime; add a <code>--verify</code> flag that
+                    prints the loop invariant at each step; include the
+                    inductive proof as a comment.
+                    <em>C++ features:</em> functions, command-line args, bool,
+                    loops.
+                </li>
+                <li>
+                    <strong>Summation Calculator</strong> — compute
+                    <code>1+2+3+...+n</code> using a loop and closed-form
+                    <code>n*(n+1)/2</code>; prove by induction they&#39;re equal
+                    (print proof as comment); compare runtimes with
+                    <code>std::chrono</code>. <em>C++ features:</em> functions,
+                    <code>long long</code>, <code>std::chrono</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>None yet — focus on math and C++ basics.</p>
+            <hr />
+            <h2 id="phase-1-foundations-of-algorithm-analysis">
+                PHASE 1: FOUNDATIONS OF ALGORITHM ANALYSIS
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 1 The Role of Algorithms
+                    and Data Structures (Levitin 1.1–1.3 + Morin 1.1); Ch 2
+                    Mathematical Preliminaries (Morin 1.3 + Levitin App. A); Ch
+                    3 Growth of Functions and Asymptotic Notation (Levitin
+                    2.1–2.2 + Morin 1.3.3); Ch 4 Analyzing Algorithms: Recursive
+                    and Nonrecursive Cases (Levitin 2.3–2.6); Ch 5 The Model of
+                    Computation (Morin 1.4–1.5)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 5.4–5.6 Strong Induction
+                    and Recursive Definitions; Ch 9.1–9.3 Counting and
+                    Probability (basic counting, permutations, combinations); Ch
+                    11.1–11.3 Analysis of Algorithm Efficiency (order notation,
+                    worst-case analysis)
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 5 Writing a Program; Ch 6 Completing
+                    a Program; Ch 7 Technicalities: Functions, etc.
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>Big-O Visualizer</strong> — generate arrays of size
+                    n = 10, 100, 1000, 10000; run three functions of O(1), O(n),
+                    O(n²); print runtime for each and verify growth matches
+                    theory. <em>C++ features:</em> <code>std::vector</code>,
+                    <code>std::chrono</code>, pass-by-reference vs value.
+                </li>
+                <li>
+                    <strong>Recursion vs Iteration Benchmark</strong> —
+                    implement Fibonacci using recursion, iterative DP, and
+                    closed-form; compare runtimes and stack usage.
+                    <em>C++ features:</em> recursive functions,
+                    <code>std::function</code>, <code>std::chrono</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode — Arrays &amp; Hashing (warm-up)</strong></p>
+            <ul>
+                <li>Contains Duplicate — analyze O(n) time, O(n) space</li>
+                <li>Valid Anagram — analyze O(n) time, O(1) space</li>
+                <li>Two Sum — analyze O(n) time with hash map</li>
+            </ul>
+            <hr />
+            <h2 id="phase-2-elementary-data-structures">
+                PHASE 2: ELEMENTARY DATA STRUCTURES
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 6 Array-Based Lists:
+                    Stacks, Queues, Deques (Morin ch. 2); Ch 7 Linked Lists
+                    (Morin ch. 3); Ch 8 Hashing and Hash Tables (Morin ch. 5 +
+                    Levitin 7.3); Ch 9 Skiplists (Morin ch. 4)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 9.4–9.6 Permutations with
+                    repetition, combinations with repetition, probability; Ch
+                    7.1–7.3 Functions (definitions, one-to-one, onto, inverse);
+                    Ch 10.1–10.2 Graphs (basic definitions, paths, cycles)
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 8 Technicalities: Classes, etc.; Ch
+                    15 Vector and Free Store; Ch 18 Templates and Exceptions
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>DIY Vector</strong> — implement
+                    <code>Vector&lt;T&gt;</code> with dynamic resizing (double
+                    capacity when full), <code>push_back()</code>,
+                    <code>pop_back()</code>, <code>size()</code>,
+                    <code>capacity()</code>, <code>operator[]</code>, proper
+                    copy constructor, assignment operator, move semantics.
+                    <em>C++ features:</em> templates, RAII, copy/move,
+                    destructors.
+                </li>
+                <li>
+                    <strong>Stack-Based RPN Calculator</strong> — postfix (RPN)
+                    calculator using your own <code>Stack&lt;T&gt;</code>;
+                    support <code>+ - * / ^</code>; handle errors (division by
+                    zero, invalid input). <em>C++ features:</em> templates,
+                    exception handling, <code>std::string</code> parsing.
+                </li>
+                <li>
+                    <strong>Word Frequency Counter</strong> — read a text file,
+                    split into words, count frequencies; use
+                    <code>std::unordered_map</code>, then implement your own
+                    <code>HashMap&lt;K,V&gt;</code>; compare performance against
+                    <code>std::unordered_map</code>. <em>C++ features:</em>
+                    <code>std::ifstream</code>, <code>std::string</code>,
+                    <code>std::hash</code>, custom hash.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
             <p>
-                <b>Compiler —</b> <span class="lang">OCaml</span>, via
-                <i>Real World OCaml</i>. ADTs and pattern matching fit ASTs and
-                type checkers cleanly; build it in OCaml, not just after reading
-                about it.
+                <em>Linked List:</em> Reverse Linked List · Merge Two Sorted
+                Lists · Linked List Cycle · Remove Nth Node From End of List
             </p>
             <p>
-                <b>Distributed KV store —</b> <span class="lang">Rust</span>,
-                via <i>The Rust Book</i>. Ownership formalizes the RAII
-                discipline from Phases 2 &amp; 4. Pair with a from-scratch Raft
-                implementation for consensus.
+                <em>Stack:</em> Valid Parentheses · Min Stack · Evaluate Reverse
+                Polish Notation
+            </p>
+            <p><em>Hash Map:</em> Contains Duplicate II</p>
+            <hr />
+            <h2 id="phase-3-sorting-design-paradigms">
+                PHASE 3: SORTING &amp; DESIGN PARADIGMS
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 10 Divide-and-Conquer:
+                    Mergesort, Quicksort, Recurrences (Levitin ch. 5 + App. B);
+                    Ch 11 Decrease-and-Conquer: Insertion Sort, Binary Search,
+                    Selection (Levitin ch. 4); Ch 12 Transform-and-Conquer:
+                    Presorting, Heaps, Horner&#39;s Rule (Levitin ch. 6); Ch 18
+                    Comparison-Based Sorting and Its Lower Bound (Levitin
+                    11.1–11.2); Ch 19 Counting Sort and Radix Sort (Morin 11.2 +
+                    Levitin 7.1)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 5.7 Solving Recurrence
+                    Relations; Ch 11.4 Recurrence Relations; Ch 9.7–9.8 Binomial
+                    Theorem, Probability applications
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 21 Algorithms (STL algorithms,
+                    <code>std::sort</code>, lambdas, custom comparators); Ch 19
+                    Containers and Iterators
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>Sorting Showdown</strong> — implement Bubble Sort,
+                    Insertion Sort, Merge Sort, QuickSort; generate random
+                    arrays of size n = 100, 1000, 10000, 100000; compare
+                    runtimes and print a benchmark table. <em>C++ features:</em>
+                    <code>std::vector</code>, <code>std::random</code>, lambdas,
+                    <code>std::chrono</code>.
+                </li>
+                <li>
+                    <strong>Dutch National Flag</strong> — implement 3-way
+                    partitioning (0s, 1s, 2s) in O(n) time, O(1) space; include
+                    a proof that it&#39;s O(n) with constant space.
+                    <em>C++ features:</em> <code>std::vector</code>, iterators,
+                    in-place swapping.
+                </li>
+                <li>
+                    <strong>Binary Search on Custom Data</strong> — implement
+                    binary search on a sorted <code>std::vector</code> of
+                    structs; search by different fields using custom
+                    comparators; load data from CSV, sort, allow interactive
+                    searches. <em>C++ features:</em> <code>std::sort</code> with
+                    lambdas, <code>std::lower_bound</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode — Sorting &amp; Divide and Conquer</strong></p>
+            <ul>
+                <li>
+                    Merge Intervals · Sort Colors (Dutch National Flag) · Kth
+                    Largest Element in an Array (Quickselect) · Find First and
+                    Last Position of Element in Sorted Array · Search Insert
+                    Position · Merge Sorted Array
+                </li>
+            </ul>
+            <hr />
+            <h2 id="phase-4-trees-heaps-advanced-structures">
+                PHASE 4: TREES, HEAPS &amp; ADVANCED STRUCTURES
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 13 Binary Trees and Binary
+                    Search Trees (Morin ch. 6 + Levitin 4.5); Ch 14 Randomized
+                    and Self-Balancing Trees: Random BSTs, Treaps, Scapegoat
+                    Trees (Morin ch. 7–8); Ch 15 Red-Black Trees, AVL Trees, and
+                    2-4 Trees (Morin ch. 9 + Levitin 6.3); Ch 16 Heaps and
+                    Heapsort (Morin 10.1 + Levitin 6.4); Ch 17 Meldable and
+                    Mergeable Heaps (Morin 10.2)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 10.3–10.5 Graphs (trees,
+                    rooted trees, spanning trees, binary trees); Ch 5.8
+                    Recursive algorithms and their analysis
+                </li>
+                <li>
+                    <em>C++:</em> PPP3 Ch 16 Arrays, Pointers, and References;
+                    Ch 17 Essential Operations —
+                    <strong
+                        >+ Tour of C++ Ch 7 Concepts and Generic
+                        Programming</strong
+                    >
+                    (PPP3 doesn&#39;t cover C++20 concepts in depth)
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>DIY Binary Search Tree</strong> — implement
+                    <code>BST&lt;T&gt;</code> with <code>insert()</code>,
+                    <code>search()</code>, <code>erase()</code>,
+                    in-order/pre-order/post-order traversals,
+                    <code>min()</code>, <code>max()</code>,
+                    <code>successor()</code>, <code>predecessor()</code>.
+                    <em>C++ features:</em> recursion, templates,
+                    <code>std::unique_ptr</code>.
+                </li>
+                <li>
+                    <strong>Autocomplete with a Trie</strong> — implement a Trie
+                    with <code>insert(word)</code>, <code>search(word)</code>,
+                    <code>startsWith(prefix)</code>,
+                    <code>autocomplete(prefix)</code>; load a dictionary file,
+                    interactively autocomplete as user types.
+                    <em>C++ features:</em> <code>std::unordered_map</code> for
+                    children, recursion, <code>std::vector</code>.
+                </li>
+                <li>
+                    <strong>Priority Queue Task Scheduler</strong> — implement
+                    priority queue using binary heap; each task has priority and
+                    description; support <code>push(task)</code>,
+                    <code>pop()</code>, <code>peek()</code>.
+                    <em>C++ features:</em> <code>std::vector</code> as
+                    underlying array, heapify, templates.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>
+                <em>Trees:</em> Invert Binary Tree · Maximum Depth of Binary
+                Tree · Subtree of Another Tree · Binary Tree Level Order
+                Traversal · Validate Binary Search Tree · Lowest Common Ancestor
+                of BST · Binary Tree Maximum Path Sum · Construct Binary Tree
+                from Preorder/Inorder · Serialize and Deserialize Binary Tree
             </p>
             <p>
-                <b>Full-stack / microservices —</b>
-                <span class="lang">Go</span> for the backend via
-                <i>Let's Go</i> and <i>Let's Go Further</i> (Alex Edwards) —
-                routing, database layer, auth, deployment — and
-                <span class="lang">JS</span> for the frontend via
-                <i>Eloquent JavaScript</i>. Containers, service discovery, and
-                message queues remain open past a single Go service.
+                <em>Heap / Priority Queue:</em> Find Median from Data Stream ·
+                Top K Frequent Elements · Kth Largest Element in a Stream · Last
+                Stone Weight
             </p>
-        </div>
-
-        <footer>clean the repo. commit often.</footer>
+            <p>
+                <em>Trie:</em> Implement Trie (Prefix Tree) · Design Add and
+                Search Words Data Structure · Word Search II
+            </p>
+            <hr />
+            <h2 id="phase-5-graph-algorithms">PHASE 5: GRAPH ALGORITHMS</h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 20 Graph Representations
+                    (Morin ch. 12); Ch 21 Graph Traversal: BFS and DFS (Morin
+                    12.3 + Levitin 3.5); Ch 22 Greedy Algorithms: Prim&#39;s,
+                    Kruskal&#39;s, Dijkstra&#39;s (Levitin ch. 9); Ch 23 Dynamic
+                    Programming: Floyd–Warshall, Optimal BSTs (Levitin ch. 8);
+                    Ch 24 Iterative Improvement: Max-Flow, Matching, Simplex
+                    (Levitin ch. 10)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 10.6–10.8 Graphs
+                    (traversals, connectedness, directed graphs); Ch 12.1–12.3
+                    Relations (relations, equivalence relations, partial
+                    orders); Ch 9.9–9.10 Counting and Probability (expected
+                    value, applications)
+                </li>
+                <li>
+                    <em>C++:</em> PPP3 Ch 20 Maps and Sets —
+                    <strong>+ Tour of C++ Ch 15 Concurrency</strong> (PPP3
+                    doesn&#39;t cover concurrency; optional here, useful for
+                    parallel BFS/DFS)
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>Graph Builder and Traversal</strong> — build
+                    <code>AdjacencyListGraph</code> class: adding vertices/edges
+                    (directed/undirected), BFS (prints distances from source),
+                    DFS (prints discovery/finish times), cycle detection.
+                    <em>C++ features:</em> <code>std::vector</code>,
+                    <code>std::unordered_map</code>, <code>std::queue</code>,
+                    <code>std::stack</code>.
+                </li>
+                <li>
+                    <strong>Shortest Path in a Maze</strong> — read a 2D grid
+                    maze from file (<code>#</code>=wall, <code>.</code>=path,
+                    <code>S</code>=start, <code>E</code>=end); use BFS to find
+                    shortest path, print with arrows. <em>C++ features:</em>
+                    <code>vector&lt;vector&lt;char&gt;&gt;</code>,
+                    <code>std::queue</code>, <code>struct Point</code>.
+                </li>
+                <li>
+                    <strong>Kevin Bacon Game</strong> — build undirected graph
+                    of actors (vertices) and movies (edges); implement BFS to
+                    find shortest path (Bacon number); interactive CLI.
+                    <em>C++ features:</em>
+                    <code
+                        >unordered_map&lt;string, vector&lt;string&gt;&gt;</code
+                    >, <code>std::queue</code>, file I/O.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>
+                <em>Graphs (BFS/DFS):</em> Number of Islands · Clone Graph ·
+                Pacific Atlantic Water Flow · Surrounded Regions · Course
+                Schedule · Course Schedule II
+            </p>
+            <p>
+                <em>Shortest Path:</em> Network Delay Time (Dijkstra&#39;s) ·
+                Cheapest Flights Within K Stops (Bellman-Ford) · Path with
+                Minimum Effort
+            </p>
+            <p>
+                <em>Union Find / MST:</em> Number of Connected Components in an
+                Undirected Graph · Graph Valid Tree · Redundant Connection
+            </p>
+            <p>
+                <em>Graph Advanced:</em> Word Ladder (BFS) · Alien Dictionary
+                (Topological Sort)
+            </p>
+            <hr />
+            <h2 id="phase-6-strings-external-memory-advanced-data-structures">
+                PHASE 6: STRINGS, EXTERNAL MEMORY &amp; ADVANCED DATA STRUCTURES
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 25 Tries and Data
+                    Structures for Integers (Morin ch. 13); Ch 26 B-Trees and
+                    External-Memory Search (Morin ch. 14 + Levitin 7.4); Ch 27
+                    Input Enhancement in String Matching: Horspool, Boyer–Moore
+                    (Levitin 7.2); Ch 28 Closest-Pair and Convex-Hull Problems
+                    (Levitin 3.3, 5.5)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 11.5 Amortized analysis
+                    <em>(Epp touches this lightly)</em>; Ch 7.4 Composition of
+                    functions <em>(for string-matching automata)</em>
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 9 Input and Output Streams (revisit,
+                    incl. file streams)
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>Large Dictionary Autocomplete</strong> — extend the
+                    Trie project with file I/O for a large dictionary; support
+                    autocomplete with frequency ranking; implement deletion and
+                    prefix search. <em>C++ features:</em>
+                    <code>std::ifstream</code>, <code>std::unordered_map</code>,
+                    file parsing.
+                </li>
+                <li>
+                    <strong>Boyer–Moore String Search</strong> — implement
+                    Boyer-Moore and Horspool; benchmark against
+                    <code>std::string::find</code>; test on real text (Project
+                    Gutenberg). <em>C++ features:</em> <code>std::string</code>,
+                    <code>std::chrono</code>, file I/O.
+                </li>
+                <li>
+                    <strong>Closest-Pair Visualizer</strong> — implement
+                    brute-force and divide-and-conquer closest-pair; generate
+                    random points, visualize both approaches; compare runtimes.
+                    <em>C++ features:</em> <code>std::vector</code> of structs,
+                    <code>std::sort</code>, <code>std::chrono</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>
+                <em>String Matching:</em> Longest Substring Without Repeating
+                Characters · Longest Repeating Character Replacement · Minimum
+                Window Substring · Group Anagrams
+            </p>
+            <p>
+                <em>Sliding Window:</em> Sliding Window Maximum · Longest
+                Substring with At Most K Distinct Characters
+            </p>
+            <p><em>Trie (revisited):</em> Design Search Autocomplete System</p>
+            <hr />
+            <h2 id="phase-7-limits-of-algorithmic-power">
+                PHASE 7: LIMITS OF ALGORITHMIC POWER
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Ch 29 Lower-Bound Arguments
+                    and Decision Trees (Levitin 11.1–11.2); Ch 30 P, NP, and
+                    NP-Completeness (Levitin 11.3); Ch 31 Backtracking and
+                    Branch-and-Bound (Levitin 12.1–12.2); Ch 32 Approximation
+                    Algorithms (Levitin 12.3); Ch 33 Numerical Algorithms
+                    (Levitin 11.4, 12.4)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 2.4 Logical arguments
+                    <em>(review)</em>; Ch 3.4 Arguments with quantified
+                    statements <em>(review)</em>; Ch 6.1–6.3 Set Theory (sets,
+                    subsets, set operations, Venn diagrams — for P/NP
+                    reductions); Ch 7.5 Cardinality of sets,
+                    countable/uncountable sets
+                </li>
+                <li>
+                    <em>C++:</em> <strong>Tour of C++ Ch 14 Numerics</strong> —
+                    PPP3&#39;s numerics chapter is web-only supplementary
+                    material, not in the printed book
+                </li>
+            </ul>
+            <p><strong>Micro-Projects</strong></p>
+            <ul>
+                <li>
+                    <strong>N-Queens Solver</strong> — recursive backtracking
+                    N-Queens; print all solutions for a given n; optimize with
+                    bitmasking. <em>C++ features:</em> recursion,
+                    <code>std::vector</code>, bitwise operators.
+                </li>
+                <li>
+                    <strong
+                        >Knapsack Solver: Greedy vs DP vs
+                        Branch-and-Bound</strong
+                    >
+                    — implement 0/1 Knapsack all three ways; compare solutions
+                    and runtimes. <em>C++ features:</em>
+                    <code>std::vector</code> of structs, 2D DP table,
+                    <code>std::chrono</code>.
+                </li>
+                <li>
+                    <strong>RSA Key Generator</strong> — generate two large
+                    primes; compute <code>n = p*q</code> and
+                    <code>φ(n) = (p-1)*(q-1)</code>; find <code>e</code> and
+                    <code>d</code> such that <code>e*d ≡ 1 (mod φ(n))</code>;
+                    encrypt and decrypt a message. <em>C++ features:</em>
+                    <code>std::random</code>, modular exponentiation,
+                    <code>std::gcd</code>.
+                </li>
+                <li>
+                    <strong>TSP Approximation</strong> — implement Nearest
+                    Neighbor heuristic for TSP; compare to optimal (brute force
+                    for small n); visualize the tour. <em>C++ features:</em>
+                    <code>std::vector</code>, <code>std::set</code>,
+                    <code>std::chrono</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>
+                <em>Backtracking:</em> Subsets · Subsets II · Combination Sum ·
+                Combination Sum II · Permutations · N-Queens · Sudoku Solver
+            </p>
+            <p>
+                <em>Dynamic Programming (1D):</em> Climbing Stairs · House
+                Robber · House Robber II · Decode Ways · Coin Change · Coin
+                Change II
+            </p>
+            <p>
+                <em>Dynamic Programming (2D):</em> Longest Palindromic Substring
+                · Edit Distance · Unique Paths · Minimum Path Sum · Longest
+                Common Subsequence
+            </p>
+            <p>
+                <em>Dynamic Programming (Advanced):</em> Word Break · Word Break
+                II · Maximum Product Subarray · Best Time to Buy and Sell Stock
+                (all versions)
+            </p>
+            <hr />
+            <h2 id="phase-8-appendices-integration">
+                PHASE 8: APPENDICES &amp; INTEGRATION
+            </h2>
+            <p><strong>Reading</strong></p>
+            <ul>
+                <li>
+                    <em>Algorithms Syllabus:</em> Appendix A Useful Formulas for
+                    Algorithm Analysis (supports Ch 2–4); Appendix B Recurrence
+                    Relations (supports Ch 10); Appendix C Space-Efficiency
+                    Notes on Linked Structures — SEList (supports Ch 7)
+                </li>
+                <li>
+                    <em>Discrete Math (Epp):</em> Ch 5.9 Recurrence relations
+                    review; Ch 9.1–9.10 Counting and Probability (full review);
+                    Ch 11.1–11.4 Analysis of Algorithm Efficiency (full review)
+                </li>
+                <li>
+                    <em>C++ (PPP3):</em> Ch 17 Essential Operations (revisit —
+                    memory efficiency)
+                </li>
+            </ul>
+            <p><strong>Micro-Project</strong></p>
+            <ul>
+                <li>
+                    <strong>Recurrence Solver</strong> — write a program that
+                    takes a recurrence (e.g., <code>T(n) = 2T(n/2) + n</code>),
+                    computes values for n = 1..100, verifies the closed-form
+                    solution, visualizes the growth pattern.
+                    <em>C++ features:</em> <code>std::function</code>, recursion
+                    with memoization, <code>std::map</code>.
+                </li>
+            </ul>
+            <p><strong>Neetcode — review</strong></p>
+            <p>
+                Median of Two Sorted Arrays (revisit with recurrence
+                understanding) · Merge k Sorted Lists (revisit with heap
+                understanding) · Trapping Rain Water (revisit with two-pointer)
+            </p>
+            <hr />
+            <h2 id="phase-9-the-macro-project">PHASE 9: THE MACRO-PROJECT</h2>
+            <h3 id="all-content-applied-choose-one-capstone">
+                All Content Applied — Choose One Capstone
+            </h3>
+            <p><strong>Option A: Real-Time Route Planner</strong></p>
+            <ul>
+                <li>
+                    Apply: Graphs (Ch 20–22), Heaps (Ch 16), DP (Ch 23); File
+                    I/O, Concurrency, Containers; Dijkstra, BFS, topological
+                    ordering
+                </li>
+                <li>
+                    Features: load road network from file; shortest path with
+                    Dijkstra + A*; dynamic edge weights for traffic; route
+                    display with progress; multi-waypoint support (DP)
+                </li>
+            </ul>
+            <p><strong>Option B: Full-Text Search Engine</strong></p>
+            <ul>
+                <li>
+                    Apply: Hash Tables (Ch 8), Tries (Ch 25), Sorting (Ch 18),
+                    String Matching (Ch 27); File I/O, Strings, Containers;
+                    Trie, Word Search, Group Anagrams
+                </li>
+                <li>
+                    Features: inverted index with <code>unordered_map</code>;
+                    boolean query parser; TF-IDF ranking; Trie autocomplete;
+                    persistent index on disk
+                </li>
+            </ul>
+            <p><strong>Option C: Network Packet Routing Simulator</strong></p>
+            <ul>
+                <li>
+                    Apply: Max-Flow (Ch 24), Dijkstra (Ch 22), Convex Hull (Ch
+                    28); Concurrency, Random Numbers, I/O; graph algorithms,
+                    topological sort
+                </li>
+                <li>
+                    Features: simulate network of routers; route packets along
+                    shortest path; handle congestion and rerouting; log
+                    throughput/latency; visualize topology
+                </li>
+            </ul>
+            <p><strong>Option D: Cryptography Toolkit</strong></p>
+            <ul>
+                <li>
+                    Apply: RSA (Ch 33), Modular Arithmetic (Ch 33), P/NP (Ch
+                    30); Numerics, Random, Strings; math problems
+                </li>
+                <li>
+                    Features: RSA key generation and encryption; Diffie-Hellman
+                    key exchange; simple SHA-256; digital signatures; file
+                    encryption/decryption
+                </li>
+            </ul>
+            <p><strong>Neetcode</strong></p>
+            <p>
+                Ongoing alongside the capstone — focus on Hard problems you
+                previously skipped, revisit Medium problems from early phases,
+                simulate interview conditions (30 min/problem).
+            </p>
+            <hr />
+            <h2 id="beyond-the-roadmap">Beyond the Roadmap</h2>
+            <p>
+                The roadmap builds the substrate. Each step past it swaps in a
+                new language on purpose — because each gap is best closed in the
+                language built for it, not by forcing everything back through
+                C++.
+            </p>
+            <p>
+                <strong>Compiler — OCaml</strong>, via
+                <em>Real World OCaml</em>. Algebraic data types and pattern
+                matching fit ASTs and type checkers cleanly. Build it
+                <em>in</em> OCaml, not just after reading about it — your
+                recursion-heavy phases (4, 5, 7) already prime the functional
+                instincts this needs.
+            </p>
+            <p>
+                <strong>Distributed KV store — Rust</strong>, via
+                <em>The Rust Book</em>. Rust&#39;s ownership model formalizes
+                the RAII discipline from Phases 2 and 4, so this reads more like
+                a stricter dialect of what you already know than a new paradigm.
+                Pair it with a from-scratch Raft implementation — the book
+                teaches the language, not consensus.
+            </p>
+            <p>
+                <strong>Full-stack / microservices — Go + JS.</strong>
+                <em>Let&#39;s Go</em> and <em>Let&#39;s Go Further</em> (Alex
+                Edwards) cover the backend in Go: routing, middleware, a real
+                database layer, auth, deployment.
+                <em>Eloquent JavaScript</em> covers the frontend. Containers,
+                service discovery, and message queues remain open past a single
+                Go service — that&#39;s the step into microservices proper.
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Language</th>
+                        <th>Resource</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1. This roadmap</td>
+                        <td>C++</td>
+                        <td>PPP3 → Tour of C++ (later phases)</td>
+                    </tr>
+                    <tr>
+                        <td>2. Compiler</td>
+                        <td>OCaml</td>
+                        <td><em>Real World OCaml</em></td>
+                    </tr>
+                    <tr>
+                        <td>3. Distributed KV store</td>
+                        <td>Rust</td>
+                        <td><em>The Rust Book</em></td>
+                    </tr>
+                    <tr>
+                        <td>4. Full-stack / microservices</td>
+                        <td>Go + JS</td>
+                        <td>
+                            <em>Let&#39;s Go</em> /
+                            <em>Let&#39;s Go Further</em>,
+                            <em>Eloquent JavaScript</em>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <p><em>No deadline. Just don&#39;t stop.</em></p>
+        </main>
     </body>
 </html>
