@@ -3,55 +3,614 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Micah Asowata</title>
+        <title>Micah Asowata · Shook Ones x Jay-Z x Pharrell</title>
         <style>
+            /* 🕶️ SHAKE ONES MEETS JAY-Z & PHARRELL — ALL REFLECTED THROUGH A SUNGLASS LENS */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
             body {
-                background-color: #292c3c;
-                color: #f4dbd6;
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #0a0808;
+                font-family: "Segoe UI", "Courier New", monospace;
+                padding: 1.5rem;
+                margin: 0;
+                position: relative;
+            }
+
+            /*  —— THE SUNGLASS LENS ——
+        dark, mirrored, with a subtle curve and reflection */
+            .lens {
+                max-width: 880px;
+                width: 100%;
+                background: #0d0b0a;
+                background-image:
+                    radial-gradient(
+                        ellipse at 30% 20%,
+                        #2f241b33 0%,
+                        transparent 60%
+                    ),
+                    radial-gradient(
+                        ellipse at 70% 80%,
+                        #1f1712aa 0%,
+                        transparent 50%
+                    ),
+                    linear-gradient(145deg, #1e1713 0%, #0f0c0a 90%);
+                border-radius: 60px 20px 60px 20px;
+                padding: 2.8rem 2.8rem;
+                box-shadow:
+                    0 20px 50px rgba(0, 0, 0, 0.9),
+                    0 0 0 2px #7f6b55,
+                    0 0 0 5px #1e1713,
+                    inset 0 0 80px #b89a7a0d,
+                    inset 0 0 30px #00000088;
+                position: relative;
+                backdrop-filter: blur(1px);
+                border: 1px solid #b89a7a33;
+                transition: 0.2s;
+                transform: perspective(1200px) rotateX(1deg) rotateY(-1deg);
+            }
+
+            /* reflection highlight — like light hitting a lens */
+            .lens::before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                left: 10%;
+                width: 70%;
+                height: 30px;
+                background: linear-gradient(
+                    180deg,
+                    #ffffff0c 0%,
+                    transparent 90%
+                );
+                border-radius: 50%;
+                filter: blur(6px);
+                pointer-events: none;
+                opacity: 0.6;
+            }
+
+            /* secondary reflection (bottom curve) */
+            .lens::after {
+                content: "";
+                position: absolute;
+                bottom: 12px;
+                right: 8%;
+                width: 40%;
+                height: 20px;
+                background: radial-gradient(
+                    ellipse at 70% 100%,
+                    #ffffff08,
+                    transparent 70%
+                );
+                border-radius: 50%;
+                filter: blur(8px);
+                pointer-events: none;
+                opacity: 0.4;
+            }
+
+            /* interior "glass" distortion lines (very subtle) */
+            .lens .glare {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                background: repeating-linear-gradient(
+                    45deg,
+                    transparent 0px,
+                    transparent 4px,
+                    #ffffff02 4px,
+                    #ffffff02 5px
+                );
+                border-radius: inherit;
+                opacity: 0.15;
+                z-index: 0;
+            }
+
+            /* all content sits above the glare */
+            .content {
+                position: relative;
+                z-index: 3;
+                text-shadow: 1px 1px 0 #00000099;
+            }
+
+            /* —— TYPOGRAPHY —— */
+            .tagline {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: baseline;
+                border-bottom: 1px solid #b89a7a33;
+                padding-bottom: 0.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .tag {
+                background: #b89a7a;
+                color: #0b0a08;
+                font-size: 0.65rem;
+                font-weight: 800;
+                padding: 0.2rem 1.4rem;
+                border-radius: 40px;
+                letter-spacing: 2.5px;
+                text-transform: uppercase;
+                font-family: "Segoe UI", "Courier New", monospace;
+                box-shadow: 0 2px 0 #3d3229;
+            }
+
+            .ninety {
+                font-family: "Impact", "Arial Black", sans-serif;
+                background: #1e1713;
+                color: #c9ab8a;
+                padding: 0.1rem 1rem;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                letter-spacing: 2px;
+                border: 1px solid #7f6b55;
+                text-transform: uppercase;
             }
 
             h1 {
-                font-family: "Courier New", Courier, monospace;
-                font-size: 3rem;
+                font-family: "Impact", "Arial Black", "Courier New", monospace;
+                font-size: 3.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                color: #f0e3d0;
+                text-shadow:
+                    3px 3px 0 #2f1f12,
+                    7px 7px 0 #0b0806,
+                    0 0 30px #b89a7a22;
+                margin: 0.2rem 0 0.2rem 0;
+                line-height: 1.1;
+                letter-spacing: -0.02em;
+                border-bottom: 3px solid #b89a7a88;
+                padding-bottom: 0.2rem;
+                display: inline-block;
+            }
+
+            .adlib {
+                font-size: 0.9rem;
+                color: #b89a7a;
+                background: #1e1713aa;
+                padding: 0.15rem 1.4rem;
+                border-radius: 40px;
+                display: inline-block;
+                backdrop-filter: blur(2px);
+                border: 1px solid #b89a7a44;
+                letter-spacing: 0.5px;
+                font-family: "Segoe UI", "Courier New", monospace;
+            }
+
+            .adlib i {
+                font-style: normal;
+                background: #2a221c;
+                padding: 0 8px;
+                border-radius: 20px;
+                color: #dbbd9a;
             }
 
             p {
-                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                font-family:
+                    "Segoe UI", "Courier New", "Lucida Sans Typewriter",
+                    monospace;
+                font-size: 1.2rem;
+                margin: 1.2rem 0;
+                padding-left: 0.8rem;
+                border-left: 3px solid #b89a7a33;
+                transition: 0.2s ease;
+                color: #d5cbbc;
+                letter-spacing: 0.02rem;
+            }
+
+            p:hover {
+                border-left-color: #dbbd9a;
+                padding-left: 1.4rem;
+                background: linear-gradient(
+                    90deg,
+                    #b89a7a0a 0%,
+                    transparent 80%
+                );
             }
 
             a {
-                color: #8bd5ca;
+                color: #e3cbaa;
                 text-decoration: none;
+                font-weight: 600;
+                padding: 0.1rem 0.3rem;
+                border-bottom: 2px dotted #b89a7a77;
+                transition: 0.25s ease;
+                background: #1a1613aa;
+                border-radius: 2px 12px 2px 12px;
+                box-shadow: 0 0 4px #00000044;
+                font-family: "Courier New", monospace;
+            }
 
-                &:hover {
-                    color: #b7bdf8;
+            a:hover {
+                color: #f5eddf;
+                background: #2a221c;
+                border-bottom: 2px solid #dbbd9a;
+                box-shadow:
+                    0 0 20px #b89a7a55,
+                    inset 0 0 10px #b89a7a11;
+                padding: 0.1rem 0.7rem;
+                border-radius: 0 16px 0 16px;
+                transform: scale(1.02);
+            }
+
+            .divider {
+                width: 100px;
+                height: 4px;
+                background: repeating-linear-gradient(
+                    90deg,
+                    #b89a7a 0px,
+                    #b89a7a 6px,
+                    #1a1613 6px,
+                    #1a1613 14px
+                );
+                margin: 1.6rem 0 1.2rem 0;
+                border-radius: 10px;
+                opacity: 0.5;
+            }
+
+            .pop {
+                color: #dbbd9a;
+                font-weight: 600;
+            }
+            .gold {
+                color: #c9ab8a;
+            }
+            .dim {
+                color: #9a8a78;
+            }
+
+            .sample {
+                font-style: italic;
+                background: #1f1a15aa;
+                padding: 0.2rem 1.2rem;
+                border-radius: 40px 8px 40px 8px;
+                display: inline-block;
+                border-left: 3px solid #b89a7a;
+                font-size: 0.95rem;
+                color: #c9b69c;
+            }
+
+            /* —— "SHAKE ONES" VIBE — glitch / reflection flicker —— */
+            .shook {
+                display: inline-block;
+                animation: shookflick 2.8s infinite alternate ease-in-out;
+            }
+
+            @keyframes shookflick {
+                0% {
+                    opacity: 0.7;
+                    transform: skewX(-1deg) scale(0.99);
                 }
+                100% {
+                    opacity: 1;
+                    transform: skewX(1deg) scale(1.02);
+                    text-shadow: 0 0 20px #b89a7a66;
+                }
+            }
+
+            .snare {
+                display: inline-block;
+                animation: snarehit 1.8s infinite alternate ease-in-out;
+            }
+
+            @keyframes snarehit {
+                0% {
+                    transform: translateY(-2px) rotate(-4deg);
+                }
+                100% {
+                    transform: translateY(4px) rotate(4deg);
+                }
+            }
+
+            .footnote {
+                margin-top: 2rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                align-items: center;
+                border-top: 1px solid #b89a7a33;
+                padding-top: 1.2rem;
+                font-size: 0.75rem;
+                color: #7f6b55;
+                letter-spacing: 1px;
+            }
+
+            .footnote span {
+                background: #1a1613;
+                padding: 0.15rem 1rem;
+                border-radius: 40px;
+                border: 1px solid #3d3229;
+            }
+
+            .scratch {
+                font-size: 1.4rem;
+                opacity: 0.2;
+                letter-spacing: 10px;
+                user-select: none;
+                color: #b89a7a;
+            }
+
+            /* responsive */
+            @media (max-width: 600px) {
+                .lens {
+                    padding: 1.8rem 1.2rem;
+                }
+                h1 {
+                    font-size: 2.8rem;
+                }
+                p {
+                    font-size: 1.05rem;
+                }
+            }
+
+            /* extra reflective "lens flare" dot */
+            .flare {
+                position: absolute;
+                top: 12%;
+                left: 5%;
+                width: 120px;
+                height: 120px;
+                background: radial-gradient(
+                    circle at 30% 40%,
+                    #ffffff0c,
+                    transparent 70%
+                );
+                border-radius: 50%;
+                filter: blur(20px);
+                pointer-events: none;
+                z-index: 1;
+                opacity: 0.4;
+            }
+            .flare2 {
+                position: absolute;
+                bottom: 8%;
+                right: 6%;
+                width: 80px;
+                height: 80px;
+                background: radial-gradient(
+                    circle at 70% 60%,
+                    #b89a7a0a,
+                    transparent 70%
+                );
+                border-radius: 50%;
+                filter: blur(30px);
+                pointer-events: none;
+                z-index: 1;
+                opacity: 0.3;
             }
         </style>
     </head>
     <body>
-        <p>hi, my name is</p>
-        <h1>Micah Aisosa Asowata</h1>
-        <p>i study CS at griffith college dublin</p>
-        <p>i built <a href="https://readle.micahasowata.com">readle</a></p>
-        <p>
-            right i am working my way through
-            <a href="roadmap.html">this roadmap</a> so i can become a better
-            engineer
-        </p>
-        <p>
-            i blog
-            <a href="https://blog.micahasowata.com/">here</a> sporadically
-        </p>
-        <p>workout <a href="workout.html">here</a></p>
-        <p>
-            my code would be <a href="https://github.com/micahasowata">here</a>
-        </p>
-        <p>
-            if you want to message me you can do that
-            <a href="mailto:me@micahasowata.com">here</a>
-        </p>
-        <p>my x is <a href="https://x.com/micahasowata">here</a></p>
-        <p>thank you</p>
+        <div class="lens">
+            <!-- reflections / glare -->
+            <div class="glare"></div>
+            <div class="flare"></div>
+            <div class="flare2"></div>
+
+            <div class="content">
+                <!-- header: shook ones × hov × pharrell -->
+                <div class="tagline">
+                    <span class="tag">🕶️ · shook lens</span>
+                    <span class="ninety">HOV·PHARRELL</span>
+                </div>
+
+                <!-- intro — shook ones energy -->
+                <p
+                    style="
+                        border-left-color: #c9ab8a;
+                        font-style: italic;
+                        font-size: 1.1rem;
+                        letter-spacing: 0.5px;
+                    "
+                >
+                    <span class="gold">⏣</span>
+                    <span class="shook" style="color: #dbbd9a"
+                        >"there's no rules, this is the shook ones flow"</span
+                    >
+                    <span class="dim" style="font-size: 0.9rem"
+                        >· Jay-Z on the verse, Pharrell on the beat</span
+                    >
+                </p>
+
+                <!-- name — bold, reflected -->
+                <h1>Micah Aisosa Asowata</h1>
+
+                <div
+                    style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        gap: 0.8rem;
+                        align-items: center;
+                        margin: 0.4rem 0 1rem 0;
+                    "
+                >
+                    <span class="adlib"
+                        ><i>✧</i> engineer / producer <i>✧</i></span
+                    >
+                    <span
+                        style="
+                            background: #1f1a15;
+                            padding: 0.1rem 1.4rem;
+                            border-radius: 40px;
+                            font-size: 0.85rem;
+                            border: 1px solid #7f6b55;
+                            color: #b89a7a;
+                        "
+                    >
+                        🗽· 212 · shook
+                    </span>
+                </div>
+
+                <!-- verses — each line is a bar, shook ones cadence -->
+                <p>
+                    <span class="pop">i study CS</span> at Griffith College
+                    Dublin —
+                    <span class="gold">code, data, algorithms,</span>
+                    <span class="dim">that's the scripture, no fiction.</span>
+                </p>
+
+                <p>
+                    <span class="pop">🔊 i built</span>
+                    <a href="https://readle.micahasowata.com" target="_blank"
+                        ><strong>readle</strong></a
+                    >
+                    <span class="dim">— that's a tool, not a toy,</span>
+                    <span style="color: #b89a7a; font-size: 0.9rem"
+                        >(Pharrell would nod, Jay would invest)</span
+                    >
+                </p>
+
+                <p>
+                    <span class="pop">📖 right now i'm grinding</span> through
+                    <a href="roadmap/index.html" target="_blank"
+                        >this roadmap</a
+                    >
+                    <span class="dim">— engineer elevation,</span>
+                    <span class="gold">blueprint for the future</span>
+                </p>
+
+                <p>
+                    <span class="pop">✍️ i blog</span>
+                    <a href="https://blog.micahasowata.com/" target="_blank"
+                        >sporadic</a
+                    >
+                    <span class="dim">like a freestyle session,</span>
+                    <span style="color: #b89a7a"
+                        >rare but potent, shook ones style.</span
+                    >
+                </p>
+
+                <p>
+                    <span class="pop">🏋️ workout</span>
+                    <a href="workout.html" target="_blank">iron paradise</a>
+                    <span class="dim">— reps for the soul,</span>
+                    <span class="gold">body & mind both gold.</span>
+                </p>
+
+                <p>
+                    <span class="pop">💻 my code lives</span>
+                    <a href="https://github.com/micahasowata" target="_blank"
+                        >on the 'hub</a
+                    >
+                    <span class="dim">— fork it, star it,</span>
+                    <span style="color: #dbbd9a">make it yours, no cap.</span>
+                </p>
+
+                <p>
+                    <span class="pop">📬 hit my line</span>
+                    <a href="mailto:me@micahasowata.com" target="_blank"
+                        >me@micahasowata</a
+                    >
+                    <span class="dim">— let's build something</span>
+                    <span class="gold">iconic, like a classic.</span>
+                </p>
+
+                <p>
+                    <span class="pop">🐦 my X</span>
+                    <a href="https://x.com/micahasowata" target="_blank"
+                        >@micahasowata</a
+                    >
+                    <span class="dim">— 140 or less,</span>
+                    <span style="color: #b89a7a"
+                        >but the impact is large, shook ones.</span
+                    >
+                </p>
+
+                <!-- divider: beat switch -->
+                <div class="divider"></div>
+
+                <!-- outro / thank you with shook ones & lens reflection -->
+                <div
+                    style="
+                        display: flex;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        gap: 0.8rem;
+                    "
+                >
+                    <p
+                        style="
+                            border-left: 3px solid #dbbd9a;
+                            background: #1f1a15aa;
+                            padding: 0.5rem 1.5rem;
+                            border-radius: 0 30px 0 30px;
+                            display: inline-block;
+                            margin: 0;
+                        "
+                    >
+                        🙏
+                        <span class="gold" style="font-weight: bold"
+                            >thank you</span
+                        >
+                        <span class="dim">— peace, love, and</span>
+                        <span style="color: #dbbd9a; font-weight: 600"
+                            >shook ones</span
+                        >
+                        <span
+                            style="
+                                display: inline-block;
+                                margin-left: 6px;
+                                font-size: 1.6rem;
+                                letter-spacing: 4px;
+                            "
+                            >🕶️</span
+                        >
+                    </p>
+                    <span class="sample"
+                        >"the reflection is the statement"</span
+                    >
+                </div>
+
+                <!-- footer — shook × pharrell × jay -->
+                <div class="footnote">
+                    <span class="scratch">⏺️ ⏺️ ⏺️</span>
+                    <span
+                        ><span style="color: #b89a7a">✦</span> SHAKE ONES ·
+                        NEPTUNE · ROC
+                        <span style="color: #b89a7a">✦</span></span
+                    >
+                    <span><span class="snare">⏣</span> reflective lens</span>
+                </div>
+
+                <!-- producer tag with shook ones nod -->
+                <div
+                    style="
+                        margin-top: 1rem;
+                        font-size: 0.7rem;
+                        color: #4d3f2e;
+                        text-align: right;
+                        border-top: 1px dashed #3d3229;
+                        padding-top: 0.8rem;
+                        letter-spacing: 1.5px;
+                    "
+                >
+                    <span
+                        style="
+                            background: #141110;
+                            padding: 0 12px;
+                            border-radius: 30px;
+                            border: 1px solid #3d3229;
+                        "
+                    >
+                        <span class="gold">⏣</span> produced by micah · shook
+                        ones mentality <span class="gold">⏣</span>
+                    </span>
+                </div>
+            </div>
+            <!-- end content -->
+        </div>
+        <!-- end lens -->
     </body>
 </html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>My Engineering Roadmap</title>
+
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <!-- ========== HEADER ========== -->
+        <header class="site-header">
+            <div class="header-inner">
+                <div class="logo">
+                    <span class="logo-symbol">◆</span>
+                    <span class="logo-text">Engineering Roadmap</span>
+                </div>
+                <nav class="header-nav">
+                    <button class="nav-btn" data-section="now">
+                        Now Playing
+                    </button>
+                    <button class="nav-btn" data-section="roadmap">
+                        Roadmap
+                    </button>
+                    <button class="nav-btn" data-section="projects">
+                        Projects
+                    </button>
+                    <button class="nav-btn" data-section="library">
+                        Library
+                    </button>
+                    <button class="nav-btn" data-section="math">Math</button>
+                    <button class="nav-btn" data-section="contract">
+                        Contract
+                    </button>
+                </nav>
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    🌙
+                </button>
+            </div>
+        </header>
+
+        <!-- ========== MAIN CONTENT ========== -->
+        <main id="app">
+            <!-- Rendered by JavaScript -->
+        </main>
+
+        <!-- ========== COMMAND PALETTE OVERLAY ========== -->
+        <div id="command-overlay" class="command-overlay hidden">
+            <div class="command-modal">
+                <input
+                    type="text"
+                    id="command-input"
+                    placeholder="Jump to phase, project, or section…"
+                    autofocus
+                />
+                <ul id="command-results"></ul>
+                <div class="command-hint">
+                    ↑↓ navigate · Enter go · Esc close
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SCRIPTS ========== -->
+        <script src="data/roadmap.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
