@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Engineering Roadmap · Primer + Catppuccin</title>
+        <!-- Primer CSS (lightweight core) + Catppuccin Mocha palette -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@primer/css@21.0.7/dist/primer.css"
+        />
+        <style>
+            /* Catppuccin Mocha palette overrides */
+            :root {
+                --color-canvas-default: #1e1e2e;
+                --color-canvas-subtle: #181825;
+                --color-border-default: #45475a;
+                --color-border-muted: #313244;
+                --color-fg-default: #cdd6f4;
+                --color-fg-muted: #a6adc8;
+                --color-fg-subtle: #6c7086;
+                --color-accent-fg: #89b4fa;
+                --color-accent-emphasis: #cba6f7;
+                --color-success-fg: #a6e3a1;
+                --color-attention-fg: #f9e2af;
+                --color-danger-fg: #f38ba8;
+                --color-primer-bg: #1e1e2e;
+                --color-header-bg: #181825;
+                --color-header-border: #45475a;
+            }
+
+            body {
+                background-color: #1e1e2e;
+                color: #cdd6f4;
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    Helvetica, Arial, sans-serif;
+                padding: 2rem 1rem;
+                line-height: 1.6;
+            }
+
+            .container {
+                max-width: 1012px;
+                margin: 0 auto;
+                background: #181825;
+                border-radius: 16px;
+                padding: 2rem 2.5rem 3rem;
+                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+                border: 1px solid #313244;
+            }
+
+            /* Headings with catppuccin flair */
+            h1,
+            h2,
+            h3,
+            h4,
+            h5 {
+                color: #cdd6f4;
+                font-weight: 600;
+            }
+
+            h1 {
+                font-size: 2.25rem;
+                border-bottom: 2px solid #cba6f7;
+                padding-bottom: 0.5rem;
+                margin-bottom: 1.5rem;
+                color: #f5e0dc;
+                letter-spacing: -0.01em;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                margin-top: 2.8rem;
+                margin-bottom: 1rem;
+                color: #a6e3a1;
+                border-left: 6px solid #a6e3a1;
+                padding-left: 0.8rem;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+                margin-top: 2rem;
+                margin-bottom: 0.6rem;
+                color: #89b4fa;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+
+            h4 {
+                font-size: 1.1rem;
+                margin-top: 1.4rem;
+                margin-bottom: 0.4rem;
+                color: #f9e2af;
+                font-weight: 500;
+            }
+
+            .markdown-body {
+                background: transparent;
+                color: #cdd6f4;
+            }
+
+            .markdown-body hr {
+                background: #45475a;
+                height: 1px;
+            }
+
+            .markdown-body blockquote {
+                border-left: 4px solid #cba6f7;
+                color: #a6adc8;
+                background: #1e1e2e;
+                padding: 0.8rem 1.2rem;
+                border-radius: 8px;
+            }
+
+            /* Primer overrides for catppuccin */
+            .border {
+                border-color: #45475a !important;
+            }
+            .bg-gray-100 {
+                background-color: #313244 !important;
+            }
+            .bg-gray-200 {
+                background-color: #45475a !important;
+            }
+            .text-gray {
+                color: #a6adc8 !important;
+            }
+            .text-muted {
+                color: #6c7086 !important;
+            }
+            .text-green {
+                color: #a6e3a1 !important;
+            }
+            .text-blue {
+                color: #89b4fa !important;
+            }
+            .text-yellow {
+                color: #f9e2af !important;
+            }
+            .text-red {
+                color: #f38ba8 !important;
+            }
+            .text-purple {
+                color: #cba6f7 !important;
+            }
+            .btn {
+                background-color: #313244;
+                border-color: #45475a;
+                color: #cdd6f4;
+            }
+            .btn:hover {
+                background-color: #45475a;
+                border-color: #6c7086;
+                color: #f5e0dc;
+            }
+
+            .phase-card {
+                background: #1e1e2e;
+                border-radius: 12px;
+                padding: 1.2rem 1.5rem;
+                margin: 1.6rem 0;
+                border-left: 5px solid #cba6f7;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                border: 1px solid #313244;
+            }
+
+            .phase-card .phase-id {
+                font-weight: 700;
+                color: #f38ba8;
+                font-size: 1.2rem;
+                margin-right: 0.6rem;
+            }
+
+            .badge {
+                background: #45475a;
+                color: #cdd6f4;
+                padding: 0.1rem 0.7rem;
+                border-radius: 20px;
+                font-size: 0.7rem;
+                font-weight: 600;
+                letter-spacing: 0.3px;
+                margin-left: 0.4rem;
+                display: inline-block;
+            }
+
+            .exit-criteria {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.3rem 0.8rem;
+                margin-top: 0.6rem;
+            }
+            .exit-criteria span {
+                background: #313244;
+                padding: 0.2rem 0.7rem;
+                border-radius: 20px;
+                font-size: 0.75rem;
+                color: #a6e3a1;
+                border: 1px solid #45475a;
+            }
+
+            .inline-code {
+                background: #313244;
+                padding: 0.1rem 0.5rem;
+                border-radius: 6px;
+                font-family: "SF Mono", Menlo, monospace;
+                font-size: 0.85rem;
+                color: #f9e2af;
+            }
+
+            .list-style-none {
+                list-style: none;
+                padding-left: 0;
+            }
+            .list-style-none li {
+                padding-left: 1.2rem;
+                position: relative;
+                margin-bottom: 0.2rem;
+            }
+            .list-style-none li::before {
+                content: "•";
+                color: #89b4fa;
+                font-weight: bold;
+                position: absolute;
+                left: 0;
+            }
+            .list-style-none li.done::before {
+                content: "✓";
+                color: #a6e3a1;
+            }
+
+            .contract-box {
+                background: #181825;
+                padding: 1.2rem 1.8rem;
+                border-radius: 14px;
+                border: 1px solid #cba6f7;
+                margin-top: 2rem;
+            }
+
+            .contract-box ol {
+                padding-left: 1.4rem;
+                color: #cdd6f4;
+            }
+            .contract-box ol li {
+                margin-bottom: 0.25rem;
+            }
+
+            .grid-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem;
+            }
+
+            @media (max-width: 700px) {
+                .container {
+                    padding: 1.2rem;
+                }
+                .grid-2 {
+                    grid-template-columns: 1fr;
+                    gap: 0.8rem;
+                }
+            }
+
+            .footer-note {
+                border-top: 1px solid #45475a;
+                margin-top: 2.5rem;
+                padding-top: 1.2rem;
+                text-align: center;
+                color: #6c7086;
+                font-size: 0.9rem;
+            }
+
+            .milestone-box {
+                background: #1e1e2e;
+                padding: 0.6rem 1rem;
+                border-radius: 8px;
+                margin: 0.3rem 0;
+                border-left: 4px solid #f9e2af;
+            }
+
+            /* primer utility overrides */
+            .color-fg-muted {
+                color: #a6adc8 !important;
+            }
+            .color-fg-subtle {
+                color: #6c7086 !important;
+            }
+            .color-bg-canvas {
+                background-color: #1e1e2e !important;
+            }
+            .color-bg-secondary {
+                background-color: #181825 !important;
+            }
+            .color-border-primary {
+                border-color: #45475a !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>🧭 My Engineering Roadmap</h1>
+            <div class="d-flex flex-wrap flex-items-center gap-2 mb-3">
+                <span class="Label Label--green">sophomore → depth</span>
+                <span class="Label Label--blue">C++ · CLRS · systems</span>
+                <span class="Label Label--purple">one year</span>
+            </div>
+
+            <!-- Notation Key -->
+            <div
+                class="bg-gray-100 p-3 rounded-2 mb-4 d-flex flex-wrap flex-items-center gap-2"
+                style="background: #313244"
+            >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">P</span> Phase</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">G</span> Goal</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">WHY</span> Rationale</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">R</span> Resource</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">SEQ</span> Sequence</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">I</span> Implementation</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">PR</span> Project</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">ENG</span> Engineering</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">X</span> Exit</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">N</span> Not now</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">GH</span> GitHub</span
+                >
+                <span class="text-muted" style="font-size: 0.8rem"
+                    ><span class="inline-code">M</span> Milestone</span
+                >
+            </div>
+
+            <!-- 0. Starting Point -->
+            <section>
+                <h2>0. Starting Point</h2>
+                <ul class="list-style-none">
+                    <li>
+                        Baseline: sophomore CS, zero depth in algorithms,
+                        discrete math, systems. GitHub empty.
+                    </li>
+                    <li>
+                        "Starting from zero" — no assumed mastery. Every concept
+                        built explicitly.
+                    </li>
+                    <li>
+                        Success after one year: fluent C++, CLRS through graphs,
+                        math maturity, Rust, OCaml exposure, 4+
+                        production-quality repos.
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Philosophy + Rules -->
+            <div class="grid-2 mt-3">
+                <div
+                    class="bg-gray-100 p-3 rounded-2"
+                    style="background: #1e1e2e; border: 1px solid #313244"
+                >
+                    <h3 style="margin-top: 0">✨ Philosophy</h3>
+                    <p>
+                        <strong>Subtract and push.</strong> No new books,
+                        languages, side-projects. Execution, not curation.
+                    </p>
+                    <p>
+                        <strong>Outwork everyone by being bored.</strong>
+                        Competence is built in the boring middle.
+                    </p>
+                    <p>
+                        <strong>Depth beats breadth.</strong> Compilers,
+                        databases, low-latency — all depth disciplines.
+                    </p>
+                </div>
+                <div
+                    class="bg-gray-100 p-3 rounded-2"
+                    style="background: #1e1e2e; border: 1px solid #313244"
+                >
+                    <h3 style="margin-top: 0">⛔ The Rules</h3>
+                    <ul class="list-style-none" style="font-size: 0.9rem">
+                        <li>No textbook substitutions.</li>
+                        <li>No new languages beyond C++, Rust, OCaml.</li>
+                        <li>No projects outside the ladder.</li>
+                        <li>No phase transitions without exit criteria.</li>
+                        <li>No reading without implementing.</li>
+                        <li>No GitHub activity for its own sake.</li>
+                        <li>No roadmap redesign mid-phase.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ============ PHASES ============ -->
+            <h2>3. The One‑Year Roadmap</h2>
+
+            <!-- P1 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P1</span>
+                    <strong>Programming + Mathematical Foundations</strong>
+                    <span class="badge">Weeks 1–8</span>
+                </div>
+                <div class="text-muted" style="margin: 0.2rem 0">
+                    <span class="inline-code">G</span> Build C++ literacy and
+                    discrete-math proof foundations concurrently
+                </div>
+                <div class="text-muted" style="font-size: 0.9rem">
+                    <span class="inline-code">WHY</span> Algorithm analysis
+                    needs proof technique; C++ fluency before CLRS
+                </div>
+                <div>
+                    <span class="inline-code">R</span> PPP3 ch.1-8 · Epp ch.1-5
+                    · CLRS ch.1-3
+                </div>
+                <div>
+                    <span class="inline-code">SEQ</span> Epp logic/proof
+                    parallel to PPP3; CLRS ch.1-2 week 3; ch.3 closes
+                </div>
+                <ul class="list-style-none">
+                    <li>
+                        Complete PPP3 1–8: syntax, control, functions, vectors
+                    </li>
+                    <li>
+                        Complete Epp 1–5: logic, proof, induction, sets,
+                        counting
+                    </li>
+                    <li>Read CLRS 1–3 twice each</li>
+                    <li>Solve 50+ Epp exercises</li>
+                </ul>
+                <div>
+                    <span class="inline-code">I</span> Insertion sort in C++,
+                    15+ small C++ programs, benchmark
+                </div>
+                <div>
+                    <span class="inline-code">PR</span> Basic C++ Algorithms
+                    Library (private)
+                </div>
+                <div>
+                    <span class="inline-code">ENG</span> Git, Linux, g++ flags,
+                    Makefile, gdb (week5)
+                </div>
+                <div>
+                    <span class="inline-code">N</span> Rust · OCaml · Calculus ·
+                    Advanced OOP · Concurrency
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> zero-error C++ programs · explain O/Ω/Θ ·
+                    implement insertion sort · induction proof ·
+                    permutation/comb · gdb debug
+                </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P2</span>
+                    <strong>Core DSA + Discrete Math Depth</strong>
+                    <span class="badge">Weeks 9–18</span>
+                </div>
+                <div>
+                    <span class="inline-code">G</span> Master sorting/selection;
+                    deepen discrete math
+                </div>
+                <div>
+                    <span class="inline-code">R</span> PPP3 ch.9-12 · Epp ch.6-8
+                    · CLRS ch.4-9 · Stewart ch.1-2 (light)
+                </div>
+                <ul class="list-style-none">
+                    <li>
+                        Implement heapsort, quicksort, merge, counting, radix,
+                        bucket
+                    </li>
+                    <li>30+ CLRS ch.4-9 exercises, 30+ Epp ch.6-8</li>
+                    <li>Analyze 5+ algorithms for time/space</li>
+                </ul>
+                <div>
+                    <span class="inline-code">I</span> All sorts, selection,
+                    hash table (chaining), benchmarks
+                </div>
+                <div>
+                    <span class="inline-code">PR</span> Algorithms Library v1.0
+                    (public, week18)
+                </div>
+                <div>
+                    <span class="inline-code">ENG</span> valgrind memcheck,
+                    std::chrono
+                </div>
+                <div>
+                    <span class="inline-code">N</span> Rust/OCaml · linear
+                    algebra · graphs · DP · trees beyond hashing
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> all sorts correct · best/avg/worst analysis ·
+                    randomized quicksort · clean public repo
+                </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P3</span>
+                    <strong>Advanced Data Structures + Calc/LinAlg</strong>
+                    <span class="badge">Weeks 19–27</span>
+                </div>
+                <div>
+                    <span class="inline-code">G</span> Master search
+                    trees/hashing; calculus & linear algebra foundations
+                </div>
+                <div>
+                    <span class="inline-code">R</span> PPP3 ch.13-14 · CLRS
+                    10-13 · Stewart 2-5 · Lay 1-3
+                </div>
+                <ul class="list-style-none">
+                    <li>
+                        Hash table (two collision strategies), BST, red-black
+                        tree
+                    </li>
+                    <li>25+ CLRS 10-13 exercises; 15+ Stewart; 15+ Lay</li>
+                </ul>
+                <div>
+                    <span class="inline-code">I</span> Universal hashing,
+                    RB-tree rotations
+                </div>
+                <div>
+                    <span class="inline-code">PR</span> Data Structures Library
+                    v1.0 (public, week27)
+                </div>
+                <div>
+                    <span class="inline-code">ENG</span> Memory/pointers, CMake,
+                    perf/cachegrind
+                </div>
+                <div>
+                    <span class="inline-code">N</span> Rust/OCaml · graph algos
+                    · DP · advanced linear algebra
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> BST + RB-tree from scratch · hash vs tree
+                    tradeoffs · linear system · derivative optimization · clean
+                    repo
+                </div>
+            </div>
+
+            <!-- P4 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P4</span>
+                    <strong>Advanced Algorithms + Performance</strong>
+                    <span class="badge">Weeks 28–40</span>
+                </div>
+                <div>
+                    <span class="inline-code">G</span> DP/greedy/amortized;
+                    profiling; Rust foundations
+                </div>
+                <div>
+                    <span class="inline-code">R</span> CLRS 14-16 · PPP3 15-17 ·
+                    Stewart 6-8 · Lay 4-6 · Rust Book 1-6
+                </div>
+                <ul class="list-style-none">
+                    <li>6+ DP (rod cutting, LCS, knapsack, matrix chain)</li>
+                    <li>Huffman coding, amortized analysis on 3+ structures</li>
+                    <li>25+ CLRS exercises, 15+ Lay</li>
+                </ul>
+                <div>
+                    <span class="inline-code">I</span> Profile C++ with perf,
+                    small Rust programs (ownership/borrowing)
+                </div>
+                <div>
+                    <span class="inline-code">PR</span> Algorithm Analysis &
+                    Optimization Tool (optional public)
+                </div>
+                <div>
+                    <span class="inline-code">ENG</span> Flame graphs, hardware
+                    counters, cache locality
+                </div>
+                <div>
+                    <span class="inline-code">N</span> Deep Rust, OCaml, graphs,
+                    concurrency
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> DP vs greedy tradeoffs · amortized analysis ·
+                    2-3x optimization · Rust ownership · eigenvalues
+                </div>
+            </div>
+
+            <!-- P5 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P5</span>
+                    <strong>Graphs + Rust Systems</strong>
+                    <span class="badge">Weeks 41–52</span>
+                </div>
+                <div>
+                    <span class="inline-code">G</span> Master graph algorithms;
+                    Rust as primary implementation
+                </div>
+                <div>
+                    <span class="inline-code">R</span> CLRS 20-25 · Rust Book
+                    7-13,16 · Stewart 9-10 · Lay 7-8
+                </div>
+                <ul class="list-style-none">
+                    <li>
+                        BFS, DFS, topsort, SCC, Dijkstra, Bellman-Ford,
+                        Floyd-Warshall
+                    </li>
+                    <li>Kruskal, Prim, Ford-Fulkerson</li>
+                    <li>20+ CLRS exercises, 10+ Lay</li>
+                </ul>
+                <div>
+                    <span class="inline-code">I</span> 2+ graph algorithms in
+                    Rust, benchmark Rust vs C++
+                </div>
+                <div>
+                    <span class="inline-code">PR</span> Graph Algorithm Library
+                    (Rust primary, public week52)
+                </div>
+                <div>
+                    <span class="inline-code">ENG</span> Memory hierarchy, NUMA,
+                    threading basics (Rust)
+                </div>
+                <div>
+                    <span class="inline-code">N</span> OCaml · deep concurrency
+                    · networking · NP-hard
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> all major graph algos · correctness proof ·
+                    idiomatic Rust · profile diff Rust/C++
+                </div>
+            </div>
+
+            <!-- P6 -->
+            <div class="phase-card">
+                <div>
+                    <span class="phase-id">P6</span>
+                    <strong>Specialization Preparation</strong>
+                    <span class="badge">Weeks 53+ → Year 2</span>
+                </div>
+                <div>
+                    <span class="inline-code">G</span> Survey remaining CLRS;
+                    introduce OCaml; choose specialization
+                </div>
+                <div>
+                    <span class="inline-code">R</span> CLRS 26-35 (27,34,35
+                    primary) · Real World OCaml 1-6
+                </div>
+                <ul class="list-style-none">
+                    <li>NP-completeness, approximation algorithm</li>
+                    <li>
+                        OCaml: functions, pattern matching, records,
+                        immutability
+                    </li>
+                    <li>Choose specialization direction</li>
+                </ul>
+                <div>
+                    <span class="inline-code">PR</span> Specialization
+                    Exploration (lexer/parser or index or deep-opt)
+                </div>
+                <div>
+                    <span class="inline-code">N</span> Full compiler/db ·
+                    interview prep (light)
+                </div>
+                <div class="exit-criteria">
+                    <span>X</span> explain NP-completeness · OCaml pattern
+                    matching · state Year 2 direction
+                </div>
+            </div>
+
+            <hr class="my-4" />
+
+            <!-- DSA + Math + Language roadmaps -->
+            <div class="grid-2">
+                <div>
+                    <h3>📘 CLRS chain (C++)</h3>
+                    <ul class="list-style-none">
+                        <li>
+                            1-3 Foundations · 4 Divide & conquer · 5
+                            Probabilistic
+                        </li>
+                        <li>6-9 Sorting/selection · 10-13 Data structures</li>
+                        <li>14-16 DP/greedy/amortized · 20-25 Graphs</li>
+                        <li>
+                            26-35 NP-complete/approx ·
+                            <span class="text-green"
+                                >read twice, implement once</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>🧮 Math roadmap</h3>
+                    <p>
+                        <strong>Discrete (Epp) priority 1</strong> — logic,
+                        proof, induction, sets, counting, relations.
+                    </p>
+                    <p>
+                        <strong>Calculus (Stewart) priority 2</strong> — limits,
+                        derivatives, integrals, series (phases 2–5).
+                    </p>
+                    <p>
+                        <strong>Linear algebra (Lay) priority 3</strong> —
+                        systems, vector spaces, eigenvalues (phases 3–5).
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <h3>🗺️ Language roadmap</h3>
+                <ul class="list-style-none">
+                    <li><strong>C++</strong> active Phases 1–5 (primary)</li>
+                    <li>
+                        <strong>Rust</strong> foundations Phase 4, active Phase
+                        5 (graph algorithms)
+                    </li>
+                    <li>
+                        <strong>OCaml</strong> introduced Phase 6 (compiler
+                        bridge)
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Project Ladder -->
+            <h2>7. Project Ladder</h2>
+            <div class="d-flex flex-column gap-1">
+                <div>
+                    <span class="inline-code">PR1</span> Basic C++ Algorithms
+                    Library (private) — insertion, linear/binary search
+                </div>
+                <div>
+                    <span class="inline-code">PR2</span> Algorithms Library v1.0
+                    (public week18) — all sorts, benchmarks
+                </div>
+                <div>
+                    <span class="inline-code">PR3</span> Data Structures Library
+                    v1.0 (public week27) — hash, BST, RB-tree
+                </div>
+                <div>
+                    <span class="inline-code">PR4</span> Algorithm Analysis &
+                    Optimization Tool (optional public) — DP vs greedy, profiled
+                </div>
+                <div>
+                    <span class="inline-code">PR5</span> Graph Algorithm Library
+                    (public week52) — Rust primary, C++ comparison
+                </div>
+                <div>
+                    <span class="inline-code">PR6</span> Specialization
+                    Exploration — lexer/parser (OCaml) or index (Rust) or
+                    deep-opt
+                </div>
+            </div>
+
+            <!-- Weekly -->
+            <h2>9. Weekly Operating System</h2>
+            <ul class="list-style-none">
+                <li>
+                    Normal week: ~32.5 hrs (7.5 study, 15 implement, 8 uni, 2
+                    admin)
+                </li>
+                <li>Busy week: reduce study, maintain 10-12 implement</li>
+                <li>
+                    Recovery week: 10-12 hrs review/light implement, no new
+                    material
+                </li>
+            </ul>
+
+            <!-- Milestones -->
+            <h2>13. Six‑Month Milestone</h2>
+            <div class="milestone-box">
+                ✔ non‑trivial C++ classes, exception‑safe
+            </div>
+            <div class="milestone-box">✔ all sorting from memory</div>
+            <div class="milestone-box">✔ hash, BST, RB‑tree</div>
+            <div class="milestone-box">
+                ✔ induction, combinatorics, derivatives, linear systems
+            </div>
+            <div class="milestone-box">
+                ✔ gdb/valgrind/perf, 1 public repo + 1 near‑complete
+            </div>
+
+            <h2>14. One‑Year Milestone</h2>
+            <div class="milestone-box">✔ advanced C++ design, profiling</div>
+            <div class="milestone-box">✔ CLRS through graphs (ch.1-25)</div>
+            <div class="milestone-box">✔ memory hierarchy, caching, NUMA</div>
+            <div class="milestone-box">✔ graph algorithms, idiomatic Rust</div>
+            <div class="milestone-box">
+                ✔ discrete/calc/linear algebra maturity
+            </div>
+            <div class="milestone-box">✔ 4+ public repos, LeetCode hard</div>
+
+            <!-- Contract -->
+            <div class="contract-box">
+                <h3 style="color: #f5e0dc; margin-top: 0">📜 The Contract</h3>
+                <ol>
+                    <li>
+                        PPP3, CLRS, Epp, Stewart, Lay — only primary resources.
+                    </li>
+                    <li>
+                        C++, Rust, OCaml — activated in order, never
+                        simultaneously.
+                    </li>
+                    <li>Only 6 projects in Section 7.</li>
+                    <li>No phase transition without exit criteria.</li>
+                    <li>Hard topic → go deeper, never sideways.</li>
+                    <li>Every concept implemented or proved by hand.</li>
+                    <li>
+                        One editor, debugger, compiler, build tool — all year.
+                    </li>
+                    <li>Only finished, tested, documented code goes public.</li>
+                    <li>
+                        No redesign mid-phase — record concerns at boundaries.
+                    </li>
+                    <li>Falling behind → recovery protocol, never restart.</li>
+                    <li>Interview prep starts Phase 6.</li>
+                    <li>Competence = unaided implementation.</li>
+                    <li>Every week, name the next box.</li>
+                    <li>Break a rule? write why before continuing.</li>
+                    <li>Subtract and push. Outwork everyone by being bored.</li>
+                </ol>
+            </div>
+
+            <!-- Daily principle -->
+            <div
+                class="bg-gray-100 p-4 rounded-2 mt-4 text-center"
+                style="background: #313244"
+            >
+                <p style="font-size: 1.4rem; color: #f9e2af; font-weight: 600">
+                    ⚡ What is the next box?
+                </p>
+                <p style="color: #cdd6f4">
+                    Find it. Check it. Move to the next. That is the entire
+                    operating system.
+                </p>
+            </div>
+
+            <div class="footer-note">
+                catppuccin · mocha · primer‑inspired · engineering roadmap ·
+                built for depth
+            </div>
+        </div>
+    </body>
+</html>
