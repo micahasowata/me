@@ -664,12 +664,126 @@ const ROADMAP = {
         "Completed the retrospective.",
       ],
     },
+
+    // ============================================================
+    // PHASE 8 — THE EXPANSION
+    // ============================================================
+    {
+      id: "phase8",
+      number: 8,
+      title: "The Expansion",
+      subtitle: "Specialization: PL, Distributed Systems, Hardware",
+      status: "locked",
+      objective:
+        "Specialize by building three complete, portfolio-grade systems: a compiler toolchain, a distributed database, and a deep understanding of the hardware/OS interface.",
+      why: "Phase 0-7 gave you a powerful, general-purpose foundation. Phase 8 is about applying that foundation to specific, high-value domains. You'll learn new languages (OCaml, Rust), but the focus is on the systems you build, not the languages themselves.",
+      concepts: [
+        "Language engineering (lexing, parsing, type checking, code generation)",
+        "Distributed systems (Raft consensus, storage engines, network programming)",
+        "Systems programming (hardware interaction, OS internals, performance)",
+        "Functional programming (OCaml)",
+        "Memory safety (Rust)",
+      ],
+      resources: {
+        language_engineering:
+          "Real World OCaml, How to Compile Your Language, Writing an Interpreter in Go, Writing a Compiler in Go",
+        distributed_systems:
+          "cstack DB Tutorial, Build Your Own Database, Raft KV Store, Building Git",
+        systems_hardware: "CS:APP, OSTEP",
+      },
+      tasks: [
+        // Track A: Language Engineering
+        {
+          id: "p8t1",
+          text: "A1: Read Cornell OCaml Programming (Parts I–II).",
+        },
+        {
+          id: "p8t2",
+          text: "A1: Implement lexer, Pratt parser, AST, type checker, tree-walk interpreter in OCaml.",
+        },
+        {
+          id: "p8t3",
+          text: "A2: Implement bytecode VM or LLVM IR backend for your interpreter.",
+        },
+        {
+          id: "p8t4",
+          text: "A3: Implement standalone dependency resolver using PubGrub (Version SAT).",
+        },
+
+        // Track B: Distributed Systems & Storage
+        {
+          id: "p8t5",
+          text: "B1: Build persistent B+ Tree or LSM storage engine in C++ with WAL and memory-mapped files.",
+        },
+        {
+          id: "p8t6",
+          text: "B2: Implement Raft consensus (leader election, log replication) over POSIX sockets.",
+        },
+        {
+          id: "p8t7",
+          text: "B3: Build Git clone: SHA hashing, blob/tree/commit objects, DAG traversal, staging index.",
+        },
+
+        // Track C: Systems & Hardware (Parallel Study)
+        {
+          id: "p8t8",
+          text: "C: Complete core exercises on virtual memory, paging, and segmentation (CS:APP/OSTEP).",
+        },
+        {
+          id: "p8t9",
+          text: "C: Understand and demonstrate CPU cache line alignment and its performance impact.",
+        },
+        {
+          id: "p8t10",
+          text: "C: Implement and reason about low-level concurrency primitives (locks, semaphores).",
+        },
+        {
+          id: "p8t11",
+          text: "C: Trace and explain the path of a system call from user space to kernel.",
+        },
+
+        // Integration & Polish
+        {
+          id: "p8t12",
+          text: "Write tests and documentation for all projects.",
+        },
+        {
+          id: "p8t13",
+          text: "Publish all projects on GitHub with clear READMEs.",
+        },
+        {
+          id: "p8t14",
+          text: "Write a retrospective: what you learned in Phase 8.",
+        },
+      ],
+      projects: [
+        "Compiler Toolchain (OCaml)",
+        "Package Manager (OCaml)",
+        "Distributed KV Store (C++/Rust)",
+        "Version Control System (C++)",
+      ],
+      projects_private: false,
+      ignored: [
+        "New languages (you will learn OCaml and Rust as part of the projects, but they are tools, not the goal)",
+        "Web development (not relevant to this phase)",
+        "Mobile development (not relevant to this phase)",
+        "Machine learning (not relevant to this phase)",
+      ],
+      exit: [
+        "All compiler and package manager components are built, tested, and published.",
+        "The distributed KV store and VCS are functional, tested, and published.",
+        "You can explain and demonstrate the core OS/hardware concepts.",
+        "You have written a retrospective for each major project.",
+        "Your GitHub shows a clear progression from foundational work to specialized systems.",
+      ],
+    },
   ],
 
   // ============================================================
   // PROJECT LADDER
   // ============================================================
   projects: [
+    // Phase 0
     {
       name: "Prime Tester",
       difficulty: 1,
@@ -684,6 +798,8 @@ const ROADMAP = {
       demo: "Loops vs closed-form",
       phase: 0,
     },
+
+    // Phase 1
     {
       name: "Big-O Visualizer",
       difficulty: 2,
@@ -698,6 +814,8 @@ const ROADMAP = {
       demo: "Performance comparison",
       phase: 1,
     },
+
+    // Phase 2
     {
       name: "Vector Implementation",
       difficulty: 3,
@@ -712,6 +830,8 @@ const ROADMAP = {
       demo: "Mathematical maturity + C++",
       phase: 2,
     },
+
+    // Phase 3
     {
       name: "Sorting Showdown",
       difficulty: 3,
@@ -747,6 +867,8 @@ const ROADMAP = {
       demo: "3-way partitioning",
       phase: 3,
     },
+
+    // Phase 4
     {
       name: "Knapsack Solver",
       difficulty: 4,
@@ -775,6 +897,8 @@ const ROADMAP = {
       demo: "Priority queue application",
       phase: 4,
     },
+
+    // Phase 5
     {
       name: "Graph Builder and Traversal",
       difficulty: 5,
@@ -810,6 +934,8 @@ const ROADMAP = {
       demo: "Ford-Fulkerson on a network",
       phase: 5,
     },
+
+    // Phase 6
     {
       name: "RSA Key Generator",
       difficulty: 5,
@@ -831,6 +957,8 @@ const ROADMAP = {
       demo: "Backtracking",
       phase: 6,
     },
+
+    // Phase 7
     {
       name: "Macro-Project",
       difficulty: 6,
@@ -838,12 +966,43 @@ const ROADMAP = {
       demo: "Flagship GitHub repository",
       phase: 7,
     },
+
+    // Phase 8
+    {
+      name: "Compiler Toolchain (OCaml)",
+      difficulty: 7,
+      status: "public",
+      demo: "Lexer → Parser → Type Checker → Bytecode/LLVM",
+      phase: 8,
+    },
+    {
+      name: "Package Manager (OCaml)",
+      difficulty: 6,
+      status: "public",
+      demo: "PubGrub dependency resolver",
+      phase: 8,
+    },
+    {
+      name: "Distributed KV Store (C++/Rust)",
+      difficulty: 7,
+      status: "public",
+      demo: "LSM/B+Tree + Raft consensus",
+      phase: 8,
+    },
+    {
+      name: "Version Control System (C++)",
+      difficulty: 6,
+      status: "public",
+      demo: "Git clone with SHA, DAG, staging",
+      phase: 8,
+    },
   ],
 
   // ============================================================
   // LIBRARY
   // ============================================================
   library: [
+    // Phase 0–7
     {
       title: "Programming: Principles and Practice Using C++",
       author: "Bjarne Stroustrup",
@@ -879,25 +1038,80 @@ const ROADMAP = {
       subject: "C++",
       status: "Not started",
     },
+
+    // Phase 8 — Language Engineering
     {
       title: "Real World OCaml",
       author: "Minsky, Madhavapeddy, Hickey",
-      role: "Future",
+      role: "Primary",
+      subject: "PL/OCaml",
+      status: "Not started",
+    },
+    {
+      title: "How to Compile Your Language",
+      author: "isuckatcs",
+      role: "Primary",
       subject: "Compilers",
       status: "Not started",
     },
     {
-      title: "The Rust Book",
-      author: "Klabnik, Nichols",
-      role: "Future",
+      title: "Writing an Interpreter in Go",
+      author: "Thorsten Ball",
+      role: "Concepts",
+      subject: "PL",
+      status: "Not started",
+    },
+    {
+      title: "Writing a Compiler in Go",
+      author: "Thorsten Ball",
+      role: "Concepts",
+      subject: "PL",
+      status: "Not started",
+    },
+    {
+      title: "Compiling to Assembly from Scratch",
+      author: "Vladimir Keleshev",
+      role: "Reference",
+      subject: "Assembly/Compilers",
+      status: "Not started",
+    },
+
+    // Phase 8 — Distributed Systems & Storage
+    {
+      title: "Build Your Own Database",
+      author: "James Smith",
+      role: "Primary",
+      subject: "Databases",
+      status: "Not started",
+    },
+    {
+      title: "Building Git",
+      author: "James Coglan",
+      role: "Primary",
+      subject: "VCS",
+      status: "Not started",
+    },
+    {
+      title: "Raft KV Store",
+      author: "Phil Eaton",
+      role: "Primary",
+      subject: "Distributed Systems",
+      status: "Not started",
+    },
+
+    // Phase 8 — Systems & Hardware
+    {
+      title: "Computer Systems: A Programmer's Perspective",
+      author: "Bryant, O'Hallaron",
+      role: "Primary",
       subject: "Systems",
       status: "Not started",
     },
     {
-      title: "Let's Go",
-      author: "Alex Edwards",
-      role: "Future",
-      subject: "Backend",
+      title: "Operating Systems: Three Easy Pieces",
+      author: "Remzi, Andrea",
+      role: "Primary",
+      subject: "OS",
       status: "Not started",
     },
   ],
@@ -946,6 +1160,16 @@ const ROADMAP = {
       application: "Algorithm analysis across all phases",
       phase: 7,
     },
+    {
+      concept: "Type theory (basics)",
+      application: "Compiler type checking",
+      phase: 8,
+    },
+    {
+      concept: "Distributed systems theory (CAP, Raft)",
+      application: "Distributed KV store",
+      phase: 8,
+    },
   ],
 
   // ============================================================
@@ -954,33 +1178,33 @@ const ROADMAP = {
   languages: {
     current: {
       name: "C++",
-      role: "Primary implementation language",
+      role: "Primary implementation language for Phases 0–7",
       resource: "PPP3",
       reason:
         "Gives low-level control, teaches memory management, widely used in systems programming",
     },
     future: [
       {
-        name: "Rust",
-        when: "After Phase 7",
-        role: "Systems programming, distributed systems",
-        resource: "The Rust Book",
-      },
-      {
         name: "OCaml",
-        when: "After Phase 7",
-        role: "Compilers, programming languages",
+        when: "Phase 8",
+        role: "Language engineering",
         resource: "Real World OCaml",
       },
       {
+        name: "Rust",
+        when: "Phase 8",
+        role: "Distributed systems, memory safety",
+        resource: "The Rust Book",
+      },
+      {
         name: "Go",
-        when: "After Phase 7",
+        when: "After Phase 8",
         role: "Microservices, backends",
         resource: "Let's Go",
       },
       {
         name: "JavaScript",
-        when: "After Phase 7",
+        when: "After Phase 8",
         role: "Frontend",
         resource: "Eloquent JavaScript",
       },
@@ -1078,12 +1302,12 @@ const ROADMAP = {
     {
       period: "2 Years",
       description:
-        "Complete Phases 0–7. Flagship macro-project on GitHub. Comfortable with C++ (most features) and familiar with the STL. Understand NP-completeness and approximation algorithms. Working knowledge of Rust or OCaml. Can read research papers in your areas of interest. Ready to apply for internships or junior roles at strong companies.",
+        "Complete Phases 0–7. Flagship macro-project on GitHub. Comfortable with C++ (most features) and familiar with the STL. Understand NP-completeness and approximation algorithms. Ready to apply for internships or junior roles at strong companies.",
     },
     {
       period: "3–5 Years",
       description:
-        "Comfortable with at least 3 languages (C++, Rust/OCaml, Go/JavaScript). Built at least one distributed system. Built at least one compiler or interpreter. Can read and understand CS papers independently. Capable of building and deploying production systems. Ready to take on engineering leadership roles or start a company.",
+        "Complete Phase 8. Built a compiler toolchain, a distributed KV store, and a Git clone. Comfortable with OCaml and Rust. Deep understanding of hardware/OS interaction. Capable of building and deploying production systems. Ready for engineering leadership or founding a company.",
     },
   ],
 
