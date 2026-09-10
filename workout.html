@@ -1,581 +1,142 @@
-<!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Workout - Micah Asowata</title>
-        <style>
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family:
-                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                    Arial, sans-serif;
-                background: #f5f5f0;
-                color: #1e1e1e;
-                padding: 16px;
-                line-height: 1.5;
-            }
-
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-            }
-
-            h1 {
-                font-size: 1.6rem;
-                font-weight: 700;
-                margin-bottom: 4px;
-                letter-spacing: -0.3px;
-            }
-
-            .subhead {
-                color: #555;
-                font-size: 0.95rem;
-                margin-bottom: 20px;
-                border-bottom: 2px solid #ddd;
-                padding-bottom: 12px;
-            }
-
-            .day-card {
-                background: #ffffff;
-                border-radius: 12px;
-                padding: 18px 16px 20px;
-                margin-bottom: 20px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-                border: 1px solid #e8e8e8;
-            }
-
-            .day-title {
-                font-size: 1.2rem;
-                font-weight: 700;
-                margin-bottom: 2px;
-            }
-
-            .day-type {
-                font-size: 0.8rem;
-                color: #666;
-                text-transform: uppercase;
-                letter-spacing: 0.5px;
-                margin-bottom: 14px;
-                border-bottom: 1px solid #eee;
-                padding-bottom: 8px;
-            }
-
-            .section-label {
-                font-weight: 600;
-                font-size: 0.85rem;
-                color: #444;
-                margin-top: 14px;
-                margin-bottom: 4px;
-                letter-spacing: 0.3px;
-            }
-
-            .section-label:first-of-type {
-                margin-top: 0;
-            }
-
-            .section-label .icon {
-                margin-right: 6px;
-            }
-
-            ul {
-                list-style: none;
-                padding-left: 0;
-            }
-
-            ul li {
-                padding: 3px 0 3px 18px;
-                position: relative;
-                font-size: 0.95rem;
-            }
-
-            ul li::before {
-                content: "•";
-                position: absolute;
-                left: 2px;
-                color: #888;
-            }
-
-            .exercise-list li {
-                padding: 6px 0 6px 22px;
-                font-size: 0.95rem;
-                border-bottom: 1px solid #f0f0f0;
-            }
-
-            .exercise-list li:last-child {
-                border-bottom: none;
-            }
-
-            .exercise-list li::before {
-                content: "▸";
-                left: 2px;
-                color: #555;
-            }
-
-            .exercise-list .sets-reps {
-                color: #666;
-                font-size: 0.85rem;
-                margin-left: 6px;
-            }
-
-            .exercise-list .note {
-                color: #888;
-                font-size: 0.8rem;
-                display: block;
-                margin-left: 2px;
-            }
-
-            .rest-note {
-                color: #777;
-                font-size: 0.8rem;
-                margin-top: 8px;
-                padding-top: 8px;
-                border-top: 1px solid #eee;
-            }
-
-            .amrap {
-                color: #555;
-                font-size: 0.8rem;
-                font-style: italic;
-            }
-
-            .footer {
-                text-align: center;
-                color: #999;
-                font-size: 0.75rem;
-                margin-top: 12px;
-                padding-top: 12px;
-                border-top: 1px solid #ddd;
-            }
-
-            @media (max-width: 480px) {
-                body {
-                    padding: 12px;
-                }
-                .day-card {
-                    padding: 14px 12px 16px;
-                }
-                h1 {
-                    font-size: 1.4rem;
-                }
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css" />
+        <title>Workout</title>
     </head>
     <body>
-        <div class="container">
-            <h1>4-Day Upper / Lower Split</h1>
-            <div class="subhead">
-                20 years old · 74kg · Bench 45kg · Bulking
-            </div>
-
-            <div class="day-card">
-                <div class="day-title">Day 1 — Lower Body</div>
-                <div class="day-type">Strength · Heavy</div>
-
-                <div class="section-label">
-                    <span class="icon">🔥</span>Warm-Up
-                </div>
-                <ul>
-                    <li>5 min light cardio (jog, bike, or jump rope)</li>
-                    <li>Leg swings – 15 each leg</li>
-                    <li>Walking lunges – 10 each leg</li>
-                    <li>Air squats – 15 reps</li>
-                    <li>
-                        Specific warm-up sets for deadlift: bar × 10, 50% × 5,
-                        70% × 3, 85% × 2
-                    </li>
-                </ul>
-
-                <div class="section-label">
-                    <span class="icon">💪</span>Main Workout
-                </div>
-                <ul class="exercise-list">
-                    <li>
-                        Deadlifts <span class="sets-reps">4 × 5</span>
-                        <span class="note">Build the foundation</span>
-                    </li>
-                    <li>
-                        Squats <span class="sets-reps">4 × 5</span>
-                        <span class="note">Deep and controlled</span>
-                    </li>
-                    <li>Leg Press <span class="sets-reps">3 × 8</span></li>
-                    <li>
-                        Step-Ups <span class="sets-reps">3 × 10</span>
-                        <span class="note">Each leg</span>
-                    </li>
-                </ul>
-                <div class="rest-note">Rest 3–5 min between heavy sets</div>
-
-                <div class="section-label">
-                    <span class="icon">❄️</span>Cool-Down
-                </div>
-                <ul>
-                    <li>5 min light walking or cycling</li>
-                    <li>Hamstring stretch – 30s each side</li>
-                    <li>Quad stretch – 30s each side</li>
-                    <li>Glute stretch – 30s each side</li>
-                    <li>Calf stretch – 30s each side</li>
-                </ul>
-            </div>
-
-            <div class="day-card">
-                <div class="day-title">Day 2 — Upper Body</div>
-                <div class="day-type">Strength · Heavy</div>
-
-                <div class="section-label">
-                    <span class="icon">🔥</span>Warm-Up
-                </div>
-                <ul>
-                    <li>5 min light cardio</li>
-                    <li>Arm circles – 15 each way</li>
-                    <li>Band pull-aparts or face pulls – 15 reps</li>
-                    <li>Push-ups – 10 reps (slow tempo)</li>
-                    <li>
-                        Specific warm-up sets for bench: bar × 10, 50% × 5, 70%
-                        × 3, 85% × 2
-                    </li>
-                </ul>
-
-                <div class="section-label">
-                    <span class="icon">💪</span>Main Workout
-                </div>
-                <ul class="exercise-list">
-                    <li>
-                        Bench Press <span class="sets-reps">4 × 6</span>
-                        <span class="note">Current: 45kg</span>
-                    </li>
-                    <li>
-                        Weighted Chin-Ups <span class="sets-reps">4 × 6</span>
-                    </li>
-                    <li>Overhead Press <span class="sets-reps">3 × 8</span></li>
-                    <li>T-Bar Rows <span class="sets-reps">3 × 8</span></li>
-                </ul>
-                <div class="rest-note">Rest 3–5 min between heavy sets</div>
-
-                <div class="section-label">
-                    <span class="icon">❄️</span>Cool-Down
-                </div>
-                <ul>
-                    <li>5 min light cardio</li>
-                    <li>Chest stretch (doorway) – 30s each side</li>
-                    <li>Lat stretch – 30s each side</li>
-                    <li>Triceps stretch – 30s each side</li>
-                    <li>Shoulder stretch – 30s each side</li>
-                </ul>
-            </div>
-
-            <div class="day-card">
-                <div class="day-title">Day 3 — Lower Body</div>
-                <div class="day-type">Hypertrophy · Moderate</div>
-
-                <div class="section-label">
-                    <span class="icon">🔥</span>Warm-Up
-                </div>
-                <ul>
-                    <li>5 min light cardio</li>
-                    <li>Leg swings – 15 each leg</li>
-                    <li>Bodyweight squats – 15 reps</li>
-                    <li>Hip circles – 10 each way</li>
-                    <li>Light RDLs with empty bar – 10 reps</li>
-                </ul>
-
-                <div class="section-label">
-                    <span class="icon">💪</span>Main Workout
-                </div>
-                <ul class="exercise-list">
-                    <li>Leg Press <span class="sets-reps">4 × 12</span></li>
-                    <li>
-                        Romanian Deadlifts <span class="sets-reps">3 × 12</span>
-                        <span class="note">Light, controlled</span>
-                    </li>
-                    <li>
-                        Split Squats <span class="sets-reps">3 × 12</span>
-                        <span class="note">Each leg</span>
-                    </li>
-                    <li>Calf Raises <span class="sets-reps">3 × 15</span></li>
-                </ul>
-                <div class="rest-note">Rest 60–90 sec between sets</div>
-
-                <div class="section-label">
-                    <span class="icon">❄️</span>Cool-Down
-                </div>
-                <ul>
-                    <li>5 min walking</li>
-                    <li>Hamstring stretch – 30s each</li>
-                    <li>Quad stretch – 30s each</li>
-                    <li>Hip flexor stretch – 30s each</li>
-                    <li>Foam roll quads &amp; glutes (if available)</li>
-                </ul>
-            </div>
-
-            <div class="day-card">
-                <div class="day-title">Day 4 — Upper Body</div>
-                <div class="day-type">Hypertrophy · Moderate</div>
-
-                <div class="section-label">
-                    <span class="icon">🔥</span>Warm-Up
-                </div>
-                <ul>
-                    <li>5 min light cardio</li>
-                    <li>Arm circles – 15 each way</li>
-                    <li>Band pull-aparts – 15 reps</li>
-                    <li>Scapular push-ups – 10 reps</li>
-                    <li>Light dumbbell press – 10 reps with light weight</li>
-                </ul>
-
-                <div class="section-label">
-                    <span class="icon">💪</span>Main Workout
-                </div>
-                <ul class="exercise-list">
-                    <li>
-                        Pull-Ups <span class="sets-reps">3 × AMRAP</span>
-                        <span class="note">Beat last week's reps</span>
-                    </li>
-                    <li>
-                        Push-Ups <span class="sets-reps">3 × AMRAP</span>
-                        <span class="note">Beat last week's reps</span>
-                    </li>
-                    <li>
-                        Dumbbell Press <span class="sets-reps">3 × 12</span>
-                    </li>
-                    <li>
-                        Dumbbell Row <span class="sets-reps">3 × 12</span>
-                        <span class="note">Each arm</span>
-                    </li>
-                </ul>
-                <div class="rest-note">
-                    Rest 60–90 sec between sets &bull; AMRAP = As Many Reps As
-                    Possible
-                </div>
-
-                <div class="section-label">
-                    <span class="icon">❄️</span>Cool-Down
-                </div>
-                <ul>
-                    <li>5 min light cardio</li>
-                    <li>Chest stretch – 30s each</li>
-                    <li>Lat stretch – 30s each</li>
-                    <li>Biceps stretch – 30s each</li>
-                    <li>Triceps stretch – 30s each</li>
-                    <li>Upper trap stretch – 30s each</li>
-                </ul>
-            </div>
-
-            <div
-                style="
-                    background: #fff;
-                    border-radius: 12px;
-                    padding: 14px 16px;
-                    border: 1px solid #e8e8e8;
-                    margin-top: 8px;
-                "
-            >
-                <div
-                    style="
-                        font-weight: 600;
-                        font-size: 0.9rem;
-                        margin-bottom: 6px;
-                    "
-                >
-                    📅 Weekly Schedule
-                </div>
-                <div
-                    style="
-                        display: grid;
-                        grid-template-columns: 1fr 1fr;
-                        gap: 4px 16px;
-                        font-size: 0.9rem;
-                    "
-                >
-                    <span>Mon — Lower (Strength)</span>
-                    <span>Tue — Upper (Strength)</span>
-                    <span>Wed — Rest</span>
-                    <span>Thu — Lower (Hypertrophy)</span>
-                    <span>Fri — Upper (Hypertrophy)</span>
-                    <span>Sat — Rest</span>
-                    <span>Sun — Rest</span>
-                </div>
-            </div>
-
-            <div
-                style="
-                    background: #fff;
-                    border-radius: 12px;
-                    padding: 14px 16px;
-                    border: 1px solid #e8e8e8;
-                    margin-top: 12px;
-                "
-            >
-                <div
-                    style="
-                        font-weight: 600;
-                        font-size: 0.9rem;
-                        margin-bottom: 4px;
-                    "
-                >
-                    📈 Progression
-                </div>
-                <ul
-                    style="list-style: none; padding-left: 0; font-size: 0.9rem"
-                >
-                    <li style="padding: 2px 0 2px 18px; position: relative">
-                        • Add <strong>2.5kg</strong> to main lifts each week
-                    </li>
-                    <li style="padding: 2px 0 2px 18px; position: relative">
-                        • Add <strong>1 rep</strong> to secondary lifts each
-                        week
-                    </li>
-                    <li style="padding: 2px 0 2px 18px; position: relative">
-                        • AMRAP sets: beat your previous rep count
-                    </li>
-                    <li style="padding: 2px 0 2px 18px; position: relative">
-                        • Leave 2–3 reps in reserve on heavy days
-                    </li>
-                    <li style="padding: 2px 0 2px 18px; position: relative">
-                        • Leave 1–2 reps in reserve on hypertrophy days
-                    </li>
-                </ul>
-                <div
-                    style="
-                        margin-top: 8px;
-                        padding-top: 8px;
-                        border-top: 1px solid #eee;
-                        font-size: 0.9rem;
-                    "
-                >
-                    <div style="font-weight: 600">Nutrition (Bulking)</div>
-                    <div>
-                        ~2,800–3,000 cal &bull; 150–180g protein &bull; 350–400g
-                        carbs &bull; 80–100g fat
-                    </div>
-                </div>
-            </div>
-
-            <div
-                style="
-                    background: #fff;
-                    border-radius: 12px;
-                    padding: 14px 16px;
-                    border: 1px solid #e8e8e8;
-                    margin-top: 12px;
-                    overflow-x: auto;
-                "
-            >
-                <div
-                    style="
-                        font-weight: 600;
-                        font-size: 0.9rem;
-                        margin-bottom: 6px;
-                    "
-                >
-                    📊 Progress Tracker
-                </div>
-                <table
-                    style="
-                        width: 100%;
-                        border-collapse: collapse;
-                        font-size: 0.85rem;
-                    "
-                >
-                    <thead>
-                        <tr style="border-bottom: 2px solid #ddd">
-                            <th
-                                style="text-align: left; padding: 4px 6px 4px 0"
-                            >
-                                Week
-                            </th>
-                            <th style="text-align: center; padding: 4px 4px">
-                                Bench
-                            </th>
-                            <th style="text-align: center; padding: 4px 4px">
-                                Squat
-                            </th>
-                            <th style="text-align: center; padding: 4px 4px">
-                                Deadlift
-                            </th>
-                            <th style="text-align: center; padding: 4px 4px">
-                                OH Press
-                            </th>
-                            <th style="text-align: center; padding: 4px 4px">
-                                Weight
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="border-bottom: 1px solid #f0f0f0">
-                            <td
-                                style="padding: 4px 6px 4px 0; font-weight: 500"
-                            >
-                                1
-                            </td>
-                            <td style="text-align: center; padding: 4px 4px">
-                                45kg
-                            </td>
-                            <td style="text-align: center; padding: 4px 4px">
-                                —
-                            </td>
-                            <td style="text-align: center; padding: 4px 4px">
-                                —
-                            </td>
-                            <td style="text-align: center; padding: 4px 4px">
-                                —
-                            </td>
-                            <td style="text-align: center; padding: 4px 4px">
-                                74kg
-                            </td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f0f0f0">
-                            <td style="padding: 4px 6px 4px 0">2</td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f0f0f0">
-                            <td style="padding: 4px 6px 4px 0">3</td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f0f0f0">
-                            <td style="padding: 4px 6px 4px 0">4</td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                        </tr>
-                        <tr style="border-bottom: 1px solid #f0f0f0">
-                            <td style="padding: 4px 6px 4px 0">8</td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 4px 6px 4px 0">12</td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                            <td style="text-align: center"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="footer">
-                Rest 7–9 hours nightly &bull; Drink water throughout the day
-            </div>
-        </div>
+        <main>
+            <h1 id="4-day-upper-lower-split">4-Day Upper / Lower Split</h1>
+            <p>20 years old · 74kg · Bench 45kg · Bulking</p>
+            <p>Day 1 — Lower Body</p>
+            <p>Strength · Heavy</p>
+            <p>🔥Warm-Up</p>
+            <ul>
+                <li>5 min light cardio (jog, bike, or jump rope)</li>
+                <li>Leg swings – 15 each leg</li>
+                <li>Walking lunges – 10 each leg</li>
+                <li>Air squats – 15 reps</li>
+                <li>
+                    Specific warm-up sets for deadlift: bar × 10, 50% × 5, 70% ×
+                    3, 85% × 2
+                </li>
+            </ul>
+            <p>💪Main Workout</p>
+            <ul>
+                <li>Deadlifts 4 × 5Build the foundation</li>
+                <li>Squats 4 × 5Deep and controlled</li>
+                <li>Leg Press 3 × 8</li>
+                <li>Step-Ups 3 × 10Each leg</li>
+            </ul>
+            <p>Rest 3–5 min between heavy sets</p>
+            <p>❄️Cool-Down</p>
+            <ul>
+                <li>5 min light walking or cycling</li>
+                <li>Hamstring stretch – 30s each side</li>
+                <li>Quad stretch – 30s each side</li>
+                <li>Glute stretch – 30s each side</li>
+                <li>Calf stretch – 30s each side</li>
+            </ul>
+            <p>Day 2 — Upper Body</p>
+            <p>Strength · Heavy</p>
+            <p>🔥Warm-Up</p>
+            <ul>
+                <li>5 min light cardio</li>
+                <li>Arm circles – 15 each way</li>
+                <li>Band pull-aparts or face pulls – 15 reps</li>
+                <li>Push-ups – 10 reps (slow tempo)</li>
+                <li>
+                    Specific warm-up sets for bench: bar × 10, 50% × 5, 70% × 3,
+                    85% × 2
+                </li>
+            </ul>
+            <p>💪Main Workout</p>
+            <ul>
+                <li>Bench Press 4 × 6Current: 45kg</li>
+                <li>Weighted Chin-Ups 4 × 6</li>
+                <li>Overhead Press 3 × 8</li>
+                <li>T-Bar Rows 3 × 8</li>
+            </ul>
+            <p>Rest 3–5 min between heavy sets</p>
+            <p>❄️Cool-Down</p>
+            <ul>
+                <li>5 min light cardio</li>
+                <li>Chest stretch (doorway) – 30s each side</li>
+                <li>Lat stretch – 30s each side</li>
+                <li>Triceps stretch – 30s each side</li>
+                <li>Shoulder stretch – 30s each side</li>
+            </ul>
+            <p>Day 3 — Lower Body</p>
+            <p>Hypertrophy · Moderate</p>
+            <p>🔥Warm-Up</p>
+            <ul>
+                <li>5 min light cardio</li>
+                <li>Leg swings – 15 each leg</li>
+                <li>Bodyweight squats – 15 reps</li>
+                <li>Hip circles – 10 each way</li>
+                <li>Light RDLs with empty bar – 10 reps</li>
+            </ul>
+            <p>💪Main Workout</p>
+            <ul>
+                <li>Leg Press 4 × 12</li>
+                <li>Romanian Deadlifts 3 × 12Light, controlled</li>
+                <li>Split Squats 3 × 12Each leg</li>
+                <li>Calf Raises 3 × 15</li>
+            </ul>
+            <p>Rest 60–90 sec between sets</p>
+            <p>❄️Cool-Down</p>
+            <ul>
+                <li>5 min walking</li>
+                <li>Hamstring stretch – 30s each</li>
+                <li>Quad stretch – 30s each</li>
+                <li>Hip flexor stretch – 30s each</li>
+                <li>Foam roll quads &amp; glutes (if available)</li>
+            </ul>
+            <p>Day 4 — Upper Body</p>
+            <p>Hypertrophy · Moderate</p>
+            <p>🔥Warm-Up</p>
+            <ul>
+                <li>5 min light cardio</li>
+                <li>Arm circles – 15 each way</li>
+                <li>Band pull-aparts – 15 reps</li>
+                <li>Scapular push-ups – 10 reps</li>
+                <li>Light dumbbell press – 10 reps with light weight</li>
+            </ul>
+            <p>💪Main Workout</p>
+            <ul>
+                <li>Pull-Ups 3 × AMRAPBeat last week&#39;s reps</li>
+                <li>Push-Ups 3 × AMRAPBeat last week&#39;s reps</li>
+                <li>Dumbbell Press 3 × 12</li>
+                <li>Dumbbell Row 3 × 12Each arm</li>
+            </ul>
+            <p>
+                Rest 60–90 sec between sets • AMRAP = As Many Reps As Possible
+            </p>
+            <p>❄️Cool-Down</p>
+            <ul>
+                <li>5 min light cardio</li>
+                <li>Chest stretch – 30s each</li>
+                <li>Lat stretch – 30s each</li>
+                <li>Biceps stretch – 30s each</li>
+                <li>Triceps stretch – 30s each</li>
+                <li>Upper trap stretch – 30s each</li>
+            </ul>
+            <p>📅 Weekly Schedule</p>
+            <p>
+                Mon — Lower (Strength)Tue — Upper (Strength)Wed — RestThu —
+                Lower (Hypertrophy)Fri — Upper (Hypertrophy)Sat — RestSun — Rest
+            </p>
+            <p>📈 Progression</p>
+            <ul>
+                <li>• Add <strong>2.5kg</strong> to main lifts each week</li>
+                <li>
+                    • Add <strong>1 rep</strong> to secondary lifts each week
+                </li>
+                <li>• AMRAP sets: beat your previous rep count</li>
+                <li>• Leave 2–3 reps in reserve on heavy days</li>
+                <li>• Leave 1–2 reps in reserve on hypertrophy days</li>
+            </ul>
+        </main>
     </body>
 </html>
