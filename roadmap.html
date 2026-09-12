@@ -7,64 +7,637 @@
     </head>
     <body>
         <main>
-            <h1>focus: strong foundation in maths and dsa</h1>
             <p>
                 <a href="https://go.dev/play/p/yI3uCSnDaTD"
                     >https://go.dev/play/p/yI3uCSnDaTD</a
                 >
-                beezer ch. SLE (WILA - RREF)
             </p>
-            <p>stewart ch.1 (1.1 - 1.6)</p>
-            <p>rosen ch.1 (1.1 - 1.8)</p>
-            <p>clrs ch.1 - ch.2 (1.1 - 2.3)</p>
-            <p>beezer ch. SLE (TSS - NM)</p>
-            <p>stewart ch.2 (2.1 - 2.4)</p>
-            <p>rosen ch.2 (2.1 - 2.6)</p>
-            <p>clrs ch.3 - ch.4 (3.1 - 4.5)</p>
-            <p>beezer ch. V (VO - SS)</p>
-            <p>stewart ch.2 (2.5 - 2.8)</p>
-            <p>rosen ch.3 (3.1 - 3.3)</p>
-            <p>clrs ch.5 - ch.6 (5.1 - 6.5)</p>
-            <p>beezer ch. V (LI - O)</p>
-            <p>stewart ch.3 (3.1 - 3.7)</p>
-            <p>rosen ch.4 (4.1 - 4.6)</p>
-            <p>clrs ch.7 - ch.9 (7.1 - 9.3)</p>
-            <p>beezer ch. M (MO - MISLE)</p>
-            <p>stewart ch.4 (4.1 - 4.7)</p>
-            <p>rosen ch.5 (5.1 - 5.5)</p>
-            <p>clrs ch.10 - ch.11 (10.1 - 11.5)</p>
-            <p>beezer ch. M (MINM - FS)</p>
-            <p>stewart ch.5 (5.1 - 5.5)</p>
-            <p>rosen ch.6 (6.1 - 6.6)</p>
-            <p>clrs ch.12 - ch.13 (12.1 - 13.4)</p>
-            <p>beezer ch. VS (VS - LISS)</p>
-            <p>stewart ch.6 (6.1 - 6.6)</p>
-            <p>rosen ch.7 (7.1 - 7.4)</p>
-            <p>clrs ch.14 - ch.16 (14.1 - 16.4)</p>
-            <p>beezer ch. VS (B - PD)</p>
-            <p>stewart ch.7 (7.1 - 7.7)</p>
-            <p>rosen ch.8 (8.1 - 8.6)</p>
-            <p>clrs ch.17 - ch.19 (17.1 - 19.4)</p>
-            <p>beezer ch. D (DM - PDM)</p>
-            <p>stewart ch.8 (8.1 - 8.8)</p>
-            <p>rosen ch.9 (9.1 - 9.6)</p>
-            <p>clrs ch.20 - ch.21 (20.1 - 21.2)</p>
-            <p>beezer ch. E (EE - SD)</p>
-            <p>stewart ch.9 (9.1 - 9.5)</p>
-            <p>rosen ch.10 (10.1 - 10.8)</p>
-            <p>clrs ch.22 - ch.25 (22.1 - 25.3)</p>
-            <p>beezer ch. LT (LT - IVLT)</p>
-            <p>stewart ch.10 (10.1 - 10.9)</p>
-            <p>rosen ch.11 (11.1 - 11.5)</p>
-            <p>clrs ch.28 - ch.29 (28.1 - 29.5)</p>
-            <p>beezer ch. R (VR - JCF)</p>
-            <p>stewart ch.11 (11.1 - 11.8)</p>
-            <p>rosen ch.12 (12.1 - 12.4)</p>
-            <p>clrs ch.30 - ch.31 (30.1 - 31.8)</p>
-            <p>stewart ch.12 (12.1 - 12.8)</p>
-            <p>rosen ch.13 (13.1 - 13.5)</p>
-            <p>clrs ch.32 - ch.35 (32.1 - 35.5)</p>
-            <p>stewart ch.13 (13.1 - 13.9)</p>
+            <h1 id="foundations-roadmap-math-computer-systems-dsa-and-c">
+                Foundations Roadmap — Math, Computer Systems, DSA, and C
+            </h1>
+            <p>
+                Scoped deliberately as a <em>foundation</em>, not the full
+                journey — the point where math, discrete math, DSA, C, and
+                computer systems (architecture, performance, memory, OS,
+                concurrency, networking) are solid enough to branch into either
+                systems engineering (compilers, databases) or low-latency/quant
+                engineering afterward, using dedicated C++/Rust, compiler, and
+                distributed-systems material at that point (see &quot;What comes
+                after this roadmap&quot;).
+            </p>
+            <p>
+                Built from the 10 supplied tables of contents: Collingwood
+                (Precalculus), Corral (Calculus), Corral (Multivariable
+                Calculus), Hefferon (Linear Algebra), Lewis &amp; Zax (Discrete
+                Mathematics), Blitzstein &amp; Hwang (Probability), Beej (C),
+                CSAPP, OSTEP, Skiena (Algorithm Design Manual).
+            </p>
+            <hr />
+            <h3 id="roadmap">Roadmap</h3>
+            <p>CSAPP Ch.1 (1.1–1.10)</p>
+            <p>Collingwood Ch.1 (1.1–1.4)</p>
+            <p>Beej Ch.1–2 (complete)</p>
+            <p>Collingwood Ch.2 (2.1–2.5)</p>
+            <p>Beej Ch.3 (3.1–3.3)</p>
+            <p>Lewis &amp; Zax Ch.1 (The Pigeonhole Principle)</p>
+            <p>Collingwood Ch.3 (3.1–3.4)</p>
+            <p>Beej Ch.4 (4.1–4.3)</p>
+            <p>Lewis &amp; Zax Ch.2 (Basic Proof Techniques)</p>
+            <p>Collingwood Ch.4 (4.1–4.11)</p>
+            <p>Beej Ch.5 (5.1–5.7)</p>
+            <p>Lewis &amp; Zax Ch.3 (Proof by Mathematical Induction)</p>
+            <p>Collingwood Ch.5 (5.1–5.7)</p>
+            <p>Beej Ch.6 (6.1–6.6)</p>
+            <p>Lewis &amp; Zax Ch.4 (Strong Induction)</p>
+            <p>Collingwood Ch.6 (6.1–6.4)</p>
+            <p>Beej Ch.7 (7.1–7.7)</p>
+            <p>Skiena Ch.1 (1.1–1.10)</p>
+            <p>Collingwood Ch.7 (7.1–7.6)</p>
+            <p>Beej Ch.8 (8.1–8.6)</p>
+            <p>Lewis &amp; Zax Ch.5 (Sets)</p>
+            <p>Collingwood Ch.8 (8.1–8.3)</p>
+            <p>Collingwood Ch.9 (9.1–9.7)</p>
+            <p>Beej Ch.9 (9.1–9.6)</p>
+            <p>Lewis &amp; Zax Ch.6 (Relations and Functions)</p>
+            <p>Collingwood Ch.10 (10.1–10.4)</p>
+            <p>Beej Ch.10 (10.1–10.3)</p>
+            <p>Lewis &amp; Zax Ch.7 (Countable and Uncountable Sets)</p>
+            <p>Collingwood Ch.11 (11.1–11.5)</p>
+            <p>Beej Ch.11 (11.1–11.3)</p>
+            <p>Collingwood Ch.12 (12.1–12.2)</p>
+            <p>Beej Ch.12 (12.1–12.6)</p>
+            <p>Lewis &amp; Zax Ch.8 (Structural Induction)</p>
+            <p>
+                Small C Project #1 — a dynamic array and singly linked list
+                library
+            </p>
+            <p>Skiena Ch.2 (2.1–2.5)</p>
+            <p>Collingwood Ch.13 (13.1–13.7)</p>
+            <p>Beej Ch.13 (13.1–13.4)</p>
+            <p>Lewis &amp; Zax Ch.9 (Propositional Logic)</p>
+            <p>Collingwood Ch.14 (14.1–14.5)</p>
+            <p>Beej Ch.14 (14.1–14.5)</p>
+            <p>Lewis &amp; Zax Ch.10 (Normal Forms)</p>
+            <p>Collingwood Ch.15 (15.1–15.7)</p>
+            <p>CSAPP Ch.2 (2.1–2.2)</p>
+            <p>Beej Ch.15 (15.1–15.5)</p>
+            <p>Lewis &amp; Zax Ch.11 (Logic and Computers)</p>
+            <p>Collingwood Ch.16 (16.1–16.5)</p>
+            <p>CSAPP Ch.2 (2.3–2.4)</p>
+            <p>Beej Ch.16 (16.1–16.2)</p>
+            <p>Lewis &amp; Zax Ch.12 (Quantificational Logic)</p>
+            <p>Collingwood Ch.17 (17.1–17.3)</p>
+            <p>CSAPP Ch.2 (2.5)</p>
+            <p>Beej Ch.17 (17.1–17.4)</p>
+            <p>Lewis &amp; Zax Ch.13 (Directed Graphs)</p>
+            <p>Collingwood Ch.18 (18.1–18.5)</p>
+            <p>Beej Ch.18 (18.1–18.3)</p>
+            <p>Lewis &amp; Zax Ch.14 (Digraphs and Relations)</p>
+            <p>Collingwood Ch.19 (19.1–19.4)</p>
+            <p>Beej Ch.19 (19.1–19.9)</p>
+            <p>Lewis &amp; Zax Ch.15 (States and Invariants)</p>
+            <p>Collingwood Ch.20 (20.1–20.3)</p>
+            <p>Skiena Ch.2 (2.6–2.11)</p>
+            <p>Collingwood Ch.21 (21.1–21.5)</p>
+            <p>Skiena Ch.3 (3.1–3.10)</p>
+            <p>Collingwood Ch.22 (22.1–22.6)</p>
+            <p>Collingwood Ch.23 (23.1–23.3) — precalculus complete</p>
+            <p>Lewis &amp; Zax Ch.16 (Undirected Graphs)</p>
+            <p>Skiena Ch.4 (4.1–4.9)</p>
+            <p>
+                C Project #2 — a small sorting-algorithm library and a hash
+                table, in C
+            </p>
+            <p>Lewis &amp; Zax Ch.17 (Connectivity)</p>
+            <p>Lewis &amp; Zax Ch.18 (Coloring)</p>
+            <p>Corral Calculus Ch.1 (The Derivative)</p>
+            <p>Hefferon Ch.1 (I.1–I.3)</p>
+            <p>Beej Ch.20 (structs II)</p>
+            <p>Corral Calculus Ch.2 (Derivatives of Common Functions)</p>
+            <p>Hefferon Ch.1 (II.1–III.2)</p>
+            <p>Beej Ch.21 (Characters and Strings II)</p>
+            <p>Lewis &amp; Zax Ch.19 (Finite Automata)</p>
+            <p>Lewis &amp; Zax Ch.20 (Regular Languages)</p>
+            <p>Corral Calculus Ch.3 (Topics in Differential Calculus)</p>
+            <p>Hefferon Ch.2 (I.1–I.2)</p>
+            <p>Beej Ch.22 (Enumerated Types: enum)</p>
+            <p>Corral Calculus Ch.4 (Applications of Derivatives)</p>
+            <p>Hefferon Ch.2 (II.1–III.4)</p>
+            <p>Beej Ch.23 (Pointers III)</p>
+            <p>Lewis &amp; Zax Ch.21 (Order Notation)</p>
+            <p>Corral Calculus Ch.5 (The Integral)</p>
+            <p>Hefferon Ch.3 (I.1–II.2)</p>
+            <p>Beej Ch.24 (Bitwise Operations)</p>
+            <p>CSAPP Ch.3 (3.1–3.6)</p>
+            <p>Corral Calculus Ch.6 (Methods of Integration)</p>
+            <p>Hefferon Ch.3 (III.1–IV.4)</p>
+            <p>CSAPP Ch.3 (3.7–3.12)</p>
+            <p>Blitzstein Ch.1 (1.1–1.9)</p>
+            <p>Corral Calculus Ch.7 (Analytic Geometry and Plane Curves)</p>
+            <p>Hefferon Ch.3 (V.1–VI.3)</p>
+            <p>Blitzstein Ch.2 (2.1–2.11)</p>
+            <p>Skiena Ch.5 (5.1–5.10)</p>
+            <p>Skiena Ch.6 (6.1–6.11)</p>
+            <p>Corral Calculus Ch.8 (Applications of Integrals)</p>
+            <p>Hefferon Ch.4 (I.1–III.1)</p>
+            <p>Blitzstein Ch.3 (3.1–3.12)</p>
+            <p>Beej Ch.25 (Variadic Functions)</p>
+            <p>
+                C Project #3 — an in-memory key/value cache (hash table +
+                variadic logging)
+            </p>
+            <p>
+                Corral Calculus Ch.9 (Infinite Sequences and Series) —
+                single-variable calculus complete
+            </p>
+            <p>Hefferon Ch.5 (I.1–II.3)</p>
+            <p>Blitzstein Ch.4 (4.1–4.12)</p>
+            <p>CSAPP Ch.4 (4.1–4.3)</p>
+            <p>CSAPP Ch.4 (4.4–4.6) — computer architecture core complete</p>
+            <p>CSAPP Ch.5 (5.1–5.9)</p>
+            <p>CSAPP Ch.5 (5.10–5.15) — program optimization complete</p>
+            <p>CSAPP Ch.6 (6.1–6.4)</p>
+            <p>
+                CSAPP Ch.6 (6.5–6.7) — memory hierarchy and cache-friendly code
+                complete
+            </p>
+            <p>
+                C Project #4 — take a working C program from an earlier project
+                (e.g. the hash table or sorting library) and profile + rewrite
+                it for cache locality, using CSAPP Ch.5–6 directly
+            </p>
+            <p>OSTEP Ch.1–2</p>
+            <p>Corral Multivariable Ch.1 (Vectors in Euclidean Space)</p>
+            <p>Blitzstein Ch.5 (5.1–5.10)</p>
+            <p>OSTEP Ch.3–4</p>
+            <p>OSTEP Ch.5–6</p>
+            <p>OSTEP Ch.7–9</p>
+            <p>Hefferon Ch.5 (III.1–IV.2)</p>
+            <p>OSTEP Ch.10–11</p>
+            <p>Blitzstein Ch.6 (6.1–6.10)</p>
+            <p>Beej Ch.28–29 (Exiting a Program; Signal Handling)</p>
+            <p>OSTEP Ch.12–14</p>
+            <p>Corral Multivariable Ch.2 (Functions of Several Variables)</p>
+            <p>Beej Ch.30 (Variable-Length Arrays)</p>
+            <p>OSTEP Ch.15–17</p>
+            <p>Corral Multivariable Ch.3 (Multiple Integrals)</p>
+            <p>OSTEP Ch.18–20</p>
+            <p>CSAPP Ch.9 (9.1–9.6)</p>
+            <p>OSTEP Ch.21–24</p>
+            <p>CSAPP Ch.9 (9.7–9.12) — virtual memory mastery milestone</p>
+            <p>Systems Project #1 — a simple malloc/free allocator in C</p>
+            <p>Blitzstein Ch.7 (7.1–7.8)</p>
+            <p>Blitzstein Ch.8 (8.1–8.9)</p>
+            <p>
+                Corral Multivariable Ch.4 (Line and Surface Integrals) —
+                optional deep enrichment
+            </p>
+            <p>CSAPP Ch.7 (7.1–7.8)</p>
+            <p>Skiena Ch.9 (9.1–9.8)</p>
+            <p>Blitzstein Ch.9 (9.1–9.9)</p>
+            <p>Beej Ch.31 (goto)</p>
+            <p>CSAPP Ch.7 (7.9–7.15)</p>
+            <p>Skiena Ch.10 (10.1–10.9)</p>
+            <p>CSAPP Ch.8 (8.1–8.8)</p>
+            <p>Blitzstein Ch.10 (10.1–10.7)</p>
+            <p>
+                Beej Ch.32–33 (Compound Literals/Generic Selections; Arrays Part
+                II)
+            </p>
+            <p>OSTEP Ch.25–27</p>
+            <p>OSTEP Ch.28–29</p>
+            <p>Beej Ch.39 (Multithreading)</p>
+            <p>CSAPP Ch.12 (12.1–12.4)</p>
+            <p>OSTEP Ch.30–31</p>
+            <p>Beej Ch.40 (Atomics)</p>
+            <p>CSAPP Ch.12 (12.5–12.8)</p>
+            <p>OSTEP Ch.32–34 — concurrency mastery milestone</p>
+            <p>Beej Ch.34 (setjmp/longjmp)</p>
+            <p>Skiena Ch.11 (11.1–11.9)</p>
+            <p>CSAPP Ch.11 (11.1–11.7)</p>
+            <p>
+                Systems Project #2 — a multithreaded TCP echo/chat server in C
+            </p>
+            <p>Blitzstein Ch.11 (11.1–11.7)</p>
+            <p>Skiena Ch.12 (12.1–12.9)</p>
+            <p>OSTEP Ch.35–37</p>
+            <p>CSAPP Ch.10 (10.1–10.12)</p>
+            <p>Blitzstein Ch.12 (12.1–12.5)</p>
+            <p>OSTEP Ch.38–40</p>
+            <p>OSTEP Ch.41–43</p>
+            <p>Blitzstein Ch.13 (13.1–13.6)</p>
+            <p>Skiena Ch.13 (How to Design Algorithms)</p>
+            <p>OSTEP Ch.44–45 — filesystems milestone</p>
+            <p>OSTEP Ch.46–47</p>
+            <p>
+                Beej Ch.35–38 (Incomplete Types; Complex Numbers; Fixed-Width
+                Integers; Date/Time — light reference pass)
+            </p>
+            <p>OSTEP Ch.48–50 — OSTEP complete</p>
+            <p>Beej Ch.41 (Function/Alignment Specifiers) — Beej C complete</p>
+            <p>
+                Skiena Ch.13 (How to Design Algorithms) and Ch.15 (Data
+                Structures catalog) — used as a closing reflection and as
+                reference material, respectively
+            </p>
+            <p>
+                Systems Project #3 — pick one: a toy bytecode VM, a regex
+                engine, or a small single-threaded storage engine with a
+                write-ahead log, in C, drawing on everything above (CSAPP Ch.5–6
+                for performance, Ch.9 for memory, OSTEP&#39;s persistence unit
+                for the WAL) — <strong>foundation complete</strong>
+            </p>
+            <hr />
+            <p>
+                This is deliberately where the roadmap ends. Math, discrete
+                math, DSA, C, and computer systems (architecture, performance,
+                memory, OS, concurrency, networking, file systems) are now
+                genuinely solid. Modern C++ or Rust, a real
+                compiler-construction text, and a real distributed-database or
+                distributed-systems text are the next stage — see &quot;What
+                comes after this roadmap&quot; below for how that split plays
+                out depending on which of your two interests (compilers/DBs vs.
+                low-latency/quant) pulls harder once you&#39;re here.
+            </p>
+            <hr />
+            <h3 id="why-this-order-works">Why this order works</h3>
+            <p>
+                <strong
+                    >Math gates programming, not the other way around.</strong
+                >
+                Precalculus (Collingwood) runs the whole first year in parallel
+                with C, because C itself needs almost no math — but Big-O
+                analysis needs logarithms (Collingwood Ch.19–21) before Skiena
+                Ch.2 can be finished, and derivatives of trig/exponential/log
+                functions (Corral Calculus Ch.2) need those same precalculus
+                chapters first. That&#39;s why Skiena Ch.2 is split into
+                (2.1–2.5), usable immediately with just growth-rate intuition,
+                and (2.6–2.11), which waits for logarithms.
+            </p>
+            <p>
+                <strong
+                    >Proof technique arrives before anything that needs
+                    proof.</strong
+                >
+                Lewis &amp; Zax Ch.1–4 (pigeonhole, proof techniques, induction,
+                strong induction) come before Skiena Ch.1 (correctness
+                arguments), before Hefferon (which is proof-heavy throughout),
+                and before any serious algorithms work.
+            </p>
+            <p>
+                <strong>C and CSAPP reinforce each other by design.</strong>
+                CSAPP Ch.2 (bits, integer/float representation) is interleaved
+                with Beej&#39;s type chapters (14–16) because they&#39;re the
+                same material from two angles — one is &quot;how C treats
+                numbers,&quot; the other is &quot;how numbers actually look in
+                memory.&quot; CSAPP Ch.3 (machine-level programs) doesn&#39;t
+                start until Beej&#39;s core (Ch.1–19: functions, pointers,
+                arrays, structs, scope) is solid, because reading
+                compiler-generated assembly requires fluent C first.
+            </p>
+            <p>
+                <strong
+                    >Linear algebra and calculus are deliberately kept close
+                    together</strong
+                >
+                (Hefferon interleaved with Corral Calculus) because vector
+                geometry, matrix operations, and derivatives reinforce each
+                other, and because probability&#39;s harder material —
+                multivariate normal (Blitzstein 7.5), Markov chains (Blitzstein
+                Ch.11) — needs matrices and eigenvalues (Hefferon Ch.3–5)
+                already in hand.
+            </p>
+            <p>
+                <strong
+                    >Probability follows its own calculus prerequisites
+                    internally.</strong
+                >
+                Blitzstein Ch.1–4 (counting, conditional probability, discrete
+                random variables, expectation) need only precalculus and are
+                placed early. Continuous random variables (Ch.5) wait for
+                single-variable integral calculus (Corral Calculus Ch.5–6).
+                Joint distributions and transformations (Ch.7–8) wait
+                specifically for multivariable calculus&#39;s multiple integrals
+                (Corral Multivariable Ch.3), not just Ch.1–2, since 2D LOTUS and
+                change-of-variables genuinely need double integrals.
+            </p>
+            <p>
+                <strong
+                    >OS and CSAPP chapters are paired by subsystem, not read as
+                    two separate books.</strong
+                >
+                Memory virtualization (OSTEP Ch.12–24) sits next to CSAPP&#39;s
+                Virtual Memory chapter (Ch.9); concurrency (OSTEP Ch.25–34) sits
+                next to CSAPP&#39;s Concurrent Programming chapter (Ch.12), with
+                Beej&#39;s Multithreading and Atomics chapters folded into the
+                same stretch; persistence (OSTEP Ch.35–45) sits next to
+                CSAPP&#39;s System-Level I/O (Ch.10); distribution (OSTEP
+                Ch.46–50) sits next to CSAPP&#39;s Network Programming (Ch.11).
+                Each pairing gives you the OS-internals view and the
+                programmer-facing view of the same mechanism back to back.
+            </p>
+            <p>
+                <strong
+                    >Discrete math&#39;s automata chapters (Lewis &amp; Zax
+                    Ch.19–20) are deliberately delayed</strong
+                >
+                until just before the compiler unit, since finite automata and
+                regular languages map directly onto lexer design, while chapters
+                that support algorithms (Order Notation, Ch.21) are placed right
+                where Skiena&#39;s own formal treatment would otherwise be
+                under-supported.
+            </p>
+            <p>
+                <strong
+                    >Randomized algorithms (Skiena Ch.6) wait for a probability
+                    review</strong
+                >
+                (Blitzstein Ch.1–2) even though Skiena&#39;s own Ch.6.1 is
+                titled &quot;Probability Review&quot; — the supplied TOC assumes
+                some background, and Blitzstein&#39;s early chapters supply real
+                grounding rather than a five-page refresher.
+            </p>
+            <p>
+                <strong
+                    >Skiena&#39;s Part II (Ch.14–22) is treated as a catalog,
+                    not a syllabus</strong
+                >
+                — the book&#39;s own section is explicitly organized as &quot;A
+                Catalog of Algorithmic Problems&quot; for lookup, so it is
+                deliberately excluded from the sequential spine and instead
+                flagged for on-demand consultation while building the projects.
+            </p>
+            <hr />
+            <h3 id="major-projects">Major projects</h3>
+            <ul>
+                <li>
+                    <strong>Small C projects</strong> (dynamic array/linked list
+                    library; sorting-algorithm library + hash table; in-memory
+                    key/value cache): placed right after the C and
+                    data-structures material each one depends on, so each
+                    project is a direct rehearsal of what was just learned, not
+                    a leap ahead.
+                </li>
+                <li>
+                    <strong>Data-structures projects</strong>: same placement
+                    principle — Skiena Ch.3–4 (data structures, sorting) is
+                    immediately followed by a C project applying it.
+                </li>
+                <li>
+                    <strong>Systems projects</strong>: a malloc/free allocator
+                    follows CSAPP&#39;s Virtual Memory chapter and OSTEP&#39;s
+                    memory-API material; a multithreaded TCP server follows the
+                    concurrency cluster (OSTEP Ch.25–34, CSAPP Ch.12, Beej&#39;s
+                    threading/atomics chapters) and CSAPP&#39;s Network
+                    Programming chapter; a toy bytecode VM or regex engine
+                    follows the automata chapters and closes out core C, acting
+                    as a bridge into the compiler project.
+                </li>
+                <li>
+                    <strong>Compiler</strong>: placed only after (a) C is fully
+                    solid, (b) automata/regular-language theory (Lewis &amp; Zax
+                    Ch.19–20) is done, (c) enough algorithms
+                    (divide-and-conquer, dynamic programming) exist to justify
+                    real optimization passes, and (d) CSAPP&#39;s machine-level,
+                    architecture, and linking chapters give a real target for
+                    code generation. This is deliberately late — building a
+                    compiler at the start, before any of this, would mean either
+                    faking the hard parts or learning everything the hard way
+                    mid-project.
+                </li>
+                <li>
+                    <strong>Distributed key-value store</strong>: placed last,
+                    after concurrency, file systems (for persistence/write-ahead
+                    logging), networking, and OSTEP&#39;s introductory
+                    distribution unit — but genuinely depends on external
+                    material for consensus and replication (see Optional
+                    additions), since none of the ten supplied books teach that.
+                </li>
+            </ul>
+            <hr />
+            <h3 id="sophomore-year-stopping-point">
+                Sophomore-year stopping point
+            </h3>
+            <p>
+                Stop after <strong>Lewis &amp; Zax Ch.18 (Coloring)</strong> —
+                the point in the sequence right after &quot;C Project #2 — a
+                small sorting-algorithm library and a hash table.&quot;
+            </p>
+            <p>By that point you will have:</p>
+            <ul>
+                <li>Finished precalculus (Collingwood, all 23 chapters).</li>
+                <li>
+                    Finished C fundamentals through the preprocessor (Beej
+                    Ch.1–19), plus two small C projects.
+                </li>
+                <li>
+                    Worked through discrete math from the pigeonhole principle
+                    through graph coloring (Lewis &amp; Zax Ch.1–18) —
+                    pigeonhole, proof technique, induction, sets, relations,
+                    propositional/quantificational logic, digraphs, undirected
+                    graphs, connectivity, coloring.
+                </li>
+                <li>
+                    Started algorithmic thinking: Skiena Ch.1–4 (algorithm
+                    design, analysis/Big-O, data structures, sorting).
+                </li>
+                <li>
+                    Read CSAPP&#39;s opening survey chapter (Ch.1) as
+                    orientation, plus the data-representation chapter (Ch.2)
+                    alongside C&#39;s type system.
+                </li>
+            </ul>
+            <p>
+                This is intentionally <em>not</em> a light year — rebuilding
+                precalculus properly while learning C and starting discrete math
+                and algorithms is a full year&#39;s worth of consistent,
+                unhurried work. Calculus, linear algebra, probability, computer
+                architecture beyond the survey level, operating systems, and
+                both major projects are explicitly <strong>not</strong> part of
+                sophomore year. Trying to compress them in would trade mastery
+                for coverage, which section 5 of the brief for this roadmap
+                explicitly rules out.
+            </p>
+            <hr />
+            <h3 id="later-roadmap">Later roadmap</h3>
+            <p>
+                <strong>Junior year (roughly):</strong> Corral Calculus (all 9
+                chapters) interleaved with Hefferon Linear Algebra (Ch.1–5) and
+                the remaining C chapters (20–34); Lewis &amp; Zax Ch.19–21
+                (automata, regular languages, order notation); Skiena Ch.5–6
+                (divide and conquer, hashing/randomized algorithms); CSAPP
+                Ch.3–6 (machine-level programs, architecture, program
+                optimization, memory hierarchy); Blitzstein Ch.1–6 (counting
+                through moments); OSTEP&#39;s virtualization unit (Ch.1–24)
+                paired with CSAPP Ch.9 (Virtual Memory); Corral Multivariable
+                Calculus Ch.1–3; Systems Project #1 (malloc/free allocator) and
+                Project #4 (cache-locality rewrite).
+            </p>
+            <p>
+                <strong>Senior year (roughly):</strong> CSAPP Ch.7–8, 10–12
+                (linking, exceptional control flow, system I/O, networking,
+                concurrency) paired with the rest of OSTEP (concurrency,
+                persistence, distribution); Skiena Ch.9–13 (combinatorial search
+                through algorithm-design methodology); Blitzstein Ch.7–13 (joint
+                distributions through Poisson processes); Corral Multivariable
+                Ch.4 (optional enrichment); the remaining Beej reference
+                chapters (31–41); Systems Project #2 (multithreaded server) and
+                Project #3 (VM/regex engine/storage engine) —
+                <strong>this is where the foundation ends.</strong>
+            </p>
+            <hr />
+            <h3 id="what-comes-after-this-roadmap">
+                What comes after this roadmap
+            </h3>
+            <p>
+                Deliberately not sequenced here, since it depends on which of
+                your two interests pulls harder once you&#39;re standing on this
+                foundation — and both forks share the same C → systems-language
+                transition, so you don&#39;t have to choose early:
+            </p>
+            <ul>
+                <li>
+                    <strong
+                        >Either direction starts with a systems language beyond
+                        C.</strong
+                    >
+                    Compilers/DB work and low-latency/quant work both point at
+                    modern C++; low-latency work in particular is almost always
+                    C++ specifically (Rust is common in newer systems/DB work
+                    but rare in HFT/quant shops, where the tooling, profilers,
+                    and hiring bar assume C++).
+                    <em>A Tour of C++</em> (Stroustrup) then
+                    <em>Effective Modern C++</em> (Meyers) is a reasonable pair
+                    either way.
+                </li>
+                <li>
+                    <strong>Compilers/DB fork:</strong> a real
+                    compiler-construction text (<em>Crafting Interpreters</em>
+                    for an approachable pass, <em>Engineering a Compiler</em> by
+                    Cooper &amp; Torczon for something more rigorous) feeding
+                    into a compiler project; a real distributed-systems/database
+                    text (<em>Designing Data-Intensive Applications</em> by
+                    Kleppmann, the Raft paper, or CMU 15-445/645&#39;s public
+                    materials) feeding into a distributed KV store or small
+                    database engine.
+                </li>
+                <li>
+                    <strong>Low-latency/quant fork:</strong> less about a single
+                    canonical text and more about depth in what CSAPP Ch.5–6
+                    opened up — lock-free programming, cache-conscious data
+                    structures, NUMA effects, kernel-bypass networking — plus,
+                    notably, a much heavier probability/statistics bar than DB
+                    work needs, which is exactly why Blitzstein isn&#39;t
+                    skippable in the foundation above.
+                </li>
+                <li>
+                    <strong>Watch which one actually grabs you</strong> while
+                    working through Systems Project #3 above — whether you enjoy
+                    &quot;build something correct that scales&quot; more, or
+                    &quot;build something correct that&#39;s fast enough to
+                    matter in microseconds&quot; more, is a better signal than
+                    deciding it in the abstract now.
+                </li>
+            </ul>
+            <hr />
+            <h3 id="optional-additions">Optional additions</h3>
+            <p>
+                Now that the roadmap is scoped to foundation only, there
+                isn&#39;t a genuine gap the way there was before — the ten
+                supplied books cover math, discrete math, DSA, C, and computer
+                systems (architecture, performance, memory, OS, networking,
+                concurrency) adequately for that scope on their own. Nothing
+                needs to be added to complete the foundation as defined.
+            </p>
+            <p>
+                What used to be listed here — a modern C++ book, a
+                compiler-construction book, distributed-systems material
+                covering consensus and replication — are real gaps, but
+                they&#39;re gaps in the <em>next stage</em>, not this one.
+                They&#39;re addressed in &quot;What comes after this
+                roadmap&quot; above instead, since which of them you need first
+                depends on which fork (compilers/DBs vs. low-latency/quant) you
+                end up pursuing.
+            </p>
+            <p>
+                Worth knowing about if you want more depth than the foundation
+                requires, but not necessary for either fork above:
+            </p>
+            <ul>
+                <li>
+                    A dedicated computer-architecture book (e.g., Patterson
+                    &amp; Hennessy) beyond CSAPP Ch.3–6 and Ch.9 — CSAPP&#39;s
+                    treatment (including the Y86-64 ISA, pipelining, and the
+                    memory hierarchy) is sufficient for a strong working
+                    understanding; only matters if you want microarchitecture
+                    depth beyond what either fork requires.
+                </li>
+                <li>
+                    A dedicated networking book (e.g., Kurose &amp; Ross) beyond
+                    CSAPP Ch.11 — sufficient sockets-level knowledge for either
+                    fork; only necessary for protocol-level depth.
+                </li>
+            </ul>
+            <hr />
+            <h3 id="precision-notes-flags">Precision notes / flags</h3>
+            <ul>
+                <li>
+                    <strong>Corral — Calculus</strong> and
+                    <strong>Corral — Multivariable Calculus</strong>: the
+                    supplied TOC lists chapter numbers with bulleted topic names
+                    but no numbered subsections (e.g., &quot;1. The
+                    Derivative&quot; followed by unnumbered bullets). These are
+                    therefore used at whole-chapter granularity throughout; no
+                    subsection numbers have been invented.
+                </li>
+                <li>
+                    <strong>Lewis &amp; Zax — Discrete Mathematics</strong>: the
+                    supplied TOC lists only chapter numbers and titles, no
+                    subsections. Used at whole-chapter granularity throughout.
+                </li>
+                <li>
+                    <strong>Hefferon — Linear Algebra</strong>: uses
+                    Roman-numeral top-level sections (I, II, III...) with
+                    decimal subsections (I.1, I.2...) rather than a
+                    chapter.section scheme. That notation is preserved exactly
+                    as given (e.g., &quot;Hefferon Ch.1 (I.1–I.3)&quot;) rather
+                    than converted to an arabic-numeral format not present in
+                    the source.
+                </li>
+                <li>
+                    <strong>Beej — C, Ch.20–41</strong>: full sub-section
+                    numbers for these later chapters were not itemized in this
+                    pass (they exist in the source but were not extracted
+                    section-by-section); these chapters are therefore scheduled
+                    at whole-chapter granularity to avoid fabricating ranges.
+                </li>
+                <li>
+                    <strong
+                        >Skiena — Algorithm Design Manual, Part II
+                        (Ch.14–22)</strong
+                    >: the book itself frames this as &quot;A Catalog of
+                    Algorithmic Problems,&quot; i.e., reference material, not a
+                    sequential narrative. It is intentionally excluded from the
+                    main sequential spine; Ch.15 (Data Structures catalog) is
+                    called out explicitly near the end of the roadmap as the
+                    most immediately useful reference chapter for the closing
+                    systems project, with the rest of Part II left for on-demand
+                    lookup during whatever comes after this roadmap.
+                </li>
+                <li>
+                    <strong>Skiena Ch.13</strong> (&quot;How to Design
+                    Algorithms&quot;) is a short capstone/reflection chapter and
+                    is placed as a wrap-up to Part I rather than interleaved
+                    mid-sequence.
+                </li>
+                <li>
+                    No chapters or sections from any of the ten books were
+                    invented, renamed, or skipped silently. Every chapter of
+                    every book appears somewhere above except Skiena&#39;s Part
+                    II catalog chapters, which are explicitly marked as
+                    reference material rather than omitted.
+                </li>
+            </ul>
         </main>
     </body>
 </html>
