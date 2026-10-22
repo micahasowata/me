@@ -1,0 +1,2746 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>micahasowata::curriculum</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Public+Sans:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #f2f5f4;
+                --surface: #ffffff;
+                --ink: #15262d;
+                --muted: #53666d;
+                --line: #2d6f73;
+                --rule: #cfdad8;
+                --junction: #4b3bb5;
+                --junction-bg: #ecebfa;
+                --done: #2d6f73;
+                --focus: #4b3bb5;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top, 0px);
+                padding-bottom: env(safe-area-inset-bottom, 0px);
+            }
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    color-scheme: dark;
+                    --bg: #0e1a1d;
+                    --surface: #15262a;
+                    --ink: #e3ecea;
+                    --muted: #9bb0b0;
+                    --line: #5bb3b3;
+                    --rule: #27403f;
+                    --junction: #a99bff;
+                    --junction-bg: #201e3d;
+                    --done: #5bb3b3;
+                    --focus: #a99bff;
+                }
+            }
+            :root[data-theme="dark"] {
+                color-scheme: dark;
+                --bg: #0e1a1d;
+                --surface: #15262a;
+                --ink: #e3ecea;
+                --muted: #9bb0b0;
+                --line: #5bb3b3;
+                --rule: #27403f;
+                --junction: #a99bff;
+                --junction-bg: #201e3d;
+                --done: #5bb3b3;
+                --focus: #a99bff;
+            }
+            html {
+                scroll-padding-top: env(safe-area-inset-top, 0px);
+                height: 100%;
+            }
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--ink);
+                font:
+                    400 16px/1.55 "Public Sans",
+                    system-ui,
+                    sans-serif;
+            }
+            main {
+                max-width: 46rem;
+                margin: 0 auto;
+                padding: 2.5rem 1.25rem 4rem;
+            }
+            h1 {
+                font:
+                    700 clamp(2rem, 6vw, 3rem)/1.1 "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.75rem;
+                letter-spacing: -0.01em;
+            }
+            .lede {
+                color: var(--muted);
+                max-width: 38rem;
+                margin: 0 0 1.5rem;
+            }
+            .progress {
+                position: sticky;
+                top: env(safe-area-inset-top, 0px);
+                z-index: 5;
+                background: var(--bg);
+                padding: 0.6rem 0;
+                border-bottom: 1px solid var(--rule);
+                margin-bottom: 1.5rem;
+            }
+            .progress p {
+                margin: 0 0 0.35rem;
+                font-size: 0.9rem;
+                color: var(--muted);
+            }
+            .bar {
+                height: 6px;
+                background: var(--rule);
+                border-radius: 3px;
+                overflow: hidden;
+            }
+            .bar i {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: var(--done);
+                transition: width 0.25s;
+            }
+            details.books {
+                margin: 0 0 2rem;
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                background: var(--surface);
+            }
+            details.books summary {
+                cursor: pointer;
+                padding: 0.7rem 1rem;
+                font-weight: 600;
+            }
+            details.books ul {
+                margin: 0;
+                padding: 0 1rem 1rem 2.2rem;
+                color: var(--muted);
+                font-size: 0.95rem;
+            }
+            details.books b {
+                color: var(--ink);
+            }
+            ol.track {
+                list-style: none;
+                margin: 0;
+                padding: 0 0 0 2.2rem;
+                position: relative;
+            }
+            ol.track::before {
+                content: "";
+                position: absolute;
+                left: 0.7rem;
+                top: 0.5rem;
+                bottom: 0.5rem;
+                width: 3px;
+                background: var(--line);
+                opacity: 0.45;
+            }
+            .item {
+                position: relative;
+                margin: 0 0 1rem;
+            }
+            .item label.node {
+                position: absolute;
+                left: -2.2rem;
+                top: 0.85rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                cursor: pointer;
+            }
+            .item input[type="checkbox"] {
+                appearance: none;
+                -webkit-appearance: none;
+                margin: 0;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                border: 3px solid var(--line);
+                background: var(--bg);
+                cursor: pointer;
+                display: block;
+            }
+            .item input:checked {
+                background: var(--done);
+            }
+            .item input:focus-visible {
+                outline: 3px solid var(--focus);
+                outline-offset: 2px;
+            }
+            .step {
+                background: var(--surface);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 0.8rem 1rem;
+            }
+            .step h2 {
+                font:
+                    600 0.95rem/1.3 "Public Sans",
+                    sans-serif;
+                margin: 0 0 0.5rem;
+                color: var(--muted);
+            }
+            .chain {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem 0.25rem;
+                align-items: center;
+            }
+            .chain span.b {
+                background: var(--bg);
+                border: 1px solid var(--rule);
+                border-radius: 4px;
+                padding: 0.15rem 0.5rem;
+                font-size: 0.92rem;
+            }
+            .chain span.b em {
+                font-style: normal;
+                color: var(--muted);
+            }
+            .chain span.sep {
+                color: var(--muted);
+                padding: 0 0.1rem;
+            }
+            .item.done .step {
+                opacity: 0.6;
+            }
+            .junction {
+                background: var(--junction-bg);
+                border: 2px solid var(--junction);
+                border-radius: 8px;
+                padding: 1rem 1.1rem;
+            }
+            .item.j label.node {
+                top: 1.1rem;
+                left: -2.4rem;
+                width: 1.9rem;
+                height: 1.9rem;
+            }
+            .item.j input[type="checkbox"] {
+                width: 1.9rem;
+                height: 1.9rem;
+                border-color: var(--junction);
+                border-radius: 6px;
+            }
+            .item.j input:checked {
+                background: var(--junction);
+            }
+            .junction h2 {
+                font:
+                    700 1.35rem/1.2 "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.6rem;
+                color: var(--junction);
+            }
+            .junction dl {
+                margin: 0;
+                display: grid;
+                grid-template-columns: 5.5rem 1fr;
+                gap: 0.45rem 0.8rem;
+            }
+            .junction dt {
+                font-weight: 600;
+            }
+            .junction dd {
+                margin: 0;
+            }
+            .rules {
+                margin-top: 2.5rem;
+                border-top: 1px solid var(--rule);
+                padding-top: 1.25rem;
+            }
+            .rules h2 {
+                font:
+                    700 1.4rem "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.5rem;
+            }
+            .rules ul {
+                margin: 0;
+                padding-left: 1.2rem;
+            }
+            .rules li {
+                margin: 0.3rem 0;
+            }
+            button.reset {
+                margin-top: 1.5rem;
+                font: inherit;
+                background: none;
+                color: var(--muted);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 0.4rem 0.8rem;
+                cursor: pointer;
+            }
+            button.reset:focus-visible {
+                outline: 3px solid var(--focus);
+                outline-offset: 2px;
+            }
+            @media (max-width: 30rem) {
+                .junction dl {
+                    grid-template-columns: 1fr;
+                    gap: 0.1rem;
+                }
+                .junction dd {
+                    margin-bottom: 0.5rem;
+                }
+            }
+            .daily {
+                margin: 0 0 1.5rem;
+                padding: 1rem 1.1rem;
+                border-left: 4px solid var(--junction);
+                background: var(--surface);
+                border-radius: 0 6px 6px 0;
+            }
+            .daily blockquote {
+                margin: 0;
+                font:
+                    500 1.25rem/1.4 "Newsreader",
+                    Georgia,
+                    serif;
+            }
+            .daily cite {
+                display: block;
+                margin-top: 0.5rem;
+                font-style: normal;
+                color: var(--muted);
+                font-size: 0.9rem;
+            }
+            .daily .day {
+                color: var(--muted);
+                font-size: 0.85rem;
+                margin: 0 0 0.4rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Twenty steps, nine junctions</h1>
+            <p class="lede">
+                Chapters from ten books are interleaved so related ideas meet.
+                Finish each step’s exercises before the next. At every junction,
+                solve the LeetCode set, publish the blog post, and pass the
+                gate. Tick each stop as you reach it.
+            </p>
+
+            <section class="daily" id="daily" aria-label="Quote of the day">
+                <p class="day" id="qday"></p>
+                <blockquote id="qtext"></blockquote>
+                <cite id="qwho"></cite>
+            </section>
+
+            <div class="progress" aria-live="polite">
+                <p id="ptext"></p>
+                <div class="bar"><i id="pbar"></i></div>
+            </div>
+
+            <details class="books">
+                <summary>The ten books</summary>
+                <ul>
+                    <li>
+                        <b>OSTEP</b>:
+                        <i>Operating Systems: Three Easy Pieces</i>,
+                        Arpaci-Dusseau
+                    </li>
+                    <li>
+                        <b>Compiler</b>: <i>Writing a C Compiler</i>, Nora
+                        Sandler
+                    </li>
+                    <li>
+                        <b>Calculus</b>:
+                        <i
+                            >Single and Multivariable Calculus: Early
+                            Transcendentals</i
+                        >
+                    </li>
+                    <li>
+                        <b>Discrete Math</b>:
+                        <i>Discrete Mathematics for Computer Scientists</i>
+                    </li>
+                    <li>
+                        <b>PPP</b>:
+                        <i>Programming: Principles and Practice Using C++</i>,
+                        3rd ed., Stroustrup
+                    </li>
+                    <li>
+                        <b>Hefferon</b>: <i>Linear Algebra</i>, 3rd ed., Jim
+                        Hefferon
+                    </li>
+                    <li>
+                        <b>CS:APP</b>:
+                        <i>Computer Systems: A Programmer’s Perspective</i>
+                    </li>
+                    <li>
+                        <b>Probability</b>:
+                        <i
+                            >Probability and Statistics: The Science of
+                            Uncertainty</i
+                        >
+                    </li>
+                    <li>
+                        <b>DPV</b>: <i>Algorithms</i>, Dasgupta, Papadimitriou,
+                        Vazirani
+                    </li>
+                    <li>
+                        <b>CLRS</b>: <i>Introduction to Algorithms</i>, 4th ed.
+                    </li>
+                </ul>
+            </details>
+
+            <ol class="track" id="track"></ol>
+
+            <section class="rules">
+                <h2>Rules</h2>
+                <ul>
+                    <li>
+                        Solve LeetCode without solutions first; re-solve
+                        failures a few days later.
+                    </li>
+                    <li>Do at least 70% of the exercises in every chapter.</li>
+                    <li>Re-solve a few old problems at each junction.</li>
+                </ul>
+                <button class="reset" id="reset" type="button">
+                    Clear all ticks
+                </button>
+            </section>
+        </main>
+
+        <script>
+            var S = [
+                [
+                    "Discrete Math",
+                    "ch. 1",
+                    "Calculus",
+                    "ch. 1–2",
+                    "PPP",
+                    "ch. 1–4 (only if your C++ is shaky)",
+                ],
+                [
+                    "Discrete Math",
+                    "ch. 2",
+                    "DPV",
+                    "ch. 1",
+                    "Calculus",
+                    "ch. 3–4",
+                ],
+                [
+                    "Discrete Math",
+                    "ch. 3",
+                    "Calculus",
+                    "ch. 5–6",
+                    "DPV",
+                    "ch. 0",
+                ],
+                "A",
+                [
+                    "Discrete Math",
+                    "ch. 4",
+                    "CLRS",
+                    "ch. 2–4",
+                    "DPV",
+                    "ch. 2",
+                    "Calculus",
+                    "ch. 7–8",
+                ],
+                [
+                    "CLRS",
+                    "ch. 6–8",
+                    "Calculus",
+                    "ch. 9–11, where series pair with recurrences",
+                    "Hefferon",
+                    "ch. 1",
+                ],
+                "B",
+                [
+                    "DPV",
+                    "ch. 3–4",
+                    "CLRS",
+                    "ch. 20, 22",
+                    "Discrete Math",
+                    "ch. 6",
+                    "Hefferon",
+                    "ch. 2",
+                ],
+                [
+                    "DPV",
+                    "ch. 5–6",
+                    "CLRS",
+                    "ch. 14–15",
+                    "Hefferon",
+                    "ch. 3 (I–III)",
+                ],
+                "C",
+                [
+                    "Probability",
+                    "ch. 1–2",
+                    "Discrete Math",
+                    "ch. 5",
+                    "CLRS",
+                    "ch. 5, 7, 9",
+                    "Hefferon",
+                    "ch. 3 (IV–VI)",
+                ],
+                [
+                    "Probability",
+                    "ch. 3–4",
+                    "CLRS",
+                    "ch. 11",
+                    "DPV",
+                    "ch. 1.5",
+                    "Calculus",
+                    "ch. 12–14",
+                ],
+                "D",
+                [
+                    "CS:APP",
+                    "ch. 1–2 (data lab)",
+                    "Calculus",
+                    "ch. 15–16",
+                    "Probability",
+                    "ch. 5",
+                ],
+                [
+                    "CS:APP",
+                    "ch. 3 (bomb and attack labs)",
+                    "Hefferon",
+                    "ch. 4",
+                    "Compiler",
+                    "ch. 1–3",
+                ],
+                [
+                    "CS:APP",
+                    "ch. 5–6 (cache lab)",
+                    "CLRS",
+                    "ch. 16",
+                    "Compiler",
+                    "ch. 4–6",
+                ],
+                "E",
+                [
+                    "CS:APP",
+                    "ch. 7–8 (shell lab)",
+                    "OSTEP",
+                    "ch. 2–10",
+                    "Compiler",
+                    "ch. 7–8",
+                ],
+                [
+                    "CS:APP",
+                    "ch. 9 (malloc lab)",
+                    "OSTEP",
+                    "ch. 13–24",
+                    "Compiler",
+                    "ch. 9",
+                ],
+                "F",
+                [
+                    "OSTEP",
+                    "ch. 25–34",
+                    "CS:APP",
+                    "ch. 12",
+                    "Probability",
+                    "ch. 6",
+                ],
+                [
+                    "OSTEP",
+                    "ch. 36–45",
+                    "CS:APP",
+                    "ch. 10–11",
+                    "Compiler",
+                    "ch. 10–11",
+                ],
+                "G",
+                [
+                    "DPV",
+                    "ch. 7–8",
+                    "CLRS",
+                    "ch. 24, 34",
+                    "Probability",
+                    "ch. 7",
+                    "Compiler",
+                    "ch. 12–13",
+                ],
+                [
+                    "DPV",
+                    "ch. 9",
+                    "CLRS",
+                    "ch. 35",
+                    "Probability",
+                    "ch. 8–9",
+                    "Compiler",
+                    "ch. 14–15",
+                ],
+                "H",
+                [
+                    "Hefferon",
+                    "ch. 5",
+                    "Probability",
+                    "ch. 10",
+                    "Compiler",
+                    "ch. 16–18",
+                ],
+                [
+                    "Probability",
+                    "ch. 11",
+                    "CLRS",
+                    "ch. 19, 21",
+                    "OSTEP",
+                    "ch. 47–49",
+                    "Compiler",
+                    "ch. 19–20",
+                ],
+                "I",
+            ];
+            var J = {
+                A: [
+                    "Climbing Stairs, Pow(x, n), Count Primes, Subsets, Generate Parentheses.",
+                    "RSA or modular inverses, with your own code.",
+                    "Write a clean proof by contradiction.",
+                ],
+                B: [
+                    "Kth Largest Element, Search in Rotated Sorted Array, Merge k Sorted Lists, 3Sum, Median of Two Sorted Arrays.",
+                    "An induction proof or a recurrence solved three ways, with a runtime measurement.",
+                    "Solve any divide-and-conquer recurrence.",
+                ],
+                C: [
+                    "Number of Islands, Course Schedule, Network Delay Time, Redundant Connection, Merge Intervals, Task Scheduler, Coin Change, Longest Increasing Subsequence, Edit Distance, Longest Common Subsequence.",
+                    "Edit distance from recursion to memoization to tabulation, or Dijkstra with different priority queues.",
+                    "Solve medium problems independently, with justified running times.",
+                ],
+                D: [
+                    "Shuffle an Array, Random Pick with Weight, Linked List Random Node, Rotate Image, Max Points on a Line.",
+                    "A counterintuitive probability result, or a matrix as a linear map, with simulation or visuals.",
+                    "Use indicator variables, Bayes, and the CLT.",
+                ],
+                E: [
+                    "Number of 1 Bits, Single Number, Counting Bits, LRU Cache, Min Stack.",
+                    "One lab in depth, plus your compiler’s parser.",
+                    "Read x86-64 assembly unaided.",
+                ],
+                F: [
+                    "LFU Cache, Design In-Memory File System, Design Hit Counter.",
+                    "Your malloc, or a page fault step by step.",
+                    "Your own allocator works; explain paging from memory.",
+                ],
+                G: [
+                    "Print in Order, Building H2O, The Dining Philosophers, Fizz Buzz Multithreaded.",
+                    "Why a naive lock fails, or why journaling restores consistency.",
+                    "Write correct multithreaded code.",
+                ],
+                H: [
+                    "Critical Connections in a Network, Min Cost to Connect All Points, Cheapest Flights Within K Stops, Shortest Path Visiting All Nodes, Maximum Students Taking Exam.",
+                    "An NP-completeness proof or a max-flow reduction, with code.",
+                    "Prove NP-completeness; design an approximation algorithm.",
+                ],
+                I: [
+                    "Basic Calculator I–III, Decode String, Parse Lisp Expression, then weekly contests with your wrong-answer notebook.",
+                    "One post per compiler milestone, plus PageRank by eigen-decomposition or a regression with limitations.",
+                    "The compiler passes the full test suite; fit and critique a model.",
+                ],
+            };
+            var KEY = "curriculum-ticks-v1",
+                ticks = {};
+            try {
+                ticks = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+            } catch (e) {
+                ticks = {};
+            }
+            function save() {
+                try {
+                    localStorage.setItem(KEY, JSON.stringify(ticks));
+                } catch (e) {}
+            }
+            function el(t, c, h) {
+                var e = document.createElement(t);
+                if (c) e.className = c;
+                if (h != null) e.innerHTML = h;
+                return e;
+            }
+            var track = document.getElementById("track"),
+                n = 0,
+                total = S.length;
+            S.forEach(function (s) {
+                var id,
+                    li = el("li", "item"),
+                    box = el("div", null);
+                if (typeof s === "string") {
+                    id = "j" + s;
+                    li.className = "item j";
+                    box.className = "junction";
+                    var d = J[s];
+                    box.innerHTML =
+                        "<h2>Junction " +
+                        s +
+                        "</h2><dl><dt>LeetCode</dt><dd>" +
+                        d[0] +
+                        "</dd><dt>Blog</dt><dd>" +
+                        d[1] +
+                        "</dd><dt>Gate</dt><dd>" +
+                        d[2] +
+                        "</dd></dl>";
+                } else {
+                    n++;
+                    id = "s" + n;
+                    box.className = "step";
+                    var h = "<h2>Step " + n + '</h2><div class="chain">';
+                    for (var i = 0; i < s.length; i += 2) {
+                        if (i)
+                            h +=
+                                '<span class="sep" aria-hidden="true">→</span>';
+                        h +=
+                            '<span class="b"><b>' +
+                            s[i] +
+                            "</b> <em>" +
+                            s[i + 1] +
+                            "</em></span>";
+                    }
+                    box.innerHTML = h + "</div>";
+                }
+                var lab = el("label", "node"),
+                    cb = document.createElement("input");
+                cb.type = "checkbox";
+                cb.checked = !!ticks[id];
+                cb.setAttribute(
+                    "aria-label",
+                    "Mark " +
+                        (typeof s === "string"
+                            ? "junction " + s
+                            : "step " + n) +
+                        " done",
+                );
+                if (cb.checked) li.classList.add("done");
+                cb.addEventListener("change", function () {
+                    if (cb.checked) {
+                        ticks[id] = 1;
+                        li.classList.add("done");
+                    } else {
+                        delete ticks[id];
+                        li.classList.remove("done");
+                    }
+                    save();
+                    upd();
+                });
+                lab.appendChild(cb);
+                li.appendChild(lab);
+                li.appendChild(box);
+                track.appendChild(li);
+            });
+            function upd() {
+                var c = Object.keys(ticks).length;
+                document.getElementById("ptext").textContent =
+                    c + " of " + total + " stops reached";
+                document.getElementById("pbar").style.width =
+                    (100 * c) / total + "%";
+            }
+            document
+                .getElementById("reset")
+                .addEventListener("click", function () {
+                    ticks = {};
+                    save();
+                    [].forEach.call(
+                        track.querySelectorAll("input"),
+                        function (i) {
+                            i.checked = false;
+                            i.closest(".item").classList.remove("done");
+                        },
+                    );
+                    upd();
+                });
+            upd();
+
+            /* Daily quote: one per day from 2026-10-22 for 1,825 days. Each pass through the list is reshuffled so the order feels new. Entries are [quote, person, source]. */
+            var Q = [
+                [
+                    "Because failure is life and it’s necessary.",
+                    "Toto Wolff",
+                    "Bernama, fireside chat organised by Signify, Oct 2026.",
+                ],
+                [
+                    "The team is always bigger than the drivers. It is Mercedes, one of the most formidable brands in the world.",
+                    "Toto Wolff",
+                    "Motorsport Week, Apr 2026.",
+                ],
+                [
+                    "We know that you can never achieve perfection because also your targets change.",
+                    "Toto Wolff",
+                    "GPBlog, Oct 2026.",
+                ],
+                [
+                    "If compute efficiency continues improving quickly for another few years … then Muse will be highly profitable over multiple years.",
+                    "Mark Zuckerberg",
+                    "Business Insider, Q3 2026 earnings call.",
+                ],
+                [
+                    "I continue to believe that the path to delivering holographic experience … will come through VR first.",
+                    "Mark Zuckerberg",
+                    "Business Insider, Q3 2026 earnings call.",
+                ],
+                [
+                    "We build our own data centers, we build our own chips.",
+                    "Mark Zuckerberg",
+                    "Fortune, Oct 2026.",
+                ],
+                [
+                    "If you’re 13 right now, you should spend all your time vibe-coding.",
+                    "Alexandr Wang",
+                    "Mathrubhumi (TBPN podcast, Meta Connect 2025).",
+                ],
+                [
+                    "The people who grow up with these tools will have an immense advantage.",
+                    "Alexandr Wang",
+                    "Mathrubhumi (TBPN podcast).",
+                ],
+                [
+                    "It’s probably a once in a civilization opportunity to be a dreamer and to have a vision and to have ambition.",
+                    "Alexandr Wang",
+                    "Business Insider, Jul 2026.",
+                ],
+                [
+                    "What we’ve been working on is trying to make computing more human.",
+                    "Evan Spiegel",
+                    "Axios, Jun 2026.",
+                ],
+                [
+                    "The Meta brand is not something that people want to put anywhere near their face.",
+                    "Evan Spiegel",
+                    "Gizmodo, Apr 2026.",
+                ],
+                [
+                    "Ninety-nine percent of ideas are not good — but 1% is.",
+                    "Evan Spiegel",
+                    "Business Insider, Mar 2025.",
+                ],
+                [
+                    "We’re seeing a lot of productivity gains right now from AI, about well north of half of our code, probably closer to two-thirds of our code is written by AI today.",
+                    "Tony Xu",
+                    "Business Insider (earnings call), May 2026.",
+                ],
+                [
+                    "The greatest killer of a business is usually silence.",
+                    "Tony Xu",
+                    "Business Insider podcast, Mar 2026.",
+                ],
+                [
+                    "Candidly, it’s mostly been filled with lots of pain and suffering.",
+                    "Tony Xu",
+                    "Fortune, Sep 2025.",
+                ],
+                [
+                    "The dream was to create a generational company.",
+                    "Mati Staniszewski",
+                    "TIME100 AI feature (Wingedit), Sep 2025.",
+                ],
+                [
+                    "Being at the frontier of audio, we treat it as a responsibility to some extent.",
+                    "Mati Staniszewski",
+                    "TIME100 AI feature.",
+                ],
+                [
+                    "Humans were never meant to write, but to speak.",
+                    "Mati Staniszewski",
+                    "Podcast (Generation do it yourself), 2025.",
+                ],
+                [
+                    "Our vision in the near future is it’s one box.",
+                    "Sundar Pichai",
+                    "Search Engine Journal, Oct 2026.",
+                ],
+                [
+                    "I think the agentic layer offers us a chance to bring a unified product experience better than ever before.",
+                    "Sundar Pichai",
+                    "Search Engine Journal, Oct 2026.",
+                ],
+                [
+                    "Our cloud business is at any given moment in time forgoing short-term revenues because we are making compute trade-offs to support frontier AI development.",
+                    "Sundar Pichai",
+                    "Big Technology Podcast (via Yahoo Finance), Oct 2026.",
+                ],
+                [
+                    "I have a lot of optimism that we can navigate this moment, but you have to approach it with seriousness.",
+                    "Greg Brockman",
+                    "Bloomberg (Odd Lots), Sep 2026.",
+                ],
+                [
+                    "The world is going to require far more compute than we have right now.",
+                    "Greg Brockman",
+                    "TechCrunch, Jan 2026.",
+                ],
+                [
+                    "The most important thing is to come in, really listen, and kind of assume that there’s something that you’re missing until you deeply understand the why.",
+                    "Greg Brockman",
+                    "Business Insider (AI Engineer World’s Fair), Aug 2025.",
+                ],
+                [
+                    "I believe we as a company have proven that we can really adjust our cost structure in a very meaningful and very rapid way.",
+                    "Susan Li",
+                    "Futunn (earnings commentary), Jun 2025.",
+                ],
+                [
+                    "For a company like Meta, EBITDA is not the ultimate financial metric; free cash flow and capital expenditure are more important.",
+                    "Susan Li",
+                    "Futunn, Jun 2025.",
+                ],
+                [
+                    "Not every bet has to succeed; if you only reject projects that don’t look good on paper, you’ll never make important bets.",
+                    "Susan Li",
+                    "Futunn, Jun 2025.",
+                ],
+                [
+                    "In case it was unclear before, it is clear now: GM are a bunch of dummies.",
+                    "Kyle Vogt",
+                    "Yahoo Finance (X post), Dec 2024.",
+                ],
+                [
+                    "Today, I resigned from my position as CEO of Cruise. The last 10 years have been amazing, and I’m grateful to everyone who helped Cruise along the way.",
+                    "Kyle Vogt",
+                    "Autobody News (resignation statement), 2024.",
+                ],
+                [
+                    "So many things compete for our time — commutes, longer working hours, and the complexities of modern life. Our team has spent years building robots … that give people some of that time back.",
+                    "Kyle Vogt",
+                    "Yahoo Finance, May 2024.",
+                ],
+                [
+                    "Do whatever you’re drawn to.",
+                    "Pieter Levels",
+                    "levels.io, Apr 2013.",
+                ],
+                [
+                    "I was making $500 a month or something, and I was looking at the ceiling thinking like, ‘Now I’m 27, I’m a loser.’",
+                    "Pieter Levels",
+                    "Business Insider, Aug 2024.",
+                ],
+                [
+                    "We’re the best country in the world.",
+                    "Marc Andreessen",
+                    "New York Post, Jul 2026.",
+                ],
+                [
+                    "We believe any deceleration of AI will cost lives.",
+                    "Marc Andreessen",
+                    "TechRadar, Jul 2026.",
+                ],
+                [
+                    "There are no silver bullets, only lead bullets.",
+                    "Marc Andreessen",
+                    "Benzinga (Stanford talk), Apr 2025.",
+                ],
+                [
+                    "If you look at what really destroys investing returns it’s geopolitical conflict.",
+                    "Charlie Songhurst",
+                    "Podcast Notes (Invest Like the Best), Aug 2020.",
+                ],
+                [
+                    "Success is very idiosyncratic.",
+                    "Charlie Songhurst",
+                    "Podcast Notes, Aug 2020.",
+                ],
+                [
+                    "It’s not that good soldiers become veterans, it’s that lucky soldiers become veterans, but veterans are good soldiers.",
+                    "Charlie Songhurst",
+                    "Cultish Creative, Jul 2020.",
+                ],
+                [
+                    "Most companies don’t have an execution problem — they lack sufficient shared context to execute quickly.",
+                    "Christina Cacioppo",
+                    "LinkedIn (Martin Eriksson), Apr 2026.",
+                ],
+                [
+                    "Figure out what makes you happy, and do not give them up. I don’t care how busy you are.",
+                    "Christina Cacioppo",
+                    "LinkedIn (Jason Lalk), Dec 2024.",
+                ],
+                [
+                    "In Silicon Valley, there’s a common mantra to ’move fast and break things.’ However, when you’re dealing with atoms instead of bits, breaking things is not really okay.",
+                    "Dmitri Dolgov",
+                    "Times of India (Y Combinator talk), Aug 2026.",
+                ],
+                [
+                    "You have to build AI models, and you have to build training recipes where safety is the foundation and not an afterthought, not an add-on.",
+                    "Dmitri Dolgov",
+                    "Times of India (Y Combinator talk), Aug 2026.",
+                ],
+                [
+                    "You’re committing crime in broad daylight, and that makes it so much easier to kind of police that sort of activity.",
+                    "Tarek Mansour",
+                    "The Block (DC Fintech Week), Oct 2026.",
+                ],
+                [
+                    "The worst advice that most people get is that you should go and seek out a bunch of advice. There’s really no recipe to any of this stuff.",
+                    "Tarek Mansour",
+                    "Fortune (New York Times interview), Aug 2026.",
+                ],
+                [
+                    "There’s nothing wrong with speculation. Kalshi has always been about how we bring any thesis about the future into the markets.",
+                    "Luana Lopes Lara",
+                    "Masters of Scale, Oct 2026.",
+                ],
+                [
+                    "When I say it didn’t change my life much, it’s because I think that I’ve always been laser-focused on building Kalshi.",
+                    "Luana Lopes Lara",
+                    "Fortune, Oct 2026.",
+                ],
+                [
+                    "We really think that prediction markets will be bigger than the stock market.",
+                    "Luana Lopes Lara",
+                    "CNBC Changemakers podcast, Mar 2026.",
+                ],
+                [
+                    "I rarely have to log into Workday except when I first join and during open enrollment.",
+                    "Bret Taylor",
+                    "DigitalToday (HumanX conference), Apr 2026.",
+                ],
+                [
+                    "I truly think that’s where the world is going.",
+                    "Bret Taylor",
+                    "TechCrunch (HumanX conference), Apr 2026.",
+                ],
+                [
+                    "Most companies don’t want to make software. They want solutions to their problems.",
+                    "Bret Taylor",
+                    "TechCrunch, Apr 2026.",
+                ],
+                [
+                    "Look, you get one shot at this life, don’t waste it LARPing as a startup founder for followers.",
+                    "Des Traynor",
+                    "Business Insider, Sep 2025.",
+                ],
+                [
+                    "We had to entirely redesign how we build software from the bottom up because everything is different now.",
+                    "Des Traynor",
+                    "Pigment Perspectives podcast, Mar 2026.",
+                ],
+                [
+                    "AI massively decreases the cost of exploration.",
+                    "Des Traynor",
+                    "Pigment Perspectives podcast, Mar 2026.",
+                ],
+                [
+                    "The best code is code you don’t write.",
+                    "Fabrice Bellard",
+                    "LobeHub (Bellard style guide), Mar 2026.",
+                ],
+                [
+                    "Understand the problem deeply before writing a single line.",
+                    "Fabrice Bellard",
+                    "LobeHub, Mar 2026.",
+                ],
+                [
+                    "Constraints breed creativity.",
+                    "Fabrice Bellard",
+                    "LobeHub, Mar 2026.",
+                ],
+                [
+                    "Do you not see how UTTERLY STUPID those kinds of rules would be?",
+                    "Linus Torvalds",
+                    "Linux kernel mailing list (via The Next Web), Oct 2026.",
+                ],
+                [
+                    "I am not a visionary. I’m an engineer.",
+                    "Linus Torvalds",
+                    "TED2016 (via TED Blog), Feb 2016.",
+                ],
+                [
+                    "I’m looking at the ground, and I want to fix the pothole that’s right in front of me before I go in.",
+                    "Linus Torvalds",
+                    "TED2016 (via Linux.com), Apr 2016.",
+                ],
+                [
+                    "We can save the world from ‘dangerous AI’, but we cannot do it alone.",
+                    "Sam Altman",
+                    "Times of India (internal employee communication), Oct 2026.",
+                ],
+                [
+                    "My kid is never gonna grow up being smarter than AI.",
+                    "Sam Altman",
+                    "Times of India (“Re:Thinking” podcast), Oct 2026.",
+                ],
+                [
+                    "Obviously I think that one’s terrible.",
+                    "Sam Altman",
+                    "Times of India (on the “Eliezer plan”), Oct 2026.",
+                ],
+                [
+                    "The demand of their compute is incredible.",
+                    "Jensen Huang",
+                    "Bloomberg, Oct 2026.",
+                ],
+                [
+                    "When you say that it will be the end of the human civilisation, first of all, it’s not true.",
+                    "Jensen Huang",
+                    "The Express Tribune (GTC Berlin), Oct 2026.",
+                ],
+                [
+                    "If you care about the future, past our own lives, if we care about the future of sustainability, this is the perfect time -- build AI.",
+                    "Jensen Huang",
+                    "The Express Tribune (GTC Berlin), Oct 2026.",
+                ],
+                [
+                    "Conventional currency will not matter.",
+                    "Elon Musk",
+                    "Yahoo News / HuffPost (“The Builders” podcast), Oct 2026.",
+                ],
+                [
+                    "I think people will find ways to be happy in the same way that, say, people who retire seem to be fairly happy even though they’re not working.",
+                    "Elon Musk",
+                    "Yahoo News, Oct 2026.",
+                ],
+                [
+                    "There’s a limit to what any single human can consume. You hit that saturation point pretty fast.",
+                    "Elon Musk",
+                    "Moneycontrol, Oct 2026.",
+                ],
+                [
+                    "When I think about what keeps us grounded every day at Microsoft, it’s our mission to empower every person and every organization on the planet to achieve more.",
+                    "Satya Nadella",
+                    "TechRadar (Frontier Tour London), Oct 2026.",
+                ],
+                [
+                    "Our scaling laws are producing even more powerful models that are less and less trustworthy.",
+                    "Satya Nadella",
+                    "City AM, Oct 2026.",
+                ],
+                [
+                    "We are building a frontier ecosystem that enables others to build more value on top of and through the ecosystem than is captured inside.",
+                    "Satya Nadella",
+                    "The Economic Times, Oct 2026.",
+                ],
+                [
+                    "Never ask what I would do, just do the right thing.",
+                    "Tim Cook",
+                    "Hindustan Times (Steve Jobs’ advice), Oct 2026.",
+                ],
+                [
+                    "I don’t want people using them too much. I don’t want people looking at the smartphone more than they’re looking in someone’s eyes.",
+                    "Tim Cook",
+                    "Indian Express, Mar 2026.",
+                ],
+                [
+                    "I’m not worried about AI giving computers the ability to think like humans. I’m more concerned about people thinking like computers without values or compassion, without concern for consequences.",
+                    "Tim Cook",
+                    "Yahoo Tech (Quote of the Day), Sep 2026.",
+                ],
+                [
+                    "We must slow the pace at which we improve the capabilities of AI models. Progress will still seem fast, and we must make wise use of the time we gain.",
+                    "Dario Amodei",
+                    "Yahoo Tech / CNN Business, Sep 2026.",
+                ],
+                [
+                    "I won’t lie to you, there are real dangers. And I think for too long the industry lied to people about the fact that this technology had risk.",
+                    "Dario Amodei",
+                    "India Today (CBS interview), Sep 2026.",
+                ],
+                [
+                    "The idea that we would never get the incredible benefits, would never get the medical cures, that doesn’t sit right with me.",
+                    "Dario Amodei",
+                    "India Today, Sep 2026.",
+                ],
+                [
+                    "The whole reason we’re developing this technology is to help humans flourish and thrive and live better lives.",
+                    "Daniela Amodei",
+                    "LinkedIn (ThinkHealth), Oct 2026.",
+                ],
+                [
+                    "Claude can never be your manager. Or your therapist.",
+                    "Daniela Amodei",
+                    "LinkedIn (ThinkHealth), Oct 2026.",
+                ],
+                [
+                    "It’s soon. I’m updating nearer and nearer.",
+                    "Demis Hassabis",
+                    "Yahoo Tech (AGI timeline), Oct 2026.",
+                ],
+                [
+                    "The ultimate goal is to build AI and understand the mind, then use it to understand science. First step, solve intelligence. Second step, solve everything else.",
+                    "Demis Hassabis",
+                    "China Youth Daily (interview), Oct 2026.",
+                ],
+                [
+                    "The best scientists paired with these kinds of tools will be able to do incredible things.",
+                    "Demis Hassabis",
+                    "Nobel Prize (phone call after award), 2024.",
+                ],
+                [
+                    "There is not one tool to rule the world — it never works out that way.",
+                    "Andy Jassy",
+                    "Harvard Gazette, Sep 2026.",
+                ],
+                [
+                    "I do believe that a lot of the jobs that we’ve thrown human beings at for the last 20 or 30 years, you won’t need as many human beings doing those same jobs.",
+                    "Andy Jassy",
+                    "Yahoo Finance, Feb 2026.",
+                ],
+                [
+                    "If you look at the total employment numbers, I think people gorged on employment during the pandemic and the year after.",
+                    "Arvind Krishna",
+                    "Times of India, Oct 2026.",
+                ],
+                [
+                    "Over the next decade, AI will surpass today’s boldest expectations, driving a tenfold productivity revolution and long-term transformation.",
+                    "Arvind Krishna",
+                    "CRN (CEO Outlook 2026), Feb 2026.",
+                ],
+                [
+                    "If you ran some assessment, some benchmark, and it was broad-based, not narrow, the top model might score a 70, and the open model might score a 20 or a 30.",
+                    "Arvind Krishna",
+                    "The Register, Oct 2026.",
+                ],
+                [
+                    "We need to get to a world where working with agents is really like working with a colleague, and you can treat it just like you have your own team of engineers.",
+                    "Michael Truell",
+                    "Fortune, Jun 2026.",
+                ],
+                [
+                    "In the places where you want to take a step back and ask the AI to do something end-to-end, you can do that too.",
+                    "Michael Truell",
+                    "Times of India, Dec 2025.",
+                ],
+                [
+                    "It’s just not intuitive. I think that’s the key thing.",
+                    "Sualeh Asif",
+                    "YesPress, May 2026.",
+                ],
+                [
+                    "I’m currently building cursor at Anysphere.",
+                    "Sualeh Asif",
+                    "GitHub bio (via YesPress), May 2026.",
+                ],
+                [
+                    "This is a space where you need to reinvent the product every few months, every year, and the ceiling is so high… We’re still in the early innings.",
+                    "Aman Sanger",
+                    "ET Now, Nov 2025.",
+                ],
+                [
+                    "I think it can be at times a bit too much, but I’m very competitive. I really hate losing.",
+                    "Aman Sanger",
+                    "Latent Space podcast transcript, Aug 2023.",
+                ],
+                [
+                    "Technically incorrect but one point away.",
+                    "Aman Sanger",
+                    "YesPress, Sep 2026.",
+                ],
+                [
+                    "Today, I told the team that I have decided to leave Cursor (or Anysphere, as it was known for most of the time I’ve been here).",
+                    "Arvid Lunnemark",
+                    "The Hindu, Oct 2025.",
+                ],
+                [
+                    "I’m sad to leave the team and the product; I’m excited for the ideas I get to explore next.",
+                    "Arvid Lunnemark",
+                    "The Hindu, Oct 2025.",
+                ],
+                [
+                    "Fast is fun.",
+                    "Arvid Lunnemark",
+                    "FeelAndNote (working principles), 2024.",
+                ],
+                [
+                    "Everyone always asks me, ‘Hey, do you think [AI] is a bubble?’ And I actually don’t think it’s a bubble. Talent is everything.",
+                    "Lucy Guo",
+                    "Inc., Oct 2025.",
+                ],
+                [
+                    "The whole world is like ‘AI is going to take over’ and I’m just like ‘no, it’s going to be our co-pilot. It’s gonna be our best business partner’.",
+                    "Lucy Guo",
+                    "VnExpress International (The Mirror interview), Aug 2025.",
+                ],
+                [
+                    "It’s like, act broke, stay rich.",
+                    "Lucy Guo",
+                    "Fortune, Jun 2025.",
+                ],
+                [
+                    "Where it gets really interesting is when you think beyond R2 and R3 and start to imagine the form factors that you want to build for a personally owned autonomous vehicle.",
+                    "RJ Scaringe",
+                    "TechCrunch, Oct 2026.",
+                ],
+                [
+                    "That looks really good financially for 2026, 2027, maybe even 2028. But as you … I think we’re going to find a lot of companies are unfortunately woefully behind in terms of their technology.",
+                    "RJ Scaringe",
+                    "The Guardian, Jun 2026.",
+                ],
+                [
+                    "Rideshare today is such a small percentage of miles. You need level four. So that’s what we’re focused on.",
+                    "RJ Scaringe",
+                    "Benzinga, Dec 2025.",
+                ],
+                [
+                    "Actually, I don’t think that’s very far away. Just like your cell phone, they’ll do some work on device and some work going back to the cloud.",
+                    "Andrew Feldman",
+                    "TechCrunch (Disrupt), Oct 2026.",
+                ],
+                [
+                    "Some of the leaders in the AI world maybe shouldn’t be allowed to talk in public.",
+                    "Andrew Feldman",
+                    "TechCrunch (Disrupt), Oct 2026.",
+                ],
+                [
+                    "This notion that somehow you can build something extraordinary by working 38 hours a week and having work-life balance, that is mind-boggling to me.",
+                    "Andrew Feldman",
+                    "The Next Web (20VC podcast), Aug 2026.",
+                ],
+                [
+                    "Our company entirely changed how we operate, and I would say the closest analogy is a ‘self-driving company’.",
+                    "Amjad Masad",
+                    "TechCrunch, Oct 2026.",
+                ],
+                [
+                    "If you don’t feel like you’re drawn to it like a fly drawn to a light, then don’t go into it because someone told you you’re going to make a boatload of money working for Google. It’s pretty dumb.",
+                    "Amjad Masad",
+                    "News18, Apr 2026.",
+                ],
+                [
+                    "I think ChatGPT is better now. It was a decision based on both cost, partnership, and performance.",
+                    "Amjad Masad",
+                    "TechRepublic, Oct 2026.",
+                ],
+                [
+                    "Most people don’t call 911 when they hear a gunshot, and so that’s why we built the product.",
+                    "Garrett Langley",
+                    "TechCrunch, Oct 2026.",
+                ],
+                [
+                    "If we want to live in a society where, if you commit a crime, you have a higher probability of being held accountable, we shouldn’t pause progress.",
+                    "Garrett Langley",
+                    "Yahoo Tech / TechCrunch, Oct 2026.",
+                ],
+                [
+                    "Safety should not be a privilege, it should be a right.",
+                    "Garrett Langley",
+                    "Flock Safety (TED2026), Jul 2026.",
+                ],
+                [
+                    "We want to expand more and more so that Bluesky means not just one thing, not just liberal politics, for example.",
+                    "Toni Schneider",
+                    "Gizmodo, Aug 2026.",
+                ],
+                [
+                    "I took this job because I believe in our mission: to develop and drive large-scale adoption of technologies for open and decentralized public conversation.",
+                    "Toni Schneider",
+                    "Engadget, Jul 2026.",
+                ],
+                [
+                    "Most importantly, as of today, the interim part of the title is gone. I’m loving the mission and the job, and I’m all in as Bluesky’s official CEO.",
+                    "Toni Schneider",
+                    "TechCrunch, Jul 2026.",
+                ],
+                [
+                    "We’ve never thought about it as replacing humans. … this is your buddy who helps you build more.",
+                    "Scott Wu",
+                    "TechCrunch, May 2026.",
+                ],
+                [
+                    "The reason that young founders who are just really sharp and really determined did very well is because at the end of the day, being a good first principles thinker does beat experience.",
+                    "Scott Wu",
+                    "LinkedIn (Umar Bello Kanwa), Jun 2026.",
+                ],
+                [
+                    "It’s fun being on the Avengers.",
+                    "Scott Wu",
+                    "Bain Capital Ventures video, Oct 2026.",
+                ],
+                [
+                    "The solution to many problems with AI is more AI.",
+                    "Clay Bavor",
+                    "Axios (AI+ Summit), Dec 2024.",
+                ],
+                [
+                    "Anytime there is a sea change in technology, it opens a window of opportunity for smaller companies to explore that open space and really take some risks and try some new things.",
+                    "Clay Bavor",
+                    "TechCrunch, Feb 2024.",
+                ],
+                [
+                    "The most productive employees we have, some of them are just 22 or 23 years old.",
+                    "Clay Bavor",
+                    "Vietnam.vn (interview), Jul 2026.",
+                ],
+                [
+                    "We work a lot, I’ve worked every day for the last three years. I can’t really take a day off, because I just have this impulsive drive to go back to it.",
+                    "Brendan Foody",
+                    "VnExpress International (Fortune interview), Dec 2025.",
+                ],
+                [
+                    "I think it’s about defining the category of how people teach AI.",
+                    "Brendan Foody",
+                    "G Squared, Jul 2026.",
+                ],
+                [
+                    "The worst advice that most people get is that you should go and seek out a bunch of advice.",
+                    "Brendan Foody",
+                    "Fortune, Aug 2026.",
+                ],
+                [
+                    "It felt surreal… I would still be in college if I hadn’t founded this company.",
+                    "Adarsh Hiremath",
+                    "The Economic Times, Dec 2025.",
+                ],
+                [
+                    "As models get smarter… there’s going to be more opportunities to guide them to do the right thing.",
+                    "Adarsh Hiremath",
+                    "The Economic Times, Dec 2025.",
+                ],
+                [
+                    "The thing that’s crazy for me is, if I weren’t working on Mercor, I would have just graduated college a couple of months ago.",
+                    "Adarsh Hiremath",
+                    "Financial Express, Nov 2025.",
+                ],
+                [
+                    "It’s definitely crazy. It feels very surreal. Obviously beyond our wildest imaginations.",
+                    "Surya Midha",
+                    "DailyHunt (Forbes report), Nov 2025.",
+                ],
+                [
+                    "My parents immigrated to the US from New Delhi, India. I was born in Mountain View and raised in San Jose, California.",
+                    "Surya Midha",
+                    "Indian Express (personal website), Nov 2025.",
+                ],
+                [
+                    "Beyond grateful for Adarsh H. and Surya Midha. It’s crazy to think we would have been graduating in the spring.",
+                    "Surya Midha",
+                    "Global Indian, Dec 2024.",
+                ],
+                [
+                    "We’re way past vibes.",
+                    "Anton Osika",
+                    "The Next Web (Dreamforce), Sep 2026.",
+                ],
+                [
+                    "The talent was never the problem. The belief that you could build from here was.",
+                    "Anton Osika",
+                    "Business Insider, Jun 2026.",
+                ],
+                [
+                    "Warnings like this need to be taken seriously. Decisions that could affect everyone deserve public accountability.",
+                    "Anton Osika",
+                    "Business Insider, Sep 2026.",
+                ],
+                [
+                    "If you look at the Fortune 500, two thirds of them are using Lovable because people within those companies, they kind of just figure out, oh, I can use this tool to solve our problems.",
+                    "Fabian Hedin",
+                    "The Next Web, Sep 2026.",
+                ],
+                [
+                    "It works beautifully with our design systems and it’s more autonomous, which is core to Lovable’s values. People should be creating things that matter, not micromanaging AI.",
+                    "Fabian Hedin",
+                    "Lovable, Feb 2026.",
+                ],
+                [
+                    "Don’t overbuild for the future—ship what works today.",
+                    "Fabian Hedin",
+                    "Notion (First Block interview), Oct 2025.",
+                ],
+                [
+                    "We can have the model craft communications, edit real-world systems, and monitor our production software in a way that previous generations were not able to.",
+                    "Johnny Ho",
+                    "OpenAI, Sep 2026.",
+                ],
+                [
+                    "The way we discover knowledge online is fundamentally broken, and the next decade won’t be defined by searching, but by understanding.",
+                    "Johnny Ho",
+                    "LinkedIn (Mayuresh K), 2026.",
+                ],
+                [
+                    "If I had to guess, technical PMs or engineers with product taste will become the most valuable people at a company over time.",
+                    "Johnny Ho",
+                    "LinkedIn (Rob Halasz), May 2024.",
+                ],
+                [
+                    "Harvard, MIT or Stanford are not the most important. What matters is how you grow and develop.",
+                    "Demi Guo",
+                    "Vietnam.vn, Oct 2025.",
+                ],
+                [
+                    "When you compare AI videos from a year ago with today, you see that the pace of progress is truly staggering.",
+                    "Demi Guo",
+                    "Vietnam.vn, Oct 2025.",
+                ],
+                [
+                    "Where your creativity goes, we follow.",
+                    "Demi Guo",
+                    "Expansión, Jun 2025.",
+                ],
+                [
+                    "We don’t just delegate tasks, we delegate responsibilities.",
+                    "Steven Hao",
+                    "YesPress, Sep 2026.",
+                ],
+                [
+                    "So now we’re claiming a new future, which is English will be the source of truth.",
+                    "Steven Hao",
+                    "FeelAndNote, 2026.",
+                ],
+                [
+                    "We’ve never thought about it as replacing humans. It has never been our view.",
+                    "Steven Hao",
+                    "AI Magazine, Oct 2026.",
+                ],
+                [
+                    "What’s there to be intimidated about? We like competing. We enjoy winning.",
+                    "Jesse Zhang",
+                    "Forbes, Dec 2025.",
+                ],
+                [
+                    "If they’re not paying, there’s no real signal. Actually, if they’re not paying a decent amount, you won’t learn anything.",
+                    "Jesse Zhang",
+                    "LinkedIn (Macy Mills), Feb 2025.",
+                ],
+                [
+                    "Whenever there’s a big technology shift—in this case with AI—it just opens the door for a lot of companies. But really, the number of great ideas is usually pretty small.",
+                    "Jesse Zhang",
+                    "Forbes, Feb 2026.",
+                ],
+                [
+                    "We’re not really optimizing for revenue. That’s a byproduct of providing value to users.",
+                    "Jeffrey Yan",
+                    "HTX, Oct 2026.",
+                ],
+                [
+                    "If I were to start over, I might choose to explore options.",
+                    "Jeffrey Yan",
+                    "KuCoin (Empire podcast), Oct 2026.",
+                ],
+                [
+                    "I’m a big believer in the long-term vision of HubSpot and the team driving it.",
+                    "Dharmesh Shah",
+                    "Benzinga, May 2026.",
+                ],
+                [
+                    "Headless is great, but we don’t think completely humanless is a good idea.",
+                    "Dharmesh Shah",
+                    "Yahoo Finance, May 2026.",
+                ],
+                [
+                    "Culture is the product you build for your team.",
+                    "Dharmesh Shah",
+                    "Podscan.fm (Prompted podcast), Oct 2025.",
+                ],
+                [
+                    "The market contracted, so you had to do that in the face of a contracting market. What is it that we did? You saw profits rise much faster than revenue rose last year.",
+                    "Niraj Shah",
+                    "Investing.com (UBS Conference), Mar 2026.",
+                ],
+                [
+                    "Often, if you don’t pursue something you want, you’ll have regrets. But if you do something reckless, you could have different regrets.",
+                    "Niraj Shah",
+                    "Economic Times (CNBC Make It), Nov 2025.",
+                ],
+                [
+                    "The notion that customers don’t want stores is not true, and the notion that customers don’t want online is also not true. I think most customers want both.",
+                    "Niraj Shah",
+                    "Business of Home, Sep 2026.",
+                ],
+                [
+                    "We feel like it’s not a research project anymore, that it’s in production and we’re ready to scale it.",
+                    "Andrew Bialecki",
+                    "Boston Globe, Dec 2025.",
+                ],
+                [
+                    "I’m an intense guy, and we have a culture of intensity.",
+                    "Andrew Bialecki",
+                    "Boston Globe, Dec 2025.",
+                ],
+                [
+                    "You can talk to it and say things like, ‘I need support on any aspect of the platform.’ That’s why we’re seeing 40% of ticket volume now handled through AI.",
+                    "Aman Narang",
+                    "Fiscal.ai (earnings call), May 2026.",
+                ],
+                [
+                    "We’re the most important piece of technology restaurateurs use to run their business.",
+                    "Aman Narang",
+                    "Investing.com (Q4 2025 earnings call), Feb 2026.",
+                ],
+                [
+                    "We are both delivering world-class results and reinventing ourselves at the same time.",
+                    "Aman Narang",
+                    "Yahoo Finance (Q1 2026 earnings call), May 2026.",
+                ],
+                [
+                    "Making trades on whether someone will say something on an earnings call is probably not something that should be out there.",
+                    "Jason Robins",
+                    "Bloomberg, Aug 2026.",
+                ],
+                [
+                    "Jumping to ‘let’s ban it’ is crazy.",
+                    "Jason Robins",
+                    "Front Office Sports, Feb 2026.",
+                ],
+                [
+                    "Anything that you don’t turn into opportunity, it can turn into a risk for you.",
+                    "Jason Robins",
+                    "Masters of Scale, Feb 2026.",
+                ],
+                [
+                    "You can only really manage what you measure.",
+                    "Will Ahmed",
+                    "Indy Web (interview), Nov 2024.",
+                ],
+                [
+                    "I don’t think of it as working hard and wellbeing as … I think that you can learn how to take on a lot of stress or work extremely hard, but also feel good and be healthy.",
+                    "Will Ahmed",
+                    "Indy Web, Nov 2024.",
+                ],
+                [
+                    "Build a Web where each individual person can be empowered. Work always for digital sovereignty of the individual.",
+                    "Tim Berners-Lee",
+                    "Inrupt (Web Summit 2025), Jan 2026.",
+                ],
+                [
+                    "With Inrupt and the power of Solid Wallets, we can actually build things that are pro-human again.",
+                    "Tim Berners-Lee",
+                    "Inrupt (Web Summit 2024), Dec 2024.",
+                ],
+                [
+                    "The winner is whoever can collect the most data and the loser is everyone else.",
+                    "Tim Berners-Lee",
+                    "ACM / PCMag, Nov 2021.",
+                ],
+                [
+                    "The word ‘nuclear’ is shorthand for fission. And this isn’t fission.",
+                    "Bob Mumgaard",
+                    "Bloomberg (Cleaner Tech), Nov 2025.",
+                ],
+                [
+                    "Historically, fusion has really been just only about the science of fusion, and that’s gone very well. But now it’s ready to be about building facilities.",
+                    "Bob Mumgaard",
+                    "Axios, Dec 2025.",
+                ],
+                [
+                    "Fusion is no longer a science project; it’s actually the next big thing in tech.",
+                    "Bob Mumgaard",
+                    "Yahoo Tech (Fortune interview), Jan 2026.",
+                ],
+                [
+                    "Patients go from being almost blind to being able to read every letter on an eye chart and do crossword puzzles.",
+                    "Max Hodak",
+                    "El País, Dec 2025.",
+                ],
+                [
+                    "I think the first people to live to 1,000 may have already been born.",
+                    "Max Hodak",
+                    "Sohu (interview), Mar 2026.",
+                ],
+                [
+                    "We are a medical device company.",
+                    "Max Hodak",
+                    "36Kr (interview), Sep 2026.",
+                ],
+                [
+                    "Bringing it back shows extinction doesn’t have to be permanent.",
+                    "Ben Lamm",
+                    "Channel News Asia (Reuters), Oct 2026.",
+                ],
+                [
+                    "We as humanity need moonshots.",
+                    "Ben Lamm",
+                    "Gulf News, Feb 2026.",
+                ],
+                [
+                    "We need a backup plan for life, but not hidden away in a cold, dark corner.",
+                    "Ben Lamm",
+                    "Gulf News, Feb 2026.",
+                ],
+                [
+                    "I’m skeptical of [the war], I think we should not have done it. There were a lot of mistakes that were made.",
+                    "Peter Thiel",
+                    "Politico, Oct 2026.",
+                ],
+                [
+                    "Maybe we don’t have the hard power. Maybe we’re going to lose the soft power war.",
+                    "Peter Thiel",
+                    "Mirror, Oct 2026.",
+                ],
+                [
+                    "I read the Cheney family’s Trump derangement syndrome as an attempt to buy favor with the [International Criminal Court] and avoid prosecution.",
+                    "Peter Thiel",
+                    "Novinite, Oct 2026.",
+                ],
+                [
+                    "Most of the jobs in this country are really not jobs humans should have. Working on an assembly line for 40 years, or as a farm worker in 100-degree heat—that’s servitude to survival.",
+                    "Vinod Khosla",
+                    "Indian Express, Oct 2025.",
+                ],
+                [
+                    "‘Follow your passion’ comes second to surviving. I think that surviving part will go away, and you’ll tell every 5-year-old kid, ‘Follow your passion.’",
+                    "Vinod Khosla",
+                    "Fortune, Mar 2026.",
+                ],
+                [
+                    "If the option expires, you lose one times your money. If it works, you make five times your money, 10 times your money, 100 — and I hope OpenAI is 1,000x or more.",
+                    "Vinod Khosla",
+                    "Edgen (WSJ interview), Jul 2026.",
+                ],
+                [
+                    "I think no matter what type of business they’re in … it’s critical to have a steep learning curve—because things change fast.",
+                    "Neil Shen",
+                    "HSG (Beyond Expo 2024), May 2024.",
+                ],
+                [
+                    "To be an entrepreneur, you have to bring breakthroughs. If it is not a technological breakthrough, bring a breakthrough to the current business model.",
+                    "Neil Shen",
+                    "HKUST, Oct 2015.",
+                ],
+                [
+                    "My sense is the digital economy is something unique to China. I don’t think it will be affected that much by a U.S.-China trade war.",
+                    "Neil Shen",
+                    "CNBC, Nov 2018.",
+                ],
+                [
+                    "There should be as many models in the world as firms in the world.",
+                    "Eric Vishria",
+                    "X (Eric Vishria), Jun 2026.",
+                ],
+                [
+                    "AI is likely to produce an oligopoly plus $100B specialists, not a single winner-take-all lab.",
+                    "Eric Vishria",
+                    "BidClub (Invest Like the Best), Aug 2026.",
+                ],
+                [
+                    "Everyone is still undersizing the AI market.",
+                    "Eric Vishria",
+                    "BidClub, Aug 2026.",
+                ],
+                [
+                    "We returned them all, alive and dead, from enemy territory.",
+                    "Gili Raanan",
+                    "IsraelInfo (funeral speech), Jan 2026.",
+                ],
+                [
+                    "It’s a terrible feeling, fear that we will be left alone. Pray for him.",
+                    "Gili Raanan",
+                    "Ch10, Nov 2025.",
+                ],
+                [
+                    "We will defeat this monster.",
+                    "Gili Raanan",
+                    "Ch10, Nov 2025.",
+                ],
+                [
+                    "My whole life I wanted to see if I was a badass or not.",
+                    "Doug Leone",
+                    "New York Post (Founders podcast), Sep 2026.",
+                ],
+                [
+                    "I love fear. It does wonders for me. It gives me the challenge to overcome that gives me then a sense of security.",
+                    "Doug Leone",
+                    "New York Post, Sep 2026.",
+                ],
+                [
+                    "Teams always win. I’m sure about that.",
+                    "Doug Leone",
+                    "Sequoia Capital (Seven Questions), Jun 2018.",
+                ],
+                [
+                    "We’ve never seen anything like the user growth of ChatGPT, particularly outside the U.S., and it shows how the global dynamics of tech and distribution have changed.",
+                    "Mary Meeker",
+                    "Axios, May 2025.",
+                ],
+                [
+                    "Early leaders fail when they fall behind on innovation or price themselves out of the market, but OpenAI shows no signs of doing either.",
+                    "Mary Meeker",
+                    "Axios, May 2025.",
+                ],
+                [
+                    "One thing is certain—it’s game time for AI, and it’s only getting more intense… and the genie is not going back in the bottle.",
+                    "Mary Meeker",
+                    "YourStory, 2025.",
+                ],
+                [
+                    "The more I learned about AI, the less I knew.",
+                    "Elad Gil",
+                    "McKinsey, Dec 2025.",
+                ],
+                [
+                    "Founders running successful AI companies should all take a cold, hard look at exiting in the next 12-18 months.",
+                    "Elad Gil",
+                    "Electronics Weekly, Apr 2026.",
+                ],
+                [
+                    "I think half of it just is that you find the right market. So you need the right market.",
+                    "Elad Gil",
+                    "LinkedIn (Startup Archive), 2026.",
+                ],
+                [
+                    "A startup is a company designed to grow fast.",
+                    "Paul Graham",
+                    "Y Combinator (essays), 2025.",
+                ],
+                [
+                    "Make something people want’ is the destination, but ’be relentlessly resourceful’ is how you get there.",
+                    "Paul Graham",
+                    "Y Combinator (essays), 2025.",
+                ],
+                [
+                    "Amazon banning agents is the first opportunity I’ve seen since Amazon was founded for a startup to create an Amazon competitor.",
+                    "Paul Graham",
+                    "Inc. (X post), Oct 2026.",
+                ],
+                [
+                    "You can’t achieve anything of substance if you’re always thinking about the next job.",
+                    "Gokul Rajaram",
+                    "Moneycontrol, Jan 2026.",
+                ],
+                [
+                    "The one truly future-proof skill in the AI era is judgment.",
+                    "Gokul Rajaram",
+                    "LinkedIn (Rob Palumbo), Feb 2026.",
+                ],
+                [
+                    "If a feature doesn’t move or change customer behavior, that feature shouldn’t exist. Is it even a feature?",
+                    "Gokul Rajaram",
+                    "LinkedIn (Surge), 2025.",
+                ],
+                [
+                    "The purpose of crypto is to build a code-based order, because the rules-based order is unfortunately collapsing.",
+                    "Balaji Srinivasan",
+                    "Bitcoin.com News, Feb 2026.",
+                ],
+                [
+                    "The core idea of a network state is ‘cloud first, land second.’",
+                    "Balaji Srinivasan",
+                    "KuCoin, Mar 2026.",
+                ],
+                [
+                    "AI makes everything fake, and crypto makes it real again.",
+                    "Balaji Srinivasan",
+                    "Bitget News, Nov 2025.",
+                ],
+                [
+                    "I’m not going to invest in an idea of an unknown person, so asking me to have coffee to discuss your ideas is a massive turnoff.",
+                    "Jason Calacanis",
+                    "Vox, Mar 2017.",
+                ],
+                [
+                    "Show me the thing you’ve made, because I make my decision based on craftsmanship.",
+                    "Jason Calacanis",
+                    "Vox, Mar 2017.",
+                ],
+                [
+                    "The industry keeps moving. What you have to fall in love with is the process of learning and iterating and getting better.",
+                    "Jason Calacanis",
+                    "NBC News, Jun 2014.",
+                ],
+                [
+                    "In journalism, things that you would assign a junior person to do now can be done through a ChatGPT or an OpenAI or any of the tools. And therefore the gap is getting wider.",
+                    "Kunal Shah",
+                    "Hindustan Times, Jun 2026.",
+                ],
+                [
+                    "The most valuable wealth you have is time and what you do with time becomes even more important than it was before.",
+                    "Kunal Shah",
+                    "Mint, Jun 2026.",
+                ],
+                [
+                    "Every expert has to become AI native to remain relevant, irrespective of their domain. Those who stay in denial will be left behind.",
+                    "Kunal Shah",
+                    "News18, Mar 2025.",
+                ],
+                [
+                    "When you’re building a business, you really want to think about what special advantages can I have that will give me an uneven playing field to hire and retain the best talent.",
+                    "Kevin Hartz",
+                    "Medium (OFF RCRD), May 2018.",
+                ],
+                [
+                    "I think that intellectual curiosity, intrigue, and also kind of the fearlessness to go into segments that other investors tend not to go into has made it really exciting for me.",
+                    "Kevin Hartz",
+                    "Deciphr (20VC), 2024.",
+                ],
+                [
+                    "Ingenuity comes out of scarce resources.",
+                    "Kevin Hartz",
+                    "YesPress, Apr 2026.",
+                ],
+                [
+                    "You don’t decide to start a company — you get infected by an idea.",
+                    "Ali Partovi",
+                    "LinkedIn (Hatidje Ablyatifova), Nov 2025.",
+                ],
+                [
+                    "Every time you act out of fear, you lower both risk and reward.",
+                    "Ali Partovi",
+                    "LinkedIn, Nov 2025.",
+                ],
+                [
+                    "I view computer science as a liberal art. It should be something that everybody learns.",
+                    "Ali Partovi",
+                    "TEDxSausalito (video), Jun 2022.",
+                ],
+                [
+                    "A lot has changed over the years, so finding a constant thriving in amongst the shifting sands of time is kind of reassuring.",
+                    "Sabrina Hahn",
+                    "ABC Australia (Gardening Australia), Sep 2023.",
+                ],
+                [
+                    "The diversity of gardens is amazing but it’s the passion that the gardeners have down there.",
+                    "Sabrina Hahn",
+                    "Countryman, Aug 2022.",
+                ],
+                [
+                    "Das ist körperlich, aber vor allem mental, ein echter Kampf.” *(This is physically, but above all mentally, a real fight.)*",
+                    "Sabrina Hahn",
+                    "FitForFun (Hyrox interview), Dec 2025.",
+                ],
+                [
+                    "I saw Scale AI. And I was like, ‘good idea, but these people are so young.’",
+                    "Immad Akhund",
+                    "Business Insider (Twenty Minute VC), May 2025.",
+                ],
+                [
+                    "There’s this sense in Silicon Valley that the idea doesn’t matter … But I think people undervalue how much the idea matters.",
+                    "Immad Akhund",
+                    "LinkedIn (Karli Kujawa), Oct 2025.",
+                ],
+                [
+                    "I’ve tried to make it so that the pressure kind of goes down as success goes up.",
+                    "Immad Akhund",
+                    "Apple Podcasts (Founders In Arms), Jun 2026.",
+                ],
+                [
+                    "The simplest way I would say is ‘think of AI as a human being who can read all the text that is out there in the world, make sense out of it, can access it in real time and help with decision making.’",
+                    "Ashu Garg",
+                    "Eightfold AI, Aug 2023.",
+                ],
+                [
+                    "Engineers make the best founders. I’m laser-focused on investing in technical founders.",
+                    "Ashu Garg",
+                    "LinkedIn (Ashu Garg), Aug 2024.",
+                ],
+                [
+                    "I always tell people, if you have revenues, don’t call me.",
+                    "Ashu Garg",
+                    "AgentTalk (Substack), Aug 2025.",
+                ],
+                [
+                    "Your systems always have to be up. If Google or Gmail goes down people don’t know how to live their lives anymore.",
+                    "Andrew Miklas",
+                    "VentureBeat, Jun 2014.",
+                ],
+                [
+                    "Learning how to code is still vital if you want to go into tech – being able to accurately describe the product you want is a skill.",
+                    "Andrew Miklas",
+                    "YesPress (The Venture Podcast), May 2026.",
+                ],
+                [
+                    "Analyzing the data produced is more akin to reverse engineering a network protocol than machine code.",
+                    "Andrew Miklas",
+                    "LKML, Aug 2004.",
+                ],
+                [
+                    "Consensus is really the enemy of scale.",
+                    "Brian Halligan",
+                    "LinkedIn (Minds at Work), Aug 2024.",
+                ],
+                [
+                    "You want every interaction that customer has with your organization to be tracked and then leveraged to create a delightful future interaction with them.",
+                    "Brian Halligan",
+                    "HubSpot, Oct 2024.",
+                ],
+                [
+                    "I think, at least in the tech world, gray hair and experience are really overrated.",
+                    "Brian Halligan",
+                    "New York Times, Dec 2013.",
+                ],
+                [
+                    "What we’re trying to do is find sports that are undervalued and invest in those so that five years from now … that’s when you’ll capture.",
+                    "David Fialkow",
+                    "Sports Business Journal, Jan 2025.",
+                ],
+                [
+                    "I would love to do it, if we are able to move the team to Hartford. I grew up in Hartford.",
+                    "David Fialkow",
+                    "Hedge Fund Alpha, Sep 2025.",
+                ],
+                [
+                    "I spent 7 years as a software engineer. Looking back, I wasn’t just working a job. I was getting paid to learn how to replace my boss.",
+                    "Tony Dinh",
+                    "Startup Stash blog, Feb 2026.",
+                ],
+                [
+                    "I don’t have a marketing budget. I have a Twitter account and a ‘Send’ button.",
+                    "Tony Dinh",
+                    "Startup Stash blog, Feb 2026.",
+                ],
+                [
+                    "I am just above the average.",
+                    "Tony Dinh",
+                    "LinkedIn (Son Le), Oct 2023.",
+                ],
+                [
+                    "You don’t become a millionaire by chasing money. I never had a financial goal. Instead, I learned how to tame my monkey mind and how to ship startups fast.",
+                    "Marc Lou",
+                    "LinkedIn (Marc Lou), Dec 2024.",
+                ],
+                [
+                    "The hit rate is about 5%. … Playing the game of launching stuff is the recipe to have something that at some point will work out. Don’t you dare give up.",
+                    "Marc Lou",
+                    "BigGo Finance, Apr 2026.",
+                ],
+                [
+                    "Each failure is not a failure if you don’t give up.",
+                    "Marc Lou",
+                    "IBTimes UK, May 2026.",
+                ],
+                [
+                    "I think it makes me more productive because most of the time when all my customers are sleeping, I am awake.",
+                    "Danny Postma",
+                    "The Bootstrapped Founder (podcast), Aug 2023.",
+                ],
+                [
+                    "Welcome to the ChatGPT era: learning is no longer about memorizing - it’s all about knowing what questions to ask.",
+                    "Danny Postma",
+                    "X (Danny Postma), Jan 2023.",
+                ],
+                [
+                    "Pick a Fight, but always punch up.",
+                    "Danny Postma",
+                    "Indie Hackers (podcast), May 2023.",
+                ],
+                [
+                    "I think compromises make lukewarm results.",
+                    "Ben Broca",
+                    "RuntimeWire (Wall Street Journal interview), Jul 2026.",
+                ],
+                [
+                    "This is the agent that’s going to decide on strategy. I think it’s important to give it the best reasoning.",
+                    "Ben Broca",
+                    "TeamDay.ai, 2026.",
+                ],
+                [
+                    "The skeptics overplay the criminal use of crypto while the believers underplay it.",
+                    "Nat Eliason",
+                    "iHeart (Curious Worldview podcast), Nov 2024.",
+                ],
+                [
+                    "Build up your identity of being a capable person. Money corrupts quickly. It’s never the right time.",
+                    "Nat Eliason",
+                    "Apple Podcasts (The Learning Leader Show), Jul 2024.",
+                ],
+                [
+                    "Among my strongest life goals is to write something worthy of outliving me.",
+                    "Nat Eliason",
+                    "Substack (via Snipd), 2024.",
+                ],
+                [
+                    "The perfect business doesn’t exist. Any business is a dynamic enterprise, a thing that you do, not a thing you have.",
+                    "Arvid Kahl",
+                    "Learn from Makers, 2024.",
+                ],
+                [
+                    "For me, it was my inability to work on other people’s ideas.",
+                    "Arvid Kahl",
+                    "X (Arvid Kahl), Jan 2023.",
+                ],
+                [
+                    "The challenge for me is overcoming my inhibition to change. It’s making a decision to prioritize one thing and deprioritize others.",
+                    "Arvid Kahl",
+                    "DeepCast (The Bootstrapped Founder), Jun 2024.",
+                ],
+                [
+                    "Start with a small problem to solve on the weekend.",
+                    "Damon Chen",
+                    "Note.com, Jan 2026.",
+                ],
+                [
+                    "If they’re not paying a decent amount, you won’t learn anything.",
+                    "Damon Chen",
+                    "Everand (Indie Hackers podcast), Nov 2022.",
+                ],
+                [
+                    "A lot of people are so concerned about catching the next train because it’s the last one. … But there are many more trains – just make sure you’re at the train station.",
+                    "Sahil Lavingia",
+                    "The Lean Startup (newsletter), Nov 2024.",
+                ],
+                [
+                    "I only want to build stuff that I can use myself.",
+                    "Sahil Lavingia",
+                    "ZURB, Nov 2012.",
+                ],
+                [
+                    "Before you start something, ask yourself: Could you see yourself working on this ten years from now?",
+                    "Sahil Lavingia",
+                    "VentureBeat, Aug 2012.",
+                ],
+                [
+                    "Building in public is a long-term thing. You cannot just hope the result will come in six months.",
+                    "Kevon Cheung",
+                    "BetterLaunch, Jan 2024.",
+                ],
+                [
+                    "I just want people to think that building in public is kind of like the word digital marketing. What does it mean?",
+                    "Kevon Cheung",
+                    "The Bootstrapped Founder (podcast), Jan 2024.",
+                ],
+                [
+                    "If you don’t catch the idea right there, like a bird it will fly away and you won’t be able to get it back.",
+                    "Kevon Cheung",
+                    "Substack (Quda), Mar 2023.",
+                ],
+                [
+                    "Treat ideas like cattle, not pets.",
+                    "Daniel Vassallo",
+                    "Changelog, Feb 2023.",
+                ],
+                [
+                    "The cost of acquiring new information is high and the consequence of deviating from a default choice is low, so sticking with the default will likely be the optimal choice.",
+                    "Daniel Vassallo",
+                    "Podchaser (Software Engineering Daily), Jul 2020.",
+                ],
+                [
+                    "Business is unpredictable. You need to radically reduce the input.",
+                    "Daniel Vassallo",
+                    "Apple Podcasts (The Bootstrapped Founder), Nov 2022.",
+                ],
+                [
+                    "The most common advice people have is to go for it! Be okay with experiencing failures and starting over.",
+                    "Courtland Allen",
+                    "Ivy.fm, 2020.",
+                ],
+                [
+                    "Sometimes staying true to what you’ve built is the best decision you can make.",
+                    "Courtland Allen",
+                    "LinkedIn (Courtney Allen), Mar 2025.",
+                ],
+                [
+                    "AI has 100% made all of this worse. It’s just too easy now to vibe code features, generate a blog post, etc with zero effort and people delude themselves into thinking that it’s progress.",
+                    "Jon Yongfook",
+                    "X (Jon Yongfook), May 2025.",
+                ],
+                [
+                    "Nothing worth having comes easy.",
+                    "Jon Yongfook",
+                    "X (Jon Yongfook), May 2025.",
+                ],
+                [
+                    "The idea of doing one-shot to an app with AI is a fugazi. If you had to describe my app with all the edge cases I’ve resolved, it would be a prompt the size of a small book.",
+                    "Jon Yongfook",
+                    "IQSource, Apr 2026.",
+                ],
+                [
+                    "You just have to start with a messy setup, doing messy content, crappy video, and just ship them and be okay with the shame of shipping them.",
+                    "Thibault Louis-Lucas",
+                    "BetterLaunch, Jan 2024.",
+                ],
+                [
+                    "We have always remained very lean with the team and I think that’s a part of what makes us go very fast.",
+                    "Thibault Louis-Lucas",
+                    "BetterLaunch, Jan 2024.",
+                ],
+                [
+                    "If you sell your startup, don’t do it. The money alone will destroy you, no one warns you about it.",
+                    "Thibault Louis-Lucas",
+                    "CC.cz, Jul 2026.",
+                ],
+                [
+                    "Quitting your worst habit will change your life faster than starting your best habit. You gotta fix the leak before you fill the bucket.",
+                    "Alex West",
+                    "Snapchat (Alex West), Mar 2026.",
+                ],
+                [
+                    "Let go of the outcome. Focus on what you can control.",
+                    "Alex West",
+                    "LinkedIn (Alex West Steinman), Sep 2024.",
+                ],
+                [
+                    "The line that separates people who are managing it from people who are fixing it. Which side are you on right now?",
+                    "Alex West",
+                    "LinkedIn (Alex West), 2025.",
+                ],
+                [
+                    "Software should always be free because all users of software deserve freedom. It’s free in the sense of freedom, not in the sense of price.",
+                    "Richard Stallman",
+                    "Big Think, Aug 2010.",
+                ],
+                [
+                    "Innovation is secondary when freedom is at stake.",
+                    "Richard Stallman",
+                    "Pavia Doctoral Address, Sep 2007.",
+                ],
+                [
+                    "We should fight this. Perhaps your university will ask you to use non-free software. Refuse it.",
+                    "Richard Stallman",
+                    "Heise, Oct 2025.",
+                ],
+                [
+                    "You can’t trust code that you did not totally create yourself.",
+                    "Ken Thompson",
+                    "“Reflections on Trusting Trust” (Turing Award Lecture), 1983.",
+                ],
+                [
+                    "What we wanted to preserve was not just a good environment in which to do programming, but a system around which fellowship could form.",
+                    "Dennis Ritchie",
+                    "Wikiquote, 2011.",
+                ],
+                [
+                    "C is quirky, flawed, and an enormous success.",
+                    "Dennis Ritchie",
+                    "Embedded.com, Oct 2011.",
+                ],
+                [
+                    "UNIX is very simple, it just needs a genius to understand its simplicity.",
+                    "Dennis Ritchie",
+                    "Embedded.com, Oct 2011.",
+                ],
+                [
+                    "I’d rather write code than papers.",
+                    "Guido van Rossum",
+                    "CWI, Nov 2019.",
+                ],
+                [
+                    "Invariably you’ll find that if the language is any good your users are going to take it to places where you never thought it would be taken.",
+                    "Guido van Rossum",
+                    "Computer History Museum, Jul 2019.",
+                ],
+                [
+                    "To be a Web developer, you have to be tough like Ash. JavaScript is kind of a chainsaw you have in place of a hand on the Web.",
+                    "Brendan Eich",
+                    "InfoWorld, Mar 2014.",
+                ],
+                [
+                    "I think JavaScript has an evolutionary destiny to be what Java was trying to be.",
+                    "Brendan Eich",
+                    "InfoWorld, Feb 2015.",
+                ],
+                [
+                    "Content creation should not be recondite. It should not be this bizarre arcana that only experts and gold-plated computer science gurus can do.",
+                    "Brendan Eich",
+                    "Innovators of the Net (web archive), 2014.",
+                ],
+                [
+                    "I think computer programming is always an art.",
+                    "James Gosling",
+                    "InfoWorld, Mar 2002.",
+                ],
+                [
+                    "Reward risk and don’t penalise failure. Innovation is about risk and thinking that risk and failure are good things.",
+                    "James Gosling",
+                    "The Age, Mar 2008.",
+                ],
+                [
+                    "You have to learn to trust crazy people.",
+                    "James Gosling",
+                    "The Age, Mar 2008.",
+                ],
+                [
+                    "Don’t make your users mad.",
+                    "Greg Kroah-Hartman",
+                    "Slashdot, Nov 2020.",
+                ],
+                [
+                    "All open source projects have real reports that are made with AI, but they’re good, and they’re real.",
+                    "Greg Kroah-Hartman",
+                    "Simon Willison’s Weblog, Apr 2026.",
+                ],
+                [
+                    "If you think the patch is bad, don’t criticize it here. Go to the mailing list and include specific data.",
+                    "Greg Kroah-Hartman",
+                    "Computer Hoy, Jul 2026.",
+                ],
+                [
+                    "By design, when you’re on a WordPress site, it’s about you.",
+                    "Matt Mullenweg",
+                    "Quantum Zeitgeist, Jun 2025.",
+                ],
+                [
+                    "I want that chip in my brain to be open source.",
+                    "Matt Mullenweg",
+                    "Quantum Zeitgeist, Jun 2025.",
+                ],
+                [
+                    "I don’t want to pass it to a committee. I want to pass it to someone else who could have a role similar to mine.",
+                    "Matt Mullenweg",
+                    "TechCrunch, Mar 2025.",
+                ],
+                [
+                    "I never wanted to lose. But unfortunately, I think when you do lose, you learn some of your biggest lessons.",
+                    "Serena Williams",
+                    "New York Times, Dec 2024.",
+                ],
+                [
+                    "I really think a champion is defined not by their wins but by how they can recover when they fall.",
+                    "Serena Williams",
+                    "Times of India, Jul 2026.",
+                ],
+                [
+                    "It’s ok to scream that I am the best at this. It’s ok to feel that way and not also feel that we’re over pontificating about it.",
+                    "Serena Williams",
+                    "Marca, Jul 2025.",
+                ],
+                [
+                    "Be you. You are you 365 days of the year. What they are trying to do is get you to not be you. And to me … if you’re not you, they win.",
+                    "Michael Jordan",
+                    "Bleacher Report (NBC Sports), Feb 2026.",
+                ],
+                [
+                    "I can accept failure, everyone fails at something. But I can’t accept not trying.",
+                    "Michael Jordan",
+                    "On3, Apr 2022.",
+                ],
+                [
+                    "If you’re going to lose, you have to lose, because you can’t be in the middle of the pack. You either have to be great or you have to be bad.",
+                    "Magic Johnson",
+                    "BBC World Service, Dec 2014.",
+                ],
+                [
+                    "Everybody on a championship team doesn’t get publicity, but everyone can say he’s a champion.",
+                    "Magic Johnson",
+                    "Christian Science Monitor, Sep 2012.",
+                ],
+                [
+                    "You got to get a team of people who can help you, that while you’re on the stage singing, they’re conducting business somewhere.",
+                    "Magic Johnson",
+                    "TalkBasket, Oct 2026.",
+                ],
+                [
+                    "I love Boston. If it was up to me, I could play in Boston for the next 10 years.",
+                    "Jaylen Brown",
+                    "New York Times, May 2026.",
+                ],
+                [
+                    "I think something had to be said. As a team, we get to the free-throw line the least in the league. So just protecting our guys and myself. I think that we deserve a little bit of more respect.",
+                    "Jaylen Brown",
+                    "New York Times, Jan 2026.",
+                ],
+                [
+                    "Just trying to win as many games as possible, stack days, and I think it’s still early for us. We’re still figuring out a lot of stuff.",
+                    "Jaylen Brown",
+                    "Sixers Wire (USA Today), Oct 2026.",
+                ],
+                [
+                    "If I went to the Hall of Fame, in a weird way, I would be hollow inside.",
+                    "Alex Rodriguez",
+                    "Marca, Dec 2025.",
+                ],
+                [
+                    "I have a life today that I didn’t have for the first 40 years.",
+                    "Alex Rodriguez",
+                    "The Athletic (via Yahoo Sports), Dec 2025.",
+                ],
+                [
+                    "I would rather have what I have today, because it really helped me unlock a lot of the work that I needed to do.",
+                    "Alex Rodriguez",
+                    "Bolavip, Dec 2025.",
+                ],
+                [
+                    "I don’t do trials.",
+                    "Zlatan Ibrahimović",
+                    "Fox Sports, Jan 2026.",
+                ],
+                [
+                    "I came like a king, left like a legend.",
+                    "Zlatan Ibrahimović",
+                    "Fox Sports, Jan 2026.",
+                ],
+                [
+                    "I’m never satisfied with the things I do, I want to become better, I want to be more complete in my game.",
+                    "Zlatan Ibrahimović",
+                    "New York Times, Jun 2014.",
+                ],
+                [
+                    "There’s still a lot left for us to prove.",
+                    "Jalen Brunson",
+                    "TalkBasket, Oct 2026.",
+                ],
+                [
+                    "There’s no relaxation whatsoever.",
+                    "Jalen Brunson",
+                    "Bleacher Report, Oct 2026.",
+                ],
+                [
+                    "I think it’s good for us to kind of get knocked down off the mountain, humble ourselves, put our egos in check and see what’s going to happen.",
+                    "Jalen Brunson",
+                    "Bleacher Report, Oct 2026.",
+                ],
+                [
+                    "Are we seeing behavior that is worse this year than we’ve seen in recent memory? Yes, [in] my view. What we’re doing, what we’re seeing now is not working.",
+                    "Adam Silver",
+                    "NBA.com (All-Star Saturday), Feb 2026.",
+                ],
+                [
+                    "One thing that has kept me up at night is the enormous amount of rebuilding, tanking that we saw in the league this year.",
+                    "Adam Silver",
+                    "Bleacher Report, May 2026.",
+                ],
+                [
+                    "As I look at the world and the predictions … there’s no doubt AI will have the same impact on sports. To me, we’re about to witness the most significant change.",
+                    "Adam Silver",
+                    "Sports Illustrated, Feb 2026.",
+                ],
+                [
+                    "It’s hard to imagine a professional women’s sports league in the U.S. not having a team in Boston.",
+                    "Jessica Berman",
+                    "MassLive, Mar 2026.",
+                ],
+                [
+                    "Every success we’ve achieved, from expansion to investment to the player experience, is the result of collaboration across this league.",
+                    "Jessica Berman",
+                    "ESPN, Nov 2025.",
+                ],
+                [
+                    "The next three years are going to be all about growth. We have the right owners around the table.",
+                    "Jessica Berman",
+                    "New York Times, Nov 2025.",
+                ],
+                [
+                    "Somebody famous would put their arm around me and say, ‘Hey chief, why don’t you go sit over there.’ Well, we’re sitting at the head table now.",
+                    "Don Garber",
+                    "New York Times, Oct 2026.",
+                ],
+                [
+                    "I do believe that MLS can be one of the top leagues in the world, if not the top league of the world.",
+                    "Don Garber",
+                    "US Soccer, Aug 2025.",
+                ],
+                [
+                    "No ‘94 World Cup, there’s no MLS.",
+                    "Don Garber",
+                    "WSC Sports, Jun 2026.",
+                ],
+                [
+                    "I wish we’d focused more on the crucial issues: the importance of sports infrastructure … It’s just that, given the way the world is going today, you won’t solve it without money.",
+                    "Gerry Cardinale",
+                    "SempreMilan, May 2026.",
+                ],
+                [
+                    "I don’t usually give interviews. I think words are worthless: facts should speak for themselves.",
+                    "Gerry Cardinale",
+                    "SempreMilan, May 2026.",
+                ],
+                [
+                    "My investment strategy is to go where there is something to ‘repair’ and do it.",
+                    "Gerry Cardinale",
+                    "MilanNews24, Oct 2026.",
+                ],
+                [
+                    "The problem for the markets is when they don’t know what to do. An economy can’t survive like that. It just slows everything, and could push this economy into a recession.",
+                    "Marc Lasry",
+                    "Bloomberg, Mar 2025.",
+                ],
+                [
+                    "What we’re trying to do is find sports that are undervalued and invest in those so that five years from now … that’s when you’ll capture.",
+                    "Marc Lasry",
+                    "Sports Business Journal, Jan 2025.",
+                ],
+                [
+                    "I would love to do it, if we are able to move the team to Hartford. I grew up in Hartford.",
+                    "Marc Lasry",
+                    "Hedge Fund Alpha, Sep 2025.",
+                ],
+                [
+                    "Two Rosbergs are champions now!",
+                    "Nico Rosberg",
+                    "Formula1.com, Sep 2024.",
+                ],
+                [
+                    "It is fantastic to have such a fast car. I never had that before in my career.",
+                    "Nico Rosberg",
+                    "Formula1.com, Sep 2024.",
+                ],
+                [
+                    "That had the potential to mentally harm me for the rest of my life. The dream is so strong, it has so much power over you and I was just very afraid of losing.",
+                    "Nico Rosberg",
+                    "GPBlog, Apr 2020.",
+                ],
+                [
+                    "‘Steve, don’t compete.’",
+                    "Steve Solomon",
+                    "Brisbane Times, Jul 2022.",
+                ],
+                [
+                    "I was most impressed with being able to execute my race and I’m really proud I was able to do that.",
+                    "Steve Solomon",
+                    "Fox Sports Australia, Aug 2021.",
+                ],
+                [
+                    "You can’t stay in a situation that’s making you not at your best.",
+                    "Steve Solomon",
+                    "Captivate (podcast), Mar 2025.",
+                ],
+                [
+                    "This unconscious bias and racism is pervasive. We have to recognize that, accept it and then break it.",
+                    "Patrick Soon-Shiong",
+                    "CNN Business (via People’s Daily), Jun 2021.",
+                ],
+                [
+                    "It’s so crazy we have leaders that are reactive rather than proactive.",
+                    "Patrick Soon-Shiong",
+                    "NewsNation, Jan 2025.",
+                ],
+                [
+                    "It is our responsibility to maintain democracy, to have the views of all our California readers.",
+                    "Patrick Soon-Shiong",
+                    "Fox News, Dec 2024.",
+                ],
+                [
+                    "Be a catalyst for change. Don’t wait for the future to arrive.",
+                    "Daniel Kraft",
+                    "Medscape 2050, Jan 2025.",
+                ],
+                [
+                    "Disruptions are coming. Instead of fearing them … how do we align incentives?",
+                    "Daniel Kraft",
+                    "Medscape 2050, Jan 2025.",
+                ],
+                [
+                    "AI will not replace clinicians, but clinicians who embrace AI will shape the future of care.",
+                    "Daniel Kraft",
+                    "LinkedIn (ICT&health), Jan 2026.",
+                ],
+                [
+                    "I had to get to the other side if I was going to pass anything.",
+                    "Bill Frist",
+                    "Tennessean, Oct 2026.",
+                ],
+                [
+                    "When crisis strikes, the world looks to the United States for leadership. And that holds true for public health emergencies.",
+                    "Bill Frist",
+                    "Obama White House Archives, Nov 2014.",
+                ],
+                [
+                    "We will have future pandemics in the future unless we do something that is big, that is bold, but clearly possible and something we can afford today.",
+                    "Bill Frist",
+                    "The Hill, Apr 2020.",
+                ],
+                [
+                    "India will become the first country in the world to dissociate healthcare from wealth.",
+                    "Devi Prasad Shetty",
+                    "Asianet Newsable, Feb 2026.",
+                ],
+                [
+                    "Dream big, do not fear failure and don’t ever give up!",
+                    "Devi Prasad Shetty",
+                    "Times of India, Mar 2015.",
+                ],
+                [
+                    "Buy the most expensive mobile phones. Instead of using them for talking, use them for running a business.",
+                    "Devi Prasad Shetty",
+                    "New Indian Express, Mar 2019.",
+                ],
+                [
+                    "AI in healthcare is not about building smarter machines, but about building wiser.",
+                    "Shafi Ahmed",
+                    "ProfShafi.com (blog), 2026.",
+                ],
+                [
+                    "We are witnessing a revolution.",
+                    "Shafi Ahmed",
+                    "ProfShafi.com (blog), 2026.",
+                ],
+                [
+                    "To be a successful innovator, to some extent, you have not actually not care what people think. If you see a solution that can fix a big problem, then go ahead and do it.",
+                    "Julielynn Wong",
+                    "Global Speakers, Feb 2017.",
+                ],
+                [
+                    "Why don’t I look at the medical inventory for space missions and see what’s 3D printable — just try to convert everything from hardware into something that’s virtual?",
+                    "Julielynn Wong",
+                    "Toronto Star, Oct 2015.",
+                ],
+                [
+                    "AI can resolve healthcare’s long-standing productivity paradox and help scale care delivery beyond traditional limits.",
+                    "Ashish Atreja",
+                    "The Big Unlock, Jan 2025.",
+                ],
+                [
+                    "We must change the way we consume energy, that is replacing foreign fossil fuels by electricity produced in Europe.",
+                    "Ursula von der Leyen",
+                    "European Commission (press conference), Oct 2026.",
+                ],
+                [
+                    "The EU must be prepared to act when dialogue does not deliver.",
+                    "Ursula von der Leyen",
+                    "EFE, Oct 2026.",
+                ],
+                [
+                    "We have just adopted our new European Arctic Strategy. It was time to do so.",
+                    "Ursula von der Leyen",
+                    "European Commission (statement), Oct 2026.",
+                ],
+                [
+                    "Technological sovereignty does not mean closing Europe off. Technological sovereignty must put people at its heart.",
+                    "Henna Virkkunen",
+                    "EESC, Oct 2026.",
+                ],
+                [
+                    "Relying on foreign tech can be weaponized against us.",
+                    "Henna Virkkunen",
+                    "Politico, Jan 2026.",
+                ],
+                [
+                    "Technological sovereignty is not protectionism but strategic autonomy.",
+                    "Henna Virkkunen",
+                    "RaiNews, Jun 2026.",
+                ],
+                [
+                    "I stood up to Trump and got him to do things he didn’t want to do because I wasn’t being bullied by him.",
+                    "Malcolm Turnbull",
+                    "ABC Listen, Mar 2025.",
+                ],
+                [
+                    "When I was prime minister … energy policy should be determined by engineering and economics, not ideology and idiocy.",
+                    "Malcolm Turnbull",
+                    "The Nightly, Nov 2025.",
+                ],
+                [
+                    "Get off your knees. Stand up for Australia.",
+                    "Malcolm Turnbull",
+                    "Sky News Australia, Apr 2025.",
+                ],
+                [
+                    "I would hope my Republican colleagues would hear from people across Michigan as well as around the country that this is something that needs to be fixed. Get to the table – let’s figure it out.",
+                    "Gary Peters",
+                    "Detroit News, Nov 2025.",
+                ],
+                [
+                    "The biggest challenge we have in Congress right now is bringing people together, to find common ground.",
+                    "Gary Peters",
+                    "Erie News Now, Dec 2025.",
+                ],
+                [
+                    "We need urgent engagement now. We need to be able to have rules of the road, we need to be able to have reliable guardrails, and we need to be able to be talking to these AI companies.",
+                    "Kirsten Gillibrand",
+                    "Senate.gov (CNN interview), Sep 2026.",
+                ],
+                [
+                    "The American people want lower costs, not forever wars.",
+                    "Kirsten Gillibrand",
+                    "CBS 6 Albany, Mar 2026.",
+                ],
+                [
+                    "Social Security is our senior’s money. It’s not the government’s money. It’s their money.",
+                    "Kirsten Gillibrand",
+                    "WNYC Studios, Apr 2025.",
+                ],
+                [
+                    "Partition was a disaster. It made both parts of our island less diverse and less successful.",
+                    "Micheál Martin",
+                    "Derry Now, Oct 2026.",
+                ],
+                [
+                    "As Taoiseach, and on behalf of the Government, I want to formally apologise to the Stack family for these failings.",
+                    "Micheál Martin",
+                    "Gov.ie (Dáil statement), Oct 2026.",
+                ],
+                [
+                    "The entire parliamentary party is in unison. And I’ve always been very steadfast in that regard, never taken my focus away from what matters.",
+                    "Micheál Martin",
+                    "RTÉ, Sep 2026.",
+                ],
+                [
+                    "I deeply believe Ukraine will win this war.",
+                    "Andrzej Duda",
+                    "Polish Radio, 2025.",
+                ],
+                [
+                    "The EU should be a union of sovereign national states.",
+                    "Andrzej Duda",
+                    "BBN (Economic Forum in Krynica), Aug 2015.",
+                ],
+                [
+                    "There is no freedom without solidarity.",
+                    "Andrzej Duda",
+                    "BBN, Feb 2023.",
+                ],
+                [
+                    "Success comes when preparation meets opportunity.",
+                    "Joe Hurd",
+                    "Nasdaq, Jan 2024.",
+                ],
+                [
+                    "As directors, we have to get this right. Enterprise risk is an always-on exercise right now.",
+                    "Joe Hurd",
+                    "LinkedIn (Joe Hurd), Jan 2026.",
+                ],
+                [
+                    "You have to get comfortable giving up control, and you find people who do things better than you do.",
+                    "Adam D’Angelo",
+                    "Business Insider, Jan 2013.",
+                ],
+                [
+                    "Focus on the long term, and always do what’s right to grow the company and not make short-term decisions.",
+                    "Adam D’Angelo",
+                    "Business Insider, Jan 2013.",
+                ],
+                [
+                    "Facebook was going to be successful whether I was there or not. Quora, on the other hand, would not have existed had I not started it.",
+                    "Adam D’Angelo",
+                    "Waseda University, Sep 2026.",
+                ],
+            ];
+            (function () {
+                function rng(a) {
+                    return function () {
+                        a |= 0;
+                        a = (a + 0x6d2b79f5) | 0;
+                        var t = Math.imul(a ^ (a >>> 15), 1 | a);
+                        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+                        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+                    };
+                }
+                function order(c) {
+                    var N = Q.length,
+                        r = rng(c * 7919 + 13),
+                        a = [],
+                        i,
+                        j,
+                        t;
+                    for (i = 0; i < N; i++) a.push(i);
+                    for (i = N - 1; i > 0; i--) {
+                        j = Math.floor(r() * (i + 1));
+                        t = a[i];
+                        a[i] = a[j];
+                        a[j] = t;
+                    }
+                    for (i = 1; i < N; i++) {
+                        if (Q[a[i]][1] === Q[a[i - 1]][1]) {
+                            for (j = i + 1; j < N; j++) {
+                                if (Q[a[j]][1] !== Q[a[i - 1]][1]) {
+                                    t = a[i];
+                                    a[i] = a[j];
+                                    a[j] = t;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    return a;
+                }
+                var start = Date.UTC(2026, 9, 22),
+                    now = new Date(),
+                    today = Date.UTC(
+                        now.getFullYear(),
+                        now.getMonth(),
+                        now.getDate(),
+                    ),
+                    d = Math.max(0, Math.floor((today - start) / 864e5)),
+                    q = Q[order(Math.floor(d / Q.length))[d % Q.length]];
+                document.getElementById("qday").textContent =
+                    "Day " + (d + 1) + " of 1,825";
+                document.getElementById("qtext").textContent =
+                    "\u201c" + q[0] + "\u201d";
+                document.getElementById("qwho").textContent =
+                    q[1] + ", " + q[2];
+            })();
+        </script>
+    </body>
+</html>
