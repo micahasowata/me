@@ -346,6 +346,7 @@
 
             <section class="daily" id="daily" aria-label="Quote of the day">
                 <p class="day" id="qday"></p>
+                <p class="day" id="qpace"></p>
                 <blockquote id="qtext"></blockquote>
                 <cite id="qwho"></cite>
             </section>
@@ -763,6 +764,51 @@
             });
             function upd() {
                 var c = Object.keys(ticks).length;
+                (function () {
+                    var s = Date.UTC(2026, 9, 22),
+                        e = Date.UTC(2027, 9, 21),
+                        n = new Date(),
+                        t = Date.UTC(
+                            n.getFullYear(),
+                            n.getMonth(),
+                            n.getDate(),
+                        ),
+                        d = Math.max(0, Math.floor((t - s) / 864e5)),
+                        left = Math.round((e - t) / 864e5),
+                        done = Object.keys(ticks).filter(function (k) {
+                            return k.charAt(0) === "s";
+                        }).length,
+                        target = Math.min(20, Math.floor(((d + 1) * 20) / 365)),
+                        diff = done - target,
+                        st =
+                            diff > 0
+                                ? diff +
+                                  (diff === 1 ? " step" : " steps") +
+                                  " ahead"
+                                : diff === 0
+                                  ? "on pace"
+                                  : -diff +
+                                    (diff === -1 ? " step" : " steps") +
+                                    " behind",
+                        el2 = document.getElementById("qpace");
+                    if (!el2) return;
+                    var m =
+                        "Pace: step " +
+                        target +
+                        " of 20 by today. You\u2019ve finished " +
+                        done +
+                        " (" +
+                        st +
+                        ").";
+                    if (done < 20 && left > 0)
+                        m +=
+                            " " +
+                            (left / (20 - done)).toFixed(1) +
+                            " days per remaining step.";
+                    if (done >= 20)
+                        m = "All 20 steps done. Birthday gift unlocked.";
+                    el2.textContent = m;
+                })();
                 document.getElementById("ptext").textContent =
                     c + " of " + total + " stops reached";
                 document.getElementById("pbar").style.width =
@@ -784,7 +830,7 @@
                 });
             upd();
 
-            /* Daily quote: one per day from 2026-10-22 for 1,825 days. Each pass through the list is reshuffled so the order feels new. Entries are [quote, person, source]. */
+            /* Daily quote: one per day from 2026-10-22, counting down to the 2027-10-21 birthday. Each pass through the list is reshuffled so the order feels new. Entries are [quote, person, source]. */
             var Q = [
                 [
                     "Because failure is life and it’s necessary.",
@@ -1169,8 +1215,18 @@
                     ),
                     d = Math.max(0, Math.floor((today - start) / 864e5)),
                     q = Q[order(Math.floor(d / Q.length))[d % Q.length]];
+                var left = Math.round((Date.UTC(2027, 9, 21) - today) / 864e5),
+                    msg =
+                        left > 1
+                            ? left +
+                              " days until your birthday, 21 October 2027"
+                            : left === 1
+                              ? "1 day until your birthday"
+                              : left === 0
+                                ? "Today is your birthday. Finish line."
+                                : "Your birthday has passed. Keep going.";
                 document.getElementById("qday").textContent =
-                    "Day " + (d + 1) + " of 1,825";
+                    "Day " + (d + 1) + " \u00b7 " + msg;
                 document.getElementById("qtext").textContent =
                     "\u201c" + q[0] + "\u201d";
                 document.getElementById("qwho").textContent =
