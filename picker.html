@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>micahasowata::picker</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Nunito:wght@400;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                /* Catppuccin Latte */
+                --base: #eff1f5;
+                --mantle: #e6e9ef;
+                --surface0: #ccd0da;
+                --surface1: #bcc0cc;
+                --text: #4c4f69;
+                --sub: #6c6f85;
+                --mauve: #8839ef;
+                --lavender: #7287fd;
+                --red: #d20f39;
+                --green: #40a02b;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top, 0px);
+                padding-bottom: env(safe-area-inset-bottom, 0px);
+            }
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    /* Catppuccin Mocha */
+                    --base: #1e1e2e;
+                    --mantle: #181825;
+                    --surface0: #313244;
+                    --surface1: #45475a;
+                    --text: #cdd6f4;
+                    --sub: #a6adc8;
+                    --mauve: #cba6f7;
+                    --lavender: #b4befe;
+                    --red: #f38ba8;
+                    --green: #a6e3a1;
+                    color-scheme: dark;
+                }
+            }
+            :root[data-theme="dark"] {
+                --base: #1e1e2e;
+                --mantle: #181825;
+                --surface0: #313244;
+                --surface1: #45475a;
+                --text: #cdd6f4;
+                --sub: #a6adc8;
+                --mauve: #cba6f7;
+                --lavender: #b4befe;
+                --red: #f38ba8;
+                --green: #a6e3a1;
+                color-scheme: dark;
+            }
+            html {
+                scroll-padding-top: env(safe-area-inset-top, 0px);
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: var(--base);
+                color: var(--text);
+                font-family: Nunito, system-ui, sans-serif;
+                line-height: 1.5;
+                min-height: 100vh;
+            }
+            main {
+                max-width: 720px;
+                margin: 0 auto;
+                padding: 40px 20px 64px;
+            }
+            h1 {
+                font-size: 2rem;
+                font-weight: 800;
+                margin: 0 0 6px;
+                color: var(--mauve);
+                letter-spacing: -0.01em;
+            }
+            p.lead {
+                margin: 0 0 28px;
+                color: var(--sub);
+            }
+            .panel {
+                background: var(--mantle);
+                border: 1px solid var(--surface0);
+                border-radius: 16px;
+                padding: 20px;
+            }
+            .row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            label {
+                display: block;
+                font-weight: 700;
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+            input {
+                width: 100%;
+                font:
+                    600 1.1rem "JetBrains Mono",
+                    monospace;
+                color: var(--text);
+                background: var(--base);
+                border: 2px solid var(--surface0);
+                border-radius: 10px;
+                padding: 10px 12px;
+            }
+            input:focus {
+                outline: none;
+                border-color: var(--lavender);
+            }
+            button {
+                font:
+                    800 1rem Nunito,
+                    sans-serif;
+                border: 0;
+                border-radius: 10px;
+                padding: 12px 20px;
+                cursor: pointer;
+                background: var(--mauve);
+                color: var(--base);
+            }
+            button:hover {
+                filter: brightness(1.08);
+            }
+            button:focus-visible {
+                outline: 3px solid var(--lavender);
+                outline-offset: 2px;
+            }
+            button.ghost {
+                background: var(--surface0);
+                color: var(--text);
+            }
+            .actions {
+                display: flex;
+                gap: 10px;
+                margin-top: 16px;
+                flex-wrap: wrap;
+            }
+            #msg {
+                min-height: 1.4em;
+                margin: 14px 0 0;
+                color: var(--red);
+                font-weight: 700;
+            }
+            #result[hidden] {
+                display: none;
+            }
+            #result {
+                margin-top: 24px;
+            }
+            .meta {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 12px;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+            }
+            .meta span {
+                color: var(--sub);
+            }
+            .meta b {
+                color: var(--green);
+            }
+            #out {
+                font:
+                    400 0.95rem/1.8 "JetBrains Mono",
+                    monospace;
+                background: var(--mantle);
+                border: 1px solid var(--surface0);
+                border-radius: 16px;
+                padding: 16px;
+                max-height: 55vh;
+                overflow: auto;
+                word-break: break-word;
+                color: var(--text);
+            }
+            @media (max-width: 480px) {
+                .row {
+                    grid-template-columns: 1fr;
+                }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                * {
+                    transition: none !important;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Two-thirds picker</h1>
+            <p class="lead">
+                Enter a start and an end. You’ll get a sorted list of unique
+                random numbers from that range, covering two-thirds of its
+                values.
+            </p>
+
+            <div class="panel">
+                <div class="row">
+                    <div>
+                        <label for="start">Start</label
+                        ><input
+                            id="start"
+                            type="number"
+                            step="1"
+                            value="1"
+                            inputmode="numeric"
+                        />
+                    </div>
+                    <div>
+                        <label for="end">End</label
+                        ><input
+                            id="end"
+                            type="number"
+                            step="1"
+                            value="30"
+                            inputmode="numeric"
+                        />
+                    </div>
+                </div>
+                <div class="actions">
+                    <button id="go">Generate list</button>
+                </div>
+                <p id="msg" role="alert"></p>
+            </div>
+
+            <section id="result" hidden>
+                <div class="meta">
+                    <span>Picked <b id="k"></b> of <b id="n"></b> values</span>
+                    <button class="ghost" id="copy">Copy list</button>
+                </div>
+                <div id="out"></div>
+            </section>
+        </main>
+        <script>
+            (function () {
+                var MAX_RANGE = 1000000;
+                var $ = function (id) {
+                    return document.getElementById(id);
+                };
+                var last = "";
+
+                function sample(lo, n, k) {
+                    var picked = [],
+                        i,
+                        j,
+                        t;
+                    if (k * 2 <= n) {
+                        var seen = new Set();
+                        while (seen.size < k)
+                            seen.add(lo + Math.floor(Math.random() * n));
+                        picked = Array.from(seen);
+                    } else {
+                        var arr = new Array(n);
+                        for (i = 0; i < n; i++) arr[i] = lo + i;
+                        for (i = 0; i < k; i++) {
+                            j = i + Math.floor(Math.random() * (n - i));
+                            t = arr[i];
+                            arr[i] = arr[j];
+                            arr[j] = t;
+                        }
+                        picked = arr.slice(0, k);
+                    }
+                    return picked.sort(function (a, b) {
+                        return a - b;
+                    });
+                }
+
+                function run() {
+                    var msg = $("msg");
+                    msg.textContent = "";
+                    var a = parseInt($("start").value, 10),
+                        b = parseInt($("end").value, 10);
+                    if (isNaN(a) || isNaN(b)) {
+                        msg.textContent =
+                            "Enter whole numbers for both start and end.";
+                        return;
+                    }
+                    if (a > b) {
+                        var s = a;
+                        a = b;
+                        b = s;
+                    }
+                    var n = b - a + 1;
+                    if (n > MAX_RANGE) {
+                        msg.textContent =
+                            "That range is too large. Keep it under 1,000,000 values.";
+                        return;
+                    }
+                    var k = Math.round((n * 2) / 3);
+                    if (k < 1) {
+                        msg.textContent =
+                            "That range is too small to pick two-thirds of. Widen it to at least 2 values.";
+                        return;
+                    }
+                    var list = sample(a, n, k);
+                    last = list.join(", ");
+                    $("out").textContent = last;
+                    $("k").textContent = k.toLocaleString("en-IE");
+                    $("n").textContent = n.toLocaleString("en-IE");
+                    $("result").hidden = false;
+                }
+
+                $("go").addEventListener("click", run);
+                ["start", "end"].forEach(function (id) {
+                    $(id).addEventListener("keydown", function (e) {
+                        if (e.key === "Enter") run();
+                    });
+                });
+                $("copy").addEventListener("click", function () {
+                    var btn = $("copy");
+                    function done() {
+                        btn.textContent = "Copied";
+                        setTimeout(function () {
+                            btn.textContent = "Copy list";
+                        }, 1500);
+                    }
+                    try {
+                        navigator.clipboard
+                            .writeText(last)
+                            .then(done, fallback);
+                    } catch (e) {
+                        fallback();
+                    }
+                    function fallback() {
+                        var r = document.createRange();
+                        r.selectNodeContents($("out"));
+                        var sel = window.getSelection();
+                        sel.removeAllRanges();
+                        sel.addRange(r);
+                        try {
+                            document.execCommand("copy");
+                            done();
+                        } catch (e) {}
+                    }
+                });
+                run();
+            })();
+        </script>
+    </body>
+</html>
