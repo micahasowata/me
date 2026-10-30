@@ -9,1454 +9,865 @@
         <title>micahasowata::curriculum</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Public+Sans:wght@400;500;600&display=swap"
             rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
         />
         <style>
             :root {
-                --bg: #f2f5f4;
-                --surface: #ffffff;
-                --ink: #15262d;
-                --muted: #53666d;
-                --line: #2d6f73;
-                --rule: #cfdad8;
-                --junction: #4b3bb5;
-                --junction-bg: #ecebfa;
-                --done: #2d6f73;
-                --focus: #4b3bb5;
+                --bg: #f3f5f8;
+                --fg: #0f1826;
+                --mut: #55627a;
+                --line: #d3d9e3;
+                --acc: #1d4ed8;
+                --gold: #b87d00;
+                --cs: #1d4ed8;
+                --m: #0f8a5f;
+                --b: #c2570c;
+                --soft: #e6ebf3;
+                --hd: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+                --bd: "Source Serif 4", Georgia, "Times New Roman", serif;
                 box-sizing: border-box;
                 padding-top: env(safe-area-inset-top, 0px);
                 padding-bottom: env(safe-area-inset-bottom, 0px);
+                color-scheme: light;
             }
             @media (prefers-color-scheme: dark) {
                 :root:not([data-theme="light"]) {
+                    --bg: #0c1522;
+                    --fg: #e8edf5;
+                    --mut: #92a0b8;
+                    --line: #25344b;
+                    --acc: #6f9bff;
+                    --gold: #f2b632;
+                    --cs: #6f9bff;
+                    --m: #3fd1976b;
+                    --b: #ff9a54;
+                    --soft: #142035;
                     color-scheme: dark;
-                    --bg: #0e1a1d;
-                    --surface: #15262a;
-                    --ink: #e3ecea;
-                    --muted: #9bb0b0;
-                    --line: #5bb3b3;
-                    --rule: #27403f;
-                    --junction: #a99bff;
-                    --junction-bg: #201e3d;
-                    --done: #5bb3b3;
-                    --focus: #a99bff;
                 }
             }
             :root[data-theme="dark"] {
+                --bg: #0c1522;
+                --fg: #e8edf5;
+                --mut: #92a0b8;
+                --line: #25344b;
+                --acc: #6f9bff;
+                --gold: #f2b632;
+                --cs: #6f9bff;
+                --m: #3fd197;
+                --b: #ff9a54;
+                --soft: #142035;
                 color-scheme: dark;
-                --bg: #0e1a1d;
-                --surface: #15262a;
-                --ink: #e3ecea;
-                --muted: #9bb0b0;
-                --line: #5bb3b3;
-                --rule: #27403f;
-                --junction: #a99bff;
-                --junction-bg: #201e3d;
-                --done: #5bb3b3;
-                --focus: #a99bff;
+            }
+            @media (prefers-color-scheme: dark) {
+                :root:not([data-theme="light"]) {
+                    --m: #3fd197;
+                }
             }
             html {
-                scroll-padding-top: env(safe-area-inset-top, 0px);
+                scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px);
                 height: 100%;
             }
-            *,
-            *::before,
-            *::after {
+            * {
                 box-sizing: border-box;
             }
             body {
                 margin: 0;
                 background: var(--bg);
-                color: var(--ink);
-                font:
-                    400 16px/1.55 "Public Sans",
-                    system-ui,
-                    sans-serif;
+                color: var(--fg);
+                font: 18px/1.6 var(--bd);
+                min-height: 100%;
             }
-            main {
-                max-width: 46rem;
+            body::before {
+                content: "";
+                position: fixed;
+                inset: 0 0 auto;
+                height: env(safe-area-inset-top, 0px);
+                background: var(--bg);
+                z-index: 10;
+            }
+            main,
+            .in {
+                max-width: 860px;
                 margin: 0 auto;
-                padding: 2.5rem 1.25rem 4rem;
+                padding: 0 20px;
+            }
+            h1,
+            h2,
+            h3 {
+                font-family: var(--hd);
+                line-height: 1;
+                margin: 0;
+                letter-spacing: 0.01em;
             }
             h1 {
-                font:
-                    700 clamp(2rem, 6vw, 3rem)/1.1 "Newsreader",
-                    Georgia,
-                    serif;
-                margin: 0 0 0.75rem;
-                letter-spacing: -0.01em;
+                font-size: clamp(56px, 13vw, 120px);
+                font-weight: 700;
+                padding-top: 56px;
+            }
+            h2 {
+                font-size: clamp(34px, 6vw, 48px);
+                font-weight: 700;
+                margin-bottom: 6px;
+            }
+            h3 {
+                font-size: 24px;
+                font-weight: 600;
+            }
+            p {
+                margin: 0 0 14px;
+            }
+            a {
+                color: var(--acc);
             }
             .lede {
-                color: var(--muted);
-                max-width: 38rem;
-                margin: 0 0 1.5rem;
+                font-size: 21px;
+                max-width: 34em;
+                margin: 18px 0 0;
             }
-            .progress {
+            .mut {
+                color: var(--mut);
+            }
+            #bar {
                 position: sticky;
                 top: env(safe-area-inset-top, 0px);
-                z-index: 5;
+                z-index: 20;
                 background: var(--bg);
-                padding: 0.6rem 0;
-                border-bottom: 1px solid var(--rule);
-                margin-bottom: 1.5rem;
+                border-bottom: 1px solid var(--line);
+                margin-top: 36px;
             }
-            .progress p {
-                margin: 0 0 0.35rem;
-                font-size: 0.9rem;
-                color: var(--muted);
+            #seg {
+                display: flex;
+                gap: 4px;
+                padding: 10px 0 6px;
             }
-            .bar {
-                height: 6px;
-                background: var(--rule);
-                border-radius: 3px;
+            #seg a {
+                display: block;
+                text-decoration: none;
+                color: var(--fg);
+                flex: var(--w);
+                min-width: 0;
+            }
+            #seg i {
+                display: block;
+                height: 10px;
+                background: var(--soft);
+                border-radius: 2px;
                 overflow: hidden;
             }
-            .bar i {
+            #seg b {
                 display: block;
                 height: 100%;
                 width: 0;
-                background: var(--done);
-                transition: width 0.25s;
+                background: var(--gold);
+                transition: width 0.4s;
             }
-            details.books {
-                margin: 0 0 2rem;
-                border: 1px solid var(--rule);
-                border-radius: 6px;
-                background: var(--surface);
-            }
-            details.books summary {
-                cursor: pointer;
-                padding: 0.7rem 1rem;
-                font-weight: 600;
-            }
-            details.books ul {
-                margin: 0;
-                padding: 0 1rem 1rem 2.2rem;
-                color: var(--muted);
-                font-size: 0.95rem;
-            }
-            details.books b {
-                color: var(--ink);
-            }
-            ol.track {
-                list-style: none;
-                margin: 0;
-                padding: 0 0 0 2.2rem;
-                position: relative;
-            }
-            ol.track::before {
-                content: "";
-                position: absolute;
-                left: 0.7rem;
-                top: 0.5rem;
-                bottom: 0.5rem;
-                width: 3px;
-                background: var(--line);
-                opacity: 0.45;
-            }
-            .item {
-                position: relative;
-                margin: 0 0 1rem;
-            }
-            .item label.node {
-                position: absolute;
-                left: -2.2rem;
-                top: 0.85rem;
-                width: 1.5rem;
-                height: 1.5rem;
-                cursor: pointer;
-            }
-            .item input[type="checkbox"] {
-                appearance: none;
-                -webkit-appearance: none;
-                margin: 0;
-                width: 1.5rem;
-                height: 1.5rem;
-                border-radius: 50%;
-                border: 3px solid var(--line);
-                background: var(--bg);
-                cursor: pointer;
+            #seg span {
                 display: block;
+                font: 600 15px var(--hd);
+                margin-top: 3px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
-            .item input:checked {
-                background: var(--done);
+            #sum {
+                display: flex;
+                justify-content: space-between;
+                font-size: 14px;
+                color: var(--mut);
+                padding-bottom: 8px;
             }
-            .item input:focus-visible {
-                outline: 3px solid var(--focus);
+            button {
+                font: inherit;
+                font-size: 14px;
+                color: var(--mut);
+                background: none;
+                border: 1px solid var(--line);
+                border-radius: 4px;
+                padding: 2px 10px;
+                cursor: pointer;
+            }
+            button:hover {
+                color: var(--fg);
+            }
+            :focus-visible {
+                outline: 3px solid var(--acc);
                 outline-offset: 2px;
             }
-            .step {
-                background: var(--surface);
-                border: 1px solid var(--rule);
-                border-radius: 6px;
-                padding: 0.8rem 1rem;
+            section {
+                padding-top: 64px;
             }
-            .step h2 {
-                font:
-                    600 0.95rem/1.3 "Public Sans",
-                    sans-serif;
-                margin: 0 0 0.5rem;
-                color: var(--muted);
-            }
-            .chain {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.4rem 0.25rem;
-                align-items: center;
-            }
-            .chain span.b {
-                background: var(--bg);
-                border: 1px solid var(--rule);
-                border-radius: 4px;
-                padding: 0.15rem 0.5rem;
-                font-size: 0.92rem;
-            }
-            .chain span.b em {
-                font-style: normal;
-                color: var(--muted);
-            }
-            .chain span.sep {
-                color: var(--muted);
-                padding: 0 0.1rem;
-            }
-            .item.done .step {
-                opacity: 0.6;
-            }
-            .junction {
-                background: var(--junction-bg);
-                border: 2px solid var(--junction);
-                border-radius: 8px;
-                padding: 1rem 1.1rem;
-            }
-            .item.j label.node {
-                top: 1.1rem;
-                left: -2.4rem;
-                width: 1.9rem;
-                height: 1.9rem;
-            }
-            .item.j input[type="checkbox"] {
-                width: 1.9rem;
-                height: 1.9rem;
-                border-color: var(--junction);
-                border-radius: 6px;
-            }
-            .item.j input:checked {
-                background: var(--junction);
-            }
-            .junction h2 {
-                font:
-                    700 1.35rem/1.2 "Newsreader",
-                    Georgia,
-                    serif;
-                margin: 0 0 0.6rem;
-                color: var(--junction);
-            }
-            .junction dl {
-                margin: 0;
+            .gates {
                 display: grid;
-                grid-template-columns: 5.5rem 1fr;
-                gap: 0.45rem 0.8rem;
+                grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+                gap: 0;
+                border-top: 2px solid var(--fg);
+                margin-top: 18px;
             }
-            .junction dt {
-                font-weight: 600;
+            .gates div {
+                padding: 14px 16px 6px 0;
             }
-            .junction dd {
-                margin: 0;
+            .gates h3 {
+                color: var(--gold);
             }
-            .rules {
-                margin-top: 2.5rem;
-                border-top: 1px solid var(--rule);
-                padding-top: 1.25rem;
-            }
-            .rules h2 {
-                font:
-                    700 1.4rem "Newsreader",
-                    Georgia,
-                    serif;
-                margin: 0 0 0.5rem;
-            }
-            .rules ul {
-                margin: 0;
-                padding-left: 1.2rem;
+            .gates p {
+                font-size: 16px;
+                margin-top: 6px;
             }
             .rules li {
-                margin: 0.3rem 0;
+                margin-bottom: 6px;
             }
-            button.reset {
-                margin-top: 1.5rem;
-                font: inherit;
-                background: none;
-                color: var(--muted);
-                border: 1px solid var(--rule);
-                border-radius: 6px;
-                padding: 0.4rem 0.8rem;
+            .row {
+                display: grid;
+                grid-template-columns: 24px 1fr;
+                gap: 4px 14px;
+                padding: 14px 0 14px 12px;
+                border-top: 1px solid var(--line);
+                border-left: 4px solid var(--c);
+            }
+            .row[data-t="CS"] {
+                --c: var(--cs);
+            }
+            .row[data-t="M"] {
+                --c: var(--m);
+            }
+            .row[data-t="B"] {
+                --c: var(--b);
+            }
+            .row input {
+                width: 22px;
+                height: 22px;
+                margin: 3px 0 0;
+                accent-color: var(--gold);
+            }
+            .row label {
                 cursor: pointer;
-            }
-            button.reset:focus-visible {
-                outline: 3px solid var(--focus);
-                outline-offset: 2px;
-            }
-            @media (max-width: 30rem) {
-                .junction dl {
-                    grid-template-columns: 1fr;
-                    gap: 0.1rem;
-                }
-                .junction dd {
-                    margin-bottom: 0.5rem;
-                }
-            }
-            .daily {
-                margin: 0 0 1.5rem;
-                padding: 1rem 1.1rem;
-                border-left: 4px solid var(--junction);
-                background: var(--surface);
-                border-radius: 0 6px 6px 0;
-            }
-            .daily blockquote {
-                margin: 0;
-                font:
-                    500 1.25rem/1.4 "Newsreader",
-                    Georgia,
-                    serif;
-            }
-            .daily cite {
                 display: block;
-                margin-top: 0.5rem;
-                font-style: normal;
-                color: var(--muted);
-                font-size: 0.9rem;
             }
-            .daily .day {
-                color: var(--muted);
-                font-size: 0.85rem;
-                margin: 0 0 0.4rem;
-            }
-            .dl {
-                float: right;
-                font-weight: 500;
-                font-size: 0.82rem;
-                color: var(--muted);
-            }
-            .item.now .step {
-                border: 2px solid var(--line);
-            }
-            .item.now .dl {
-                color: var(--line);
+            .row strong {
+                display: block;
                 font-weight: 600;
+            }
+            .row span {
+                display: block;
+                color: var(--mut);
+                font-size: 16.5px;
+                line-height: 1.5;
+            }
+            .row:has(input:checked) strong {
+                text-decoration: line-through;
+                text-decoration-thickness: 1px;
+            }
+            .row:has(input:checked) {
+                opacity: 0.62;
+            }
+            .key {
+                display: flex;
+                gap: 18px;
+                font-size: 15px;
+                color: var(--mut);
+                margin: 14px 0 8px;
+                flex-wrap: wrap;
+            }
+            .key u {
+                text-decoration: none;
+                border-left: 4px solid var(--c);
+                padding-left: 8px;
+            }
+            .pg {
+                margin-top: 12px;
+                padding: 12px 14px;
+                background: var(--soft);
+                border-left: 4px solid var(--gold);
+                font-size: 16.5px;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 16.5px;
+            }
+            .sc {
+                overflow-x: auto;
+            }
+            td,
+            th {
+                text-align: left;
+                padding: 9px 12px 9px 0;
+                border-top: 1px solid var(--line);
+                vertical-align: top;
+            }
+            th {
+                font: 600 20px var(--hd);
+                border-top: 2px solid var(--fg);
+            }
+            footer {
+                padding: 72px 0 60px;
+                color: var(--mut);
+                font-size: 15px;
+            }
+            @media (prefers-reduced-motion: reduce) {
+                #seg b {
+                    transition: none;
+                }
+            }
+            @media (max-width: 520px) {
+                body {
+                    font-size: 17px;
+                }
+                #seg span {
+                    font-size: 12px;
+                }
             }
         </style>
     </head>
     <body>
         <main>
-            <h1>Twenty steps, nine junctions</h1>
-            <p class="lede">
-                Chapters from twelve books are interleaved so related ideas
-                meet. Finish each step’s exercises before the next. At every
-                junction, solve the LeetCode set, publish the blog post, and
-                pass the gate. Tick each stop as you reach it.
-            </p>
-
-            <section class="daily" id="daily" aria-label="Quote of the day">
-                <p class="day" id="qday"></p>
-                <p class="day" id="qpace"></p>
-                <blockquote id="qtext"></blockquote>
-                <cite id="qwho"></cite>
-            </section>
-
-            <div class="progress" aria-live="polite">
-                <p id="ptext"></p>
-                <div class="bar"><i id="pbar"></i></div>
+            <header>
+                <h1>The Curry Protocol</h1>
+                <p class="lede">
+                    Nine books, 80 weeks, about 15 hours a week. Curry was built
+                    on fundamentals at absurd volume, drills graded pass or
+                    fail, film review and a coach who wouldn’t let him skip.
+                    This is that, for algorithms, systems and math.
+                </p>
+            </header>
+            <div id="bar">
+                <div class="in" style="padding: 0">
+                    <div id="seg"></div>
+                    <div id="sum">
+                        <span id="cnt"></span
+                        ><button id="rs" type="button">Reset progress</button>
+                    </div>
+                </div>
             </div>
 
-            <details class="books">
-                <summary>The twelve books</summary>
-                <ul>
+            <section id="rules">
+                <h2>How a gate works</h2>
+                <p>
+                    Every chapter group ends in a gate. Pass all four checks
+                    plus the chapter’s own exit test, or you don’t move on.
+                </p>
+                <div class="gates">
+                    <div>
+                        <h3>G1 Exercises</h3>
+                        <p>
+                            80% solved unaided. A hint after 30 minutes earns
+                            half credit; a seen solution earns none and is
+                            redone in 3 days.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>G2 Blank page</h3>
+                        <p>
+                            Reproduce the key algorithm or proof from an empty
+                            file, no notes, inside a time cap set beforehand.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>G3 Teach-back</h3>
+                        <p>
+                            300 words for a sharp 17-year-old. No jargon you
+                            can’t define. Saved in the repo.
+                        </p>
+                    </div>
+                    <div>
+                        <h3>G4 Day-7 retest</h3>
+                        <p>
+                            Five closed-book questions you wrote on day 0. Pass
+                            is 4 of 5.
+                        </p>
+                    </div>
+                </div>
+                <ul class="rules" style="margin-top: 20px">
                     <li>
-                        <b>OSTEP</b>:
-                        <i>Operating Systems: Three Easy Pieces</i>,
-                        Arpaci-Dusseau
+                        At most 2 gates open. No new chapter until one closes.
                     </li>
                     <li>
-                        <b>Compiler</b>: <i>Writing a C Compiler</i>, Nora
-                        Sandler
+                        Fail a check: redo only what failed, retest after 3
+                        days. Three fails: re-teach aloud, restart G1.
                     </li>
                     <li>
-                        <b>Adams</b>: <i>Calculus: A Complete Course</i>, Adams
-                        and Essex
+                        Every 6 weeks, retest 5 closed gates cold. Below 80%,
+                        the gate reopens.
                     </li>
                     <li>
-                        <b>Discrete Math</b>:
-                        <i>Discrete Mathematics for Computer Scientists</i>
+                        Log every attempt in <code>gates.md</code>. Report
+                        failures in the next post.
                     </li>
-                    <li>
-                        <b>Hefferon</b>: <i>Linear Algebra</i>, 3rd ed., Jim
-                        Hefferon
-                    </li>
-                    <li>
-                        <b>CS:APP</b>:
-                        <i>Computer Systems: A Programmer’s Perspective</i>
-                    </li>
-                    <li>
-                        <b>Probability</b>:
-                        <i
-                            >Probability and Statistics: The Science of
-                            Uncertainty</i
-                        >
-                    </li>
-                    <li>
-                        <b>DPV</b>: <i>Algorithms</i>, Dasgupta, Papadimitriou,
-                        Vazirani
-                    </li>
-                    <li>
-                        <b>Thareja</b>: <i>Data Structures Using C</i>, 2nd ed.,
-                        Reema Thareja
-                    </li>
-                    <li>
-                        <b>Tour C++</b>: <i>A Tour of C++</i>, 3rd ed., Bjarne
-                        Stroustrup
-                    </li>
-                    <li>
-                        <b>Learn Go</b>: <i>Learn Go with Tests</i>, Chris James
-                    </li>
-                    <li><b>Let’s Go</b>: <i>Let’s Go</i>, Alex Edwards</li>
                 </ul>
-            </details>
-
-            <ol class="track" id="track"></ol>
-
-            <section class="junction" style="margin-top: 2rem">
-                <h2>Final project</h2>
-                <dl>
-                    <dt>Compiler</dt>
-                    <dd>
-                        The C++ compiler from <i>Writing a C Compiler</i>,
-                        passing the full test suite.
-                    </dd>
-                    <dt>CLI</dt>
-                    <dd>
-                        A Go command-line tool that wraps the compiler: flags,
-                        project layout, calls the compiler with os/exec (Learn
-                        Go with Tests).
-                    </dd>
-                    <dt>Playground</dt>
-                    <dd>
-                        A Go web app (Let’s Go) where you paste C, it compiles
-                        server-side, and it shows assembly output and program
-                        results.
-                    </dd>
-                    <dt>Safety</dt>
-                    <dd>
-                        Running visitors’ code is risky. Run it in a sandbox
-                        (container or nsjail) with time, memory, and process
-                        limits, and keep the server timeouts from Let’s Go ch.
-                        9.
-                    </dd>
-                </dl>
+                <p class="mut" style="margin-top: 14px">
+                    Weekly shape: LeetCode 45 min Mon to Fri. Theory Mon and
+                    Thu, math Tue and Fri, 90 min each. Build on Saturday, 3 h.
+                    Sunday: 60-min timed scrimmage and 30-min review.
+                </p>
             </section>
-            <section class="rules">
-                <h2>Rules</h2>
-                <ul>
+
+            <div id="phases"></div>
+
+            <section id="lc">
+                <h2>LeetCode ladder</h2>
+                <p>
+                    NeetCode 150 as the spine, topped up in your weak patterns.
+                    About 250 problems <em>banked</em>, not 1,000. Banked means
+                    a clean cold re-solve, with no hints and inside the clock,
+                    at day 10. Re-solve at days 3, 10 and 30. Clocks: 15 min
+                    Easy, 25 Medium, 40 Hard. Before coding, write the brute
+                    force, its complexity and three test cases.
+                </p>
+                <div class="sc">
+                    <table>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Banked</th>
+                            <th>Patterns</th>
+                            <th>Standard to advance</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>40</td>
+                            <td>
+                                arrays, hashing, two pointers, sliding window,
+                                stack, binary search, linked lists
+                            </td>
+                            <td>Easies cold in 15 min at 90%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>90</td>
+                            <td>
+                                trees, BST, heaps, intervals, sorting, tries
+                            </td>
+                            <td>Mediums cold in 25 min at 60%</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>150</td>
+                            <td>DP, greedy, backtracking</td>
+                            <td>
+                                Name the DP state and recurrence in 5 min, 8 of
+                                10
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>210</td>
+                            <td>
+                                BFS/DFS, topological sort, union-find, Dijkstra,
+                                MST
+                            </td>
+                            <td>Mediums cold at 70%</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>250</td>
+                            <td>15+ Hards, weekly contests</td>
+                            <td>Mediums cold in 25 min at 75%</td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+
+            <section id="blog">
+                <h2>Film: the blog</h2>
+                <p>
+                    Every post has a claim, evidence (code, graph or proof),
+                    what went wrong, and the next gate with a date. No
+                    checkpoint post, no new phase. Post 0 is the pledge: why,
+                    the stack, the rules, your honest baseline, the skip list,
+                    and how people can hold you to it.
+                </p>
+                <div id="posts"></div>
+            </section>
+
+            <section id="draft">
+                <h2>Draft night</h2>
+                <p>Weeks 79 to 80. All closed-book unless stated.</p>
+                <div id="dn"></div>
+            </section>
+
+            <section id="skip">
+                <h2>What you’re not doing</h2>
+                <ul class="rules">
                     <li>
-                        Solve LeetCode without solutions first; re-solve
-                        failures a few days later.
+                        <strong>CLRS:</strong> 4.6, 4.7, 5.4, 19.4, Ch 26 to 29,
+                        31.8, 32.3, 32.5, Ch 33, Ch 35.
                     </li>
-                    <li>Do at least 70% of the exercises in every chapter.</li>
-                    <li>Re-solve a few old problems at each junction.</li>
+                    <li>
+                        <strong>CS:APP Ch 4:</strong> read 4.1 and 4.4 for
+                        concepts, skip the rest.
+                    </li>
+                    <li>
+                        <strong>MEM Ch 6</strong> overlaps the Discrete book.
+                        <strong>AMEM Ch 2, 5, 6, 7, 9</strong> are deferred.
+                    </li>
+                    <li>
+                        <strong>Tour of C++:</strong> strings, I/O and numerics
+                        get one sitting each, no gates.
+                    </li>
                 </ul>
-                <button class="reset" id="reset" type="button">
-                    Clear all ticks
-                </button>
+                <p style="margin-top: 14px">
+                    Falling behind? Shift the calendar, never compress it. Three
+                    weeks with no gate closed: cut load by a third for two
+                    weeks, but keep the daily rep.
+                </p>
             </section>
+            <footer>Progress is saved in this browser only.</footer>
         </main>
-
         <script>
-            var S = [
+            var P = [
                 [
-                    "Thareja",
-                    "ch. 1",
-                    "Adams",
-                    "ch. P (the ramp: precalculus review, back to front)",
-                    "Thareja",
-                    "ch. 2",
-                    "Discrete Math",
-                    "ch. 1",
-                    "Thareja",
-                    "ch. 3",
-                    "Adams",
-                    "ch. 1",
+                    "Form shooting",
+                    "1–14",
+                    14,
+                    "Proof and complexity fluency, first C++, first Go.",
+                    "40 banked, Easies cold at 90%, Go app repo public, checkpoint post.",
+                    [
+                        [
+                            "CS",
+                            "Discrete Ch 1, 3, 4 (1.1–1.3, 3.1–3.3, 4.1–4.4)",
+                            "3 new proofs (direct, contrapositive, contradiction), 5 inductions, 10 recurrences solved by tree, substitution and master.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS Ch 1–5, App. A, C.1–C.3",
+                            "Loop-invariant proofs for insertion sort and binary search; rank 15 growth rates; merge sort from blank; Fisher-Yates shown uniform.",
+                        ],
+                        [
+                            "B",
+                            "Tour of C++ Ch 1–8",
+                            "Generic dynamic array with rule of five and tests, clean under AddressSanitizer.",
+                        ],
+                        [
+                            "B",
+                            "Let’s Go Ch 1–7",
+                            "Rebuild a different app from a blank repo in two weekends, no book.",
+                        ],
+                        [
+                            "M",
+                            "MEM Ch 5, 7, 8 (Ch 1–4 test-out at 90%)",
+                            "Gaussian elimination by hand and in code; 10 series convergence tests; 40 calculus problems at 85%.",
+                        ],
+                        [
+                            "M",
+                            "Add-on: Book of Proof, Strang lectures 1–10",
+                            "One proof a week in the repo; Strang sets at 80%.",
+                        ],
+                    ],
                 ],
                 [
-                    "Thareja",
-                    "ch. 4",
-                    "Adams",
-                    "ch. 2",
-                    "Discrete Math",
-                    "ch. 2",
-                    "Thareja",
-                    "ch. 5",
-                    "DPV",
-                    "ch. 1",
+                    "Conditioning",
+                    "15–30",
+                    16,
+                    "Know how the machine runs your code. Build the core structures from blank files.",
+                    "90 banked, Mediums cold at 60%, retention audit at 80%, benchmark and checkpoint posts.",
+                    [
+                        [
+                            "CS",
+                            "CS:APP Ch 1–3",
+                            "Data Lab, Bomb Lab, Attack Lab 1–3; annotate gcc -S output for 5 functions.",
+                        ],
+                        [
+                            "CS",
+                            "CS:APP Ch 5, 6",
+                            "Cache Lab; one function made 3x faster with a profiler; loop-interchange speedup of 2x or more.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS Ch 6–9",
+                            "Heap, heapsort, quicksort, radix sort, quickselect from blank; prove the sorting lower bound.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS Ch 10–13",
+                            "Hash table, BST and red-black tree checked against std::map on 1M random operations.",
+                        ],
+                        [
+                            "CS",
+                            "Discrete Ch 2, 5",
+                            "Toy RSA from scratch; 25 probability problems at 80%; birthday paradox derived and simulated.",
+                        ],
+                        [
+                            "B",
+                            "Let’s Go Ch 8–13",
+                            "Coverage of 80% or more; add password reset on a blank branch.",
+                        ],
+                        [
+                            "M",
+                            "MEM Ch 9, 13",
+                            "25 further-calculus problems at 85%; derive mean and variance of binomial, Poisson, normal.",
+                        ],
+                        [
+                            "M",
+                            "Add-on: Strang 11–25, Blitzstein Ch 1–4",
+                            "Problem sets at 80%; prove Bayes’ theorem.",
+                        ],
+                    ],
                 ],
                 [
-                    "Thareja",
-                    "ch. 6",
-                    "Adams",
-                    "ch. 3 (3.4 growth models pair with DPV ch. 0)",
-                    "Thareja",
-                    "ch. 7",
-                    "Discrete Math",
-                    "ch. 3",
-                    "Thareja",
-                    "ch. 8",
-                    "DPV",
-                    "ch. 0",
-                ],
-                "A",
-                [
-                    "Thareja",
-                    "ch. 9",
-                    "Adams",
-                    "ch. 4 (4.10 Big-O; 4.7 floating point returns at Step 10)",
-                    "Discrete Math",
-                    "ch. 4",
-                    "Thareja",
-                    "ch. 10",
-                    "DPV",
-                    "ch. 2",
-                ],
-                [
-                    "Thareja",
-                    "ch. 12",
-                    "Adams",
-                    "ch. 5",
-                    "Hefferon",
-                    "ch. 1",
-                    "Thareja",
-                    "ch. 14",
-                    "Adams",
-                    "ch. 6 (code the trapezoid and Simpson’s rules in C)",
-                ],
-                "B",
-                [
-                    "Adams",
-                    "ch. 9 (series pair with recurrences)",
-                    "Thareja",
-                    "ch. 13",
-                    "DPV",
-                    "ch. 3",
-                    "Discrete Math",
-                    "ch. 6",
-                    "Hefferon",
-                    "ch. 2",
-                    "DPV",
-                    "ch. 4",
+                    "Game reads",
+                    "31–46",
+                    16,
+                    "Recognise problem structure. Understand memory and processes at OS level.",
+                    "150 banked, DP state named in 5 min on 8 of 10, malloc and checkpoint posts.",
+                    [
+                        [
+                            "CS",
+                            "CLRS Ch 14–16",
+                            "DP classics on a blank page with correctness proof; greedy proofs; aggregate, accounting and potential method on dynamic tables.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS 17.1–17.2, 18, 19.1–19.3",
+                            "Order-statistic tree; B-tree insert and search; union-find with rank and path compression.",
+                        ],
+                        [
+                            "CS",
+                            "CS:APP Ch 7–9",
+                            "Shell Lab; Malloc Lab at 80%+; annotated readelf output; translate 5 virtual addresses by hand.",
+                        ],
+                        [
+                            "B",
+                            "Tour of C++ Ch 9–17",
+                            "Rewrite hash table and heap on standard containers; explain move and forward with examples.",
+                        ],
+                        [
+                            "M",
+                            "MEM Ch 10–11",
+                            "20 ODEs at 85%; Euler and RK4 with error plot; 8 Laplace initial-value problems.",
+                        ],
+                        [
+                            "M",
+                            "AMEM Ch 1 (1.3–1.8)",
+                            "SVD by hand; matrix exponential; image compression in code.",
+                        ],
+                    ],
                 ],
                 [
-                    "Adams",
-                    "ch. 7 except 7.8",
-                    "Thareja",
-                    "ch. 11",
-                    "DPV",
-                    "ch. 5",
-                    "Hefferon",
-                    "ch. 3 (I–III)",
-                    "DPV",
-                    "ch. 6",
-                ],
-                "C",
-                [
-                    "Thareja",
-                    "ch. 15",
-                    "Adams",
-                    "7.8 (probability)",
-                    "Probability",
-                    "ch. 1",
-                    "Tour C++",
-                    "ch. 1–3",
-                    "Discrete Math",
-                    "ch. 5",
-                    "Tour C++",
-                    "ch. 4–6",
-                    "Hefferon",
-                    "ch. 3 (IV–VI)",
-                    "Probability",
-                    "ch. 2",
-                ],
-                [
-                    "Tour C++",
-                    "ch. 7–9",
-                    "Adams",
-                    "ch. 8",
-                    "Probability",
-                    "ch. 3",
-                    "DPV",
-                    "ch. 1.5",
-                    "Tour C++",
-                    "ch. 10–12",
-                    "Adams",
-                    "ch. 10 (10.7 bridges to Hefferon)",
-                    "Probability",
-                    "ch. 4",
-                ],
-                "D",
-                [
-                    "CS:APP",
-                    "ch. 1",
-                    "Adams",
-                    "ch. 12",
-                    "Tour C++",
-                    "ch. 13–15",
-                    "Probability",
-                    "ch. 5",
-                    "CS:APP",
-                    "ch. 2 (data lab)",
-                    "Adams",
-                    "ch. 13 (13.5 least squares, 13.9 entropy)",
-                    "Tour C++",
-                    "ch. 16–18",
-                    "Adams",
-                    "ch. 14",
+                    "Team offense",
+                    "47–60",
+                    14,
+                    "Graphs, networks, concurrency, and a deployed service.",
+                    "210 banked, Mediums cold at 70%, load-test numbers, API live, checkpoint post.",
+                    [
+                        [
+                            "CS",
+                            "CLRS Ch 20–22",
+                            "BFS, DFS, topological sort, SCC, Kruskal, Prim, Bellman-Ford, Dijkstra from blank; prove Dijkstra.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS 23.2, 24.1–24.2, 25.2 and Discrete Ch 6",
+                            "Floyd-Warshall; max-flow matching; stable marriage proof; 15 graph problems at 80%.",
+                        ],
+                        [
+                            "CS",
+                            "CS:APP Ch 10–12",
+                            "Proxy Lab; echo server three ways; find and fix a planted race and a deadlock.",
+                        ],
+                        [
+                            "B",
+                            "Let’s Go Further Ch 1–20",
+                            "Deployed API with auth, rate limiting, graceful shutdown; a new resource on a blank branch.",
+                        ],
+                        [
+                            "M",
+                            "AMEM Ch 3, 10, 11 and MEM Ch 12",
+                            "Verify Green, Gauss and Stokes; simplex by hand; gradient descent; regression; Fourier square wave with Gibbs plot.",
+                        ],
+                    ],
                 ],
                 [
-                    "CS:APP",
-                    "ch. 3 (bomb and attack labs)",
-                    "Compiler",
-                    "ch. 1",
-                    "Compiler",
-                    "ch. 2",
-                    "Hefferon",
-                    "ch. 4",
-                    "Compiler",
-                    "ch. 3",
+                    "Playoff run",
+                    "61–78",
+                    18,
+                    "The compiler is the capstone. Write it in C++. The book’s test suite is your referee.",
+                    "250 banked, 15+ Hards, Mediums cold at 75%, every compiler stage passing, benchmark post.",
+                    [
+                        [
+                            "B",
+                            "Writing a C Compiler, Part I (Ch 1–10)",
+                            "100% of each stage’s tests before the next; grammar and TACKY by hand first.",
+                        ],
+                        [
+                            "B",
+                            "Part II (Ch 11–18)",
+                            "Same rule: long, unsigned, floats, pointers, arrays, strings, malloc, structs.",
+                        ],
+                        [
+                            "B",
+                            "Part III (Ch 19–20)",
+                            "Four optimization passes plus graph-colouring register allocation; benchmark on vs off.",
+                        ],
+                        [
+                            "CS",
+                            "CLRS Ch 34, 31, 32, 30",
+                            "3 reductions proved; RSA with your own bignum; KMP and Rabin-Karp; FFT multiplication vs naive.",
+                        ],
+                        [
+                            "M",
+                            "AMEM Ch 8, 4, and Pinter or Sipser",
+                            "Low-pass an audio clip with your FFT; 5 residues; Lagrange’s theorem or a pumping-lemma proof.",
+                        ],
+                    ],
                 ],
-                [
-                    "CS:APP",
-                    "ch. 5",
-                    "Compiler",
-                    "ch. 4",
-                    "Learn Go",
-                    "Hello, World through Maps",
-                    "CS:APP",
-                    "ch. 6 (cache lab)",
-                    "Compiler",
-                    "ch. 5",
-                    "Adams",
-                    "ch. 11",
-                    "Compiler",
-                    "ch. 6",
-                ],
-                "E",
-                [
-                    "CS:APP",
-                    "ch. 7",
-                    "OSTEP",
-                    "ch. 2–4",
-                    "Compiler",
-                    "ch. 7",
-                    "Learn Go",
-                    "Dependency Injection through Context",
-                    "CS:APP",
-                    "ch. 8 (shell lab)",
-                    "OSTEP",
-                    "ch. 5–7",
-                    "Adams",
-                    "ch. 15",
-                    "Compiler",
-                    "ch. 8",
-                    "OSTEP",
-                    "ch. 8–10",
-                ],
-                [
-                    "CS:APP",
-                    "ch. 9 (malloc lab)",
-                    "OSTEP",
-                    "ch. 13–15",
-                    "Compiler",
-                    "ch. 9",
-                    "Learn Go",
-                    "Roman Numerals through Generics",
-                    "Let’s Go",
-                    "ch. 1",
-                    "OSTEP",
-                    "ch. 16–18",
-                    "Let’s Go",
-                    "ch. 2",
-                    "OSTEP",
-                    "ch. 19–21",
-                    "Adams",
-                    "ch. 16",
-                    "Let’s Go",
-                    "ch. 3",
-                    "OSTEP",
-                    "ch. 22–24",
-                ],
-                "F",
-                [
-                    "OSTEP",
-                    "ch. 25–27",
-                    "CS:APP",
-                    "ch. 12",
-                    "Learn Go",
-                    "Acceptance testing through the refactoring checklist",
-                    "Let’s Go",
-                    "ch. 4",
-                    "OSTEP",
-                    "ch. 28–30",
-                    "Let’s Go",
-                    "ch. 5",
-                    "OSTEP",
-                    "ch. 31–32",
-                    "Probability",
-                    "ch. 6",
-                    "Let’s Go",
-                    "ch. 6",
-                    "OSTEP",
-                    "ch. 33–34",
-                ],
-                [
-                    "OSTEP",
-                    "ch. 36–38",
-                    "CS:APP",
-                    "ch. 10",
-                    "Compiler",
-                    "ch. 10",
-                    "Thareja",
-                    "ch. 16",
-                    "Learn Go",
-                    "HTTP Server; JSON, routing & embedding",
-                    "Let’s Go",
-                    "ch. 7",
-                    "OSTEP",
-                    "ch. 39–41",
-                    "CS:APP",
-                    "ch. 11",
-                    "Compiler",
-                    "ch. 11",
-                    "Let’s Go",
-                    "ch. 8",
-                    "OSTEP",
-                    "ch. 42–43",
-                    "Let’s Go",
-                    "ch. 9",
-                    "OSTEP",
-                    "ch. 44–45",
-                ],
-                "G",
-                [
-                    "Compiler",
-                    "ch. 12",
-                    "Learn Go",
-                    "IO and sorting through OS Exec",
-                    "DPV",
-                    "ch. 7",
-                    "Let’s Go",
-                    "ch. 10",
-                    "Compiler",
-                    "ch. 13",
-                    "Probability",
-                    "ch. 7",
-                    "Let’s Go",
-                    "ch. 11",
-                    "Let’s Go",
-                    "ch. 12",
-                    "DPV",
-                    "ch. 8",
-                ],
-                [
-                    "Compiler",
-                    "ch. 14",
-                    "Adams",
-                    "ch. 17 (optional)",
-                    "Learn Go",
-                    "Error types through TDD anti-patterns",
-                    "DPV",
-                    "ch. 9",
-                    "Let’s Go",
-                    "ch. 13 (testing)",
-                    "Probability",
-                    "ch. 8",
-                    "Compiler",
-                    "ch. 15",
-                    "Probability",
-                    "ch. 9",
-                ],
-                "H",
-                [
-                    "Compiler",
-                    "ch. 16",
-                    "Adams",
-                    "ch. 18 (18.9 pairs with eigenvalues)",
-                    "Compiler",
-                    "ch. 17",
-                    "Hefferon",
-                    "ch. 5",
-                    "Compiler",
-                    "ch. 18",
-                    "Probability",
-                    "ch. 10",
-                ],
-                [
-                    "OSTEP",
-                    "ch. 47",
-                    "Compiler",
-                    "ch. 19",
-                    "OSTEP",
-                    "ch. 48",
-                    "Compiler",
-                    "ch. 20",
-                    "Probability",
-                    "ch. 11",
-                    "OSTEP",
-                    "ch. 49",
-                ],
-                "I",
             ];
-            var J = {
-                A: [
-                    "Climbing Stairs, Pow(x, n), Count Primes, Subsets, Generate Parentheses, Reverse Linked List, Valid Parentheses, Design Circular Queue.",
-                    "RSA or modular inverses, with your own code.",
-                    "Write a clean proof by contradiction.",
+            var B = [
+                [
+                    "0",
+                    "Post 0: I’m working through this",
+                    "Baseline numbers, repo link",
                 ],
-                B: [
-                    "Kth Largest Element, Search in Rotated Sorted Array, Merge k Sorted Lists, 3Sum, Median of Two Sorted Arrays, Validate Binary Search Tree, Binary Tree Level Order Traversal.",
-                    "An induction proof or a recurrence solved three ways, with a runtime measurement. Or Newton’s method or Simpson’s rule in C, with measured error.",
-                    "Solve any divide-and-conquer recurrence.",
+                [
+                    "5",
+                    "Proving insertion sort correct, and where my first proof broke",
+                    "The flawed first attempt",
                 ],
-                C: [
-                    "Number of Islands, Course Schedule, Network Delay Time, Redundant Connection, Merge Intervals, Task Scheduler, Coin Change, Longest Increasing Subsequence, Edit Distance, Longest Common Subsequence, Implement Trie.",
-                    "Edit distance from recursion to memoization to tabulation, or Dijkstra with different priority queues.",
-                    "Solve medium problems independently, with justified running times.",
+                ["14", "Phase 1 checkpoint", "Scoreboard, Go app"],
+                [
+                    "20",
+                    "Bomb lab: reading assembly like a language",
+                    "One annotated phase",
                 ],
-                D: [
-                    "Shuffle an Array, Random Pick with Weight, Linked List Random Node, Rotate Image, Max Points on a Line, Two Sum, Group Anagrams.",
-                    "A counterintuitive probability result, or a matrix as a linear map, with simulation or visuals.",
-                    "Use indicator variables, Bayes, and the CLT.",
-                ],
-                E: [
-                    "Number of 1 Bits, Single Number, Counting Bits, LRU Cache, Min Stack.",
-                    "One lab in depth, plus your compiler’s parser.",
-                    "Read x86-64 assembly unaided.",
-                ],
-                F: [
-                    "LFU Cache, Design In-Memory File System, Design Hit Counter.",
-                    "Your malloc, or a page fault step by step.",
-                    "Your own allocator works; explain paging from memory.",
-                ],
-                G: [
-                    "Print in Order, Building H2O, The Dining Philosophers, Fizz Buzz Multithreaded.",
-                    "Why a naive lock fails, or why journaling restores consistency.",
-                    "Write correct multithreaded code.",
-                ],
-                H: [
-                    "Critical Connections in a Network, Min Cost to Connect All Points, Cheapest Flights Within K Stops, Shortest Path Visiting All Nodes, Maximum Students Taking Exam.",
-                    "An NP-completeness proof or a max-flow reduction, with code.",
-                    "Prove NP-completeness; design an approximation algorithm.",
-                ],
-                I: [
-                    "Basic Calculator I–III, Decode String, Parse Lisp Expression, then weekly contests with your wrong-answer notebook.",
-                    "One post per compiler milestone, one on building the Go CLI and playground, plus PageRank by eigen-decomposition or a regression with limitations.",
-                    "The compiler passes the full test suite, and the playground compiles and runs C from a browser.",
-                ],
-            };
-            var KEY = "curriculum-ticks-v1",
-                ticks = {};
+                ["26", "My hash table vs unordered_map", "Benchmark graph"],
+                ["30", "Phase 2 checkpoint", "Scoreboard, audit result"],
+                ["42", "Writing malloc", "Utilization and throughput"],
+                ["46", "Phase 3 checkpoint", "Scoreboard"],
+                ["52", "Dijkstra on real data", "Dataset, runtime plot"],
+                ["60", "Phase 4 checkpoint", "Live API, load test"],
+                ["66", "Compiler part I", "Test-suite pass counts"],
+                ["74", "Register allocation in the wild", "Spill counts"],
+                ["78", "Phase 5 checkpoint", "Optimizer benchmark"],
+                ["80", "Season retrospective", "Baseline vs final"],
+            ];
+            var D = [
+                "Retest 20 random closed gates at 80% or better; reopen any that fail.",
+                "Two timed mocks with an outside person: 2 Mediums in 45 minutes, thinking aloud.",
+                "10 fresh Mediums cold at 75% inside 25 minutes each.",
+                "Hash table, heap, Dijkstra and an examiner-chosen DP in 90 minutes with tests.",
+                "Whiteboard from gcc main.c to a running process: linking, loading, paging, a syscall.",
+            ];
+            var K = "curry-protocol-v1",
+                S = {};
             try {
-                ticks = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+                S = JSON.parse(localStorage.getItem(K) || "{}");
             } catch (e) {
-                ticks = {};
+                S = {};
             }
             function save() {
                 try {
-                    localStorage.setItem(KEY, JSON.stringify(ticks));
+                    localStorage.setItem(K, JSON.stringify(S));
                 } catch (e) {}
             }
-            function el(t, c, h) {
-                var e = document.createElement(t);
-                if (c) e.className = c;
-                if (h != null) e.innerHTML = h;
-                return e;
-            }
-            var track = document.getElementById("track"),
-                n = 0,
-                total = S.length;
-            S.forEach(function (s) {
-                var id,
-                    li = el("li", "item"),
-                    box = el("div", null);
-                if (typeof s === "string") {
-                    id = "j" + s;
-                    li.className = "item j";
-                    box.className = "junction";
-                    var d = J[s];
-                    box.innerHTML =
-                        "<h2>Junction " +
-                        s +
-                        "</h2><dl><dt>LeetCode</dt><dd>" +
-                        d[0] +
-                        "</dd><dt>Blog</dt><dd>" +
-                        d[1] +
-                        "</dd><dt>Gate</dt><dd>" +
-                        d[2] +
-                        "</dd></dl>";
-                } else {
-                    n++;
-                    id = "s" + n;
-                    box.className = "step";
-                    var h =
-                        "<h2>Step " +
-                        n +
-                        '<span class="dl" id="dl' +
-                        n +
-                        '"></span></h2><div class="chain">';
-                    for (var i = 0; i < s.length; i += 2) {
-                        if (i)
-                            h +=
-                                '<span class="sep" aria-hidden="true">→</span>';
-                        h +=
-                            '<span class="b"><b>' +
-                            s[i] +
-                            "</b> <em>" +
-                            s[i + 1] +
-                            "</em></span>";
-                    }
-                    box.innerHTML = h + "</div>";
-                }
-                var lab = el("label", "node"),
-                    cb = document.createElement("input");
-                cb.type = "checkbox";
-                cb.checked = !!ticks[id];
-                cb.setAttribute(
-                    "aria-label",
-                    "Mark " +
-                        (typeof s === "string"
-                            ? "junction " + s
-                            : "step " + n) +
-                        " done",
+            var names = { CS: "CS theory", M: "Math", B: "Build" };
+            function row(id, t, a, b) {
+                return (
+                    '<div class="row" data-t="' +
+                    t +
+                    '"><input type="checkbox" id="' +
+                    id +
+                    '"' +
+                    (S[id] ? " checked" : "") +
+                    '><label for="' +
+                    id +
+                    '"><strong>' +
+                    a +
+                    "</strong><span>" +
+                    b +
+                    "</span></label></div>"
                 );
-                if (cb.checked) li.classList.add("done");
-                cb.addEventListener("change", function () {
-                    if (cb.checked) {
-                        ticks[id] = 1;
-                        li.classList.add("done");
-                    } else {
-                        delete ticks[id];
-                        li.classList.remove("done");
-                    }
-                    save();
-                    upd();
+            }
+            var h = "",
+                seg = "",
+                tot = 14;
+            P.forEach(function (p, i) {
+                tot += 0;
+                h +=
+                    '<section id="phase' +
+                    (i + 1) +
+                    '"><h2>Phase ' +
+                    (i + 1) +
+                    ": " +
+                    p[0] +
+                    '</h2><p class="mut">Weeks ' +
+                    p[1] +
+                    ". " +
+                    p[3] +
+                    "</p>";
+                if (i == 0)
+                    h +=
+                        '<div class="key"><u style="--c:var(--cs)">CS theory</u><u style="--c:var(--m)">Math</u><u style="--c:var(--b)">Build</u></div>';
+                p[5].forEach(function (r, j) {
+                    h += row("p" + i + "r" + j, r[0], r[1], r[2]);
                 });
-                lab.appendChild(cb);
-                li.appendChild(lab);
-                li.appendChild(box);
-                track.appendChild(li);
+                h +=
+                    '<div class="pg"><strong>Phase gate:</strong> ' +
+                    p[4] +
+                    "</div></section>";
+                seg +=
+                    '<a href="#phase' +
+                    (i + 1) +
+                    '" style="--w:' +
+                    p[2] +
+                    '" title="' +
+                    p[0] +
+                    '"><i><b id="s' +
+                    i +
+                    '"></b></i><span>' +
+                    p[0] +
+                    "</span></a>";
             });
-            function dls() {
-                var s = Date.UTC(2026, 9, 22),
-                    n = new Date(),
-                    t = Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()),
-                    d = Math.floor((t - s) / 864e5);
-                for (var k = 1; k <= 20; k++) {
-                    var a = Math.floor(((k - 1) * 365) / 20),
-                        b = Math.floor((k * 365) / 20),
-                        e = document.getElementById("dl" + k);
-                    if (!e) continue;
-                    var dn = !!ticks["s" + k],
-                        m,
-                        x;
-                    if (dn) m = "done";
-                    else if (d < a) {
-                        x = a - d;
-                        m = "starts in " + x + (x === 1 ? " day" : " days");
-                    } else if (d < b) {
-                        x = b - d;
-                        m =
-                            x +
-                            (x === 1 ? " day" : " days") +
-                            " left for step " +
-                            k;
-                    } else {
-                        x = d - b + 1;
-                        m = x + (x === 1 ? " day" : " days") + " overdue";
-                    }
-                    e.textContent = m;
-                    e.closest(".item").classList.toggle(
-                        "now",
-                        !dn && d >= a && d < b,
-                    );
-                }
-            }
+            document.getElementById("phases").innerHTML = h;
+            document.getElementById("seg").innerHTML = seg;
+            var pb = "";
+            B.forEach(function (b, i) {
+                pb += row("b" + i, "CS", "Week " + b[0] + ": " + b[1], b[2]);
+            });
+            document.getElementById("posts").innerHTML = pb;
+            var dn = "";
+            D.forEach(function (d, i) {
+                dn += row("d" + i, "B", d, "");
+            });
+            document.getElementById("dn").innerHTML = dn;
             function upd() {
-                dls();
-                var c = Object.keys(ticks).length;
-                (function () {
-                    var s = Date.UTC(2026, 9, 22),
-                        e = Date.UTC(2027, 9, 21),
-                        n = new Date(),
-                        t = Date.UTC(
-                            n.getFullYear(),
-                            n.getMonth(),
-                            n.getDate(),
-                        ),
-                        d = Math.max(0, Math.floor((t - s) / 864e5)),
-                        left = Math.round((e - t) / 864e5),
-                        done = Object.keys(ticks).filter(function (k) {
-                            return k.charAt(0) === "s";
-                        }).length,
-                        target = Math.min(20, Math.floor(((d + 1) * 20) / 365)),
-                        diff = done - target,
-                        st =
-                            diff > 0
-                                ? diff +
-                                  (diff === 1 ? " step" : " steps") +
-                                  " ahead"
-                                : diff === 0
-                                  ? "on pace"
-                                  : -diff +
-                                    (diff === -1 ? " step" : " steps") +
-                                    " behind",
-                        el2 = document.getElementById("qpace");
-                    if (!el2) return;
-                    var m =
-                        "Pace: step " +
-                        target +
-                        " of 20 by today. You\u2019ve finished " +
-                        done +
-                        " (" +
-                        st +
-                        ").";
-                    if (done < 20 && left > 0)
-                        m +=
-                            " " +
-                            (left / (20 - done)).toFixed(1) +
-                            " days per remaining step.";
-                    if (done >= 20)
-                        m = "All 20 steps done. Birthday gift unlocked.";
-                    el2.textContent = m;
-                })();
-                document.getElementById("ptext").textContent =
-                    c + " of " + total + " stops reached";
-                document.getElementById("pbar").style.width =
-                    (100 * c) / total + "%";
-            }
-            document
-                .getElementById("reset")
-                .addEventListener("click", function () {
-                    ticks = {};
-                    save();
-                    [].forEach.call(
-                        track.querySelectorAll("input"),
-                        function (i) {
-                            i.checked = false;
-                            i.closest(".item").classList.remove("done");
-                        },
-                    );
-                    upd();
+                var all = document.querySelectorAll("main .row input"),
+                    n = 0;
+                all.forEach(function (c) {
+                    if (c.checked) n++;
                 });
+                document.getElementById("cnt").textContent =
+                    n + " of " + all.length + " gates closed";
+                P.forEach(function (p, i) {
+                    var c = document.querySelectorAll(
+                            'input[id^="p' + i + 'r"]',
+                        ),
+                        k = 0;
+                    c.forEach(function (x) {
+                        if (x.checked) k++;
+                    });
+                    document.getElementById("s" + i).style.width =
+                        (100 * k) / c.length + "%";
+                });
+            }
+            document.addEventListener("change", function (e) {
+                if (e.target.type == "checkbox") {
+                    S[e.target.id] = e.target.checked;
+                    save();
+                    upd();
+                }
+            });
+            document.getElementById("rs").onclick = function () {
+                if (confirm("Clear all progress?")) {
+                    S = {};
+                    save();
+                    document
+                        .querySelectorAll("main .row input")
+                        .forEach(function (c) {
+                            c.checked = false;
+                        });
+                    upd();
+                }
+            };
             upd();
-
-            /* Daily quote: one per day from 2026-10-22, counting down to the 2027-10-21 birthday. Each pass through the list is reshuffled so the order feels new. Entries are [quote, person, source]. */
-            var Q = [
-                [
-                    "Because failure is life and it’s necessary.",
-                    "Toto Wolff",
-                    "Bernama, fireside chat organised by Signify, Oct 2026.",
-                ],
-                [
-                    "We know that you can never achieve perfection because also your targets change.",
-                    "Toto Wolff",
-                    "GPBlog, Oct 2026.",
-                ],
-                [
-                    "It’s probably a once in a civilization opportunity to be a dreamer and to have a vision and to have ambition.",
-                    "Alexandr Wang",
-                    "Business Insider, Jul 2026.",
-                ],
-                [
-                    "Ninety-nine percent of ideas are not good — but 1% is.",
-                    "Evan Spiegel",
-                    "Business Insider, Mar 2025.",
-                ],
-                [
-                    "The dream was to create a generational company.",
-                    "Mati Staniszewski",
-                    "TIME100 AI feature (Wingedit), Sep 2025.",
-                ],
-                [
-                    "The most important thing is to come in, really listen, and kind of assume that there’s something that you’re missing until you deeply understand the why.",
-                    "Greg Brockman",
-                    "Business Insider (AI Engineer World’s Fair), Aug 2025.",
-                ],
-                [
-                    "Not every bet has to succeed; if you only reject projects that don’t look good on paper, you’ll never make important bets.",
-                    "Susan Li",
-                    "Futunn, Jun 2025.",
-                ],
-                [
-                    "Do whatever you’re drawn to.",
-                    "Pieter Levels",
-                    "levels.io, Apr 2013.",
-                ],
-                [
-                    "Figure out what makes you happy, and do not give them up. I don’t care how busy you are.",
-                    "Christina Cacioppo",
-                    "LinkedIn (Jason Lalk), Dec 2024.",
-                ],
-                [
-                    "Look, you get one shot at this life, don’t waste it LARPing as a startup founder for followers.",
-                    "Des Traynor",
-                    "Business Insider, Sep 2025.",
-                ],
-                [
-                    "I’m looking at the ground, and I want to fix the pothole that’s right in front of me before I go in.",
-                    "Linus Torvalds",
-                    "TED2016 (via Linux.com), Apr 2016.",
-                ],
-                [
-                    "When I think about what keeps us grounded every day at Microsoft, it’s our mission to empower every person and every organization on the planet to achieve more.",
-                    "Satya Nadella",
-                    "TechRadar (Frontier Tour London), Oct 2026.",
-                ],
-                [
-                    "Never ask what I would do, just do the right thing.",
-                    "Tim Cook",
-                    "Hindustan Times (Steve Jobs’ advice), Oct 2026.",
-                ],
-                [
-                    "The ultimate goal is to build AI and understand the mind, then use it to understand science. First step, solve intelligence. Second step, solve everything else.",
-                    "Demis Hassabis",
-                    "China Youth Daily (interview), Oct 2026.",
-                ],
-                [
-                    "If you don’t feel like you’re drawn to it like a fly drawn to a light, then don’t go into it because someone told you you’re going to make a boatload of money working for Google. It’s pretty dumb.",
-                    "Amjad Masad",
-                    "News18, Apr 2026.",
-                ],
-                [
-                    "Anytime there is a sea change in technology, it opens a window of opportunity for smaller companies to explore that open space and really take some risks and try some new things.",
-                    "Clay Bavor",
-                    "TechCrunch, Feb 2024.",
-                ],
-                [
-                    "The talent was never the problem. The belief that you could build from here was.",
-                    "Anton Osika",
-                    "Business Insider, Jun 2026.",
-                ],
-                [
-                    "Don’t overbuild for the future—ship what works today.",
-                    "Fabian Hedin",
-                    "Notion (First Block interview), Oct 2025.",
-                ],
-                [
-                    "Harvard, MIT or Stanford are not the most important. What matters is how you grow and develop.",
-                    "Demi Guo",
-                    "Vietnam.vn, Oct 2025.",
-                ],
-                [
-                    "Often, if you don’t pursue something you want, you’ll have regrets. But if you do something reckless, you could have different regrets.",
-                    "Niraj Shah",
-                    "Economic Times (CNBC Make It), Nov 2025.",
-                ],
-                [
-                    "We as humanity need moonshots.",
-                    "Ben Lamm",
-                    "Gulf News, Feb 2026.",
-                ],
-                [
-                    "I think no matter what type of business they’re in … it’s critical to have a steep learning curve—because things change fast.",
-                    "Neil Shen",
-                    "HSG (Beyond Expo 2024), May 2024.",
-                ],
-                [
-                    "My whole life I wanted to see if I was a badass or not.",
-                    "Doug Leone",
-                    "New York Post (Founders podcast), Sep 2026.",
-                ],
-                [
-                    "I love fear. It does wonders for me. It gives me the challenge to overcome that gives me then a sense of security.",
-                    "Doug Leone",
-                    "New York Post, Sep 2026.",
-                ],
-                [
-                    "The more I learned about AI, the less I knew.",
-                    "Elad Gil",
-                    "McKinsey, Dec 2025.",
-                ],
-                [
-                    "‘Make something people want’ is the destination, but ‘be relentlessly resourceful’ is how you get there.",
-                    "Paul Graham",
-                    "Y Combinator (essays), 2025.",
-                ],
-                [
-                    "You can’t achieve anything of substance if you’re always thinking about the next job.",
-                    "Gokul Rajaram",
-                    "Moneycontrol, Jan 2026.",
-                ],
-                [
-                    "The one truly future-proof skill in the AI era is judgment.",
-                    "Gokul Rajaram",
-                    "LinkedIn (Rob Palumbo), Feb 2026.",
-                ],
-                [
-                    "Show me the thing you’ve made, because I make my decision based on craftsmanship.",
-                    "Jason Calacanis",
-                    "Vox, Mar 2017.",
-                ],
-                [
-                    "The industry keeps moving. What you have to fall in love with is the process of learning and iterating and getting better.",
-                    "Jason Calacanis",
-                    "NBC News, Jun 2014.",
-                ],
-                [
-                    "The most valuable wealth you have is time and what you do with time becomes even more important than it was before.",
-                    "Kunal Shah",
-                    "Mint, Jun 2026.",
-                ],
-                [
-                    "Ingenuity comes out of scarce resources.",
-                    "Kevin Hartz",
-                    "YesPress, Apr 2026.",
-                ],
-                [
-                    "You don’t decide to start a company — you get infected by an idea.",
-                    "Ali Partovi",
-                    "LinkedIn (Hatidje Ablyatifova), Nov 2025.",
-                ],
-                [
-                    "Every time you act out of fear, you lower both risk and reward.",
-                    "Ali Partovi",
-                    "LinkedIn, Nov 2025.",
-                ],
-                [
-                    "Learning how to code is still vital if you want to go into tech – being able to accurately describe the product you want is a skill.",
-                    "Andrew Miklas",
-                    "YesPress (The Venture Podcast), May 2026.",
-                ],
-                [
-                    "I spent 7 years as a software engineer. Looking back, I wasn’t just working a job. I was getting paid to learn how to replace my boss.",
-                    "Tony Dinh",
-                    "Startup Stash blog, Feb 2026.",
-                ],
-                [
-                    "You don’t become a millionaire by chasing money. I never had a financial goal. Instead, I learned how to tame my monkey mind and how to ship startups fast.",
-                    "Marc Lou",
-                    "LinkedIn (Marc Lou), Dec 2024.",
-                ],
-                [
-                    "The hit rate is about 5%. … Playing the game of launching stuff is the recipe to have something that at some point will work out. Don’t you dare give up.",
-                    "Marc Lou",
-                    "BigGo Finance, Apr 2026.",
-                ],
-                [
-                    "Each failure is not a failure if you don’t give up.",
-                    "Marc Lou",
-                    "IBTimes UK, May 2026.",
-                ],
-                [
-                    "Build up your identity of being a capable person. Money corrupts quickly. It’s never the right time.",
-                    "Nat Eliason",
-                    "Apple Podcasts (The Learning Leader Show), Jul 2024.",
-                ],
-                [
-                    "Among my strongest life goals is to write something worthy of outliving me.",
-                    "Nat Eliason",
-                    "Substack (via Snipd), 2024.",
-                ],
-                [
-                    "Start with a small problem to solve on the weekend.",
-                    "Damon Chen",
-                    "Note.com, Jan 2026.",
-                ],
-                [
-                    "A lot of people are so concerned about catching the next train because it’s the last one. … But there are many more trains – just make sure you’re at the train station.",
-                    "Sahil Lavingia",
-                    "The Lean Startup (newsletter), Nov 2024.",
-                ],
-                [
-                    "Before you start something, ask yourself: Could you see yourself working on this ten years from now?",
-                    "Sahil Lavingia",
-                    "VentureBeat, Aug 2012.",
-                ],
-                [
-                    "Building in public is a long-term thing. You cannot just hope the result will come in six months.",
-                    "Kevon Cheung",
-                    "BetterLaunch, Jan 2024.",
-                ],
-                [
-                    "If you don’t catch the idea right there, like a bird it will fly away and you won’t be able to get it back.",
-                    "Kevon Cheung",
-                    "Substack (Quda), Mar 2023.",
-                ],
-                [
-                    "Treat ideas like cattle, not pets.",
-                    "Daniel Vassallo",
-                    "Changelog, Feb 2023.",
-                ],
-                [
-                    "The most common advice people have is to go for it! Be okay with experiencing failures and starting over.",
-                    "Courtland Allen",
-                    "Ivy.fm, 2020.",
-                ],
-                [
-                    "Sometimes staying true to what you’ve built is the best decision you can make.",
-                    "Courtland Allen",
-                    "LinkedIn (Courtney Allen), Mar 2025.",
-                ],
-                [
-                    "Nothing worth having comes easy.",
-                    "Jon Yongfook",
-                    "X (Jon Yongfook), May 2025.",
-                ],
-                [
-                    "You just have to start with a messy setup, doing messy content, crappy video, and just ship them and be okay with the shame of shipping them.",
-                    "Thibault Louis-Lucas",
-                    "BetterLaunch, Jan 2024.",
-                ],
-                [
-                    "Quitting your worst habit will change your life faster than starting your best habit. You gotta fix the leak before you fill the bucket.",
-                    "Alex West",
-                    "Snapchat (Alex West), Mar 2026.",
-                ],
-                [
-                    "Let go of the outcome. Focus on what you can control.",
-                    "Alex West",
-                    "LinkedIn (Alex West Steinman), Sep 2024.",
-                ],
-                [
-                    "Reward risk and don’t penalise failure. Innovation is about risk and thinking that risk and failure are good things.",
-                    "James Gosling",
-                    "The Age, Mar 2008.",
-                ],
-                [
-                    "I never wanted to lose. But unfortunately, I think when you do lose, you learn some of your biggest lessons.",
-                    "Serena Williams",
-                    "New York Times, Dec 2024.",
-                ],
-                [
-                    "I really think a champion is defined not by their wins but by how they can recover when they fall.",
-                    "Serena Williams",
-                    "Times of India, Jul 2026.",
-                ],
-                [
-                    "Be you. You are you 365 days of the year. What they are trying to do is get you to not be you. And to me … if you’re not you, they win.",
-                    "Michael Jordan",
-                    "Bleacher Report (NBC Sports), Feb 2026.",
-                ],
-                [
-                    "I can accept failure, everyone fails at something. But I can’t accept not trying.",
-                    "Michael Jordan",
-                    "On3, Apr 2022.",
-                ],
-                [
-                    "I’m never satisfied with the things I do, I want to become better, I want to be more complete in my game.",
-                    "Zlatan Ibrahimović",
-                    "New York Times, Jun 2014.",
-                ],
-                [
-                    "There’s still a lot left for us to prove.",
-                    "Jalen Brunson",
-                    "TalkBasket, Oct 2026.",
-                ],
-                [
-                    "I think it’s good for us to kind of get knocked down off the mountain, humble ourselves, put our egos in check and see what’s going to happen.",
-                    "Jalen Brunson",
-                    "Bleacher Report, Oct 2026.",
-                ],
-                [
-                    "You can’t stay in a situation that’s making you not at your best.",
-                    "Steve Solomon",
-                    "Captivate (podcast), Mar 2025.",
-                ],
-                [
-                    "Be a catalyst for change. Don’t wait for the future to arrive.",
-                    "Daniel Kraft",
-                    "Medscape 2050, Jan 2025.",
-                ],
-                [
-                    "Dream big, do not fear failure and don’t ever give up!",
-                    "Devi Prasad Shetty",
-                    "Times of India, Mar 2015.",
-                ],
-                [
-                    "To be a successful innovator, to some extent, you have not actually not care what people think. If you see a solution that can fix a big problem, then go ahead and do it.",
-                    "Julielynn Wong",
-                    "Global Speakers, Feb 2017.",
-                ],
-                [
-                    "Success comes when preparation meets opportunity.",
-                    "Joe Hurd",
-                    "Nasdaq, Jan 2024.",
-                ],
-                [
-                    "Focus on the long term, and always do what’s right to grow the company and not make short-term decisions.",
-                    "Adam D’Angelo",
-                    "Business Insider, Jan 2013.",
-                ],
-            ];
-            (function () {
-                function rng(a) {
-                    return function () {
-                        a |= 0;
-                        a = (a + 0x6d2b79f5) | 0;
-                        var t = Math.imul(a ^ (a >>> 15), 1 | a);
-                        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-                        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-                    };
-                }
-                function order(c) {
-                    var N = Q.length,
-                        r = rng(c * 7919 + 13),
-                        a = [],
-                        i,
-                        j,
-                        t;
-                    for (i = 0; i < N; i++) a.push(i);
-                    for (i = N - 1; i > 0; i--) {
-                        j = Math.floor(r() * (i + 1));
-                        t = a[i];
-                        a[i] = a[j];
-                        a[j] = t;
-                    }
-                    for (i = 1; i < N; i++) {
-                        if (Q[a[i]][1] === Q[a[i - 1]][1]) {
-                            for (j = i + 1; j < N; j++) {
-                                if (Q[a[j]][1] !== Q[a[i - 1]][1]) {
-                                    t = a[i];
-                                    a[i] = a[j];
-                                    a[j] = t;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    return a;
-                }
-                var start = Date.UTC(2026, 9, 22),
-                    now = new Date(),
-                    today = Date.UTC(
-                        now.getFullYear(),
-                        now.getMonth(),
-                        now.getDate(),
-                    ),
-                    d = Math.max(0, Math.floor((today - start) / 864e5)),
-                    q = Q[order(Math.floor(d / Q.length))[d % Q.length]];
-                var left = Math.round((Date.UTC(2027, 9, 21) - today) / 864e5),
-                    msg =
-                        left > 1
-                            ? left +
-                              " days until your birthday, 21 October 2027"
-                            : left === 1
-                              ? "1 day until your birthday"
-                              : left === 0
-                                ? "Today is your birthday. Finish line."
-                                : "Your birthday has passed. Keep going.";
-                document.getElementById("qday").textContent =
-                    "Day " + (d + 1) + " \u00b7 " + msg;
-                document.getElementById("qtext").textContent =
-                    "\u201c" + q[0] + "\u201d";
-                document.getElementById("qwho").textContent =
-                    q[1] + ", " + q[2];
-            })();
         </script>
     </body>
 </html>
