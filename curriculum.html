@@ -325,7 +325,7 @@
             <header>
                 <h1>The Curry Protocol</h1>
                 <p class="lede">
-                    Nine books, 80 weeks, about 15 hours a week. Curry was built
+                    Nine books, 86 weeks, about 15 hours a week. Curry was built
                     on fundamentals at absurd volume, drills graded pass or
                     fail, film review and a coach who wouldn’t let him skip.
                     This is that, for algorithms, systems and math.
@@ -398,7 +398,9 @@
                 <p class="mut" style="margin-top: 14px">
                     Weekly shape: LeetCode 45 min Mon to Fri. Theory Mon and
                     Thu, math Tue and Fri, 90 min each. Build on Saturday, 3 h.
-                    Sunday: 60-min timed scrimmage and 30-min review.
+                    Sunday: 60-min timed scrimmage and 30-min review. In weeks 1
+                    to 6 (Phase 0b) all four theory and math blocks go to math,
+                    and CS theory starts in week 7.
                 </p>
             </section>
 
@@ -481,7 +483,7 @@
 
             <section id="draft">
                 <h2>Draft night</h2>
-                <p>Weeks 79 to 80. All closed-book unless stated.</p>
+                <p>Weeks 85 to 86. All closed-book unless stated.</p>
                 <div id="dn"></div>
             </section>
 
@@ -516,8 +518,32 @@
         <script>
             var P = [
                 [
+                    "Foundations",
+                    "1–6",
+                    6,
+                    "Close the gaps under calculus and linear algebra. Daily LeetCode and the Saturday build run as normal; CS theory starts in week 7.",
+                    "All three gates closed, a retest of your diagnostic at 85% or better, foundations checkpoint post.",
+                    [
+                        [
+                            "M",
+                            "MEM Ch 1 (1.2–1.5)",
+                            "Run a 15-problem diagnostic first, then study only what you lost. Exit: 20 algebra and geometry problems at 85%, quadratics and simultaneous equations solved cold.",
+                        ],
+                        [
+                            "M",
+                            "MEM Ch 2 (2.2–2.7)",
+                            "Sketch 15 functions by hand with intercepts and asymptotes; solve 10 log and exponential equations; 25 problems at 85%.",
+                        ],
+                        [
+                            "M",
+                            "MEM Ch 4 (4.2–4.3)",
+                            "20 dot product, cross product, line and plane problems at 85%; derive the cross-product area formula and explain it geometrically.",
+                        ],
+                    ],
+                ],
+                [
                     "Form shooting",
-                    "1–14",
+                    "7–20",
                     14,
                     "Proof and complexity fluency, first C++, first Go.",
                     "40 banked, Easies cold at 90%, Go app repo public, checkpoint post.",
@@ -544,7 +570,7 @@
                         ],
                         [
                             "M",
-                            "MEM Ch 5, 7, 8 (Ch 1–4 test-out at 90%)",
+                            "MEM Ch 5, 7, 8",
                             "Gaussian elimination by hand and in code; 10 series convergence tests; 40 calculus problems at 85%.",
                         ],
                         [
@@ -556,7 +582,7 @@
                 ],
                 [
                     "Conditioning",
-                    "15–30",
+                    "21–36",
                     16,
                     "Know how the machine runs your code. Build the core structures from blank files.",
                     "90 banked, Mediums cold at 60%, retention audit at 80%, benchmark and checkpoint posts.",
@@ -605,7 +631,7 @@
                 ],
                 [
                     "Game reads",
-                    "31–46",
+                    "37–52",
                     16,
                     "Recognise problem structure. Understand memory and processes at OS level.",
                     "150 banked, DP state named in 5 min on 8 of 10, malloc and checkpoint posts.",
@@ -644,7 +670,7 @@
                 ],
                 [
                     "Team offense",
-                    "47–60",
+                    "53–66",
                     14,
                     "Graphs, networks, concurrency, and a deployed service.",
                     "210 banked, Mediums cold at 70%, load-test numbers, API live, checkpoint post.",
@@ -678,7 +704,7 @@
                 ],
                 [
                     "Playoff run",
-                    "61–78",
+                    "67–84",
                     18,
                     "The compiler is the capstone. Write it in C++. The book’s test suite is your referee.",
                     "250 banked, 15+ Hards, Mediums cold at 75%, every compiler stage passing, benchmark post.",
@@ -705,8 +731,8 @@
                         ],
                         [
                             "M",
-                            "AMEM Ch 8, 4, and Pinter or Sipser",
-                            "Low-pass an audio clip with your FFT; 5 residues; Lagrange’s theorem or a pumping-lemma proof.",
+                            "MEM Ch 3, then AMEM Ch 8, 4, and Pinter or Sipser",
+                            "10 complex-number problems at 85%; low-pass an audio clip with your FFT; 5 residues; Lagrange’s theorem or a pumping-lemma proof.",
                         ],
                     ],
                 ],
@@ -717,27 +743,28 @@
                     "Post 0: I’m working through this",
                     "Baseline numbers, repo link",
                 ],
+                ["6", "Foundations checkpoint", "Diagnostic vs retest scores"],
                 [
-                    "5",
+                    "11",
                     "Proving insertion sort correct, and where my first proof broke",
                     "The flawed first attempt",
                 ],
-                ["14", "Phase 1 checkpoint", "Scoreboard, Go app"],
+                ["20", "Phase 1 checkpoint", "Scoreboard, Go app"],
                 [
-                    "20",
+                    "26",
                     "Bomb lab: reading assembly like a language",
                     "One annotated phase",
                 ],
-                ["26", "My hash table vs unordered_map", "Benchmark graph"],
-                ["30", "Phase 2 checkpoint", "Scoreboard, audit result"],
-                ["42", "Writing malloc", "Utilization and throughput"],
-                ["46", "Phase 3 checkpoint", "Scoreboard"],
-                ["52", "Dijkstra on real data", "Dataset, runtime plot"],
-                ["60", "Phase 4 checkpoint", "Live API, load test"],
-                ["66", "Compiler part I", "Test-suite pass counts"],
-                ["74", "Register allocation in the wild", "Spill counts"],
-                ["78", "Phase 5 checkpoint", "Optimizer benchmark"],
-                ["80", "Season retrospective", "Baseline vs final"],
+                ["32", "My hash table vs unordered_map", "Benchmark graph"],
+                ["36", "Phase 2 checkpoint", "Scoreboard, audit result"],
+                ["48", "Writing malloc", "Utilization and throughput"],
+                ["52", "Phase 3 checkpoint", "Scoreboard"],
+                ["58", "Dijkstra on real data", "Dataset, runtime plot"],
+                ["66", "Phase 4 checkpoint", "Live API, load test"],
+                ["72", "Compiler part I", "Test-suite pass counts"],
+                ["80", "Register allocation in the wild", "Spill counts"],
+                ["84", "Phase 5 checkpoint", "Optimizer benchmark"],
+                ["86", "Season retrospective", "Baseline vs final"],
             ];
             var D = [
                 "Retest 20 random closed gates at 80% or better; reopen any that fail.",
@@ -785,7 +812,7 @@
                     '<section id="phase' +
                     (i + 1) +
                     '"><h2>Phase ' +
-                    (i + 1) +
+                    (i == 0 ? "0b" : i) +
                     ": " +
                     p[0] +
                     '</h2><p class="mut">Weeks ' +
