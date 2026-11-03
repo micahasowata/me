@@ -7,894 +7,1299 @@
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <title>micahasowata::curriculum</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
+            href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,700&family=Public+Sans:wght@400;500;600&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
         />
         <style>
             :root {
-                --bg: #f3f5f8;
-                --fg: #0f1826;
-                --mut: #55627a;
-                --line: #d3d9e3;
-                --acc: #1d4ed8;
-                --gold: #b87d00;
-                --cs: #1d4ed8;
-                --m: #0f8a5f;
-                --b: #c2570c;
-                --soft: #e6ebf3;
-                --hd: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
-                --bd: "Source Serif 4", Georgia, "Times New Roman", serif;
+                --bg: #f2f5f4;
+                --surface: #fff;
+                --ink: #15262d;
+                --muted: #53666d;
+                --line: #2d6f73;
+                --rule: #cfdad8;
+                --acc: #4b3bb5;
+                --accbg: #ecebfa;
+                --done: #2d6f73;
+                --ok: #e3f2ec;
+                --warn: #fbf0dc;
+                --bad: #fae6e6;
+                --tip: #e6f0fa;
                 box-sizing: border-box;
                 padding-top: env(safe-area-inset-top, 0px);
                 padding-bottom: env(safe-area-inset-bottom, 0px);
-                color-scheme: light;
             }
             @media (prefers-color-scheme: dark) {
                 :root:not([data-theme="light"]) {
-                    --bg: #0c1522;
-                    --fg: #e8edf5;
-                    --mut: #92a0b8;
-                    --line: #25344b;
-                    --acc: #6f9bff;
-                    --gold: #f2b632;
-                    --cs: #6f9bff;
-                    --m: #3fd1976b;
-                    --b: #ff9a54;
-                    --soft: #142035;
                     color-scheme: dark;
+                    --bg: #0e1a1d;
+                    --surface: #15262a;
+                    --ink: #e3ecea;
+                    --muted: #9bb0b0;
+                    --line: #5bb3b3;
+                    --rule: #27403f;
+                    --acc: #a99bff;
+                    --accbg: #201e3d;
+                    --done: #5bb3b3;
+                    --ok: #16302a;
+                    --warn: #33291a;
+                    --bad: #3a1f21;
+                    --tip: #18283a;
                 }
             }
             :root[data-theme="dark"] {
-                --bg: #0c1522;
-                --fg: #e8edf5;
-                --mut: #92a0b8;
-                --line: #25344b;
-                --acc: #6f9bff;
-                --gold: #f2b632;
-                --cs: #6f9bff;
-                --m: #3fd197;
-                --b: #ff9a54;
-                --soft: #142035;
                 color-scheme: dark;
-            }
-            @media (prefers-color-scheme: dark) {
-                :root:not([data-theme="light"]) {
-                    --m: #3fd197;
-                }
+                --bg: #0e1a1d;
+                --surface: #15262a;
+                --ink: #e3ecea;
+                --muted: #9bb0b0;
+                --line: #5bb3b3;
+                --rule: #27403f;
+                --acc: #a99bff;
+                --accbg: #201e3d;
+                --done: #5bb3b3;
+                --ok: #16302a;
+                --warn: #33291a;
+                --bad: #3a1f21;
+                --tip: #18283a;
             }
             html {
-                scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px);
+                scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 7rem);
                 height: 100%;
             }
-            * {
+            *,
+            *::before,
+            *::after {
                 box-sizing: border-box;
             }
             body {
                 margin: 0;
                 background: var(--bg);
-                color: var(--fg);
-                font: 18px/1.6 var(--bd);
-                min-height: 100%;
+                color: var(--ink);
+                font:
+                    400 16px/1.55 "Public Sans",
+                    system-ui,
+                    sans-serif;
             }
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0 0 auto;
-                height: env(safe-area-inset-top, 0px);
-                background: var(--bg);
-                z-index: 10;
-            }
-            main,
-            .in {
-                max-width: 860px;
+            main {
+                max-width: 46rem;
                 margin: 0 auto;
-                padding: 0 20px;
-            }
-            h1,
-            h2,
-            h3 {
-                font-family: var(--hd);
-                line-height: 1;
-                margin: 0;
-                letter-spacing: 0.01em;
+                padding: 2.5rem 1.25rem 4rem;
             }
             h1 {
-                font-size: clamp(56px, 13vw, 120px);
-                font-weight: 700;
-                padding-top: 56px;
-            }
-            h2 {
-                font-size: clamp(34px, 6vw, 48px);
-                font-weight: 700;
-                margin-bottom: 6px;
-            }
-            h3 {
-                font-size: 24px;
-                font-weight: 600;
-            }
-            p {
-                margin: 0 0 14px;
-            }
-            a {
-                color: var(--acc);
+                font:
+                    700 clamp(2rem, 6vw, 3rem)/1.1 "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.75rem;
+                letter-spacing: -0.01em;
             }
             .lede {
-                font-size: 21px;
-                max-width: 34em;
-                margin: 18px 0 0;
+                color: var(--muted);
+                max-width: 38rem;
+                margin: 0 0 1.25rem;
             }
-            .mut {
-                color: var(--mut);
-            }
-            #bar {
-                position: sticky;
-                top: env(safe-area-inset-top, 0px);
-                z-index: 20;
-                background: var(--bg);
-                border-bottom: 1px solid var(--line);
-                margin-top: 36px;
-            }
-            #seg {
+            .tabs {
                 display: flex;
-                gap: 4px;
-                padding: 10px 0 6px;
+                gap: 0.5rem;
+                margin: 0 0 1.25rem;
             }
-            #seg a {
-                display: block;
-                text-decoration: none;
-                color: var(--fg);
-                flex: var(--w);
-                min-width: 0;
-            }
-            #seg i {
-                display: block;
-                height: 10px;
-                background: var(--soft);
-                border-radius: 2px;
-                overflow: hidden;
-            }
-            #seg b {
-                display: block;
-                height: 100%;
-                width: 0;
-                background: var(--gold);
-                transition: width 0.4s;
-            }
-            #seg span {
-                display: block;
-                font: 600 15px var(--hd);
-                margin-top: 3px;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            #sum {
-                display: flex;
-                justify-content: space-between;
-                font-size: 14px;
-                color: var(--mut);
-                padding-bottom: 8px;
-            }
-            button {
+            .tabs button {
                 font: inherit;
-                font-size: 14px;
-                color: var(--mut);
-                background: none;
-                border: 1px solid var(--line);
-                border-radius: 4px;
-                padding: 2px 10px;
+                font-weight: 600;
+                background: var(--surface);
+                color: var(--muted);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 0.45rem 0.9rem;
                 cursor: pointer;
             }
-            button:hover {
-                color: var(--fg);
+            .tabs button[aria-selected="true"] {
+                background: var(--acc);
+                color: #fff;
+                border-color: var(--acc);
             }
-            :focus-visible {
+            :root[data-theme="dark"] .tabs button[aria-selected="true"],
+            :root:not([data-theme="light"]) .tabs button[aria-selected="true"] {
+                color: #15162b;
+            }
+            button:focus-visible,
+            input:focus-visible,
+            summary:focus-visible,
+            a:focus-visible {
                 outline: 3px solid var(--acc);
                 outline-offset: 2px;
             }
-            section {
-                padding-top: 64px;
+            .glance {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+                margin: 0 0 1.25rem;
             }
-            .gates {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-                gap: 0;
-                border-top: 2px solid var(--fg);
-                margin-top: 18px;
+            .glance span {
+                background: var(--surface);
+                border: 1px solid var(--rule);
+                border-radius: 4px;
+                padding: 0.15rem 0.55rem;
+                font-size: 0.9rem;
             }
-            .gates div {
-                padding: 14px 16px 6px 0;
+            .progress {
+                position: sticky;
+                top: env(safe-area-inset-top, 0px);
+                z-index: 5;
+                background: var(--bg);
+                padding: 0.6rem 0;
+                border-bottom: 1px solid var(--rule);
+                margin-bottom: 1.5rem;
             }
-            .gates h3 {
-                color: var(--gold);
+            .progress p {
+                margin: 0 0 0.35rem;
+                font-size: 0.9rem;
+                color: var(--muted);
             }
-            .gates p {
-                font-size: 16px;
-                margin-top: 6px;
+            .bar {
+                height: 6px;
+                background: var(--rule);
+                border-radius: 3px;
+                overflow: hidden;
             }
-            .rules li {
-                margin-bottom: 6px;
+            .bar i {
+                display: block;
+                height: 100%;
+                width: 0;
+                background: var(--done);
+                transition: width 0.25s;
             }
-            .row {
-                display: grid;
-                grid-template-columns: 24px 1fr;
-                gap: 4px 14px;
-                padding: 14px 0 14px 12px;
-                border-top: 1px solid var(--line);
-                border-left: 4px solid var(--c);
+            details {
+                margin: 0 0 1.5rem;
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                background: var(--surface);
             }
-            .row[data-t="CS"] {
-                --c: var(--cs);
-            }
-            .row[data-t="M"] {
-                --c: var(--m);
-            }
-            .row[data-t="B"] {
-                --c: var(--b);
-            }
-            .row input {
-                width: 22px;
-                height: 22px;
-                margin: 3px 0 0;
-                accent-color: var(--gold);
-            }
-            .row label {
+            details summary {
                 cursor: pointer;
-                display: block;
-            }
-            .row strong {
-                display: block;
+                padding: 0.7rem 1rem;
                 font-weight: 600;
             }
-            .row span {
-                display: block;
-                color: var(--mut);
-                font-size: 16.5px;
-                line-height: 1.5;
-            }
-            .row:has(input:checked) strong {
-                text-decoration: line-through;
-                text-decoration-thickness: 1px;
-            }
-            .row:has(input:checked) {
-                opacity: 0.62;
-            }
-            .key {
-                display: flex;
-                gap: 18px;
-                font-size: 15px;
-                color: var(--mut);
-                margin: 14px 0 8px;
-                flex-wrap: wrap;
-            }
-            .key u {
-                text-decoration: none;
-                border-left: 4px solid var(--c);
-                padding-left: 8px;
-            }
-            .pg {
-                margin-top: 12px;
-                padding: 12px 14px;
-                background: var(--soft);
-                border-left: 4px solid var(--gold);
-                font-size: 16.5px;
+            .scroll {
+                overflow-x: auto;
+                padding: 0 1rem 1rem;
             }
             table {
-                width: 100%;
                 border-collapse: collapse;
-                font-size: 16.5px;
+                width: 100%;
+                font-size: 0.93rem;
             }
-            .sc {
-                overflow-x: auto;
-            }
-            td,
-            th {
+            th,
+            td {
                 text-align: left;
-                padding: 9px 12px 9px 0;
-                border-top: 1px solid var(--line);
+                padding: 0.35rem 0.6rem;
+                border-bottom: 1px solid var(--rule);
                 vertical-align: top;
             }
             th {
-                font: 600 20px var(--hd);
-                border-top: 2px solid var(--fg);
+                color: var(--muted);
+                font-weight: 600;
             }
-            footer {
-                padding: 72px 0 60px;
-                color: var(--mut);
-                font-size: 15px;
+            ol.track {
+                list-style: none;
+                margin: 0;
+                padding: 0 0 0 2.2rem;
+                position: relative;
             }
-            @media (prefers-reduced-motion: reduce) {
-                #seg b {
-                    transition: none;
-                }
+            ol.track::before {
+                content: "";
+                position: absolute;
+                left: 0.7rem;
+                top: 0.5rem;
+                bottom: 0.5rem;
+                width: 3px;
+                background: var(--line);
+                opacity: 0.45;
             }
-            @media (max-width: 520px) {
-                body {
-                    font-size: 17px;
-                }
-                #seg span {
-                    font-size: 12px;
-                }
+            .item {
+                position: relative;
+                margin: 0 0 1.25rem;
+            }
+            .node {
+                position: absolute;
+                left: -2.2rem;
+                top: 0.95rem;
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
+                border: 3px solid var(--line);
+                background: var(--bg);
+            }
+            .item.done .node {
+                background: var(--done);
+            }
+            .card {
+                background: var(--surface);
+                border: 1px solid var(--rule);
+                border-radius: 8px;
+                padding: 1rem 1.1rem;
+            }
+            .card h2 {
+                font:
+                    700 1.35rem/1.2 "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.3rem;
+            }
+            .card h2 small {
+                font:
+                    500 0.85rem "Public Sans",
+                    sans-serif;
+                color: var(--acc);
+                margin-left: 0.4rem;
+                white-space: nowrap;
+            }
+            .meta {
+                margin: 0 0 0.7rem;
+                color: var(--muted);
+                font-size: 0.92rem;
+            }
+            .res {
+                margin: 0 0 0.7rem;
+                font-size: 0.92rem;
+            }
+            .res a {
+                color: var(--acc);
+            }
+            .card h3 {
+                font:
+                    600 0.8rem/1.3 "Public Sans",
+                    sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--muted);
+                margin: 0.8rem 0 0.3rem;
+            }
+            ul.chk {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            ul.chk label {
+                display: flex;
+                gap: 0.6rem;
+                align-items: flex-start;
+                padding: 0.2rem 0;
+                cursor: pointer;
+            }
+            ul.chk input {
+                appearance: none;
+                -webkit-appearance: none;
+                margin: 0.2rem 0 0;
+                flex: none;
+                width: 1.1rem;
+                height: 1.1rem;
+                border-radius: 4px;
+                border: 2px solid var(--line);
+                background: var(--bg);
+                cursor: pointer;
+            }
+            ul.chk input:checked {
+                background: var(--done);
+            }
+            ul.chk input:checked + span {
+                color: var(--muted);
+                text-decoration: line-through;
+            }
+            ul.chk em {
+                color: var(--muted);
+                font-style: italic;
+            }
+            .co {
+                margin: 0.7rem 0 0;
+                padding: 0.6rem 0.8rem;
+                border-radius: 6px;
+                border-left: 4px solid;
+                font-size: 0.93rem;
+            }
+            .co b {
+                display: block;
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .co.ok {
+                background: var(--ok);
+                border-color: var(--done);
+            }
+            .co.warn {
+                background: var(--warn);
+                border-color: #c28a1e;
+            }
+            .co.bad {
+                background: var(--bad);
+                border-color: #c04a4a;
+            }
+            .co.tip {
+                background: var(--tip);
+                border-color: #3b7bc0;
+            }
+            .sec {
+                margin-top: 2.5rem;
+                border-top: 1px solid var(--rule);
+                padding-top: 1.25rem;
+            }
+            .sec h2 {
+                font:
+                    700 1.4rem "Newsreader",
+                    Georgia,
+                    serif;
+                margin: 0 0 0.5rem;
+            }
+            .sec ul.plain {
+                margin: 0;
+                padding-left: 1.2rem;
+            }
+            .sec li {
+                margin: 0.3rem 0;
+            }
+            button.reset {
+                margin-top: 1.5rem;
+                font: inherit;
+                background: none;
+                color: var(--muted);
+                border: 1px solid var(--rule);
+                border-radius: 6px;
+                padding: 0.4rem 0.8rem;
+                cursor: pointer;
             }
         </style>
     </head>
     <body>
         <main>
-            <header>
-                <h1>The Curry Protocol</h1>
-                <p class="lede">
-                    Nine books, 86 weeks, about 15 hours a week. Curry was built
-                    on fundamentals at absurd volume, drills graded pass or
-                    fail, film review and a coach who wouldn’t let him skip.
-                    This is that, for algorithms, systems and math.
-                </p>
-            </header>
-            <div id="bar">
-                <div class="in" style="padding: 0">
-                    <div id="seg"></div>
-                    <div id="sum">
-                        <span id="cnt"></span
-                        ><button id="rs" type="button">Reset progress</button>
-                    </div>
-                </div>
+            <h1 id="t"></h1>
+            <p class="lede" id="lede"></p>
+            <div class="tabs" role="tablist">
+                <button role="tab" id="tab-math" type="button">
+                    Mathematics</button
+                ><button role="tab" id="tab-cs" type="button">
+                    CS &amp; Software Engineering
+                </button>
             </div>
-
-            <section id="rules">
-                <h2>How a gate works</h2>
-                <p>
-                    Every chapter group ends in a gate. Pass all four checks
-                    plus the chapter’s own exit test, or you don’t move on.
-                </p>
-                <div class="gates">
-                    <div>
-                        <h3>G1 Exercises</h3>
-                        <p>
-                            80% solved unaided. A hint after 30 minutes earns
-                            half credit; a seen solution earns none and is
-                            redone in 3 days.
-                        </p>
-                    </div>
-                    <div>
-                        <h3>G2 Blank page</h3>
-                        <p>
-                            Reproduce the key algorithm or proof from an empty
-                            file, no notes, inside a time cap set beforehand.
-                        </p>
-                    </div>
-                    <div>
-                        <h3>G3 Teach-back</h3>
-                        <p>
-                            300 words for a sharp 17-year-old. No jargon you
-                            can’t define. Saved in the repo.
-                        </p>
-                    </div>
-                    <div>
-                        <h3>G4 Day-7 retest</h3>
-                        <p>
-                            Five closed-book questions you wrote on day 0. Pass
-                            is 4 of 5.
-                        </p>
-                    </div>
-                </div>
-                <ul class="rules" style="margin-top: 20px">
-                    <li>
-                        At most 2 gates open. No new chapter until one closes.
-                    </li>
-                    <li>
-                        Fail a check: redo only what failed, retest after 3
-                        days. Three fails: re-teach aloud, restart G1.
-                    </li>
-                    <li>
-                        Every 6 weeks, retest 5 closed gates cold. Below 80%,
-                        the gate reopens.
-                    </li>
-                    <li>
-                        Log every attempt in <code>gates.md</code>. Report
-                        failures in the next post.
-                    </li>
-                </ul>
-                <p class="mut" style="margin-top: 14px">
-                    Weekly shape: LeetCode 45 min Mon to Fri. Theory Mon and
-                    Thu, math Tue and Fri, 90 min each. Build on Saturday, 3 h.
-                    Sunday: 60-min timed scrimmage and 30-min review. In weeks 1
-                    to 6 (Phase 0b) all four theory and math blocks go to math,
-                    and CS theory starts in week 7.
-                </p>
-            </section>
-
-            <div id="phases"></div>
-
-            <section id="lc">
-                <h2>LeetCode ladder</h2>
-                <p>
-                    NeetCode 150 as the spine, topped up in your weak patterns.
-                    About 250 problems <em>banked</em>, not 1,000. Banked means
-                    a clean cold re-solve, with no hints and inside the clock,
-                    at day 10. Re-solve at days 3, 10 and 30. Clocks: 15 min
-                    Easy, 25 Medium, 40 Hard. Before coding, write the brute
-                    force, its complexity and three test cases.
-                </p>
-                <div class="sc">
-                    <table>
-                        <tr>
-                            <th>Phase</th>
-                            <th>Banked</th>
-                            <th>Patterns</th>
-                            <th>Standard to advance</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>40</td>
-                            <td>
-                                arrays, hashing, two pointers, sliding window,
-                                stack, binary search, linked lists
-                            </td>
-                            <td>Easies cold in 15 min at 90%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>90</td>
-                            <td>
-                                trees, BST, heaps, intervals, sorting, tries
-                            </td>
-                            <td>Mediums cold in 25 min at 60%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>150</td>
-                            <td>DP, greedy, backtracking</td>
-                            <td>
-                                Name the DP state and recurrence in 5 min, 8 of
-                                10
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>210</td>
-                            <td>
-                                BFS/DFS, topological sort, union-find, Dijkstra,
-                                MST
-                            </td>
-                            <td>Mediums cold at 70%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>250</td>
-                            <td>15+ Hards, weekly contests</td>
-                            <td>Mediums cold in 25 min at 75%</td>
-                        </tr>
-                    </table>
-                </div>
-            </section>
-
-            <section id="blog">
-                <h2>Film: the blog</h2>
-                <p>
-                    Every post has a claim, evidence (code, graph or proof),
-                    what went wrong, and the next gate with a date. No
-                    checkpoint post, no new phase. Post 0 is the pledge: why,
-                    the stack, the rules, your honest baseline, the skip list,
-                    and how people can hold you to it.
-                </p>
-                <div id="posts"></div>
-            </section>
-
-            <section id="draft">
-                <h2>Draft night</h2>
-                <p>Weeks 85 to 86. All closed-book unless stated.</p>
-                <div id="dn"></div>
-            </section>
-
-            <section id="skip">
-                <h2>What you’re not doing</h2>
-                <ul class="rules">
-                    <li>
-                        <strong>CLRS:</strong> 4.6, 4.7, 5.4, 19.4, Ch 26 to 29,
-                        31.8, 32.3, 32.5, Ch 33, Ch 35.
-                    </li>
-                    <li>
-                        <strong>CS:APP Ch 4:</strong> read 4.1 and 4.4 for
-                        concepts, skip the rest.
-                    </li>
-                    <li>
-                        <strong>MEM Ch 6</strong> overlaps the Discrete book.
-                        <strong>AMEM Ch 2, 5, 6, 7, 9</strong> are deferred.
-                    </li>
-                    <li>
-                        <strong>Tour of C++:</strong> strings, I/O and numerics
-                        get one sitting each, no gates.
-                    </li>
-                </ul>
-                <p style="margin-top: 14px">
-                    Falling behind? Shift the calendar, never compress it. Three
-                    weeks with no gate closed: cut load by a third for two
-                    weeks, but keep the daily rep.
-                </p>
-            </section>
-            <footer>Progress is saved in this browser only.</footer>
+            <div class="glance" id="glance"></div>
+            <div class="progress" aria-live="polite">
+                <p id="ptext"></p>
+                <div class="bar"><i id="pbar"></i></div>
+            </div>
+            <details id="bk">
+                <summary id="bks"></summary>
+                <div class="scroll" id="bkt"></div>
+            </details>
+            <ol class="track" id="track"></ol>
+            <div id="extra"></div>
+            <button class="reset" id="reset" type="button">
+                Clear ticks for this plan
+            </button>
         </main>
         <script>
-            var P = [
-                [
-                    "Foundations",
-                    "1–6",
-                    6,
-                    "Close the gaps under calculus and linear algebra. Daily LeetCode and the Saturday build run as normal; CS theory starts in week 7.",
-                    "All three gates closed, a retest of your diagnostic at 85% or better, foundations checkpoint post.",
-                    [
+            var P = {
+                math: {
+                    title: "Mathematics study plan",
+                    lede: "Seven phases, six core books. Time estimates assume roughly full-time study and are guesses, so treat them as relative sizes. Tick items as you finish them.",
+                    glance: ["7 phases", "6 core books"],
+                    bks: "The books",
+                    bcols: ["Short name", "Used in"],
+                    books: [
+                        ["Axler", "Phase 1"],
+                        ["Epp", "Phases 2, 6, 7"],
+                        ["Adams", "Phases 3, 4, 5"],
+                        ["Hefferon", "Phases 3, 4"],
+                        ["Abbott", "Phase 4"],
+                        ["Evans &amp; Rosenthal", "Phases 6, 7"],
+                    ],
+                    phases: [
+                        {
+                            t: "Algebra and trig",
+                            time: "~10 wks",
+                            core: "Axler 0–7",
+                            g: [
+                                [
+                                    "Axler, Ch 0–7 (all of it)",
+                                    [
+                                        "Ch 0–3: algebra, functions, exponentials, logs|do these first",
+                                        "Ch 4–5: trigonometry",
+                                        "Ch 6: sequences, series, limits",
+                                        "Ch 7: remaining material, including 7.3–7.4 (complex numbers)",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "tip",
+                                    "Why it matters",
+                                    "Ch 6 previews Adams and Abbott. Ch 7.3–7.4 (complex numbers) is needed for Hefferon ch 5.",
+                                ],
+                                ["warn", "Skip", "The appendix on area."],
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can do most of each chapter’s problems unaided, especially log/exponential manipulation, trig identities and inverse trig.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Proofs",
+                            time: "~6–8 wks",
+                            core: "Epp 1–8 (selected). Start Epp alongside Axler ch 6–7.",
+                            g: [
+                                [
+                                    "Epp",
+                                    [
+                                        "Ch 1–2: logic|skip 2.4–2.5, circuits and binary",
+                                        "Ch 3: quantifiers|all of it",
+                                        "Ch 4.1–4.8: direct proof, cases, contradiction, number theory proofs|this is where you learn to write proofs",
+                                        "Ch 5.1–5.4: sequences and induction",
+                                        "Ch 5.6–5.7: recursive sequences, iteration",
+                                        "Ch 6.1–6.3: sets",
+                                        "Ch 7.1–7.4: functions, one-to-one and onto, composition, cardinality",
+                                        "Ch 8.1–8.3, 8.5: relations, equivalence, partial orders",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can write a clean proof of any exercise-level statement in each section, including induction, set equality and injective/surjective arguments.",
+                                ],
+                                [
+                                    "bad",
+                                    "Gate",
+                                    "Don’t continue until you can do this, since everything after depends on it.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Single-variable calculus and linear algebra",
+                            time: "~12 wks",
+                            core: "Adams 1–7, Hefferon 1–3. Run both books in parallel (alternate days or weeks).",
+                            g: [
+                                [
+                                    "Adams, Ch 1–7",
+                                    [
+                                        "Ch 1: limits and continuity",
+                                        "Ch 2–3: derivatives and applications",
+                                        "Ch 4–5: transcendental functions and further derivative material",
+                                        "Ch 6–7: integration and techniques of integration",
+                                    ],
+                                ],
+                                ["Hefferon, Ch 1–3", ["Ch 1", "Ch 2", "Ch 3"]],
+                            ],
+                            c: [
+                                [
+                                    "warn",
+                                    "Skip (Adams)",
+                                    "Ch P (Axler covered it): skim only. Ch 4.7 and 4.11 (computer arithmetic). The Maple material. Ch 7.7–7.8 on first pass.",
+                                ],
+                                [
+                                    "warn",
+                                    "Skip (Hefferon)",
+                                    "The Topics, except <i>Line of Best Fit</i> (ch 3), which supports regression later.",
+                                ],
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can compute limits, derivatives and integrals fluently, and do row reduction, bases, dimension and matrix representations of maps.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Analysis",
+                            time: "~10–12 wks",
+                            core: "Abbott 1–7, Adams 8–9, Hefferon 4–5",
+                            g: [
+                                [
+                                    "Abbott, Ch 1–7",
+                                    [
+                                        "Ch 1–7, with Adams ch 8–9 alongside",
+                                        "Read Adams appendix III (continuity) after Abbott ch 4",
+                                        "Read Adams appendix IV (Riemann integral) after Abbott ch 7",
+                                    ],
+                                ],
+                                [
+                                    "Adams, Ch 8–9 (alongside)",
+                                    [
+                                        "Ch 8: conics and parametric curves|optional here",
+                                        "Ch 9: sequences, series, Taylor",
+                                    ],
+                                ],
+                                [
+                                    "Hefferon, Ch 4–5 (at the same time)",
+                                    [
+                                        "Ch 4: determinants",
+                                        "Ch 5: similarity, eigenvalues",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "warn",
+                                    "Skip on first pass",
+                                    "Hefferon’s Jordan form (5.III–IV).",
+                                ],
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can prove basic results about limits, continuity, derivatives and the Riemann integral from the definitions.",
+                                ],
+                                [
+                                    "tip",
+                                    "Optional",
+                                    "Abbott ch 8 is optional. Section 8.6 (constructing ℝ) is worth reading later.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Multivariable calculus",
+                            time: "~8 wks",
+                            core: "Adams 10–16",
+                            g: [
+                                [
+                                    "Adams, Ch 10–16",
+                                    [
+                                        "Ch 10|skip 10.7–10.8, Hefferon covers it",
+                                        "Ch 11|11.6 Kepler is optional",
+                                        "Ch 12",
+                                        "Ch 13|13.9 entropy is optional",
+                                        "Ch 14: multiple integrals ⭐|critical chapter for Evans &amp; Rosenthal",
+                                        "Ch 15",
+                                        "Ch 16",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                ["warn", "Skip", "The Maple sections."],
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can set up and evaluate double and triple integrals with a change of variables, and use gradients, Lagrange multipliers and Green’s/Stokes’s/divergence theorems.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Discrete maths and probability",
+                            time: "~8–10 wks",
+                            core: "Epp 9–10, Evans &amp; Rosenthal 1–4",
+                            g: [
+                                [
+                                    "Epp (do first)",
+                                    [
+                                        "Ch 9: counting and probability",
+                                        "Ch 10: graphs and trees",
+                                    ],
+                                ],
+                                [
+                                    "Evans &amp; Rosenthal, Ch 1–4",
+                                    ["Ch 1", "Ch 2", "Ch 3", "Ch 4"],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "tip",
+                                    "Link",
+                                    "Epp feeds Evans &amp; Rosenthal ch 1.",
+                                ],
+                                [
+                                    "warn",
+                                    "Skip on first pass",
+                                    "Sections marked “Advanced” and the Further Proofs.",
+                                ],
+                                [
+                                    "ok",
+                                    "Checkpoint",
+                                    "You can solve counting problems without recipes and derive distributions of transformed random variables.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Statistics and wrap-up",
+                            time: "~8–10 wks",
+                            core: "Evans &amp; Rosenthal 5–10",
+                            g: [
+                                [
+                                    "Evans &amp; Rosenthal, Ch 5–10",
+                                    [
+                                        "Ch 5: inference",
+                                        "Ch 6: likelihood",
+                                        "Ch 7: Bayes",
+                                        "Ch 8: optimality",
+                                        "Ch 9: model checking",
+                                        "Ch 10: regression / ANOVA",
+                                    ],
+                                ],
+                                [
+                                    "Fill gaps from Epp as you go",
+                                    [
+                                        "5.5: loop invariants",
+                                        "5.8–5.9: recurrences, structural induction",
+                                        "8.4: modular arithmetic",
+                                        "Ch 11: algorithm analysis",
+                                    ],
+                                ],
+                            ],
+                            c: [],
+                        },
+                    ],
+                    extra: [
                         [
-                            "M",
-                            "MEM Ch 1 (1.2–1.5)",
-                            "Run a 15-problem diagnostic first, then study only what you lost. Exit: 20 algebra and geometry problems at 85%, quadratics and simultaneous equations solved cold.",
+                            "Optional extras after the core",
+                            [
+                                "Evans &amp; Rosenthal ch 11 (stochastic processes)",
+                                "Abbott ch 8",
+                                "Adams ch 17–18 (differential forms, ODEs)",
+                                "Epp ch 12 (automata)",
+                                "Hefferon’s Jordan form, then Axler’s <i>Linear Algebra Done Right</i>",
+                            ],
+                            1,
                         ],
                         [
-                            "M",
-                            "MEM Ch 2 (2.2–2.7)",
-                            "Sketch 15 functions by hand with intercepts and asymptotes; solve 10 log and exponential equations; 25 problems at 85%.",
-                        ],
-                        [
-                            "M",
-                            "MEM Ch 4 (4.2–4.3)",
-                            "20 dot product, cross product, line and plane problems at 85%; derive the cross-product area formula and explain it geometrically.",
+                            "Notes",
+                            [
+                                "<b>Overlap.</b> Epp’s discrete material duplicates parts of Evans &amp; Rosenthal ch 1, and Adams ch 10.7 duplicates Hefferon. Skip the weaker version.",
+                                "<b>If a phase feels slow,</b> stay there. The later books assume the earlier ones, and you’ll do better by repeating than by rushing.",
+                                "<b>Assumptions.</b> Epp’s contents were cut off before Chapters 1–2; assumed Ch 1 is <i>Speaking Mathematically</i> and Ch 2 is propositional logic. Adams ch 10.7 and parts of Axler overlap with later books and are marked skippable.",
+                                "<b>Solutions.</b> Epp, Hefferon, Adams and Evans &amp; Rosenthal give answers to selected exercises. Abbott has none, so use Math StackExchange to check proofs.",
+                            ],
                         ],
                     ],
-                ],
-                [
-                    "Form shooting",
-                    "7–20",
-                    14,
-                    "Proof and complexity fluency, first C++, first Go.",
-                    "40 banked, Easies cold at 90%, Go app repo public, checkpoint post.",
-                    [
+                },
+                cs: {
+                    title: "Unified CS &amp; software engineering curriculum",
+                    lede: "A 36-week programme at 10–15 hours per week. Demonstrate each subject through working implementations, not merely completed chapters.",
+                    glance: [
+                        "36 weeks",
+                        "10–15 hrs/week",
+                        "7 phases",
+                        "3 final projects",
+                    ],
+                    bks: "Roadmap: language, stack and project per phase",
+                    bcols: ["Phase", "Weeks", "Stack", "Project"],
+                    books: [
                         [
-                            "CS",
-                            "Discrete Ch 1, 3, 4 (1.1–1.3, 3.1–3.3, 4.1–4.4)",
-                            "3 new proofs (direct, contrapositive, contradiction), 5 inductions, 10 recurrences solved by tree, substitution and master.",
+                            "1 Programming foundations",
+                            "1–5",
+                            "JS, TypeScript, C++",
+                            "Tic-Tac-Toe ×3",
                         ],
                         [
-                            "CS",
-                            "CLRS Ch 1–5, App. A, C.1–C.3",
-                            "Loop-invariant proofs for insertion sort and binary search; rank 15 growth rates; merge sort from blank; Fisher-Yates shown uniform.",
+                            "2 Data structures and algorithms",
+                            "6–10",
+                            "C++",
+                            "DS&amp;A library",
                         ],
                         [
-                            "B",
-                            "Tour of C++ Ch 1–8",
-                            "Generic dynamic array with rule of five and tests, clean under AddressSanitizer.",
+                            "3 Frontend engineering",
+                            "11–14",
+                            "React, TanStack Start",
+                            "React app",
                         ],
                         [
-                            "B",
-                            "Let’s Go Ch 1–7",
-                            "Rebuild a different app from a blank repo in two weekends, no book.",
+                            "4 Backend engineering",
+                            "15–20",
+                            "Go, PostgreSQL",
+                            "Go API + React frontend",
                         ],
                         [
-                            "M",
-                            "MEM Ch 5, 7, 8",
-                            "Gaussian elimination by hand and in code; 10 series convergence tests; 40 calculus problems at 85%.",
+                            "5 Computer systems",
+                            "21–26",
+                            "C/C++, Assembly",
+                            "Assembly + memory experiments",
                         ],
                         [
-                            "M",
-                            "Add-on: Book of Proof, Strang lectures 1–10",
-                            "One proof a week in the repo; Strang sets at 80%.",
+                            "6 Compiler construction",
+                            "27–34",
+                            "C",
+                            "Working C compiler",
+                        ],
+                        [
+                            "7 Advanced engineering",
+                            "35–36+",
+                            "Modern C++",
+                            "Optimise compiler",
                         ],
                     ],
-                ],
-                [
-                    "Conditioning",
-                    "21–36",
-                    16,
-                    "Know how the machine runs your code. Build the core structures from blank files.",
-                    "90 banked, Mediums cold at 60%, retention audit at 80%, benchmark and checkpoint posts.",
-                    [
+                    phases: [
+                        {
+                            t: "Programming foundations",
+                            time: "Weeks 1–5",
+                            res: [
+                                [
+                                    "Frontend Web Development, full course",
+                                    "https://www.youtube.com/watch?v=MsnQ5uepIaE",
+                                ],
+                                [
+                                    "A Tour of C++, Bjarne Stroustrup",
+                                    "https://www.stroustrup.com/books.html",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "Web &amp; JavaScript",
+                                    [
+                                        "HTML and CSS",
+                                        "JavaScript fundamentals",
+                                        "Functions, objects and arrays",
+                                        "DOM and event handling",
+                                        "MVC architecture",
+                                        "TypeScript and static typing",
+                                    ],
+                                ],
+                                [
+                                    "C++",
+                                    [
+                                        "C++ fundamentals",
+                                        "Types, variables and functions",
+                                        "Pointers and references",
+                                        "Classes, structures and namespaces",
+                                        "Memory, scope and lifetime",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "Tic-Tac-Toe in JavaScript, TypeScript and C++.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Data structures and algorithms",
+                            time: "Weeks 6–10",
+                            res: [
+                                [
+                                    "Data Structures and Algorithm Analysis in C++, Mark Allen Weiss",
+                                    "https://users.cs.fiu.edu/~weiss/",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "Topics",
+                                    [
+                                        "Algorithm analysis and Big-O",
+                                        "Lists, stacks and queues",
+                                        "Trees and binary search trees",
+                                        "Hash tables",
+                                        "Priority queues and heaps",
+                                        "Sorting and searching",
+                                        "Disjoint sets",
+                                        "Graph algorithms",
+                                        "Algorithm design techniques",
+                                        "Amortised analysis",
+                                        "Advanced data structures",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "C++ data structures and algorithms library.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Frontend engineering",
+                            time: "Weeks 11–14",
+                            res: [
+                                [
+                                    "React 19 course",
+                                    "https://www.youtube.com/watch?v=dCLhUialKPQ",
+                                ],
+                                [
+                                    "Official React documentation",
+                                    "https://react.dev/learn",
+                                ],
+                                [
+                                    "TanStack Start course",
+                                    "https://www.youtube.com/watch?v=FsIASz_Uvd0",
+                                ],
+                                [
+                                    "TanStack learning resources",
+                                    "https://tanstack.com/learn",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "React",
+                                    [
+                                        "React components and JSX",
+                                        "Props and state",
+                                        "React hooks",
+                                        "Event handling",
+                                        "Forms and validation",
+                                        "Routing",
+                                        "Data fetching",
+                                        "State management",
+                                    ],
+                                ],
+                                [
+                                    "TanStack Start &amp; full-stack concepts",
+                                    [
+                                        "Server-side rendering",
+                                        "TanStack Start",
+                                        "Server functions and middleware",
+                                        "Client/server architecture",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "React application with a TanStack Start implementation.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Backend engineering",
+                            time: "Weeks 15–20",
+                            res: [
+                                [
+                                    "Let’s Go, Alex Edwards",
+                                    "https://lets-go.alexedwards.net/",
+                                ],
+                                [
+                                    "Let’s Go Further, Alex Edwards",
+                                    "https://lets-go-further.alexedwards.net/",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "Go &amp; web fundamentals",
+                                    [
+                                        "Go fundamentals",
+                                        "Packages, modules and interfaces",
+                                        "HTTP and routing",
+                                        "Handlers and middleware",
+                                        "HTML templates",
+                                    ],
+                                ],
+                                [
+                                    "Data layer",
+                                    [
+                                        "SQL and database connections",
+                                        "PostgreSQL",
+                                        "Transactions and migrations",
+                                    ],
+                                ],
+                                [
+                                    "Architecture &amp; quality",
+                                    [
+                                        "Dependency injection",
+                                        "Testing",
+                                        "Authentication and authorisation",
+                                    ],
+                                ],
+                                [
+                                    "APIs &amp; production",
+                                    [
+                                        "REST APIs and JSON",
+                                        "Validation and pagination",
+                                        "Rate limiting",
+                                        "Background tasks",
+                                        "Metrics and deployment",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "Production-style Go API with PostgreSQL and React frontend.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Computer systems",
+                            time: "Weeks 21–26",
+                            res: [
+                                [
+                                    "Computer Systems: A Programmer’s Perspective (CS:APP)",
+                                    "https://csapp.cs.cmu.edu/",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "Representation",
+                                    [
+                                        "Computer systems overview",
+                                        "Binary and hexadecimal",
+                                        "Integer representation",
+                                        "Floating-point representation",
+                                    ],
+                                ],
+                                [
+                                    "Machine level",
+                                    [
+                                        "Machine-level programming",
+                                        "Assembly language",
+                                        "Processor architecture",
+                                        "Registers and stack frames",
+                                        "Performance optimisation",
+                                    ],
+                                ],
+                                [
+                                    "Memory &amp; program execution",
+                                    [
+                                        "Memory hierarchy and caching",
+                                        "Linking",
+                                        "Exceptional control flow",
+                                        "Virtual memory",
+                                    ],
+                                ],
+                                [
+                                    "I/O, networking &amp; concurrency",
+                                    [
+                                        "System-level I/O",
+                                        "Network programming",
+                                        "Concurrent programming",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "Assembly analysis, memory experiments and multi-file C/C++ programs.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Compiler construction",
+                            time: "Weeks 27–34",
+                            res: [
+                                [
+                                    "Write a C Compiler, book and contents",
+                                    "https://nostarch.com/writing-c-compiler",
+                                ],
+                            ],
+                            g: [
+                                [
+                                    "Part I: the basics",
+                                    [
+                                        "1. Minimal compiler",
+                                        "2. Unary operators",
+                                        "3. Binary operators",
+                                        "4. Logical and relational operators",
+                                        "5. Local variables",
+                                        "6. If statements and conditional expressions",
+                                        "7. Compound statements",
+                                        "8. Loops",
+                                        "9. Functions",
+                                        "10. File-scope variables and storage classes",
+                                    ],
+                                ],
+                                [
+                                    "Part II: types beyond int",
+                                    [
+                                        "11. Long integers",
+                                        "12. Unsigned integers",
+                                        "13. Floating-point numbers",
+                                        "14. Pointers",
+                                        "15. Arrays and pointer arithmetic",
+                                        "16. Characters and strings",
+                                        "17. Dynamic memory allocation",
+                                        "18. Structures",
+                                    ],
+                                ],
+                                [
+                                    "Part III: optimisation",
+                                    [
+                                        "19. Intermediate representation optimisation",
+                                        "20. Register allocation",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "Build a working C compiler.",
+                                ],
+                            ],
+                        },
+                        {
+                            t: "Advanced engineering",
+                            time: "Weeks 35–36+",
+                            res: [
+                                [
+                                    "A Tour of C++",
+                                    "https://www.stroustrup.com/books.html",
+                                ],
+                                [
+                                    "Weiss, Data Structures and Algorithms",
+                                    "https://users.cs.fiu.edu/~weiss/",
+                                ],
+                                ["CS:APP", "https://csapp.cs.cmu.edu/"],
+                            ],
+                            g: [
+                                [
+                                    "Modern C++",
+                                    [
+                                        "C++ copy and move semantics",
+                                        "Resource management and RAII",
+                                        "Templates and generic programming",
+                                        "Concepts and ranges",
+                                        "STL containers and algorithms",
+                                        "Concurrency and coroutines",
+                                    ],
+                                ],
+                                [
+                                    "Engineering depth",
+                                    [
+                                        "Advanced data structures",
+                                        "Performance engineering",
+                                        "Compiler optimisation",
+                                        "Testing and debugging",
+                                    ],
+                                ],
+                            ],
+                            c: [
+                                [
+                                    "ok",
+                                    "Project",
+                                    "Optimise and extend your compiler.",
+                                ],
+                            ],
+                        },
+                    ],
+                    extra: [
                         [
-                            "CS",
-                            "CS:APP Ch 1–3",
-                            "Data Lab, Bomb Lab, Attack Lab 1–3; annotate gcc -S output for 5 functions.",
+                            "Final projects",
+                            [
+                                "<b>Full-stack application:</b> React + TypeScript + Go + PostgreSQL",
+                                "<b>Algorithms library:</b> C++ implementations of fundamental data structures and algorithms",
+                                "<b>C compiler:</b> lexer, parser, semantic analysis, IR, optimisation and assembly generation",
+                            ],
+                            1,
                         ],
                         [
-                            "CS",
-                            "CS:APP Ch 5, 6",
-                            "Cache Lab; one function made 3x faster with a profiler; loop-interchange speedup of 2x or more.",
-                        ],
-                        [
-                            "CS",
-                            "CLRS Ch 6–9",
-                            "Heap, heapsort, quicksort, radix sort, quickselect from blank; prove the sorting lower bound.",
-                        ],
-                        [
-                            "CS",
-                            "CLRS Ch 10–13",
-                            "Hash table, BST and red-black tree checked against std::map on 1M random operations.",
-                        ],
-                        [
-                            "CS",
-                            "Discrete Ch 2, 5",
-                            "Toy RSA from scratch; 25 probability problems at 80%; birthday paradox derived and simulated.",
-                        ],
-                        [
-                            "B",
-                            "Let’s Go Ch 8–13",
-                            "Coverage of 80% or more; add password reset on a blank branch.",
-                        ],
-                        [
-                            "M",
-                            "MEM Ch 9, 13",
-                            "25 further-calculus problems at 85%; derive mean and variance of binomial, Poisson, normal.",
-                        ],
-                        [
-                            "M",
-                            "Add-on: Strang 11–25, Blitzstein Ch 1–4",
-                            "Problem sets at 80%; prove Bayes’ theorem.",
+                            "Study allocation",
+                            [
+                                "<b>40%</b> Programming and implementation",
+                                "<b>30%</b> Reading and lectures",
+                                "<b>20%</b> Projects and testing",
+                                "<b>10%</b> Revision and technical notes",
+                            ],
                         ],
                     ],
-                ],
-                [
-                    "Game reads",
-                    "37–52",
-                    16,
-                    "Recognise problem structure. Understand memory and processes at OS level.",
-                    "150 banked, DP state named in 5 min on 8 of 10, malloc and checkpoint posts.",
-                    [
-                        [
-                            "CS",
-                            "CLRS Ch 14–16",
-                            "DP classics on a blank page with correctness proof; greedy proofs; aggregate, accounting and potential method on dynamic tables.",
-                        ],
-                        [
-                            "CS",
-                            "CLRS 17.1–17.2, 18, 19.1–19.3",
-                            "Order-statistic tree; B-tree insert and search; union-find with rank and path compression.",
-                        ],
-                        [
-                            "CS",
-                            "CS:APP Ch 7–9",
-                            "Shell Lab; Malloc Lab at 80%+; annotated readelf output; translate 5 virtual addresses by hand.",
-                        ],
-                        [
-                            "B",
-                            "Tour of C++ Ch 9–17",
-                            "Rewrite hash table and heap on standard containers; explain move and forward with examples.",
-                        ],
-                        [
-                            "M",
-                            "MEM Ch 10–11",
-                            "20 ODEs at 85%; Euler and RK4 with error plot; 8 Laplace initial-value problems.",
-                        ],
-                        [
-                            "M",
-                            "AMEM Ch 1 (1.3–1.8)",
-                            "SVD by hand; matrix exponential; image compression in code.",
-                        ],
-                    ],
-                ],
-                [
-                    "Team offense",
-                    "53–66",
-                    14,
-                    "Graphs, networks, concurrency, and a deployed service.",
-                    "210 banked, Mediums cold at 70%, load-test numbers, API live, checkpoint post.",
-                    [
-                        [
-                            "CS",
-                            "CLRS Ch 20–22",
-                            "BFS, DFS, topological sort, SCC, Kruskal, Prim, Bellman-Ford, Dijkstra from blank; prove Dijkstra.",
-                        ],
-                        [
-                            "CS",
-                            "CLRS 23.2, 24.1–24.2, 25.2 and Discrete Ch 6",
-                            "Floyd-Warshall; max-flow matching; stable marriage proof; 15 graph problems at 80%.",
-                        ],
-                        [
-                            "CS",
-                            "CS:APP Ch 10–12",
-                            "Proxy Lab; echo server three ways; find and fix a planted race and a deadlock.",
-                        ],
-                        [
-                            "B",
-                            "Let’s Go Further Ch 1–20",
-                            "Deployed API with auth, rate limiting, graceful shutdown; a new resource on a blank branch.",
-                        ],
-                        [
-                            "M",
-                            "AMEM Ch 3, 10, 11 and MEM Ch 12",
-                            "Verify Green, Gauss and Stokes; simplex by hand; gradient descent; regression; Fourier square wave with Gibbs plot.",
-                        ],
-                    ],
-                ],
-                [
-                    "Playoff run",
-                    "67–84",
-                    18,
-                    "The compiler is the capstone. Write it in C++. The book’s test suite is your referee.",
-                    "250 banked, 15+ Hards, Mediums cold at 75%, every compiler stage passing, benchmark post.",
-                    [
-                        [
-                            "B",
-                            "Writing a C Compiler, Part I (Ch 1–10)",
-                            "100% of each stage’s tests before the next; grammar and TACKY by hand first.",
-                        ],
-                        [
-                            "B",
-                            "Part II (Ch 11–18)",
-                            "Same rule: long, unsigned, floats, pointers, arrays, strings, malloc, structs.",
-                        ],
-                        [
-                            "B",
-                            "Part III (Ch 19–20)",
-                            "Four optimization passes plus graph-colouring register allocation; benchmark on vs off.",
-                        ],
-                        [
-                            "CS",
-                            "CLRS Ch 34, 31, 32, 30",
-                            "3 reductions proved; RSA with your own bignum; KMP and Rabin-Karp; FFT multiplication vs naive.",
-                        ],
-                        [
-                            "M",
-                            "MEM Ch 3, then AMEM Ch 8, 4, and Pinter or Sipser",
-                            "10 complex-number problems at 85%; low-pass an audio clip with your FFT; 5 residues; Lagrange’s theorem or a pumping-lemma proof.",
-                        ],
-                    ],
-                ],
-            ];
-            var B = [
-                [
-                    "0",
-                    "Post 0: I’m working through this",
-                    "Baseline numbers, repo link",
-                ],
-                ["6", "Foundations checkpoint", "Diagnostic vs retest scores"],
-                [
-                    "11",
-                    "Proving insertion sort correct, and where my first proof broke",
-                    "The flawed first attempt",
-                ],
-                ["20", "Phase 1 checkpoint", "Scoreboard, Go app"],
-                [
-                    "26",
-                    "Bomb lab: reading assembly like a language",
-                    "One annotated phase",
-                ],
-                ["32", "My hash table vs unordered_map", "Benchmark graph"],
-                ["36", "Phase 2 checkpoint", "Scoreboard, audit result"],
-                ["48", "Writing malloc", "Utilization and throughput"],
-                ["52", "Phase 3 checkpoint", "Scoreboard"],
-                ["58", "Dijkstra on real data", "Dataset, runtime plot"],
-                ["66", "Phase 4 checkpoint", "Live API, load test"],
-                ["72", "Compiler part I", "Test-suite pass counts"],
-                ["80", "Register allocation in the wild", "Spill counts"],
-                ["84", "Phase 5 checkpoint", "Optimizer benchmark"],
-                ["86", "Season retrospective", "Baseline vs final"],
-            ];
-            var D = [
-                "Retest 20 random closed gates at 80% or better; reopen any that fail.",
-                "Two timed mocks with an outside person: 2 Mediums in 45 minutes, thinking aloud.",
-                "10 fresh Mediums cold at 75% inside 25 minutes each.",
-                "Hash table, heap, Dijkstra and an examiner-chosen DP in 90 minutes with tests.",
-                "Whiteboard from gcc main.c to a running process: linking, loading, paging, a syscall.",
-            ];
-            var K = "curry-protocol-v1",
-                S = {};
+                },
+            };
+            var cur = "math",
+                st = {},
+                KEY = "plans-v1";
             try {
-                S = JSON.parse(localStorage.getItem(K) || "{}");
+                st = JSON.parse(localStorage.getItem(KEY) || "{}");
             } catch (e) {
-                S = {};
+                st = {};
             }
             function save() {
                 try {
-                    localStorage.setItem(K, JSON.stringify(S));
+                    localStorage.setItem(KEY, JSON.stringify(st));
                 } catch (e) {}
             }
-            var names = { CS: "CS theory", M: "Math", B: "Build" };
-            function row(id, t, a, b) {
-                return (
-                    '<div class="row" data-t="' +
-                    t +
-                    '"><input type="checkbox" id="' +
-                    id +
-                    '"' +
-                    (S[id] ? " checked" : "") +
-                    '><label for="' +
-                    id +
-                    '"><strong>' +
-                    a +
-                    "</strong><span>" +
-                    b +
-                    "</span></label></div>"
-                );
+            function $(i) {
+                return document.getElementById(i);
             }
-            var h = "",
-                seg = "",
-                tot = 14;
-            P.forEach(function (p, i) {
-                tot += 0;
-                h +=
-                    '<section id="phase' +
-                    (i + 1) +
-                    '"><h2>Phase ' +
-                    (i == 0 ? "0b" : i) +
-                    ": " +
-                    p[0] +
-                    '</h2><p class="mut">Weeks ' +
-                    p[1] +
-                    ". " +
-                    p[3] +
-                    "</p>";
-                if (i == 0)
+            function render() {
+                var p = P[cur];
+                document.title = p.title.replace(/&amp;/g, "&");
+                $("t").innerHTML = p.title;
+                $("lede").textContent = p.lede.replace(/&amp;/g, "&");
+                $("tab-math").setAttribute("aria-selected", cur == "math");
+                $("tab-cs").setAttribute("aria-selected", cur == "cs");
+                $("glance").innerHTML = p.glance
+                    .map(function (g) {
+                        return "<span>" + g + "</span>";
+                    })
+                    .join("");
+                $("bks").textContent = p.bks;
+                $("bkt").innerHTML =
+                    "<table><thead><tr>" +
+                    p.bcols
+                        .map(function (c) {
+                            return "<th>" + c + "</th>";
+                        })
+                        .join("") +
+                    "</tr></thead><tbody>" +
+                    p.books
+                        .map(function (r) {
+                            return (
+                                "<tr>" +
+                                r
+                                    .map(function (c) {
+                                        return "<td>" + c + "</td>";
+                                    })
+                                    .join("") +
+                                "</tr>"
+                            );
+                        })
+                        .join("") +
+                    "</tbody></table>";
+                var h = "";
+                p.phases.forEach(function (ph, i) {
                     h +=
-                        '<div class="key"><u style="--c:var(--cs)">CS theory</u><u style="--c:var(--m)">Math</u><u style="--c:var(--b)">Build</u></div>';
-                p[5].forEach(function (r, j) {
-                    h += row("p" + i + "r" + j, r[0], r[1], r[2]);
+                        '<li class="item" id="ph' +
+                        i +
+                        '"><div class="node"></div><section class="card"><h2>Phase ' +
+                        (i + 1) +
+                        ": " +
+                        ph.t +
+                        "<small>" +
+                        ph.time +
+                        "</small></h2>";
+                    if (ph.core) h += '<p class="meta">' + ph.core + "</p>";
+                    if (ph.res)
+                        h +=
+                            '<p class="res">' +
+                            ph.res
+                                .map(function (r) {
+                                    return (
+                                        '<a href="' +
+                                        r[1] +
+                                        '" target="_blank" rel="noopener">' +
+                                        r[0] +
+                                        "</a>"
+                                    );
+                                })
+                                .join(" · ") +
+                            "</p>";
+                    ph.g.forEach(function (g, j) {
+                        h += "<h3>" + g[0] + '</h3><ul class="chk">';
+                        g[1].forEach(function (it, k) {
+                            var s = it.split("|"),
+                                id = cur + i + "-" + j + "-" + k;
+                            h +=
+                                '<li><label><input type="checkbox" data-id="' +
+                                id +
+                                '"' +
+                                (st[id] ? " checked" : "") +
+                                "><span>" +
+                                s[0] +
+                                (s[1] ? " <em>(" + s[1] + ")</em>" : "") +
+                                "</span></label></li>";
+                        });
+                        h += "</ul>";
+                    });
+                    ph.c.forEach(function (c) {
+                        h +=
+                            '<div class="co ' +
+                            c[0] +
+                            '"><b>' +
+                            c[1] +
+                            "</b>" +
+                            c[2] +
+                            "</div>";
+                    });
+                    h += "</section></li>";
                 });
-                h +=
-                    '<div class="pg"><strong>Phase gate:</strong> ' +
-                    p[4] +
-                    "</div></section>";
-                seg +=
-                    '<a href="#phase' +
-                    (i + 1) +
-                    '" style="--w:' +
-                    p[2] +
-                    '" title="' +
-                    p[0] +
-                    '"><i><b id="s' +
-                    i +
-                    '"></b></i><span>' +
-                    p[0] +
-                    "</span></a>";
-            });
-            document.getElementById("phases").innerHTML = h;
-            document.getElementById("seg").innerHTML = seg;
-            var pb = "";
-            B.forEach(function (b, i) {
-                pb += row("b" + i, "CS", "Week " + b[0] + ": " + b[1], b[2]);
-            });
-            document.getElementById("posts").innerHTML = pb;
-            var dn = "";
-            D.forEach(function (d, i) {
-                dn += row("d" + i, "B", d, "");
-            });
-            document.getElementById("dn").innerHTML = dn;
-            function upd() {
-                var all = document.querySelectorAll("main .row input"),
+                $("track").innerHTML = h;
+                $("extra").innerHTML = p.extra
+                    .map(function (e, x) {
+                        return (
+                            '<section class="sec"><h2>' +
+                            e[0] +
+                            "</h2>" +
+                            (e[2]
+                                ? '<ul class="chk">' +
+                                  e[1]
+                                      .map(function (t, k) {
+                                          var id = cur + "x" + x + "-" + k;
+                                          return (
+                                              '<li><label><input type="checkbox" data-id="' +
+                                              id +
+                                              '"' +
+                                              (st[id] ? " checked" : "") +
+                                              "><span>" +
+                                              t +
+                                              "</span></label></li>"
+                                          );
+                                      })
+                                      .join("") +
+                                  "</ul>"
+                                : '<ul class="plain">' +
+                                  e[1]
+                                      .map(function (t) {
+                                          return "<li>" + t + "</li>";
+                                      })
+                                      .join("") +
+                                  "</ul>") +
+                            "</section>"
+                        );
+                    })
+                    .join("");
+                update();
+            }
+            function update() {
+                var all = document.querySelectorAll(
+                        "#track input,#extra input",
+                    ),
                     n = 0;
                 all.forEach(function (c) {
                     if (c.checked) n++;
                 });
-                document.getElementById("cnt").textContent =
-                    n + " of " + all.length + " gates closed";
-                P.forEach(function (p, i) {
-                    var c = document.querySelectorAll(
-                            'input[id^="p' + i + 'r"]',
-                        ),
-                        k = 0;
-                    c.forEach(function (x) {
-                        if (x.checked) k++;
+                $("ptext").textContent =
+                    n + " of " + all.length + " items done";
+                $("pbar").style.width =
+                    (all.length ? (100 * n) / all.length : 0) + "%";
+                P[cur].phases.forEach(function (_, i) {
+                    var b = document.querySelectorAll("#ph" + i + " input"),
+                        d = 0;
+                    b.forEach(function (c) {
+                        if (c.checked) d++;
                     });
-                    document.getElementById("s" + i).style.width =
-                        (100 * k) / c.length + "%";
+                    $("ph" + i).classList.toggle(
+                        "done",
+                        b.length > 0 && d == b.length,
+                    );
                 });
             }
             document.addEventListener("change", function (e) {
-                if (e.target.type == "checkbox") {
-                    S[e.target.id] = e.target.checked;
+                var c = e.target;
+                if (c.dataset && c.dataset.id) {
+                    if (c.checked) st[c.dataset.id] = 1;
+                    else delete st[c.dataset.id];
                     save();
-                    upd();
+                    update();
                 }
             });
-            document.getElementById("rs").onclick = function () {
-                if (confirm("Clear all progress?")) {
-                    S = {};
-                    save();
-                    document
-                        .querySelectorAll("main .row input")
-                        .forEach(function (c) {
-                            c.checked = false;
-                        });
-                    upd();
-                }
+            function go(k) {
+                cur = k;
+                try {
+                    history.replaceState(null, "", "#" + k);
+                } catch (e) {}
+                render();
+            }
+            $("tab-math").onclick = function () {
+                go("math");
             };
-            upd();
+            $("tab-cs").onclick = function () {
+                go("cs");
+            };
+            $("reset").onclick = function () {
+                Object.keys(st).forEach(function (k) {
+                    if (k.indexOf(cur) == 0) delete st[k];
+                });
+                save();
+                render();
+            };
+            window.addEventListener("hashchange", function () {
+                var h = location.hash.slice(1);
+                if (P[h] && h != cur) {
+                    cur = h;
+                    render();
+                }
+            });
+            if (P[location.hash.slice(1)]) cur = location.hash.slice(1);
+            render();
         </script>
     </body>
 </html>
