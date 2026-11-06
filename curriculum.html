@@ -6,7 +6,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
-        <title>curriculum</title>
+        <title>micahasowata::curriculum</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -76,7 +76,7 @@
                 -webkit-font-smoothing: antialiased;
             }
 
-            /* ---------- Hero / sticky counter ---------- */
+            /* Hero */
             .hero {
                 position: sticky;
                 top: 0;
@@ -156,14 +156,14 @@
                 font-weight: 600;
             }
 
-            /* ---------- Main ---------- */
+            /* Main */
             main {
                 max-width: 48rem;
                 margin: 0 auto;
                 padding: 2rem 1.25rem 6rem;
             }
 
-            /* ---------- Block ---------- */
+            /* Block */
             .block {
                 margin: 0 0 3.5rem;
             }
@@ -185,7 +185,7 @@
                 letter-spacing: -0.01em;
             }
 
-            /* ---------- Phase divider (Block 8 only) ---------- */
+            /* Phase divider */
             .phase-head {
                 margin: 1.75rem 0 0.7rem;
                 padding: 0.5rem 0.85rem;
@@ -201,7 +201,7 @@
                 margin-top: 0.5rem;
             }
 
-            /* ---------- Session list ---------- */
+            /* Sessions */
             .sessions {
                 display: flex;
                 flex-direction: column;
@@ -277,7 +277,6 @@
                     opacity: 1;
                 }
             }
-
             .session .num {
                 font: 500 0.72rem/1 var(--mono);
                 color: var(--muted);
@@ -306,8 +305,15 @@
                     color 0.15s,
                     text-decoration-color 0.15s;
             }
-
-            /* Completed */
+            .session .text a {
+                color: inherit;
+                text-decoration: underline;
+                text-decoration-color: var(--faint);
+                text-underline-offset: 2px;
+            }
+            .session .text a:hover {
+                text-decoration-color: var(--accent);
+            }
             .session.done {
                 opacity: 0.55;
             }
@@ -319,8 +325,6 @@
             .session.done .num {
                 color: var(--faint);
             }
-
-            /* Next up */
             .session.next {
                 background: var(--next-soft);
             }
@@ -341,7 +345,7 @@
                 font-weight: 600;
             }
 
-            /* ---------- Gate ---------- */
+            /* Gate */
             .gate {
                 margin: 1.1rem 0 0;
                 padding: 0.9rem 1.1rem;
@@ -360,8 +364,14 @@
                 display: block;
                 margin-bottom: 0.4rem;
             }
+            .gate code {
+                background: rgba(0, 0, 0, 0.08);
+                padding: 0.05rem 0.3rem;
+                border-radius: 3px;
+                font-size: 0.85em;
+            }
 
-            /* ---------- Footer ---------- */
+            /* Footer */
             footer {
                 max-width: 48rem;
                 margin: 0 auto;
@@ -387,7 +397,6 @@
                 outline-offset: 2px;
             }
 
-            /* Done state */
             body.all-done h1 {
                 color: var(--accent);
             }
@@ -415,13 +424,13 @@
         <header class="hero">
             <p class="eyebrow">The Schedule</p>
             <h1>
-                <span id="count">458</span>
+                <span id="count">453</span>
                 <span id="suffix">sessions to go</span>
             </h1>
             <p class="lede">Two strands. Run them in lockstep. No calendar.</p>
             <div class="bar"><i id="pbar"></i></div>
             <div class="meta">
-                <span id="meta"><b>0</b> / 458 complete</span>
+                <span id="meta"><b>0</b> / 453 complete</span>
                 <span id="meta-pct">0%</span>
             </div>
         </header>
@@ -433,10 +442,6 @@
         </footer>
 
         <script>
-            /* ============================================================
-   DATA — 458 sessions across 8 blocks
-   strand: "code" | "math"
-   ============================================================ */
             const DATA = [
                 {
                     n: 1,
@@ -996,7 +1001,7 @@
                     n: 6,
                     icon: "📔",
                     title: "Statistics, Concurrency & Backend",
-                    gate: "Go API with database integration and tests + statistical analysis project.",
+                    gate: "A <b>deployed full stack app</b> — the Go API from <i>Let's Go Further</i> wired to a front end in <b>Next.js 16 or TanStack Start + Tailwind</b>. Lists, filters, sorts and paginates records. Sign-up, activation and login work. Actions show or hide by permission. CORS and errors handled cleanly. Runs on a phone against the deployed API.",
                     sections: [
                         {
                             title: null,
@@ -1018,49 +1023,52 @@
                                 ["6.15", "code", "OSTEP Ch 31"],
                                 ["6.16", "code", "OSTEP Ch 32"],
                                 ["6.17", "code", "Go Tour"],
-                                ["6.18", "code", "Let’s Go Ch 1–3"],
-                                ["6.19", "code", "Let’s Go Ch 4–6"],
-                                ["6.20", "code", "Let’s Go Ch 7–9"],
-                                ["6.21", "code", "Let’s Go Ch 10–12"],
-                                ["6.22", "code", "Let’s Go Ch 13–15"],
-                                ["6.23", "code", "Let’s Go Further Ch 1–3"],
-                                ["6.24", "code", "Let’s Go Further Ch 4–6"],
-                                ["6.25", "code", "Let’s Go Further Ch 7–9"],
-                                ["6.26", "code", "Let’s Go Further Ch 10–12"],
-                                ["6.27", "code", "Let’s Go Further Ch 13–15"],
-                                ["6.28", "code", "Let’s Go Further Ch 16–18"],
-                                ["6.29", "code", "Let’s Go Further Ch 19–22"],
-                                ["6.30", "code", "PostgreSQL fundamentals"],
+                                ["6.18", "code", "Let's Go Ch 1–3"],
+                                ["6.19", "code", "Let's Go Ch 4–6"],
+                                ["6.20", "code", "Let's Go Ch 7–9"],
+                                ["6.21", "code", "Let's Go Ch 10–12"],
+                                ["6.22", "code", "Let's Go Ch 13–15"],
+                                ["6.23", "code", "Let's Go Further Ch 1–3"],
+                                ["6.24", "code", "Let's Go Further Ch 4–6"],
+                                ["6.25", "code", "Let's Go Further Ch 7–9"],
+                                ["6.26", "code", "Let's Go Further Ch 10–12"],
+                                ["6.27", "code", "Let's Go Further Ch 13–15"],
+                                ["6.28", "code", "Let's Go Further Ch 16–18"],
+                                ["6.29", "code", "Let's Go Further Ch 19–22"],
+                                [
+                                    "6.30",
+                                    "code",
+                                    "<a href='https://www.youtube.com/watch?v=jBE_Oj2FK4E' target='_blank' rel='noopener'>Weather App with HTML, CSS &amp; JS</a> — semantic HTML · CSS layout &amp; grid · weather + location APIs · unit toggle",
+                                ],
                                 [
                                     "6.31",
                                     "code",
-                                    "PostgreSQL — joins + indexes",
+                                    "<a href='https://www.youtube.com/watch?v=KmuJOm09e98' target='_blank' rel='noopener'>JavaScript / TypeScript quick start</a> — JS basics · async/await · modules · NPM · TS types · classes · generics",
                                 ],
-                                ["6.32", "code", "PostgreSQL — transactions"],
-                                ["6.33", "code", "Database migrations"],
-                                ["6.34", "code", "OWASP intro"],
+                                [
+                                    "6.32",
+                                    "code",
+                                    "<a href='https://www.youtube.com/watch?v=9I3JQ1q4IMk' target='_blank' rel='noopener'>Tailwind CSS v4 for Beginners</a> — utility classes · flexbox &amp; grid · custom theme · layers · components",
+                                ],
+                                [
+                                    "6.33",
+                                    "code",
+                                    "<a href='https://www.youtube.com/watch?v=9aTRnV6g0eQ' target='_blank' rel='noopener'>Learn React With This One Project</a> — components · props · useState · useContext · custom hooks · useEffect",
+                                ],
+                                [
+                                    "6.34",
+                                    "code",
+                                    "Port the weather dashboard to React + Tailwind — same layout, same API calls",
+                                ],
                                 [
                                     "6.35",
                                     "code",
-                                    "Canning Ch 16 — What to Use and Why",
-                                ],
-                                ["6.36", "code", "Go API: schema + handlers"],
-                                [
-                                    "6.37",
-                                    "code",
-                                    "Go API: validation + logging + CRUD",
-                                ],
-                                ["6.38", "code", "Go API: auth + permissions"],
-                                ["6.39", "code", "Go API: rate limiting"],
-                                [
-                                    "6.40",
-                                    "code",
-                                    "Go API: tests + hardening + load test",
+                                    "<a href='https://www.youtube.com/watch?v=tI_Nt32_4wM' target='_blank' rel='noopener'>Next.js 16 Full Course</a> — App Router · server vs client components · server actions · auth · Drizzle + Postgres · deployment",
                                 ],
                                 [
-                                    "6.41",
+                                    "6.36",
                                     "code",
-                                    "Statistical analysis project",
+                                    "<a href='https://www.youtube.com/watch?v=FsIASz_Uvd0' target='_blank' rel='noopener'>TanStack Start Full Stack Course</a> — routing · layouts · shadcn/ui · auth · forms with Zod · data fetching · server functions · middleware · typed search params · SEO · streaming · deployment",
                                 ],
                             ],
                         },
@@ -1432,10 +1440,15 @@
                 },
             ];
 
-            /* ============================================================
-   STATE
-   ============================================================ */
-            const KEY = "roadmap-458-v2";
+            /* Derive total from data */
+            const TOTAL = DATA.reduce(
+                (sum, b) =>
+                    sum +
+                    b.sections.reduce((s, sec) => s + sec.sessions.length, 0),
+                0,
+            );
+
+            const KEY = "roadmap-453-v1";
             let state = {};
             try {
                 state = JSON.parse(localStorage.getItem(KEY) || "{}") || {};
@@ -1443,7 +1456,6 @@
                 state = {};
             }
 
-            const TOTAL = 458;
             const mainEl = document.getElementById("main");
             const countEl = document.getElementById("count");
             const suffixEl = document.getElementById("suffix");
@@ -1452,9 +1464,7 @@
             const pctEl = document.getElementById("meta-pct");
             const rowMap = new Map();
 
-            /* ============================================================
-   RENDER
-   ============================================================ */
+            /* Render */
             DATA.forEach((block) => {
                 const section = document.createElement("section");
                 section.className = "block";
@@ -1486,7 +1496,7 @@
                         input.checked = !!state[id];
                         input.setAttribute(
                             "aria-label",
-                            `Session ${id}: ${text}`,
+                            `Session ${id}: ${text.replace(/<[^>]+>/g, "")}`,
                         );
 
                         const num = document.createElement("span");
@@ -1500,7 +1510,7 @@
 
                         const txt = document.createElement("span");
                         txt.className = "text";
-                        txt.textContent = text;
+                        txt.innerHTML = text;
 
                         label.append(input, num, strandEl, txt);
                         if (state[id]) label.classList.add("done");
@@ -1516,6 +1526,13 @@
                             persist();
                             update();
                         });
+
+                        /* Prevent label-click on links from toggling the checkbox */
+                        txt.querySelectorAll("a").forEach((a) =>
+                            a.addEventListener("click", (e) =>
+                                e.stopPropagation(),
+                            ),
+                        );
 
                         list.appendChild(label);
                         rowMap.set(id, label);
@@ -1534,9 +1551,6 @@
                 mainEl.appendChild(section);
             });
 
-            /* ============================================================
-   PERSIST + UPDATE
-   ============================================================ */
             function persist() {
                 try {
                     localStorage.setItem(KEY, JSON.stringify(state));
@@ -1547,7 +1561,6 @@
                 const done = Object.keys(state).length;
                 const remaining = TOTAL - done;
 
-                /* counter + suffix */
                 if (remaining === 0) {
                     countEl.textContent = "0";
                     suffixEl.textContent = "— finish line 🏁";
@@ -1559,18 +1572,15 @@
                     document.body.classList.remove("all-done");
                 }
 
-                /* re-trigger pop animation */
                 countEl.classList.remove("pop");
                 void countEl.offsetWidth;
                 countEl.classList.add("pop");
 
-                /* progress bar + meta */
                 const pct = (done / TOTAL) * 100;
                 pbarEl.style.width = pct + "%";
                 metaEl.innerHTML = `<b>${done}</b> / ${TOTAL} complete`;
                 pctEl.textContent = Math.round(pct) + "%";
 
-                /* next-up highlight */
                 let nextId = null;
                 outer: for (const block of DATA) {
                     for (const sec of block.sections) {
@@ -1587,9 +1597,6 @@
                 );
             }
 
-            /* ============================================================
-   RESET
-   ============================================================ */
             document.getElementById("reset").addEventListener("click", () => {
                 if (!confirm("Clear all ticks? This can't be undone.")) return;
                 state = {};
@@ -1601,9 +1608,11 @@
                 update();
             });
 
-            /* ============================================================
-   BOOT
-   ============================================================ */
+            /* Fix hero initial text with derived total */
+            document.getElementById("meta").innerHTML =
+                `<b>0</b> / ${TOTAL} complete`;
+            document.getElementById("count").textContent = TOTAL;
+
             update();
         </script>
     </body>
