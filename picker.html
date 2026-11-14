@@ -106,7 +106,7 @@
                 font-size: 0.9rem;
                 margin-bottom: 6px;
             }
-            input {
+            input[type="number"] {
                 width: 100%;
                 font:
                     600 1.1rem "JetBrains Mono",
@@ -117,10 +117,64 @@
                 border-radius: 10px;
                 padding: 10px 12px;
             }
-            input:focus {
+            input[type="number"]:focus {
                 outline: none;
                 border-color: var(--lavender);
             }
+
+            /* option groups (parity + portion) */
+            fieldset {
+                border: 0;
+                margin: 18px 0 0;
+                padding: 0;
+                min-width: 0;
+            }
+            legend {
+                font-weight: 700;
+                font-size: 0.9rem;
+                padding: 0;
+                margin-bottom: 6px;
+            }
+            .pills {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .pill {
+                position: relative;
+                display: inline-block;
+                margin: 0;
+            }
+            .pill input {
+                position: absolute;
+                opacity: 0;
+                width: 1px;
+                height: 1px;
+                margin: 0;
+            }
+            .pill span {
+                display: inline-block;
+                padding: 8px 16px;
+                border-radius: 999px;
+                border: 2px solid var(--surface0);
+                background: var(--base);
+                font-weight: 700;
+                cursor: pointer;
+                user-select: none;
+            }
+            .pill:hover span {
+                border-color: var(--surface1);
+            }
+            .pill input:checked + span {
+                background: var(--mauve);
+                border-color: var(--mauve);
+                color: var(--base);
+            }
+            .pill input:focus-visible + span {
+                outline: 3px solid var(--lavender);
+                outline-offset: 2px;
+            }
+
             button {
                 font:
                     800 1rem Nunito,
@@ -146,7 +200,7 @@
             .actions {
                 display: flex;
                 gap: 10px;
-                margin-top: 16px;
+                margin-top: 20px;
                 flex-wrap: wrap;
             }
             #msg {
@@ -202,11 +256,11 @@
     </head>
     <body>
         <main>
-            <h1>Two-thirds picker</h1>
+            <h1>Number picker</h1>
             <p class="lead">
-                Enter a start and an end. You’ll get a sorted list of unique
-                random numbers from that range, covering two-thirds of its
-                values.
+                Enter a start and an end, choose which numbers to draw from
+                (all, even or odd) and how much of them to pick. You’ll get a
+                sorted list of unique random numbers.
             </p>
 
             <div class="panel">
@@ -232,6 +286,77 @@
                         />
                     </div>
                 </div>
+
+                <fieldset>
+                    <legend>Numbers to pick from</legend>
+                    <div class="pills">
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="parity"
+                                value="all"
+                                checked
+                            /><span>All</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="parity"
+                                value="even"
+                            /><span>Even</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="parity"
+                                value="odd"
+                            /><span>Odd</span></label
+                        >
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>How much of them</legend>
+                    <div class="pills">
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="portion"
+                                value="1/4"
+                            /><span>A quarter</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="portion"
+                                value="1/3"
+                            /><span>A third</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="portion"
+                                value="1/2"
+                            /><span>Half</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="portion"
+                                value="2/3"
+                                checked
+                            /><span>Two-thirds</span></label
+                        >
+                        <label class="pill"
+                            ><input
+                                type="radio"
+                                name="portion"
+                                value="1/1"
+                            /><span>Whole</span></label
+                        >
+                    </div>
+                </fieldset>
+
                 <div class="actions">
                     <button id="go">Generate list</button>
                 </div>
@@ -240,7 +365,10 @@
 
             <section id="result" hidden>
                 <div class="meta">
-                    <span>Picked <b id="k"></b> of <b id="n"></b> values</span>
+                    <span
+                        >Picked <b id="k"></b> of <b id="n"></b>
+                        <span id="kind">values</span></span
+                    >
                     <button class="ghost" id="copy">Copy list</button>
                 </div>
                 <div id="out"></div>
@@ -254,30 +382,41 @@
                 };
                 var last = "";
 
-                function sample(lo, n, k) {
-                    var picked = [],
+                function checked(name) {
+                    return document.querySelector(
+                        'input[name="' + name + '"]:checked',
+                    ).value;
+                }
+
+                // Picks k unique values from the pool lo, lo+step, ... (n values).
+                function sample(lo, step, n, k) {
+                    var idx = [],
                         i,
                         j,
                         t;
                     if (k * 2 <= n) {
                         var seen = new Set();
                         while (seen.size < k)
-                            seen.add(lo + Math.floor(Math.random() * n));
-                        picked = Array.from(seen);
+                            seen.add(Math.floor(Math.random() * n));
+                        idx = Array.from(seen);
                     } else {
                         var arr = new Array(n);
-                        for (i = 0; i < n; i++) arr[i] = lo + i;
+                        for (i = 0; i < n; i++) arr[i] = i;
                         for (i = 0; i < k; i++) {
                             j = i + Math.floor(Math.random() * (n - i));
                             t = arr[i];
                             arr[i] = arr[j];
                             arr[j] = t;
                         }
-                        picked = arr.slice(0, k);
+                        idx = arr.slice(0, k);
                     }
-                    return picked.sort(function (a, b) {
-                        return a - b;
-                    });
+                    return idx
+                        .map(function (x) {
+                            return lo + x * step;
+                        })
+                        .sort(function (a, b) {
+                            return a - b;
+                        });
                 }
 
                 function run() {
@@ -295,23 +434,41 @@
                         a = b;
                         b = s;
                     }
-                    var n = b - a + 1;
-                    if (n > MAX_RANGE) {
+                    if (b - a + 1 > MAX_RANGE) {
                         msg.textContent =
                             "That range is too large. Keep it under 1,000,000 values.";
                         return;
                     }
-                    var k = Math.round((n * 2) / 3);
-                    if (k < 1) {
+
+                    var parity = checked("parity");
+                    var lo = a,
+                        step = 1;
+                    if (parity !== "all") {
+                        var want = parity === "even" ? 0 : 1;
+                        step = 2;
+                        if (((a % 2) + 2) % 2 !== want) lo = a + 1;
+                    }
+                    var n = lo > b ? 0 : Math.floor((b - lo) / step) + 1;
+                    if (n < 1) {
                         msg.textContent =
-                            "That range is too small to pick two-thirds of. Widen it to at least 2 values.";
+                            "There are no " +
+                            parity +
+                            " numbers in that range. Widen it.";
                         return;
                     }
-                    var list = sample(a, n, k);
+
+                    var frac = checked("portion").split("/");
+                    var k = Math.round((n * +frac[0]) / +frac[1]);
+                    if (k < 1) k = 1; // always pick at least one number
+                    if (k > n) k = n;
+
+                    var list = sample(lo, step, n, k);
                     last = list.join(", ");
                     $("out").textContent = last;
                     $("k").textContent = k.toLocaleString("en-IE");
                     $("n").textContent = n.toLocaleString("en-IE");
+                    $("kind").textContent =
+                        parity === "all" ? "values" : parity + " numbers";
                     $("result").hidden = false;
                 }
 
