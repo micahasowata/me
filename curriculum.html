@@ -75,19 +75,20 @@
                 font: 400 16px/1.55 var(--sans);
                 -webkit-font-smoothing: antialiased;
             }
-
             .hero {
                 position: sticky;
                 top: 0;
                 z-index: 100;
-                padding: 1.15rem 1.25rem 0.85rem;
+                padding: calc(1.15rem + env(safe-area-inset-top, 0px)) 1.25rem
+                    0.85rem;
                 background: var(--bg);
                 border-bottom: 1px solid var(--rule);
                 backdrop-filter: saturate(140%) blur(8px);
             }
             @media (min-width: 48rem) {
                 .hero {
-                    padding: 1.6rem max(1.25rem, calc(50vw - 24rem)) 1rem;
+                    padding: calc(1.6rem + env(safe-area-inset-top, 0px))
+                        max(1.25rem, calc(50vw - 24rem)) 1rem;
                 }
             }
             .eyebrow {
@@ -154,7 +155,6 @@
                 color: var(--ink);
                 font-weight: 600;
             }
-
             main {
                 max-width: 48rem;
                 margin: 0 auto;
@@ -180,7 +180,6 @@
                 margin: 0;
                 letter-spacing: -0.01em;
             }
-
             .phase-head {
                 margin: 1.75rem 0 0.7rem;
                 padding: 0.5rem 0.85rem;
@@ -195,7 +194,6 @@
             .phase-head:first-of-type {
                 margin-top: 0.5rem;
             }
-
             .sessions {
                 display: flex;
                 flex-direction: column;
@@ -338,7 +336,6 @@
                 color: var(--next);
                 font-weight: 600;
             }
-
             .gate {
                 margin: 1.1rem 0 0;
                 padding: 0.9rem 1.1rem;
@@ -363,11 +360,11 @@
                 border-radius: 3px;
                 font-size: 0.85em;
             }
-
             footer {
                 max-width: 48rem;
                 margin: 0 auto;
-                padding: 1.5rem 1.25rem 4rem;
+                padding: 1.5rem 1.25rem
+                    calc(4rem + env(safe-area-inset-bottom, 0px));
                 text-align: center;
             }
             footer button {
@@ -388,11 +385,9 @@
                 outline: 2px solid var(--accent);
                 outline-offset: 2px;
             }
-
             body.all-done h1 {
                 color: var(--accent);
             }
-
             @media (max-width: 30rem) {
                 .session {
                     grid-template-columns: 1.35rem 2.9rem 1.55rem 1fr;
@@ -416,7 +411,7 @@
         <header class="hero">
             <p class="eyebrow">The Schedule</p>
             <h1>
-                <span id="count">468</span>
+                <span id="count">473</span>
                 <span id="suffix">sessions to go</span>
             </h1>
             <p class="lede">
@@ -425,17 +420,14 @@
             </p>
             <div class="bar"><i id="pbar"></i></div>
             <div class="meta">
-                <span id="meta"><b>0</b> / 468 complete</span>
-                <span id="meta-pct">0%</span>
+                <span id="meta"><b>0</b> / 473 complete</span
+                ><span id="meta-pct">0%</span>
             </div>
         </header>
-
         <main id="main"></main>
-
         <footer>
             <button id="reset" type="button">Clear all ticks</button>
         </footer>
-
         <script>
             const DATA = [
                 {
@@ -1112,7 +1104,12 @@
                                 [
                                     "5.49",
                                     "code",
-                                    "Spatial-index demo + heap priority queue simulation",
+                                    "Spatial-index demo (grid vs quadtree)",
+                                ],
+                                [
+                                    "5.50",
+                                    "code",
+                                    "Heap priority queue in a simulation",
                                 ],
                             ],
                         },
@@ -1219,6 +1216,26 @@
                                     "6.41",
                                     "code",
                                     "<a href='https://www.youtube.com/watch?v=FsIASz_Uvd0' target='_blank' rel='noopener'>TanStack Start Full Stack Course</a> — routing · layouts · shadcn/ui · auth · forms with Zod · data fetching · server functions · middleware · typed search params · SEO · streaming · deployment",
+                                ],
+                                [
+                                    "6.42",
+                                    "code",
+                                    "Full stack app: scaffold front end + connect to the Go API (env config, CORS)",
+                                ],
+                                [
+                                    "6.43",
+                                    "code",
+                                    "Full stack app: list, filter, sort, paginate records",
+                                ],
+                                [
+                                    "6.44",
+                                    "code",
+                                    "Full stack app: sign-up, activation, login + permission-gated actions",
+                                ],
+                                [
+                                    "6.45",
+                                    "code",
+                                    "Full stack app: error handling, deploy, test on a phone",
                                 ],
                             ],
                         },
@@ -1597,6 +1614,7 @@
                 0,
             );
 
+            // Key kept as-is so existing progress survives the schedule update.
             const KEY = "roadmap-468-sz-v1";
             let state = {};
             try {
@@ -1616,11 +1634,9 @@
             DATA.forEach((block) => {
                 const section = document.createElement("section");
                 section.className = "block";
-
                 const head = document.createElement("div");
                 head.className = "block-head";
-                head.innerHTML = `<span class="block-num">BLOCK ${block.n}</span>
-                    <h2 class="block-title">${block.icon} ${block.title}</h2>`;
+                head.innerHTML = `<span class="block-num">BLOCK ${block.n}</span><h2 class="block-title">${block.icon} ${block.title}</h2>`;
                 section.appendChild(head);
 
                 block.sections.forEach((sec) => {
@@ -1630,7 +1646,6 @@
                         ph.textContent = sec.title;
                         section.appendChild(ph);
                     }
-
                     const list = document.createElement("div");
                     list.className = "sessions";
 
@@ -1684,7 +1699,6 @@
                         list.appendChild(label);
                         rowMap.set(id, label);
                     });
-
                     section.appendChild(list);
                 });
 
@@ -1694,7 +1708,6 @@
                     gate.innerHTML = `<span class="label">🏆 Gate</span>${block.gate}`;
                     section.appendChild(gate);
                 }
-
                 mainEl.appendChild(section);
             });
 
@@ -1704,8 +1717,12 @@
                 } catch (e) {}
             }
 
+            let lastRemaining = null;
+
             function update() {
-                const done = Object.keys(state).length;
+                const done = Object.keys(state).filter((id) =>
+                    rowMap.has(id),
+                ).length;
                 const remaining = TOTAL - done;
 
                 if (remaining === 0) {
@@ -1719,9 +1736,12 @@
                     document.body.classList.remove("all-done");
                 }
 
-                countEl.classList.remove("pop");
-                void countEl.offsetWidth;
-                countEl.classList.add("pop");
+                if (lastRemaining !== null && lastRemaining !== remaining) {
+                    countEl.classList.remove("pop");
+                    void countEl.offsetWidth;
+                    countEl.classList.add("pop");
+                }
+                lastRemaining = remaining;
 
                 const pct = (done / TOTAL) * 100;
                 pbarEl.style.width = pct + "%";
@@ -1754,10 +1774,6 @@
                 });
                 update();
             });
-
-            document.getElementById("meta").innerHTML =
-                `<b>0</b> / ${TOTAL} complete`;
-            document.getElementById("count").textContent = TOTAL;
 
             update();
         </script>
