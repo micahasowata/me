@@ -30,7 +30,6 @@
                 --red: #b23b3b;
                 --red-bg: #f8e4e1;
                 --shadow: 0 10px 30px rgba(42, 38, 30, 0.08);
-                --radius: 16px;
                 --font-heading: "Newsreader", Georgia, "Times New Roman", serif;
                 --font-body:
                     "Public Sans", system-ui, -apple-system, BlinkMacSystemFont,
@@ -39,7 +38,6 @@
                     "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
                     Consolas, monospace;
             }
-
             @media (prefers-color-scheme: dark) {
                 :root {
                     --bg: #0f1716;
@@ -59,15 +57,12 @@
                     --shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
                 }
             }
-
             * {
                 box-sizing: border-box;
             }
-
             html {
                 color-scheme: light dark;
             }
-
             body {
                 margin: 0;
                 background: var(--bg);
@@ -77,18 +72,16 @@
                 -webkit-font-smoothing: antialiased;
                 text-rendering: optimizeLegibility;
             }
-
             a {
                 color: var(--teal);
                 text-underline-offset: 2px;
             }
-
             .shell {
                 width: min(70rem, 100%);
                 margin: 0 auto;
-                padding: 0 1rem;
+                padding-left: max(1rem, env(safe-area-inset-left));
+                padding-right: max(1rem, env(safe-area-inset-right));
             }
-
             .site-header {
                 position: sticky;
                 top: 0;
@@ -99,7 +92,6 @@
                 padding-top: calc(1rem + env(safe-area-inset-top));
                 padding-bottom: 1rem;
             }
-
             .eyebrow {
                 margin: 0 0 0.35rem;
                 font-family: var(--font-mono);
@@ -108,7 +100,6 @@
                 text-transform: uppercase;
                 color: var(--muted);
             }
-
             h1 {
                 margin: 0;
                 font-family: var(--font-heading);
@@ -117,11 +108,9 @@
                 line-height: 1.02;
                 letter-spacing: -0.035em;
             }
-
             .count-line.pop {
                 animation: pop 340ms ease;
             }
-
             @keyframes pop {
                 0% {
                     transform: scale(1);
@@ -133,14 +122,12 @@
                     transform: scale(1);
                 }
             }
-
             .lede {
                 max-width: 48rem;
                 margin: 0.55rem 0 1rem;
                 color: var(--muted);
                 font-size: 1rem;
             }
-
             .progress-track {
                 width: 100%;
                 height: 0.72rem;
@@ -149,7 +136,6 @@
                 border-radius: 999px;
                 overflow: hidden;
             }
-
             .progress-bar {
                 height: 100%;
                 width: 0%;
@@ -161,7 +147,6 @@
                 border-radius: inherit;
                 transition: width 220ms ease;
             }
-
             .progress-meta {
                 display: flex;
                 justify-content: space-between;
@@ -172,15 +157,13 @@
                 font-size: 0.78rem;
                 color: var(--muted);
             }
-
-            main {
-                padding: 2rem 0 1rem;
+            main.shell {
+                padding-top: 2rem;
+                padding-bottom: 1rem;
             }
-
             .block {
                 margin-bottom: 2.8rem;
             }
-
             .block-header {
                 display: flex;
                 align-items: baseline;
@@ -190,7 +173,6 @@
                 border-bottom: 1px solid var(--line);
                 margin-bottom: 1rem;
             }
-
             .block-kicker {
                 font-family: var(--font-mono);
                 font-size: 0.76rem;
@@ -198,7 +180,6 @@
                 color: var(--teal);
                 text-transform: uppercase;
             }
-
             .block-title {
                 margin: 0;
                 font-family: var(--font-heading);
@@ -207,7 +188,6 @@
                 line-height: 1.1;
                 letter-spacing: -0.02em;
             }
-
             .phase-title {
                 margin: 1.3rem 0 0.55rem;
                 font-family: var(--font-mono);
@@ -216,12 +196,10 @@
                 text-transform: uppercase;
                 color: var(--muted);
             }
-
             .session-list {
                 display: grid;
                 gap: 0.35rem;
             }
-
             .row {
                 display: grid;
                 grid-template-columns: 1.5rem 3.8rem 2rem minmax(0, 1fr);
@@ -239,31 +217,25 @@
                     opacity 160ms ease,
                     border-color 160ms ease;
             }
-
             .row:hover {
                 background: color-mix(in srgb, var(--surface) 75%, transparent);
             }
-
             .row:focus-within {
                 outline: 3px solid var(--teal);
                 outline-offset: 2px;
             }
-
             .row.done {
                 opacity: 0.58;
             }
-
             .row.done .session-text {
                 text-decoration: line-through;
                 text-decoration-thickness: 1px;
             }
-
             .row.next {
                 background: var(--red-bg);
                 border-left: 4px solid var(--red);
                 padding-left: calc(0.8rem - 3px);
             }
-
             .tick {
                 position: absolute;
                 width: 1px;
@@ -275,7 +247,6 @@
                 white-space: nowrap;
                 border: 0;
             }
-
             .box {
                 width: 1.2rem;
                 height: 1.2rem;
@@ -290,12 +261,10 @@
                     border-color 160ms ease,
                     transform 160ms ease;
             }
-
             .tick:checked + .box {
                 background: var(--teal);
                 border-color: var(--teal);
             }
-
             .tick:checked + .box::after {
                 content: "";
                 width: 0.33rem;
@@ -304,7 +273,6 @@
                 border-width: 0 2px 2px 0;
                 transform: rotate(45deg) translateY(-0.05rem);
             }
-
             .sid {
                 font-family: var(--font-mono);
                 font-size: 0.78rem;
@@ -312,7 +280,6 @@
                 padding-top: 0.1rem;
                 white-space: nowrap;
             }
-
             .strand {
                 width: 2rem;
                 height: 2rem;
@@ -322,20 +289,17 @@
                 font-size: 1rem;
                 line-height: 1;
             }
-
             .strand.code {
                 background: var(--amber-bg);
             }
             .strand.math {
                 background: var(--violet-bg);
             }
-
             .session-text {
                 min-width: 0;
                 font-size: 0.98rem;
                 overflow-wrap: anywhere;
             }
-
             .gate {
                 margin-top: 1.1rem;
                 padding: 0.95rem 1rem;
@@ -346,7 +310,6 @@
                 border-radius: 12px;
                 box-shadow: var(--shadow);
             }
-
             .gate strong {
                 display: block;
                 font-family: var(--font-mono);
@@ -356,18 +319,15 @@
                 color: var(--amber);
                 margin-bottom: 0.3rem;
             }
-
             .gate p {
                 margin: 0;
                 font-size: 0.95rem;
             }
-
             footer {
                 border-top: 1px solid var(--line);
                 padding-top: 1.25rem;
                 padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
             }
-
             .footer-inner {
                 display: flex;
                 justify-content: space-between;
@@ -375,13 +335,11 @@
                 gap: 1rem;
                 flex-wrap: wrap;
             }
-
             .footer-note {
                 margin: 0;
                 color: var(--muted);
                 font-size: 0.85rem;
             }
-
             .clear {
                 appearance: none;
                 border: 1px solid var(--line);
@@ -393,23 +351,20 @@
                 cursor: pointer;
                 transition:
                     border-color 160ms ease,
-                    background 160ms ease,
-                    transform 160ms ease;
+                    background 160ms ease;
             }
-
             .clear:hover {
                 border-color: var(--teal);
                 background: var(--teal-soft);
             }
-
             .clear:focus-visible {
                 outline: 3px solid var(--teal);
                 outline-offset: 3px;
             }
-
             @media (max-width: 30rem) {
                 .shell {
-                    padding: 0 0.7rem;
+                    padding-left: max(0.7rem, env(safe-area-inset-left));
+                    padding-right: max(0.7rem, env(safe-area-inset-right));
                 }
                 h1 {
                     font-size: 2rem;
@@ -440,30 +395,44 @@
                     font-size: 0.72rem;
                 }
             }
+            @media (prefers-reduced-motion: reduce) {
+                *,
+                *::before,
+                *::after {
+                    animation: none !important;
+                    transition: none !important;
+                }
+            }
         </style>
     </head>
     <body>
         <header class="site-header">
             <div class="shell">
                 <p class="eyebrow">The Schedule</p>
-                <h1 id="count-line">…</h1>
+                <h1 id="count-line" class="count-line">…</h1>
                 <p class="lede">
                     Two strands in lockstep: math 📐 and code 💻. Alternate
                     sittings while both have material; when one runs dry, the
                     other carries on.
                 </p>
-                <div class="progress-track" aria-hidden="true">
+                <div
+                    class="progress-track"
+                    id="progress-track"
+                    role="progressbar"
+                    aria-label="Curriculum progress"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                    aria-valuenow="0"
+                >
                     <div class="progress-bar" id="progress-bar"></div>
                 </div>
                 <div class="progress-meta">
-                    <span id="done-meta">0 / 0 complete</span>
-                    <span id="percent-meta">0%</span>
+                    <span id="done-meta">0 / 0 complete</span
+                    ><span id="percent-meta">0%</span>
                 </div>
             </div>
         </header>
-
         <main class="shell" id="main"></main>
-
         <footer>
             <div class="shell footer-inner">
                 <p class="footer-note">
@@ -474,7 +443,6 @@
                 </button>
             </div>
         </footer>
-
         <script>
             const DATA = [
                 {
@@ -2660,14 +2628,18 @@
             ];
 
             const STORAGE_KEY = "curriculum-6block-v1";
-            const TOTAL = DATA.reduce((blockTotal, block) => {
-                return (
-                    blockTotal +
-                    block.sections.reduce((sectionTotal, section) => {
-                        return sectionTotal + section.sessions.length;
-                    }, 0)
-                );
-            }, 0);
+            const esc = (s) =>
+                String(s)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;");
+
+            const TOTAL = DATA.reduce(
+                (t, b) =>
+                    t +
+                    b.sections.reduce((s, sec) => s + sec.sessions.length, 0),
+                0,
+            );
 
             function safeRead() {
                 try {
@@ -2679,16 +2651,15 @@
                         !Array.isArray(parsed)
                         ? parsed
                         : {};
-                } catch {
+                } catch (e) {
                     return {};
                 }
             }
-
             function safeWrite(value) {
                 try {
                     localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
-                } catch {
-                    // storage blocked or unavailable — the page still works without persistence
+                } catch (e) {
+                    /* storage blocked: page still works without persistence */
                 }
             }
 
@@ -2696,82 +2667,50 @@
             let lastDone = null;
 
             const allIds = new Set();
-            DATA.forEach((block) => {
-                block.sections.forEach((section) => {
-                    section.sessions.forEach(([id]) => allIds.add(id));
-                });
-            });
+            DATA.forEach((b) =>
+                b.sections.forEach((sec) =>
+                    sec.sessions.forEach(([id]) => allIds.add(id)),
+                ),
+            );
 
-            function getDoneCount() {
-                return Array.from(allIds).filter((id) => Boolean(state[id]))
-                    .length;
-            }
+            const getDoneCount = () =>
+                Array.from(allIds).filter((id) => state[id]).length;
 
             function getNextId() {
-                for (const block of DATA) {
-                    for (const section of block.sections) {
-                        for (const [id] of section.sessions) {
+                for (const b of DATA)
+                    for (const sec of b.sections)
+                        for (const [id] of sec.sessions)
                             if (!state[id]) return id;
-                        }
-                    }
-                }
                 return null;
-            }
-
-            function emojiFor(strand) {
-                return strand === "code" ? "💻" : "📐";
             }
 
             function render() {
                 const main = document.getElementById("main");
-                const nextId = getNextId();
                 let html = "";
-
                 DATA.forEach((block) => {
                     html += `<section class="block" aria-labelledby="block-${block.n}">`;
-                    html += `<div class="block-header">`;
-                    html += `<span class="block-kicker">BLOCK ${block.n}</span>`;
-                    html += `<h2 class="block-title" id="block-${block.n}">${block.icon} ${block.title}</h2>`;
-                    html += `</div>`;
-
-                    block.sections.forEach((section) => {
-                        if (section.title) {
-                            html += `<h3 class="phase-title">${section.title}</h3>`;
-                        }
+                    html += `<div class="block-header"><span class="block-kicker">BLOCK ${block.n}</span>`;
+                    html += `<h2 class="block-title" id="block-${block.n}">${block.icon} ${esc(block.title)}</h2></div>`;
+                    block.sections.forEach((sec) => {
+                        if (sec.title)
+                            html += `<h3 class="phase-title">${esc(sec.title)}</h3>`;
                         html += `<div class="session-list">`;
-                        section.sessions.forEach(([id, strand, text]) => {
-                            const isDone = Boolean(state[id]);
-                            const isNext = id === nextId;
-                            const classes = [
-                                "row",
-                                isDone ? "done" : "",
-                                isNext ? "next" : "",
-                            ]
-                                .filter(Boolean)
-                                .join(" ");
-                            html += `<label class="${classes}" data-id="${id}">`;
-                            html += `<input class="tick" type="checkbox" data-id="${id}" ${isDone ? "checked" : ""} aria-label="Mark ${id} complete">`;
+                        sec.sessions.forEach(([id, strand, text]) => {
+                            html += `<label class="row" data-id="${id}">`;
+                            html += `<input class="tick" type="checkbox" data-id="${id}" aria-label="Mark ${id} complete">`;
                             html += `<span class="box" aria-hidden="true"></span>`;
                             html += `<span class="sid">${id}</span>`;
-                            html += `<span class="strand ${strand}" aria-hidden="true">${emojiFor(strand)}</span>`;
-                            html += `<span class="session-text">${text}</span>`;
-                            html += `</label>`;
+                            html += `<span class="strand ${strand}" aria-hidden="true">${strand === "code" ? "💻" : "📐"}</span>`;
+                            html += `<span class="session-text">${text}</span></label>`;
                         });
                         html += `</div>`;
                     });
-
-                    html += `<div class="gate"><strong>🏆 Gate</strong><p>${block.gate}</p></div>`;
-                    html += `</section>`;
+                    html += `<div class="gate"><strong>🏆 Gate</strong><p>${block.gate}</p></div></section>`;
                 });
-
                 main.innerHTML = html;
-
-                main.querySelectorAll(".row a").forEach((link) => {
-                    link.addEventListener("click", (event) =>
-                        event.stopPropagation(),
-                    );
-                });
-
+                main.querySelectorAll(".row a").forEach((a) =>
+                    a.addEventListener("click", (e) => e.stopPropagation()),
+                );
                 updateUI(false);
             }
 
@@ -2779,18 +2718,20 @@
                 const done = getDoneCount();
                 const remaining = TOTAL - done;
                 const countLine = document.getElementById("count-line");
-                const doneMeta = document.getElementById("done-meta");
-                const percentMeta = document.getElementById("percent-meta");
-                const progressBar = document.getElementById("progress-bar");
+                const pct = TOTAL === 0 ? 0 : (done / TOTAL) * 100;
 
                 countLine.textContent =
                     done === TOTAL
                         ? "0 — finish line 🏁"
                         : `${remaining} ${remaining === 1 ? "session" : "sessions"} to go`;
-
-                doneMeta.textContent = `${done} / ${TOTAL} complete`;
-                percentMeta.textContent = `${TOTAL === 0 ? 0 : Math.round((done / TOTAL) * 100)}%`;
-                progressBar.style.width = `${TOTAL === 0 ? 0 : (done / TOTAL) * 100}%`;
+                document.getElementById("done-meta").textContent =
+                    `${done} / ${TOTAL} complete`;
+                document.getElementById("percent-meta").textContent =
+                    `${Math.round(pct)}%`;
+                document.getElementById("progress-bar").style.width = `${pct}%`;
+                document
+                    .getElementById("progress-track")
+                    .setAttribute("aria-valuenow", String(Math.round(pct)));
 
                 const nextId = getNextId();
                 document.querySelectorAll(".row").forEach((row) => {
@@ -2798,34 +2739,24 @@
                     const isDone = Boolean(state[id]);
                     row.classList.toggle("done", isDone);
                     row.classList.toggle("next", id === nextId);
-                    const checkbox = row.querySelector("input.tick");
-                    if (checkbox) checkbox.checked = isDone;
+                    row.querySelector("input.tick").checked = isDone;
                 });
 
                 if (pop && lastDone !== null && done !== lastDone) {
                     countLine.classList.remove("pop");
                     void countLine.offsetWidth;
                     countLine.classList.add("pop");
-                    window.setTimeout(
-                        () => countLine.classList.remove("pop"),
-                        380,
-                    );
                 }
-
                 lastDone = done;
             }
 
             document
                 .getElementById("main")
                 .addEventListener("change", (event) => {
-                    const checkbox = event.target.closest("input.tick");
-                    if (!checkbox) return;
-                    const id = checkbox.dataset.id;
-                    if (checkbox.checked) {
-                        state[id] = true;
-                    } else {
-                        delete state[id];
-                    }
+                    const cb = event.target.closest("input.tick");
+                    if (!cb) return;
+                    if (cb.checked) state[cb.dataset.id] = true;
+                    else delete state[cb.dataset.id];
                     safeWrite(state);
                     updateUI(true);
                 });
@@ -2833,10 +2764,12 @@
             document
                 .getElementById("clear-all")
                 .addEventListener("click", () => {
-                    const confirmed = window.confirm(
-                        "Clear all ticks? This cannot be undone.",
-                    );
-                    if (!confirmed) return;
+                    if (
+                        !window.confirm(
+                            "Clear all ticks? This cannot be undone.",
+                        )
+                    )
+                        return;
                     state = {};
                     safeWrite(state);
                     updateUI(true);
@@ -2846,4 +2779,3 @@
         </script>
     </body>
 </html>
-<!-- 443 sessions total — Block 1: 58, Block 2: 85, Block 3: 77, Block 4: 75, Block 5: 70, Block 6: 78. -->
